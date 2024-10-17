@@ -1,7 +1,7 @@
 package org.example.managelibrary;
 
 public class Document {
-    protected int id;
+    protected int bookId;
     protected String title;
     protected int authorId;
     protected String publisher;
@@ -9,12 +9,16 @@ public class Document {
     protected String isbn;
     protected int quantity;
     protected int categoryId;
+    protected String googleId;
+    protected String description;
+    protected String thumbnail;
+    protected String language;
 
     public Document() {
 
     }
-    public Document(int id, String title, int authorId, String publisher, int year, String isbn, int quantity,int categoryId ) {
-        this.id = id;
+    public Document(int bookId, String title, int authorId, String publisher, int year, String isbn, int quantity, int categoryId, String googleId, String description, String thumbnail, String language) {
+        this.bookId = bookId;
         this.title = title;
         this.authorId = authorId;
         this.publisher = publisher;
@@ -22,14 +26,18 @@ public class Document {
         this.isbn = isbn;
         this.quantity = quantity;
         this.categoryId = categoryId;
+        this.googleId = googleId;
+        this.description = description;
+        this.thumbnail = thumbnail;
+        this.language = language;
     }
 
-    public int getId() {
-        return id;
+    public int getBookIdId() {
+        return bookId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
 
     public String getTitle() {
@@ -87,4 +95,37 @@ public class Document {
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
     }
+
+    public String getGoogleId() {
+        return googleId;
+    }
+
+    public void setGoogleId(String googleId) {
+        this.googleId = googleId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
 }
