@@ -72,8 +72,7 @@ public class Main {
     }
 
     public static void updateDocument() {
-        System.out.println("Updating a document...");
-        // Logic for updating a document
+
     }
 
     public static void findDocument() {
