@@ -11,8 +11,7 @@ public class Member {
     public Member() {
     }
 
-    public Member(int memberId, String name, String address, String phone, String email, String membershipDate, String password) {
-        this.memberId = memberId;
+    public Member( String name, String address, String phone, String email, String membershipDate, String password) {
         this.name = name;
         this.address = address;
         this.phone = phone;
