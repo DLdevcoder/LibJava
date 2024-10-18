@@ -1,12 +1,14 @@
 package main;
 import controllers.MemberController;
+
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class MainApp {
     public MainApp() {
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         MemberController memberController = new MemberController();
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
@@ -84,11 +86,6 @@ public class MainApp {
 
     public static void displayDocument() {
     }
-
-
-    public static void addUser() {
- }
-
 
     public static void borrowDocument() {
     }
