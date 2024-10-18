@@ -12,6 +12,7 @@ public class MainApp {
         MemberController memberController = new MemberController();
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
+        int memberId;
 
         do {
             System.out.println("Welcome to My Application!");
@@ -61,7 +62,7 @@ public class MainApp {
                     case 9:
                         memberController.getMembers();
                         System.out.print("Enter member ID: ");
-                        int memberId = scanner.nextInt();
+                        memberId = scanner.nextInt();
                         memberController.displayMemberInfo(memberId);
                         break;
                     case 10:
