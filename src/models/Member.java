@@ -5,7 +5,7 @@ public class Member {
     private String address;
     private String phone;
     private String email;
-    private String membershipDate;
+    private String membershipDate; // tu dong lay ngay hien tai nen k can setter
     private String password;
 
     public Member() {
@@ -58,9 +58,7 @@ public class Member {
     public String getMembershipDate() {
         return this.membershipDate;
     }
-    public void setMembershipDate(String membershipDate) {
-        this.membershipDate = membershipDate;
-    }
+
     public String getPassword() {
         return this.password;
     }

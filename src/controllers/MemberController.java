@@ -40,19 +40,19 @@ public class MemberController {
     }
     public void addMember() throws SQLException {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Nhập tên thành viên: ");
+        System.out.print("Nhập tên thành viên: ");
         String name = sc.nextLine();
 
-        System.out.println("Nhập địa chỉ: ");
+        System.out.print("Nhập địa chỉ: ");
         String address = sc.nextLine();
 
-        System.out.println("Nhập số liên lạc: ");
+        System.out.print("Nhập số liên lạc: ");
         String phone = sc.nextLine();
 
-        System.out.println("Nhập email: ");
+        System.out.print("Nhập email: ");
         String email = sc.nextLine();
 
-        System.out.println("Nhập mật khẩu: ");
+        System.out.print("Nhập mật khẩu: ");
         String password = sc.nextLine();
 
         try(Connection connection = DatabaseConnection.getConnection()){
@@ -70,8 +70,6 @@ public class MemberController {
             if(resultSet.next()){
                 int id = resultSet.getInt(1);
                 System.out.println("ID của thành viên mới: " + id);
-
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -79,11 +77,57 @@ public class MemberController {
 
     }
 
-    public void removeMember() {
-
+    public void removeMember(int memberId) throws SQLException {
+        String query = "DELETE FROM members WHERE member_id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, memberId);
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Member removed successfully!");
+            } else {
+                System.out.println("Member not found!");
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void updateMember() {
+    public void updateMember(int memberId) {
+        String query = "UPDATE members SET name = ?, address = ?, phone_number = ?, email = ?, password = ? WHERE member_id = ?";
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhập tên thành viên: ");
+        String name = sc.nextLine();
+
+        System.out.print("Nhập địa chỉ: ");
+        String address = sc.nextLine();
+
+        System.out.print("Nhập số liên lạc: ");
+        String phone = sc.nextLine();
+
+        System.out.print("Nhập email: ");
+        String email = sc.nextLine();
+
+        System.out.print("Nhập mật khẩu: ");
+        String password = sc.nextLine();
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, name);
+            stmt.setString(2, address);
+            stmt.setString(3, phone);
+            stmt.setString(4, email);
+            stmt.setString(5, password);
+            stmt.setInt(6, memberId);
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Member updated successfully!");
+            } else {
+                System.out.println("Member not found!");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void findMember() {
