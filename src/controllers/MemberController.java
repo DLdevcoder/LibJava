@@ -19,9 +19,9 @@ public class MemberController {
         String query = "SELECT * FROM members";
         List<Member> members = new ArrayList<>();
         // execute query
-        try(Connection conn = DatabaseConnection.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query);) {
+        try (Connection conn = DatabaseConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query);) {
             while (rs.next()) {
                 int memberId = rs.getInt("member_id");
                 String name = rs.getString("name");
@@ -34,7 +34,10 @@ public class MemberController {
                 members.add(member);
             }
             this.members = members;
-
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public void addMember() throws SQLException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhập tên thành viên: ");
@@ -49,28 +52,20 @@ public class MemberController {
         System.out.println("Nhập email: ");
         String email = sc.nextLine();
 
-        System.out.println("Nhập ngày đăng kí thành viên: ");
-        String membershipDate = sc.nextLine();
-
         System.out.println("Nhập mật khẩu: ");
         String password = sc.nextLine();
 
-        Member member = new Member(name, address, phone, email, membershipDate, password);
-
         try(Connection connection = DatabaseConnection.getConnection()){
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO members (name, address, phone_number, email, membership_date, password)  VALUES (?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO members (name, address, phone_number, email, password)  VALUES (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, name);
             statement.setString(2, address);
             statement.setString(3, phone);
             statement.setString(4, email);
-            statement.setString(5, membershipDate);
-            statement.setString(6, password);
+            statement.setString(5, password);
             int rowsAffected = statement.executeUpdate();
             if(rowsAffected>0){
                 System.out.println("Thành viên mới đã được thêm thành công!.");
-
             }
-
             ResultSet resultSet = statement.getGeneratedKeys();
             if(resultSet.next()){
                 int id = resultSet.getInt(1);
@@ -78,17 +73,9 @@ public class MemberController {
 
 
             }
-
-
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-
-
 
     }
 
