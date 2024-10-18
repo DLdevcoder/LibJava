@@ -1,4 +1,5 @@
 package main;
+import controllers.MemberController;
 import java.util.Scanner;
 
 public class MainApp {
@@ -6,6 +7,7 @@ public class MainApp {
     }
 
     public static void main(String[] args) {
+        MemberController memberController = new MemberController();
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
 
@@ -44,7 +46,7 @@ public class MainApp {
                         displayDocument();
                         break;
                     case 6:
-                        addUser();
+                        memberController.addMember();
                         break;
                     case 7:
                         borrowDocument();
@@ -53,7 +55,8 @@ public class MainApp {
                         returnDocument();
                         break;
                     case 9:
-                        displayUserInfo();
+                        memberController.getMembers();
+                        memberController.displayMemberInfo(1);
                         break;
                     default:
                         System.out.println("Invalid choice, please try again.");
@@ -82,9 +85,10 @@ public class MainApp {
     public static void displayDocument() {
     }
 
-    public static void addUser() {
 
-    }
+    public static void addUser() {
+ }
+
 
     public static void borrowDocument() {
     }
@@ -92,7 +96,5 @@ public class MainApp {
     public static void returnDocument() {
     }
 
-    public static void displayUserInfo() {
-    }
 }
 
