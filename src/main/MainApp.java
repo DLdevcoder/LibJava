@@ -85,6 +85,11 @@ public class MainApp {
     public static void displayDocument() {
     }
 
+
+    public static void addUser() {
+ }
+
+
     public static void borrowDocument() {
     }
 
