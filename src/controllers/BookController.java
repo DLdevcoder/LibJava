@@ -1,6 +1,7 @@
 package controllers;
 import com.mysql.cj.protocol.Resultset;
 import models.Book;
+import models.Member;
 import utils.DatabaseConnection;
 
 import java.sql.*;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BookController {
-     private List<Book> books;
+     protected static List<Book> books;
 
      public BookController() {
          this.books = new ArrayList<>();
@@ -88,6 +89,66 @@ public class BookController {
 
 
      }
+
+     public void getBook() {
+         String query = "SELECT * FROM books";
+         List<Book> books = new ArrayList<>();
+         try (Connection connection = DatabaseConnection.getConnection();
+              Statement stmt = connection.createStatement();
+              ResultSet resultSet = stmt.executeQuery(query);) {
+             while (resultSet.next()) {
+                 int bookId = resultSet.getInt("book_id");
+                 String title = resultSet.getString("title");
+                 String publisher = resultSet.getString("publisher");
+                 int year = resultSet.getInt("publication_year");
+                 String isbn = resultSet.getString("isbn");
+                 int quantity = resultSet.getInt("quantity");
+                 String description = resultSet.getString("description");
+                 String thumbnail = resultSet.getString("thumbnail");
+                 String language = resultSet.getString("language");
+                 Book book = new Book(bookId, title, publisher, year, isbn, quantity, description, thumbnail, language);
+                 books.add(book);
+             }
+             BookController.books = books;
+         } catch (SQLException e) {
+             e.printStackTrace();
+         }
+     }
+
+    public void displayDocument(int bookId) {
+         for (Book book : books) {
+             if (book.getBookId() == bookId) {
+                 System.out.println("Title: " + book.getTitle());
+                 System.out.println("Published: " + book.getPublisher());
+                 System.out.println("Year: " + book.getYear());
+                 System.out.println("International Standard Book Number: " + book.getIsbn());
+                 System.out.println("Quantity: " + book.getQuantity());
+                 System.out.println("Description: " + book.getDescription());
+                 System.out.println("Thumbnail: " + book.getThumbnail());
+                 System.out.println("Language: " + book.getLanguage());
+                 System.out.println();
+                 return;
+             }
+         }
+        System.out.println("Book not found!");
+    }
+
+    public void displayAllDocument(int bookId) {
+        for (Book book : books) {
+            if (book.getBookId() == bookId) {
+                System.out.println("Book ID: " + book.getBookId());
+                System.out.println("Title: " + book.getTitle());
+                System.out.println("Published: " + book.getPublisher());
+                System.out.println("Year: " + book.getYear());
+                System.out.println("International Standard Book Number: " + book.getIsbn());
+                System.out.println("Quantity: " + book.getQuantity());
+                System.out.println("Description: " + book.getDescription());
+                System.out.println("Thumbnail: " + book.getThumbnail());
+                System.out.println("Language: " + book.getLanguage());
+                System.out.println();
+            }
+        }
+    }
 
 
 }

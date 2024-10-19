@@ -17,14 +17,15 @@ public class BorrowRecordController {
         try {
             //Nhập lệnh.
             Scanner scanner = new Scanner(System.in);
-            System.out.print("Vui lòng nhập id sách: ");
+            System.out.print("Please enter book id: ");
             int bookId = scanner.nextInt();
             scanner.nextLine();
-            System.out.print("Vui lòng nhập id của bạn: ");
+            System.out.print("Please enter your id: ");
             int memberId = scanner.nextInt();
             scanner.nextLine();
-            System.out.print("Vui lòng nhập ngày bạn trả sách (định dạng yyyy-MM-dd): ");
+            System.out.print("Please enter the date you returned the book (yyyy-MM-dd format): ");
             String dueDateInput = scanner.nextLine();
+
             //Kiểm tra xem ngày nhập có hợp lệ không.
             boolean checkValidDate = false;
             while (!checkValidDate) {
@@ -32,7 +33,7 @@ public class BorrowRecordController {
                     dueDateInput = String.valueOf(LocalDate.parse(dueDateInput));
                     checkValidDate = true;
                 } catch (java.time.format.DateTimeParseException e) {
-                    System.out.println("Ngày không hợp lệ! Vui lòng nhập lại theo định dạng yyyy-MM-dd:");
+                    System.out.println("Invalid date entered! Please re-enter in yyyy-MM-dd format: ");
                     dueDateInput = scanner.nextLine();
                 }
             }
@@ -50,19 +51,15 @@ public class BorrowRecordController {
 
             if (resultSet.next()) {
                 int quantity = resultSet.getInt("quantity");
-
-                // Nếu sách có sẵn (số lượng > 0)
                 if (quantity > 0) {
-                    // Lấy ngày hiện tại cho borrowDate
                     LocalDate borrowDate = LocalDate.now();
-
                     // Thêm bản ghi mượn vào bảng Borrow_Records
                     String borrowQuery = "INSERT INTO Borrow_Records (book_id, member_id, borrow_date, due_date, status) VALUES (?, ?, ?, ?, 'borrowed')";
                     borrowStmt = connection.prepareStatement(borrowQuery);
                     borrowStmt.setInt(1, bookId);
                     borrowStmt.setInt(2, memberId);
-                    borrowStmt.setDate(3, Date.valueOf(borrowDate));  // Sử dụng LocalDate và chuyển đổi sang java.sql.Date
-                    borrowStmt.setDate(4, Date.valueOf(dueDate));     // Ngày trả sách
+                    borrowStmt.setDate(3, Date.valueOf(borrowDate));
+                    borrowStmt.setDate(4, Date.valueOf(dueDate));
                     borrowStmt.executeUpdate();
 
                     // Cập nhật lại số lượng sách trong bảng Books
@@ -70,22 +67,20 @@ public class BorrowRecordController {
                     updateStmt = connection.prepareStatement(updateQuery);
                     updateStmt.setInt(1, bookId);
                     updateStmt.executeUpdate();
-
-                    // Commit giao dịch (transaction)
                     connection.commit();
-                    System.out.println("Bạn đã mượn sách thành công.");
-                    return true; // Thành công
+                    System.out.println("You have successfully borrowed the book!");
+                    return true;
                 } else {
-                    System.out.println("Xin lỗi nhé, thư viện đã hết sách bạn yêu cầu rồi.");
-                    return false; // Sách hết
+                    System.out.println("Sorry, the library is out of the book you requested.");
+                    return false;
                 }
             } else {
-                System.out.println("Sách không tồn tại.");
-                return false; // Sách không tồn tại
+                System.out.println("Books do not exist.");
+                return false;
             }
 
         } catch (SQLException e) {
-            System.out.println("Lỗi rồi.");
+            System.out.println("Error.");
             e.printStackTrace();
             try {
                 if (connection != null) {
@@ -123,10 +118,10 @@ public class BorrowRecordController {
         Scanner scanner = new Scanner(System.in);
         try {
             //Nhập lệnh.
-            System.out.print("Vui lòng nhập id sách bạn muốn trả: ");
+            System.out.print("Please enter book ID: ");
             int bookId = scanner.nextInt();
             scanner.nextLine();
-            System.out.print("Vui lòng nhập id của bạn: ");
+            System.out.print("Please enter your ID: ");
             int memberId = scanner.nextInt();
 
             //Tạo kết nối database.
@@ -157,18 +152,18 @@ public class BorrowRecordController {
                     updateStmt.executeUpdate();
 
                     connection.commit();
-                    System.out.println("Bạn đã trả sách thành công");
+                    System.out.println("You have successfully returned the book!");
                     return true;
                 } else {
-                    System.out.println("Bạn đã trả sách rồi");
+                    System.out.println("You have been returned book.");
                     return true;
                 }
             } else {
-                System.out.println("Không thấy sách được mượn");
+                System.out.println("The book has not yet been borrowed.");
                 return false;
             }
         } catch (SQLException e) {
-            System.out.println("Lỗi rồi.");
+            System.out.println("Error.");
             e.printStackTrace();
             try {
                 if (connection != null) {

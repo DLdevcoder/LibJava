@@ -54,7 +54,10 @@ public class MainApp {
                         findDocument();
                         break;
                     case 5:
-                        displayDocument();
+                        bookController.getBook();
+                        System.out.print("Enter book ID: ");
+                        int bookId = scanner.nextInt();
+                        bookController.displayDocument(bookId);
                         break;
                     case 6:
                         memberController.addMember();
