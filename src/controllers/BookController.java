@@ -87,6 +87,21 @@ public class BookController {
 
 
 
+
+     }
+
+     public static void removeBook(Connection connection, int bookId) throws SQLException {
+         try(PreparedStatement statement = connection.prepareStatement("DELETE FROM books WHERE book_id = ?")){
+             statement.setInt(1, bookId);
+             int rows = statement.executeUpdate();
+             if(rows > 0){
+                 System.out.println("Xóa tài liệu thành công!");
+             }
+             else {
+                 System.out.println("Vui lòng nhập đúng id của tài liệu!");
+             }
+         }
+
      }
 
 

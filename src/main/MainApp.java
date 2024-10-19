@@ -2,8 +2,11 @@ package main;
 import controllers.MemberController;
 
 import controllers.BookController;
+import utils.DatabaseConnection;
 
 
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -15,8 +18,14 @@ public class MainApp {
         MemberController memberController = new MemberController();
         BookController bookController = new BookController();
         Scanner scanner = new Scanner(System.in);
+
+        Connection connection = DatabaseConnection.getConnection();
+
+
+
         int choice = 0;
         int memberId;
+        int bookId;
 
         do {
             System.out.println("Welcome to My Application!");
@@ -44,7 +53,16 @@ public class MainApp {
                         BookController.addBook();
                         break;
                     case 2:
-                        removeDocument();
+                        System.out.println("Nhập id của tài liệu bạn muốn xóa: ");
+                        bookId = scanner.nextInt();
+                        BookController.removeBook(connection, bookId);
+
+
+
+
+
+
+
                         break;
                     case 3:
                         updateDocument();
@@ -95,7 +113,8 @@ public class MainApp {
     public static void addBook() throws SQLException {
     }
 
-    public static void removeDocument() {
+    public static void removeBook() {
+
     }
 
     public static void updateDocument() {
