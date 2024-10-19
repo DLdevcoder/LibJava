@@ -49,7 +49,20 @@ public class Book {
 
     }
 
-    public int getBookIdId() {
+    public Book(int bookId, String title, String publisher, int year, String isbn, int quantity, String description, String thumbnail, String language) {
+        this.bookId = bookId;
+        this.title = title;
+        this.publisher = publisher;
+        this.year = year;
+        this.isbn = isbn;
+        this.quantity = quantity;
+        this.description = description;
+        this.thumbnail = thumbnail;
+        this.language = language;
+
+    }
+
+    public int getBookId() {
         return this.bookId;
     }
 
