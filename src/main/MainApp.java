@@ -4,7 +4,6 @@ import controllers.MemberController;
 
 import controllers.BookController;
 
-
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -93,9 +92,6 @@ public class MainApp {
         scanner.close();
     }
 
-    public static void addBook() throws SQLException {
-    }
-
     public static void removeDocument() {
     }
 
@@ -108,11 +104,6 @@ public class MainApp {
     public static void displayDocument() {
     }
 
-    public static void borrowDocument() {
-    }
-
-    public static void returnDocument() {
-    }
 
 }
 
