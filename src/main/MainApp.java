@@ -5,7 +5,6 @@ import controllers.MemberController;
 import controllers.BookController;
 import utils.DatabaseConnection;
 
-
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
@@ -114,13 +113,6 @@ public class MainApp {
         scanner.close();
     }
 
-    public static void addBook() throws SQLException {
-    }
-
-    public static void removeBook() {
-
-    }
-
     public static void updateDocument() {
     }
 
@@ -130,11 +122,6 @@ public class MainApp {
     public static void displayDocument() {
     }
 
-    public static void borrowDocument() {
-    }
-
-    public static void returnDocument() {
-    }
 
 }
 
