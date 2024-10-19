@@ -1,6 +1,8 @@
 package main;
 import controllers.MemberController;
+
 import controllers.BookController;
+
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -14,6 +16,7 @@ public class MainApp {
         BookController bookController = new BookController();
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
+        int memberId;
 
         do {
             System.out.println("Welcome to My Application!");
@@ -23,10 +26,12 @@ public class MainApp {
             System.out.println("[3] Update Document");
             System.out.println("[4] Find Document");
             System.out.println("[5] Display Document");
-            System.out.println("[6] Add User");
+            System.out.println("[6] Add Member");
             System.out.println("[7] Borrow Document");
             System.out.println("[8] Return Document");
-            System.out.println("[9] Display User Info");
+            System.out.println("[9] Display Member Info");
+            System.out.println("[10] Remove Member");
+            System.out.println("[11] Update Member");
             System.out.print("Please select an option: ");
             if (scanner.hasNextInt()) {
                 choice = scanner.nextInt();
@@ -61,7 +66,19 @@ public class MainApp {
                         break;
                     case 9:
                         memberController.getMembers();
-                        memberController.displayMemberInfo(1);
+                        System.out.print("Enter member ID: ");
+                        memberId = scanner.nextInt();
+                        memberController.displayMemberInfo(memberId);
+                        break;
+                    case 10:
+                        System.out.print("Enter member ID: ");
+                        memberId = scanner.nextInt();
+                        memberController.removeMember(memberId);
+                        break;
+                    case 11:
+                        System.out.print("Enter member ID: ");
+                        memberId = scanner.nextInt();
+                        memberController.updateMember(memberId);
                         break;
                     default:
                         System.out.println("Invalid choice, please try again.");
@@ -89,11 +106,6 @@ public class MainApp {
 
     public static void displayDocument() {
     }
-
-
-    public static void addUser() {
- }
-
 
     public static void borrowDocument() {
     }
