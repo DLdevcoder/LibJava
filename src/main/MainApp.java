@@ -74,7 +74,7 @@ public class MainApp {
                     case 5:
                         bookController.getBook();
                         System.out.print("Enter book ID: ");
-                        int bookId = scanner.nextInt();
+                        bookId = scanner.nextInt();
                         bookController.displayDocument(bookId);
                         break;
                     case 6:
