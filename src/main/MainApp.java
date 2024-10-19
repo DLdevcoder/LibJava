@@ -124,8 +124,6 @@ public class MainApp {
         scanner.close();
     }
 
-<<<<<<< HEAD
-=======
     public static void waitToRead(Scanner scanner) {
         while (true) {
             String checkEnter = scanner.nextLine();
@@ -141,7 +139,6 @@ public class MainApp {
 
     }
 
->>>>>>> Long
     public static void updateDocument() {
     }
 
@@ -150,7 +147,6 @@ public class MainApp {
 
     public static void displayDocument() {
     }
-
 
 }
 
