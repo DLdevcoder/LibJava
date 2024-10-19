@@ -13,6 +13,11 @@ public class Member extends Person {
 
     }
 
+
+
+
+
+
     public int getMemberId() {
         return memberId;
     }
