@@ -5,6 +5,7 @@ import controllers.MemberController;
 import controllers.BookController;
 import utils.DatabaseConnection;
 
+
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
@@ -53,7 +54,7 @@ public class MainApp {
                         BookController.addBook();
                         break;
                     case 2:
-                        System.out.println("Nhập id của tài liệu bạn muốn xóa: ");
+                        System.out.println("Nhập id tài liệu: ");
                         bookId = scanner.nextInt();
                         BookController.removeBook(connection, bookId);
                         break;
@@ -64,10 +65,7 @@ public class MainApp {
                         findDocument();
                         break;
                     case 5:
-                        bookController.getBook();
-                        System.out.print("Enter book ID: ");
-                        bookId = scanner.nextInt();
-                        bookController.displayDocument(bookId);
+                        displayDocument();
                         break;
                     case 6:
                         memberController.addMember();
@@ -106,6 +104,13 @@ public class MainApp {
         scanner.close();
     }
 
+    public static void addBook() throws SQLException {
+    }
+
+    public static void removeBook() {
+
+    }
+
     public static void updateDocument() {
     }
 
@@ -115,6 +120,11 @@ public class MainApp {
     public static void displayDocument() {
     }
 
+    public static void borrowDocument() {
+    }
+
+    public static void returnDocument() {
+    }
 
 }
 

@@ -20,30 +20,30 @@ public class BookController {
      public static void addBook() throws SQLException {
          Scanner sc = new Scanner(System.in);
 
-         System.out.println("Nhập tiêu đề của tài liệu: ");
+         System.out.println("Enter title: ");
          String title = sc.nextLine();
 
-         System.out.println("Nhập tên nhà xuất bản: ");
+         System.out.println("Enter publisher: ");
          String publisher = sc.nextLine();
 
-         System.out.println("Nhập năm phát hành: ");
+         System.out.println("Enter publication year: ");
          int year = sc.nextInt();
          sc.nextLine();
 
-         System.out.println("Nhập isbn: ");
+         System.out.println("Enter isbn: ");
          String isbn = sc.nextLine();
 
-         System.out.println("Nhập số lượng định thêm: ");
+         System.out.println("Enter quantity: ");
          int quantity = sc.nextInt();
          sc.nextLine();
 
-         System.out.println("Nhập miêu tả: ");
+         System.out.println("Enter description: ");
          String description = sc.nextLine();
 
-         System.out.println("Nhập thumnail: ");
+         System.out.println("Enter thumnail: ");
          String thumbnail = sc.nextLine();
 
-         System.out.println("Tài liệu sử dụng ngôn ngữ: ");
+         System.out.println("Language used: ");
          String language = sc.nextLine();
 
          Book book = new Book(title, publisher, year, isbn, quantity, description, thumbnail, language);
@@ -61,32 +61,17 @@ public class BookController {
 
              int rows = statement.executeUpdate();
              if(rows > 0){
-                 System.out.println("Tài liệu đã được thêm thành công!");
+                 System.out.println("Book added successfully!");
 
              }
 
              ResultSet resultSet = statement.getGeneratedKeys();
              if(resultSet.next()){
                  int bookId = resultSet.getInt(1);
-                 System.out.println("ID cua tài liệu mới: "+bookId);
+                 System.out.println("BookID: "+bookId);
 
              }
-
-
-
-
-
-
-
          }
-
-
-
-
-
-
-
-
 
 
      }
@@ -96,7 +81,7 @@ public class BookController {
              statement.setInt(1, bookId);
              int rows = statement.executeUpdate();
              if(rows > 0){
-                 System.out.println("Xóa tài liệu thành công!");
+                 System.out.println("Delete Successfully!");
              }
              else {
                  System.out.println("Vui lòng nhập đúng id của tài liệu!");
