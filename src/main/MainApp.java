@@ -54,16 +54,9 @@ public class MainApp {
                         BookController.addBook();
                         break;
                     case 2:
-                        System.out.println("Nhập id của tài liệu bạn muốn xóa: ");
+                        System.out.println("Nhập id tài liệu: ");
                         bookId = scanner.nextInt();
                         BookController.removeBook(connection, bookId);
-
-
-
-
-
-
-
                         break;
                     case 3:
                         updateDocument();
