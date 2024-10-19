@@ -1,13 +1,17 @@
 package main;
 import controllers.MemberController;
+import controllers.BookController;
+
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class MainApp {
     public MainApp() {
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         MemberController memberController = new MemberController();
+        BookController bookController = new BookController();
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
 
@@ -31,7 +35,8 @@ public class MainApp {
                         System.out.println("Exiting application...");
                         break;
                     case 1:
-                        addDocument();
+
+                        BookController.addBook();
                         break;
                     case 2:
                         removeDocument();
@@ -70,7 +75,7 @@ public class MainApp {
         scanner.close();
     }
 
-    public static void addDocument() {
+    public static void addBook() throws SQLException {
     }
 
     public static void removeDocument() {

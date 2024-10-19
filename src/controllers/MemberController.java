@@ -19,9 +19,9 @@ public class MemberController {
         String query = "SELECT * FROM members";
         List<Member> members = new ArrayList<>();
         // execute query
-        try(Connection conn = DatabaseConnection.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query);) {
+        try (Connection conn = DatabaseConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query);) {
             while (rs.next()) {
                 int memberId = rs.getInt("member_id");
                 String name = rs.getString("name");
@@ -34,6 +34,10 @@ public class MemberController {
                 members.add(member);
             }
             this.members = members;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public void addMember() throws SQLException {
         Scanner sc = new Scanner(System.in);
@@ -133,4 +137,6 @@ public class MemberController {
         }
         System.out.println("Member not found!");
     }
+
+
 }
