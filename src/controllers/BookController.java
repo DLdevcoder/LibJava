@@ -9,6 +9,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class BookController {
      protected static List<Book> books;
@@ -147,6 +150,33 @@ public class BookController {
                 System.out.println("Language: " + book.getLanguage());
                 System.out.println();
             }
+        }
+    }
+
+    public static void updateBook(Connection connection, Book book) throws SQLException {
+        String sql = "UPDATE books SET title = ?, authorId = ?, publisher = ?, year = ?, isbn = ?, quantity = ?, categoryId = ?, googleId = ?, description = ?, thumbnail = ?, language = ? WHERE bookId = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            // Update information of book...
+
+            pstmt.setString(1, book.getTitle());
+            pstmt.setInt(2, book.getAuthorId());
+            pstmt.setString(3, book.getPublisher());
+            pstmt.setInt(4, book.getYear());
+            pstmt.setString(5, book.getIsbn());
+            pstmt.setInt(6, book.getQuantity());
+            pstmt.setInt(7, book.getCategoryId());
+            pstmt.setString(8, book.getGoogleId());
+            pstmt.setString(9, book.getDescription());
+            pstmt.setString(10, book.getThumbnail());
+            pstmt.setString(11, book.getLanguage());
+            pstmt.setInt(12, book.getBookId());
+            pstmt.executeUpdate();
+
+            System.out.println("Book updated successfully!");
+        } catch (SQLException e) {
+            System.out.println("Error updating book: " + e.getMessage());
         }
     }
 
