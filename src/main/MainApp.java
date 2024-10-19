@@ -3,7 +3,10 @@ import controllers.BorrowRecordController;
 import controllers.MemberController;
 
 import controllers.BookController;
+import utils.DatabaseConnection;
 
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -15,8 +18,14 @@ public class MainApp {
         MemberController memberController = new MemberController();
         BookController bookController = new BookController();
         Scanner scanner = new Scanner(System.in);
+
+        Connection connection = DatabaseConnection.getConnection();
+
+
+
         int choice = 0;
         int memberId;
+        int bookId;
 
         do {
             System.out.println("Welcome to My Application!");
@@ -44,7 +53,16 @@ public class MainApp {
                         BookController.addBook();
                         break;
                     case 2:
-                        removeDocument();
+                        System.out.println("Nhập id của tài liệu bạn muốn xóa: ");
+                        bookId = scanner.nextInt();
+                        BookController.removeBook(connection, bookId);
+
+
+
+
+
+
+
                         break;
                     case 3:
                         updateDocument();
@@ -53,7 +71,10 @@ public class MainApp {
                         findDocument();
                         break;
                     case 5:
-                        displayDocument();
+                        bookController.getBook();
+                        System.out.print("Enter book ID: ");
+                        bookId = scanner.nextInt();
+                        bookController.displayDocument(bookId);
                         break;
                     case 6:
                         memberController.addMember();
@@ -90,9 +111,6 @@ public class MainApp {
         } while(choice != 0);
 
         scanner.close();
-    }
-
-    public static void removeDocument() {
     }
 
     public static void updateDocument() {
