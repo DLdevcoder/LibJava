@@ -14,6 +14,7 @@ public class Book {
     protected String isbn;
     protected int quantity;
     protected int categoryId;
+
     protected String googleId;
     protected String description;
     protected String thumbnail;
