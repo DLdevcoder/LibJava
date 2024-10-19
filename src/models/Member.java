@@ -12,6 +12,7 @@ public class Member extends Person {
         this.membershipDate = membershipDate;
 
     }
+
     public int getMemberId() {
         return memberId;
     }
