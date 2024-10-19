@@ -1,4 +1,5 @@
 package main;
+import controllers.BorrowRecordController;
 import controllers.MemberController;
 
 import java.sql.SQLException;
@@ -54,10 +55,10 @@ public class MainApp {
                         memberController.addMember();
                         break;
                     case 7:
-                        borrowDocument();
+                        BorrowRecordController.borrowDocument();
                         break;
                     case 8:
-                        returnDocument();
+                        BorrowRecordController.returnDocument();
                         break;
                     case 9:
                         memberController.getMembers();
