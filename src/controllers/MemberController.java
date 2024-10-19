@@ -35,9 +35,11 @@ public class MemberController {
             }
             this.members = members;
         } catch (SQLException e) {
+
             e.printStackTrace();
         }
     }
+
     public void addMember() throws SQLException {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhập tên thành viên: ");
@@ -165,4 +167,6 @@ public class MemberController {
         }
         System.out.println("Member not found!");
     }
+
+
 }
