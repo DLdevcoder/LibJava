@@ -137,6 +137,7 @@ public class MemberController {
 
 
     // su dung cho admin
+    // xem xet
     public void displayAllMember() {
         for (Member member : members) {
             System.out.println("Member ID: " + member.getMemberId());
