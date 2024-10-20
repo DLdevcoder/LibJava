@@ -60,14 +60,11 @@ public class MainApp {
                         BookController.removeBook(connection, bookId);
                         break;
                     case 3:
-                        updateDocument();
-//                        System.out.print("Enter book ID to update: ");
-//                        int bookIdToUpdate = scanner.nextInt();
-//                        // Lấy thông tin sách từ người dùng
-//                        // (giả sử bạn đã có phương thức để nhập thông tin)
-//                        Book updatedBook = new Book(); // Tạo phương thức này
-//                        updatedBook.setBookId(bookIdToUpdate);
-//                        BookController.updateBook(connection, updatedBook);
+                        try {
+                            bookController.updateDocument(connection);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
                         break;
                     case 4:
                         findDocument();
