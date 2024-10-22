@@ -60,14 +60,16 @@ public class MainApp {
                         BookController.removeBook(connection, bookId);
                         break;
                     case 3:
-                        try {
-                            bookController.updateDocument(connection);
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
+
                         break;
                     case 4:
-                        findDocument();
+                        System.out.print("Enter the document ID to find: ");
+                        int documentId = scanner.nextInt();
+                        if (bookController.findDocument(documentId)) {
+                            System.out.println("Document found with ID: " + documentId);
+                        } else {
+                            System.out.println("No document found with ID: " + documentId);
+                        }
                         break;
                     case 5:
                         bookController.getBook();

@@ -153,167 +153,91 @@ public class BookController {
         }
     }
 
-    public Book findBookById(Connection connection, int bookId) throws SQLException {
-        String sql = "SELECT * FROM books WHERE bookId = ?";
-        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-            pstmt.setInt(1, bookId);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    // Tạo đối tượng Book từ kết quả truy vấn
-                    return new Book(
-                            rs.getInt("bookId"),
-                            rs.getString("title"),
-                            rs.getInt("authorId"),
-                            rs.getString("publisher"),
-                            rs.getInt("year"),
-                            rs.getString("isbn"),
-                            rs.getInt("quantity"),
-                            rs.getInt("categoryId"),
-                            rs.getString("googleId"),
-                            rs.getString("description"),
-                            rs.getString("thumbnail"),
-                            rs.getString("language")
-                    );
-                } else {
-                    // Trả về null nếu không tìm thấy sách
-                    System.out.println("Book not found with ID: " + bookId);
-                    return null;
+    public void updateDocument(int documentId) {
+        for (Book book : books) {
+            if (book.getBookId() == documentId) {
+                Scanner scanner = new Scanner(System.in);
+                boolean running = true;
+
+                while (running) {
+                    System.out.println("Updating book with ID: " + documentId);
+                    System.out.println("[1] Update Title");
+                    System.out.println("[2] Update Publisher");
+                    System.out.println("[3] Update Publication Year");
+                    System.out.println("[4] Update ISBN");
+                    System.out.println("[5] Update Quantity");
+                    System.out.println("[6] Update Description");
+                    System.out.println("[7] Update Thumbnail");
+                    System.out.println("[8] Update Language");
+                    System.out.println("[0] Exit Update Menu");
+                    System.out.print("Please select an option: ");
+
+                    int choice = scanner.nextInt();
+                    scanner.nextLine(); // consume the newline
+
+                    switch (choice) {
+                        case 1:
+                            System.out.print("Enter new title: ");
+                            String newTitle = scanner.nextLine();
+                            book.setTitle(newTitle);
+                            break;
+                        case 2:
+                            System.out.print("Enter new publisher: ");
+                            String newPublisher = scanner.nextLine();
+                            book.setPublisher(newPublisher);
+                            break;
+                        case 3:
+                            System.out.print("Enter new publication year: ");
+                            int newYear = scanner.nextInt();
+                            book.setYear(newYear);
+                            break;
+                        case 4:
+                            System.out.print("Enter new ISBN: ");
+                            String newIsbn = scanner.nextLine();
+                            book.setIsbn(newIsbn);
+                            break;
+                        case 5:
+                            System.out.print("Enter new quantity: ");
+                            int newQuantity = scanner.nextInt();
+                            book.setQuantity(newQuantity);
+                            break;
+                        case 6:
+                            System.out.print("Enter new description: ");
+                            String newDescription = scanner.nextLine();
+                            book.setDescription(newDescription);
+                            break;
+                        case 7:
+                            System.out.print("Enter new thumbnail: ");
+                            String newThumbnail = scanner.nextLine();
+                            book.setThumbnail(newThumbnail);
+                            break;
+                        case 8:
+                            System.out.print("Enter new language: ");
+                            String newLanguage = scanner.nextLine();
+                            book.setLanguage(newLanguage);
+                            break;
+                        case 0:
+                            running = false;
+                            break;
+                        default:
+                            System.out.println("Invalid choice. Please try again.");
+                    }
                 }
-            }
-        } catch (SQLException e) {
-            System.out.println("Error finding book: " + e.getMessage());
-            throw e; // Ném lại lỗi để xử lý ở nơi khác nếu cần
-        }
-        }
 
-        public static void updateBook(Connection connection, Book book) throws SQLException {
-            String sql = "UPDATE books SET title = ?, authorId = ?, publisher = ?, year = ?, isbn = ?, quantity = ?, categoryId = ?, googleId = ?, description = ?, thumbnail = ?, language = ? WHERE bookId = ?";
-
-            try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-                pstmt.setString(1, book.getTitle());
-                pstmt.setInt(2, book.getAuthorId());
-                pstmt.setString(3, book.getPublisher());
-                pstmt.setInt(4, book.getYear());
-                pstmt.setString(5, book.getIsbn());
-                pstmt.setInt(6, book.getQuantity());
-                pstmt.setInt(7, book.getCategoryId());
-                pstmt.setString(8, book.getGoogleId());
-                pstmt.setString(9, book.getDescription());
-                pstmt.setString(10, book.getThumbnail());
-                pstmt.setString(11, book.getLanguage());
-                pstmt.setInt(12, book.getBookId());
-
-                // Thực hiện cập nhật
-                int rowsAffected = pstmt.executeUpdate();
-                if (rowsAffected > 0) {
-                    System.out.println("Book updated successfully!");
-                } else {
-                    System.out.println("No book found with the given ID. Update failed.");
-                }
-            } catch (SQLException e) {
-                System.out.println("Error updating book: " + e.getMessage());
-                throw e; // Ném lại ngoại lệ để xử lý ở nơi khác nếu cần
+                return;
             }
         }
 
+        System.out.println("No document found with ID: " + documentId);
+    }
 
-    public void updateDocument(Connection connection) throws SQLException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter book ID to update: ");
-        int bookId = scanner.nextInt();
-        scanner.nextLine(); // Clear the newline
-
-        // Lấy thông tin sách từ cơ sở dữ liệu
-        Book book = findBookById(connection, bookId); // tìm sách theo ID
-
-        if (book != null) {
-            boolean updating = true;
-
-            while (updating) {
-                // Hiển thị thông tin sách
-                System.out.println("Current Book Info:");
-                System.out.println(book);
-
-                // Hiển thị các thuộc tính có thể thay đổi
-                System.out.println("Which attribute do you want to update?");
-                System.out.println("[1] Title");
-                System.out.println("[2] Author ID");
-                System.out.println("[3] Publisher");
-                System.out.println("[4] Year");
-                System.out.println("[5] ISBN");
-                System.out.println("[6] Quantity");
-                System.out.println("[7] Category ID");
-                System.out.println("[8] Google ID");
-                System.out.println("[9] Description");
-                System.out.println("[10] Thumbnail");
-                System.out.println("[11] Language");
-                System.out.println("[0] Finish updating");
-
-                int choice = scanner.nextInt();
-                scanner.nextLine();
-
-                switch (choice) {
-                    case 1:
-                        System.out.print("Enter new title: ");
-                        book.setTitle(scanner.nextLine());
-                        break;
-                    case 2:
-                        System.out.print("Enter new author ID: ");
-                        book.setAuthorId(scanner.nextInt());
-                        scanner.nextLine();
-                        break;
-                    case 3:
-                        System.out.print("Enter new publisher: ");
-                        book.setPublisher(scanner.nextLine());
-                        break;
-                    case 4:
-                        System.out.print("Enter new year: ");
-                        book.setYear(scanner.nextInt());
-                        scanner.nextLine();
-                        break;
-                    case 5:
-                        System.out.print("Enter new ISBN: ");
-                        book.setIsbn(scanner.nextLine());
-                        break;
-                    case 6:
-                        System.out.print("Enter new quantity: ");
-                        book.setQuantity(scanner.nextInt());
-                        scanner.nextLine();
-                        break;
-                    case 7:
-                        System.out.print("Enter new category ID: ");
-                        book.setCategoryId(scanner.nextInt());
-                        scanner.nextLine();
-                        break;
-                    case 8:
-                        System.out.print("Enter new Google ID: ");
-                        book.setGoogleId(scanner.nextLine());
-                        break;
-                    case 9:
-                        System.out.print("Enter new description: ");
-                        book.setDescription(scanner.nextLine());
-                        break;
-                    case 10:
-                        System.out.print("Enter new thumbnail: ");
-                        book.setThumbnail(scanner.nextLine());
-                        break;
-                    case 11:
-                        System.out.print("Enter new language: ");
-                        book.setLanguage(scanner.nextLine());
-                        break;
-                    case 0:
-                        updating = false;
-                        break;
-                    default:
-                        System.out.println("Invalid choice. Please try again.");
-                }
+    public boolean findDocument(int documentId) {
+        for (Book book : books) {
+            if (book.getBookId() == documentId) {
+                return true;
             }
-
-            // Cập nhật thông tin sách vào cơ sở dữ liệu
-            updateBook(connection, book);
-        } else {
-            System.out.println("Book not found!");
         }
+        return false;
     }
 
 
