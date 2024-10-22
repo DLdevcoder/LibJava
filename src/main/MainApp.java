@@ -11,6 +11,7 @@ import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import models.Book;
 
 public class MainApp {
     public MainApp() {
@@ -67,37 +68,54 @@ public class MainApp {
                         break;
                     case 3:
                         updateDocument();
+//                        System.out.print("Enter book ID to update: ");
+//                        int bookIdToUpdate = scanner.nextInt();
+//                        // Lấy thông tin sách từ người dùng
+//                        // (giả sử bạn đã có phương thức để nhập thông tin)
+//                        Book updatedBook = new Book(); // Tạo phương thức này
+//                        updatedBook.setBookId(bookIdToUpdate);
+//                        BookController.updateBook(connection, updatedBook);
                         break;
                     case 4:
                         findDocument();
                         break;
                     case 5:
-                        displayDocument();
+                        bookController.getBook();
+                        System.out.print("Enter book ID: ");
+                        bookId = scanner.nextInt();
+                        bookController.displayDocument(bookId);
+                        waitToRead(scanner);
                         break;
                     case 6:
                         memberController.addMember();
+                        waitToRead(scanner);
                         break;
                     case 7:
                         BorrowRecordController.borrowDocument();
+                        waitToRead(scanner);
                         break;
                     case 8:
                         BorrowRecordController.returnDocument();
+                        waitToRead(scanner);
                         break;
                     case 9:
                         memberController.getMembers();
                         System.out.print("Enter member ID: ");
                         memberId = scanner.nextInt();
                         memberController.displayMemberInfo(memberId);
+                        waitToRead(scanner);
                         break;
                     case 10:
                         System.out.print("Enter member ID: ");
                         memberId = scanner.nextInt();
                         memberController.removeMember(memberId);
+                        waitToRead(scanner);
                         break;
                     case 11:
                         System.out.print("Enter member ID: ");
                         memberId = scanner.nextInt();
                         memberController.updateMember(memberId);
+                        waitToRead(scanner);
                         break;
                     default:
                         System.out.println("Invalid choice, please try again.");
@@ -111,6 +129,14 @@ public class MainApp {
         scanner.close();
     }
 
+    public static void waitToRead(Scanner scanner) {
+        while (true) {
+            String checkEnter = scanner.nextLine();
+            System.out.print("Press enter to back to menu");
+            if (checkEnter.equals(scanner.nextLine())) break;
+        }
+    }
+
     public static void addBook() throws SQLException {
     }
 
@@ -118,7 +144,7 @@ public class MainApp {
 
     }
 
-    public static void updateDocument() {
+    public static void updateDocument() throws SQLException {
     }
 
     public static void findDocument() {
