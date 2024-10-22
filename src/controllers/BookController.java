@@ -9,6 +9,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class BookController {
      protected static List<Book> books;
@@ -97,8 +100,9 @@ public class BookController {
               Statement stmt = connection.createStatement();
               ResultSet resultSet = stmt.executeQuery(query);) {
              while (resultSet.next()) {
-                 int bookId = resultSet.getInt("book_id");
+                 int bookId = resultSet.getInt("id");
                  String title = resultSet.getString("title");
+                 String author = resultSet.getString("author");
                  String publisher = resultSet.getString("publisher");
                  int year = resultSet.getInt("publication_year");
                  String isbn = resultSet.getString("isbn");
@@ -117,10 +121,11 @@ public class BookController {
 
     public void displayDocument(int bookId) {
          for (Book book : books) {
-             if (book.getBookId() == bookId) {
+             if (book.getId() == bookId) {
                  System.out.println("Title: " + book.getTitle());
+                 System.out.println("Author: " + book.getAuthor());
                  System.out.println("Published: " + book.getPublisher());
-                 System.out.println("Year: " + book.getYear());
+                 System.out.println("Year: " + book.getPublicationYear());
                  System.out.println("International Standard Book Number: " + book.getIsbn());
                  System.out.println("Quantity: " + book.getQuantity());
                  System.out.println("Description: " + book.getDescription());
@@ -133,20 +138,45 @@ public class BookController {
         System.out.println("Book not found!");
     }
 
-    public void displayAllDocument(int bookId) {
+    public void displayAllDocument() {
         for (Book book : books) {
-            if (book.getBookId() == bookId) {
-                System.out.println("Book ID: " + book.getBookId());
+                System.out.println("Book ID: " + book.getId());
                 System.out.println("Title: " + book.getTitle());
                 System.out.println("Published: " + book.getPublisher());
-                System.out.println("Year: " + book.getYear());
+                System.out.println("Year: " + book.getId());
                 System.out.println("International Standard Book Number: " + book.getIsbn());
                 System.out.println("Quantity: " + book.getQuantity());
                 System.out.println("Description: " + book.getDescription());
                 System.out.println("Thumbnail: " + book.getThumbnail());
                 System.out.println("Language: " + book.getLanguage());
                 System.out.println();
-            }
+        }
+    }
+
+    public static void updateBook(Connection connection, Book book) throws SQLException {
+        String sql = "UPDATE books SET title = ?, authorId = ?, publisher = ?, year = ?, isbn = ?, quantity = ?, categoryId = ?, googleId = ?, description = ?, thumbnail = ?, language = ? WHERE bookId = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            // Update information of book...
+
+            pstmt.setString(1, book.getTitle());
+            pstmt.setInt(2, book.getAuthorId());
+            pstmt.setString(3, book.getPublisher());
+            pstmt.setInt(4, book.getYear());
+            pstmt.setString(5, book.getIsbn());
+            pstmt.setInt(6, book.getQuantity());
+            pstmt.setInt(7, book.getCategoryId());
+            pstmt.setString(8, book.getGoogleId());
+            pstmt.setString(9, book.getDescription());
+            pstmt.setString(10, book.getThumbnail());
+            pstmt.setString(11, book.getLanguage());
+            pstmt.setInt(12, book.getBookId());
+            pstmt.executeUpdate();
+
+            System.out.println("Book updated successfully!");
+        } catch (SQLException e) {
+            System.out.println("Error updating book: " + e.getMessage());
         }
     }
 

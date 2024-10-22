@@ -5,86 +5,45 @@
 
 package models;
 
-public class Book {
-    protected int bookId;
-    protected String title;
-    protected int authorId;
+public class Book extends Document {
     protected String publisher;
-    protected int year;
     protected String isbn;
-    protected int quantity;
     protected int categoryId;
 
     protected String googleId;
-    protected String description;
     protected String thumbnail;
-    protected String language;
 
-    public Book() {
-    }
-
-    public Book(int bookId, String title, int authorId, String publisher, int year, String isbn, int quantity, int categoryId, String googleId, String description, String thumbnail, String language) {
-        this.bookId = bookId;
-        this.title = title;
-        this.authorId = authorId;
+    public Book(int bookId, String title, String author, String publisher, int year, String isbn, int quantity, int categoryId, String googleId, String description, String thumbnail, String language) {
+        super(bookId, title, author, language, year, description, quantity);
         this.publisher = publisher;
-        this.year = year;
         this.isbn = isbn;
-        this.quantity = quantity;
         this.categoryId = categoryId;
         this.googleId = googleId;
-        this.description = description;
         this.thumbnail = thumbnail;
-        this.language = language;
     }
 
     public Book(String title, String publisher, int year, String isbn, int quantity, String description, String thumbnail, String language) {
-        this.title = title;
+        this.setTitle(title);
         this.publisher = publisher;
-        this.year = year;
+        this.setPublicationYear(year);
         this.isbn = isbn;
         this.quantity = quantity;
-        this.description = description;
+        this.setDescription(description);
         this.thumbnail = thumbnail;
-        this.language = language;
-
+        this.setLanguage(language);
     }
 
     public Book(int bookId, String title, String publisher, int year, String isbn, int quantity, String description, String thumbnail, String language) {
-        this.bookId = bookId;
+        this.setId(bookId);
         this.title = title;
         this.publisher = publisher;
-        this.year = year;
+        this.setPublicationYear(year);
         this.isbn = isbn;
         this.quantity = quantity;
-        this.description = description;
+        this.setPublicationYear(publicationYear);
         this.thumbnail = thumbnail;
-        this.language = language;
+        this.setLanguage(language);
 
-    }
-
-    public int getBookId() {
-        return this.bookId;
-    }
-
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public int getAuthorId() {
-        return this.authorId;
-    }
-
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
     }
 
     public String getPublisher() {
@@ -95,14 +54,6 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public int getYear() {
-        return this.year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
     public String getIsbn() {
         return this.isbn;
     }
@@ -111,12 +62,9 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public int getQuantity() {
-        return this.quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    @Override
+    public String getInfo() {
+        return "";
     }
 
     public int getCategoryId() {
@@ -135,14 +83,6 @@ public class Book {
         this.googleId = googleId;
     }
 
-    public String getDescription() {
-        return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getThumbnail() {
         return this.thumbnail;
     }
@@ -151,12 +91,5 @@ public class Book {
         this.thumbnail = thumbnail;
     }
 
-    public String getLanguage() {
-        return this.language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
 }
 

@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 import java.util.Scanner;
+import models.Book;
 
 public class MainApp {
     public MainApp() {
@@ -60,6 +61,13 @@ public class MainApp {
                         break;
                     case 3:
                         updateDocument();
+//                        System.out.print("Enter book ID to update: ");
+//                        int bookIdToUpdate = scanner.nextInt();
+//                        // Lấy thông tin sách từ người dùng
+//                        // (giả sử bạn đã có phương thức để nhập thông tin)
+//                        Book updatedBook = new Book(); // Tạo phương thức này
+//                        updatedBook.setBookId(bookIdToUpdate);
+//                        BookController.updateBook(connection, updatedBook);
                         break;
                     case 4:
                         findDocument();
@@ -111,7 +119,7 @@ public class MainApp {
 
     }
 
-    public static void updateDocument() {
+    public static void updateDocument() throws SQLException {
     }
 
     public static void findDocument() {
