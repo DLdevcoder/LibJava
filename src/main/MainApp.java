@@ -9,6 +9,7 @@ import utils.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MainApp {
@@ -54,9 +55,15 @@ public class MainApp {
                         BookController.addBook();
                         break;
                     case 2:
-                        System.out.println("Nhập id tài liệu: ");
-                        bookId = scanner.nextInt();
-                        BookController.removeBook(connection, bookId);
+                        try{
+                            System.out.println("EnterBookID: ");
+                            bookId = scanner.nextInt();
+                            BookController.removeBook(connection, bookId);
+
+                        } catch (InputMismatchException e) {
+                            System.out.println("Invalid ID");
+                        }
+
                         break;
                     case 3:
                         updateDocument();

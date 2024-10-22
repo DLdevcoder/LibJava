@@ -49,7 +49,7 @@ public class BookController {
          Book book = new Book(title, publisher, year, isbn, quantity, description, thumbnail, language);
 
          try(Connection connection = DatabaseConnection.getConnection()){
-             PreparedStatement statement = connection.prepareStatement("INSERT INTO books (title, publisher, publication_year, isbn, quantity, description, thumbnail, language) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",Statement.RETURN_GENERATED_KEYS);
+             PreparedStatement statement = connection.prepareStatement("INSERT INTO     books (title, publisher, publication_year, isbn, quantity, description, thumbnail, language) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",Statement.RETURN_GENERATED_KEYS);
              statement.setString(1, title);
              statement.setString(2, publisher);
              statement.setInt(3, year);
@@ -77,7 +77,7 @@ public class BookController {
      }
 
      public static void removeBook(Connection connection, int bookId) throws SQLException {
-         try(PreparedStatement statement = connection.prepareStatement("DELETE FROM books WHERE book_id = ?")){
+         try(PreparedStatement statement = connection.prepareStatement("DELETE FROM books WHERE id = ?")){
              statement.setInt(1, bookId);
              int rows = statement.executeUpdate();
              if(rows > 0){

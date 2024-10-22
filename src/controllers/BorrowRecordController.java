@@ -44,7 +44,7 @@ public class BorrowRecordController {
             connection.setAutoCommit(false);
 
             // Kiểm tra xem sách có tồn tại và có sẵn không
-            String checkBookQuery = "SELECT quantity FROM Books WHERE book_id = ?";
+            String checkBookQuery = "SELECT quantity FROM Books WHERE id = ?";
             PreparedStatement checkStmt = connection.prepareStatement(checkBookQuery);
             checkStmt.setInt(1, bookId);
             resultSet = checkStmt.executeQuery();
@@ -54,7 +54,7 @@ public class BorrowRecordController {
                 if (quantity > 0) {
                     LocalDate borrowDate = LocalDate.now();
                     // Thêm bản ghi mượn vào bảng Borrow_Records
-                    String borrowQuery = "INSERT INTO Borrow_Records (book_id, member_id, borrow_date, due_date, status) VALUES (?, ?, ?, ?, 'borrowed')";
+                    String borrowQuery = "INSERT INTO Borrow_Records (id, member_id, borrow_date, due_date, status) VALUES (?, ?, ?, ?, 'borrowed')";
                     borrowStmt = connection.prepareStatement(borrowQuery);
                     borrowStmt.setInt(1, bookId);
                     borrowStmt.setInt(2, memberId);
@@ -63,7 +63,7 @@ public class BorrowRecordController {
                     borrowStmt.executeUpdate();
 
                     // Cập nhật lại số lượng sách trong bảng Books
-                    String updateQuery = "UPDATE Books SET quantity = quantity - 1 WHERE book_id = ?";
+                    String updateQuery = "UPDATE Books SET quantity = quantity - 1 WHERE id = ?";
                     updateStmt = connection.prepareStatement(updateQuery);
                     updateStmt.setInt(1, bookId);
                     updateStmt.executeUpdate();
