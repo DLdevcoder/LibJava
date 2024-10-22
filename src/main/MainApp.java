@@ -70,32 +70,42 @@ public class MainApp {
                         findDocument();
                         break;
                     case 5:
-                        displayDocument();
+                        bookController.getBook();
+                        System.out.print("Enter book ID: ");
+                        bookId = scanner.nextInt();
+                        bookController.displayDocument(bookId);
+                        waitToRead(scanner);
                         break;
                     case 6:
                         memberController.addMember();
+                        waitToRead(scanner);
                         break;
                     case 7:
                         BorrowRecordController.borrowDocument();
+                        waitToRead(scanner);
                         break;
                     case 8:
                         BorrowRecordController.returnDocument();
+                        waitToRead(scanner);
                         break;
                     case 9:
                         memberController.getMembers();
                         System.out.print("Enter member ID: ");
                         memberId = scanner.nextInt();
                         memberController.displayMemberInfo(memberId);
+                        waitToRead(scanner);
                         break;
                     case 10:
                         System.out.print("Enter member ID: ");
                         memberId = scanner.nextInt();
                         memberController.removeMember(memberId);
+                        waitToRead(scanner);
                         break;
                     case 11:
                         System.out.print("Enter member ID: ");
                         memberId = scanner.nextInt();
                         memberController.updateMember(memberId);
+                        waitToRead(scanner);
                         break;
                     default:
                         System.out.println("Invalid choice, please try again.");
@@ -107,6 +117,14 @@ public class MainApp {
         } while(choice != 0);
 
         scanner.close();
+    }
+
+    public static void waitToRead(Scanner scanner) {
+        while (true) {
+            String checkEnter = scanner.nextLine();
+            System.out.print("Press enter to back to menu");
+            if (checkEnter.equals(scanner.nextLine())) break;
+        }
     }
 
     public static void addBook() throws SQLException {
