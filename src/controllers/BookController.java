@@ -112,8 +112,9 @@ public class BookController {
               Statement stmt = connection.createStatement();
               ResultSet resultSet = stmt.executeQuery(query);) {
              while (resultSet.next()) {
-                 int bookId = resultSet.getInt("book_id");
+                 int bookId = resultSet.getInt("id");
                  String title = resultSet.getString("title");
+                 String author = resultSet.getString("author");
                  String publisher = resultSet.getString("publisher");
                  int year = resultSet.getInt("publication_year");
                  String isbn = resultSet.getString("isbn");
@@ -132,10 +133,11 @@ public class BookController {
 
     public void displayDocument(int bookId) {
          for (Book book : books) {
-             if (book.getBookId() == bookId) {
+             if (book.getId() == bookId) {
                  System.out.println("Title: " + book.getTitle());
+                 System.out.println("Author: " + book.getAuthor());
                  System.out.println("Published: " + book.getPublisher());
-                 System.out.println("Year: " + book.getYear());
+                 System.out.println("Year: " + book.getPublicationYear());
                  System.out.println("International Standard Book Number: " + book.getIsbn());
                  System.out.println("Quantity: " + book.getQuantity());
                  System.out.println("Description: " + book.getDescription());
@@ -148,20 +150,18 @@ public class BookController {
         System.out.println("Book not found!");
     }
 
-    public void displayAllDocument(int bookId) {
+    public void displayAllDocument() {
         for (Book book : books) {
-            if (book.getBookId() == bookId) {
-                System.out.println("Book ID: " + book.getBookId());
+                System.out.println("Book ID: " + book.getId());
                 System.out.println("Title: " + book.getTitle());
                 System.out.println("Published: " + book.getPublisher());
-                System.out.println("Year: " + book.getYear());
+                System.out.println("Year: " + book.getId());
                 System.out.println("International Standard Book Number: " + book.getIsbn());
                 System.out.println("Quantity: " + book.getQuantity());
                 System.out.println("Description: " + book.getDescription());
                 System.out.println("Thumbnail: " + book.getThumbnail());
                 System.out.println("Language: " + book.getLanguage());
                 System.out.println();
-            }
         }
     }
 

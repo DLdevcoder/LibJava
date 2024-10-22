@@ -5,10 +5,80 @@ import utils.DatabaseConnection;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class BorrowRecordController {
+    /**
+     * Kiểm tra id được nhập.
+     */
+    public static int checkValidId(Scanner scanner) {
+        int res = 0;
+        boolean checkValidId = false;
+        while (!checkValidId) {
+            String input = scanner.next();
+            try {
+                res = Integer.parseInt(input);
+                if (res > 0) {
+                    checkValidId = true;
+                } else {
+                    System.out.print("ID must be greater than 0. Please try again: ");
+                }
+            } catch (NumberFormatException e) {
+                System.out.print("Invalid ID. Please try again: ");
+            }
+        }
+        return res;
+    }
+
+    /**
+     * Kiểm tra ngay được nhập
+     */
+    public static String checkValidDate(Scanner scanner, LocalDate curDate) {
+        String dateInput = scanner.next();
+        boolean isValidDate = false;
+
+        while (!isValidDate) {
+            try {
+                LocalDate date = LocalDate.parse(dateInput);
+                long diffDate = ChronoUnit.DAYS.between(curDate, date);
+                if (diffDate <= 14 && diffDate >=0) {
+                    isValidDate = true;
+                } else if (diffDate > 14){
+                    System.out.print("Books can only be borrowed within 14 days, please re-enter: ");
+                    dateInput = scanner.next();
+                } else {
+                    System.out.print("The book return date cannot be less than the book's borrow date, please re-enter: ");
+                    dateInput = scanner.next();
+                }
+            } catch (DateTimeParseException e) {
+                System.out.print("Invalid date entered! Please re-enter in yyyy-MM-dd format: ");
+                dateInput = scanner.next();
+            }
+        }
+
+        return dateInput;
+    }
+
+    public static int checkQuantity(int quantity, int quantityBorrow, Scanner scanner) {
+        if (quantityBorrow > quantity) {
+            if (quantity > 1) {
+                System.out.print("The library does not have enough books for you to borrow. There are only "
+                        + quantity + " books left. Please re-enter the number of books you want to borrow: ");
+            } else {
+                System.out.print("The library does not have enough books for you to borrow. " +
+                        "There are only 1 books left. Please re-enter the number of books you want to borrow: ");
+            }
+            quantityBorrow = scanner.nextInt();
+        }
+        return quantityBorrow;
+    }
+
+    /**
+     * Mượn tài liệu.
+     */
     public static boolean borrowDocument() {
         Connection connection = null;
         PreparedStatement borrowStmt = null;
@@ -18,64 +88,66 @@ public class BorrowRecordController {
             //Nhập lệnh.
             Scanner scanner = new Scanner(System.in);
             System.out.print("Please enter book id: ");
-            int bookId = scanner.nextInt();
+            int bookId = checkValidId(scanner);
             scanner.nextLine();
             System.out.print("Please enter your id: ");
-            int memberId = scanner.nextInt();
+            int memberId = checkValidId(scanner);
             scanner.nextLine();
+            System.out.print("Please enter the number of books you want to borrow: ");
+            int quantityBorrow = scanner.nextInt();
+            LocalDate borrowDate = LocalDate.now();
             System.out.print("Please enter the date you returned the book (yyyy-MM-dd format): ");
-            String dueDateInput = scanner.nextLine();
-
-            //Kiểm tra xem ngày nhập có hợp lệ không.
-            boolean checkValidDate = false;
-            while (!checkValidDate) {
-                try {
-                    dueDateInput = String.valueOf(LocalDate.parse(dueDateInput));
-                    checkValidDate = true;
-                } catch (java.time.format.DateTimeParseException e) {
-                    System.out.println("Invalid date entered! Please re-enter in yyyy-MM-dd format: ");
-                    dueDateInput = scanner.nextLine();
-                }
-            }
+            String dueDateInput = checkValidDate(scanner, borrowDate);
             LocalDate dueDate = LocalDate.parse(dueDateInput);
-
             // Tạo kết nối Database.
             connection = DatabaseConnection.getConnection();
             connection.setAutoCommit(false);
 
-            // Kiểm tra xem sách có tồn tại và có sẵn không
-            String checkBookQuery = "SELECT quantity FROM Books WHERE book_id = ?";
-            PreparedStatement checkStmt = connection.prepareStatement(checkBookQuery);
-            checkStmt.setInt(1, bookId);
+            //Kiểm tra xem id người dùng có hợp lệ không.
+            String checkMemberId = "SELECT member_id FROM members WHERE member_id = ?";
+            PreparedStatement checkStmt = connection.prepareStatement(checkMemberId);
+            checkStmt.setInt(1, memberId);
             resultSet = checkStmt.executeQuery();
-
             if (resultSet.next()) {
-                int quantity = resultSet.getInt("quantity");
-                if (quantity > 0) {
-                    LocalDate borrowDate = LocalDate.now();
-                    // Thêm bản ghi mượn vào bảng Borrow_Records
-                    String borrowQuery = "INSERT INTO Borrow_Records (book_id, member_id, borrow_date, due_date, status) VALUES (?, ?, ?, ?, 'borrowed')";
-                    borrowStmt = connection.prepareStatement(borrowQuery);
-                    borrowStmt.setInt(1, bookId);
-                    borrowStmt.setInt(2, memberId);
-                    borrowStmt.setDate(3, Date.valueOf(borrowDate));
-                    borrowStmt.setDate(4, Date.valueOf(dueDate));
-                    borrowStmt.executeUpdate();
+                // Kiểm tra xem sách có tồn tại và có sẵn không
+                String checkBookQuery = "SELECT quantity FROM Books WHERE id = ?";
+                checkStmt = connection.prepareStatement(checkBookQuery);
+                checkStmt.setInt(1, bookId);
+                resultSet = checkStmt.executeQuery();
 
-                    // Cập nhật lại số lượng sách trong bảng Books
-                    String updateQuery = "UPDATE Books SET quantity = quantity - 1 WHERE book_id = ?";
-                    updateStmt = connection.prepareStatement(updateQuery);
-                    updateStmt.setInt(1, bookId);
-                    updateStmt.executeUpdate();
-                    connection.commit();
-                    System.out.println("You have successfully borrowed the book!");
-                    return true;
+                if (resultSet.next()) {
+                    int quantity = resultSet.getInt("quantity");
+                    if (quantity > 0) {
+                        quantityBorrow = checkQuantity(quantity, quantityBorrow, scanner);
+                        // Thêm bản ghi mượn vào bảng Borrow_Records
+                        String borrowQuery = "INSERT INTO Borrow_Records (document_id, member_id, borrow_date, due_date, status, quantity) VALUES (?, ?, ?, ?, 'borrowed', ?)";
+                        borrowStmt = connection.prepareStatement(borrowQuery);
+                        borrowStmt.setInt(1, bookId);
+                        borrowStmt.setInt(2, memberId);
+                        borrowStmt.setDate(3, Date.valueOf(borrowDate));
+                        borrowStmt.setDate(4, Date.valueOf(dueDate));
+                        borrowStmt.setInt(5, quantityBorrow);
+                        borrowStmt.executeUpdate();
+
+                        // Cập nhật lại số lượng sách trong bảng Books
+                        String updateQuery = "UPDATE Books SET quantity = quantity - ? WHERE id = ?";
+                        updateStmt = connection.prepareStatement(updateQuery);
+                        updateStmt.setInt(1, quantityBorrow);
+                        updateStmt.setInt(2, bookId);
+                        updateStmt.executeUpdate();
+                        connection.commit();
+                        System.out.println("You have successfully borrowed the book!");
+                        return true;
+                    } else {
+                        System.out.println("Sorry, the library is out of the book you requested.");
+                        return false;
+                    }
                 } else {
-                    System.out.println("Sorry, the library is out of the book you requested.");
+                    System.out.println("Books do not exist.");
                     return false;
                 }
             } else {
-                System.out.println("Books do not exist.");
+                System.out.println("Sorry, we couldn't find your id.");
                 return false;
             }
 
@@ -110,6 +182,9 @@ public class BorrowRecordController {
         return false;
     }
 
+    /**
+     * Trả tài liệu.
+     */
     public static boolean returnDocument() {
         PreparedStatement returnStmt = null;
         PreparedStatement updateStmt = null;
@@ -128,7 +203,7 @@ public class BorrowRecordController {
             connection = DatabaseConnection.getConnection();
             connection.setAutoCommit(false);
 
-            String checkBorrowQuery = "SELECT status FROM Borrow_Records WHERE book_id = ? AND member_id = ?";
+            String checkBorrowQuery = "SELECT status FROM Borrow_Records WHERE document_id = ? AND member_id = ?";
             PreparedStatement checkStmt = connection.prepareStatement(checkBorrowQuery);
             checkStmt.setInt(1,bookId);
             checkStmt.setInt(2,memberId);
@@ -138,7 +213,7 @@ public class BorrowRecordController {
                 if (Objects.equals(status, "borrowed")) {
                     LocalDate returnDate = LocalDate.now();
 
-                    String returnQuery = "UPDATE Borrow_Records SET status = 'returned', return_date = ? WHERE book_id = ? AND member_id = ? LIMIT 1";
+                    String returnQuery = "UPDATE Borrow_Records SET status = 'returned', return_date = ? WHERE document_id = ? AND member_id = ? LIMIT 1";
                     returnStmt = connection.prepareStatement(returnQuery);
                     returnStmt.setDate(1, Date.valueOf(returnDate));
                     returnStmt.setInt(2,bookId);
@@ -146,7 +221,7 @@ public class BorrowRecordController {
                     returnStmt.executeUpdate();
 
                     // Cập nhật lại số lượng sách trong bảng Books
-                    String updateQuery = "UPDATE Books SET quantity = quantity + 1 WHERE book_id = ?";
+                    String updateQuery = "UPDATE Books SET quantity = quantity + 1 WHERE id = ?";
                     updateStmt = connection.prepareStatement(updateQuery);
                     updateStmt.setInt(1, bookId);
                     updateStmt.executeUpdate();
