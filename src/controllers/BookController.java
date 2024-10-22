@@ -161,9 +161,9 @@ public class BookController {
             // Update information of book...
 
             pstmt.setString(1, book.getTitle());
-            pstmt.setInt(2, book.getAuthorId());
+            pstmt.setString(2, book.getAuthor());
             pstmt.setString(3, book.getPublisher());
-            pstmt.setInt(4, book.getYear());
+            pstmt.setInt(4, book.getPublicationYear());
             pstmt.setString(5, book.getIsbn());
             pstmt.setInt(6, book.getQuantity());
             pstmt.setInt(7, book.getCategoryId());
@@ -171,7 +171,7 @@ public class BookController {
             pstmt.setString(9, book.getDescription());
             pstmt.setString(10, book.getThumbnail());
             pstmt.setString(11, book.getLanguage());
-            pstmt.setInt(12, book.getBookId());
+            pstmt.setInt(12, book.getId());
             pstmt.executeUpdate();
 
             System.out.println("Book updated successfully!");
