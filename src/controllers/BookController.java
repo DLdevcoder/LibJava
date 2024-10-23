@@ -80,7 +80,7 @@ public class BookController {
      }
 
      public static void removeBook(Connection connection, int bookId) throws SQLException {
-         try(PreparedStatement statement = connection.prepareStatement("DELETE FROM books WHERE book_id = ?")){
+         try(PreparedStatement statement = connection.prepareStatement("DELETE FROM books WHERE id = ?")){
              statement.setInt(1, bookId);
              int rows = statement.executeUpdate();
              if(rows > 0){
@@ -100,7 +100,7 @@ public class BookController {
               Statement stmt = connection.createStatement();
               ResultSet resultSet = stmt.executeQuery(query);) {
              while (resultSet.next()) {
-                 int bookId = resultSet.getInt("book_id");
+                 int bookId = resultSet.getInt("id");
                  String title = resultSet.getString("title");
                  String publisher = resultSet.getString("publisher");
                  int year = resultSet.getInt("publication_year");
@@ -120,10 +120,10 @@ public class BookController {
 
     public void displayDocument(int bookId) {
          for (Book book : books) {
-             if (book.getBookId() == bookId) {
+             if (book.getId() == bookId) {
                  System.out.println("Title: " + book.getTitle());
                  System.out.println("Published: " + book.getPublisher());
-                 System.out.println("Year: " + book.getYear());
+                 System.out.println("Year: " + book.getPublicationYear());
                  System.out.println("International Standard Book Number: " + book.getIsbn());
                  System.out.println("Quantity: " + book.getQuantity());
                  System.out.println("Description: " + book.getDescription());
@@ -138,11 +138,11 @@ public class BookController {
 
     public void displayAllDocument(int bookId) {
         for (Book book : books) {
-            if (book.getBookId() == bookId) {
-                System.out.println("Book ID: " + book.getBookId());
+            if (book.getId() == bookId) {
+                System.out.println("Book ID: " + book.getId());
                 System.out.println("Title: " + book.getTitle());
                 System.out.println("Published: " + book.getPublisher());
-                System.out.println("Year: " + book.getYear());
+                System.out.println("Year: " + book.getPublicationYear());
                 System.out.println("International Standard Book Number: " + book.getIsbn());
                 System.out.println("Quantity: " + book.getQuantity());
                 System.out.println("Description: " + book.getDescription());
@@ -155,7 +155,7 @@ public class BookController {
 
     public void updateDocument(int documentId) {
         for (Book book : books) {
-            if (book.getBookId() == documentId) {
+            if (book.getId() == documentId) {
                 Scanner scanner = new Scanner(System.in);
                 boolean running = true;
 
@@ -189,7 +189,7 @@ public class BookController {
                         case 3:
                             System.out.print("Enter new publication year: ");
                             int newYear = scanner.nextInt();
-                            book.setYear(newYear);
+                            book.setPublicationYear(newYear);
                             break;
                         case 4:
                             System.out.print("Enter new ISBN: ");
@@ -233,7 +233,7 @@ public class BookController {
 
     public boolean findDocument(int documentId) {
         for (Book book : books) {
-            if (book.getBookId() == documentId) {
+            if (book.getId() == documentId) {
                 return true;
             }
         }

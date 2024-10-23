@@ -53,11 +53,13 @@ public class MainApp {
                     case 1:
 
                         BookController.addBook();
+                        waitToRead(scanner);
                         break;
                     case 2:
                         System.out.println("Nhập id tài liệu: ");
                         bookId = scanner.nextInt();
                         BookController.removeBook(connection, bookId);
+                        waitToRead(scanner);
                         break;
                     case 3:
 
@@ -70,6 +72,7 @@ public class MainApp {
                         } else {
                             System.out.println("No document found with ID: " + documentId);
                         }
+                        waitToRead(scanner);
                         break;
                     case 5:
                         bookController.getBook();
@@ -127,28 +130,6 @@ public class MainApp {
             System.out.print("Press enter to back to menu");
             if (checkEnter.equals(scanner.nextLine())) break;
         }
-    }
-
-    public static void addBook() throws SQLException {
-    }
-
-    public static void removeBook() {
-
-    }
-
-    public static void updateDocument() throws SQLException {
-    }
-
-    public static void findDocument() {
-    }
-
-    public static void displayDocument() {
-    }
-
-    public static void borrowDocument() {
-    }
-
-    public static void returnDocument() {
     }
 
 }
