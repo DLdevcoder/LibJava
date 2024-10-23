@@ -103,40 +103,12 @@ public class BorrowRecordController {
             connection = DatabaseConnection.getConnection();
             connection.setAutoCommit(false);
 
-
-            // Kiểm tra xem sách có tồn tại và có sẵn không
-            String checkBookQuery = "SELECT quantity FROM Books WHERE id = ?";
-            PreparedStatement checkStmt = connection.prepareStatement(checkBookQuery);
-            checkStmt.setInt(1, bookId);
             //Kiểm tra xem id người dùng có hợp lệ không.
             String checkMemberId = "SELECT member_id FROM members WHERE member_id = ?";
             PreparedStatement checkStmt = connection.prepareStatement(checkMemberId);
             checkStmt.setInt(1, memberId);
-
             resultSet = checkStmt.executeQuery();
             if (resultSet.next()) {
-
-                int quantity = resultSet.getInt("quantity");
-                if (quantity > 0) {
-                    LocalDate borrowDate = LocalDate.now();
-                    // Thêm bản ghi mượn vào bảng Borrow_Records
-                    String borrowQuery = "INSERT INTO Borrow_Records (id, member_id, borrow_date, due_date, status) VALUES (?, ?, ?, ?, 'borrowed')";
-                    borrowStmt = connection.prepareStatement(borrowQuery);
-                    borrowStmt.setInt(1, bookId);
-                    borrowStmt.setInt(2, memberId);
-                    borrowStmt.setDate(3, Date.valueOf(borrowDate));
-                    borrowStmt.setDate(4, Date.valueOf(dueDate));
-                    borrowStmt.executeUpdate();
-
-                    // Cập nhật lại số lượng sách trong bảng Books
-                    String updateQuery = "UPDATE Books SET quantity = quantity - 1 WHERE id = ?";
-                    updateStmt = connection.prepareStatement(updateQuery);
-                    updateStmt.setInt(1, bookId);
-                    updateStmt.executeUpdate();
-                    connection.commit();
-                    System.out.println("You have successfully borrowed the book!");
-                    return true;
-
                 // Kiểm tra xem sách có tồn tại và có sẵn không
                 String checkBookQuery = "SELECT quantity FROM Books WHERE id = ?";
                 checkStmt = connection.prepareStatement(checkBookQuery);
@@ -170,7 +142,6 @@ public class BorrowRecordController {
                         System.out.println("Sorry, the library is out of the book you requested.");
                         return false;
                     }
-
                 } else {
                     System.out.println("Books do not exist.");
                     return false;

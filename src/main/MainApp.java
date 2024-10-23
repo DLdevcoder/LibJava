@@ -9,6 +9,7 @@ import utils.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import models.Book;
 
@@ -56,11 +57,16 @@ public class MainApp {
                         waitToRead(scanner);
                         break;
                     case 2:
-                        System.out.println("Nhập id tài liệu: ");
-                        bookId = scanner.nextInt();
-                        BookController.removeBook(connection, bookId);
+                        System.out.println("Enter ID: ");
+                        try {
+                            bookId = scanner.nextInt(); // Nhận input từ người dùng
+                            BookController.removeBook(connection, bookId);
+                        } catch (InputMismatchException e) {
+                            System.out.println("Invalid input! Please enter a valid number."); // Thông báo lỗi khi nhập sai kiểu
+                            scanner.next(); // Đọc và loại bỏ input sai
+                        }
                         waitToRead(scanner);
-                        break;
+
                     case 3:
 
                         break;
