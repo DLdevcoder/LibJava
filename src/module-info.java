@@ -11,6 +11,8 @@ module main {
     requires com.almasb.fxgl.all;
     requires java.sql;
     requires mysql.connector.j;
+    requires jdk.httpserver;
+    requires okhttp3;
 
     exports main;
 

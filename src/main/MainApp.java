@@ -9,6 +9,7 @@ import utils.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import models.Book;
 
@@ -53,24 +54,31 @@ public class MainApp {
                     case 1:
 
                         BookController.addBook();
+                        waitToRead(scanner);
                         break;
                     case 2:
-                        System.out.println("Nhập id tài liệu: ");
-                        bookId = scanner.nextInt();
-                        BookController.removeBook(connection, bookId);
-                        break;
+                        System.out.println("Enter ID: ");
+                        try {
+                            bookId = scanner.nextInt(); // Nhận input từ người dùng
+                            BookController.removeBook(connection, bookId);
+                        } catch (InputMismatchException e) {
+                            System.out.println("Invalid input! Please enter a valid number."); // Thông báo lỗi khi nhập sai kiểu
+                            scanner.next(); // Đọc và loại bỏ input sai
+                        }
+                        waitToRead(scanner);
+
                     case 3:
-                        updateDocument();
-//                        System.out.print("Enter book ID to update: ");
-//                        int bookIdToUpdate = scanner.nextInt();
-//                        // Lấy thông tin sách từ người dùng
-//                        // (giả sử bạn đã có phương thức để nhập thông tin)
-//                        Book updatedBook = new Book(); // Tạo phương thức này
-//                        updatedBook.setBookId(bookIdToUpdate);
-//                        BookController.updateBook(connection, updatedBook);
+
                         break;
                     case 4:
-                        findDocument();
+                        System.out.print("Enter the document ID to find: ");
+                        int documentId = scanner.nextInt();
+                        if (bookController.findDocument(documentId)) {
+                            System.out.println("Document found with ID: " + documentId);
+                        } else {
+                            System.out.println("No document found with ID: " + documentId);
+                        }
+                        waitToRead(scanner);
                         break;
                     case 5:
                         bookController.getBook();
@@ -128,28 +136,6 @@ public class MainApp {
             System.out.print("Press enter to back to menu");
             if (checkEnter.equals(scanner.nextLine())) break;
         }
-    }
-
-    public static void addBook() throws SQLException {
-    }
-
-    public static void removeBook() {
-
-    }
-
-    public static void updateDocument() throws SQLException {
-    }
-
-    public static void findDocument() {
-    }
-
-    public static void displayDocument() {
-    }
-
-    public static void borrowDocument() {
-    }
-
-    public static void returnDocument() {
     }
 
 }
