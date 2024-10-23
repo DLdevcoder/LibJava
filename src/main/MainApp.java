@@ -71,6 +71,7 @@ public class MainApp {
 
                         break;
                     case 4:
+                        bookController.getBook();
                         System.out.print("Enter the document ID to find: ");
                         int documentId = scanner.nextInt();
                         if (bookController.findDocument(documentId)) {
