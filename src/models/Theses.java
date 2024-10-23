@@ -1,6 +1,6 @@
 package models;
 
-public class Theses extends Document{
+public class    Theses extends Document{
     private String degree;
     private String institution;
 
