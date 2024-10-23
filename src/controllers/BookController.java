@@ -138,7 +138,6 @@ public class BookController {
 
     public void displayAllDocument(int bookId) {
         for (Book book : books) {
-            if (book.getId() == bookId) {
                 System.out.println("Book ID: " + book.getId());
                 System.out.println("Title: " + book.getTitle());
                 System.out.println("Published: " + book.getPublisher());
@@ -149,7 +148,6 @@ public class BookController {
                 System.out.println("Thumbnail: " + book.getThumbnail());
                 System.out.println("Language: " + book.getLanguage());
                 System.out.println();
-            }
         }
     }
 
