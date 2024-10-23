@@ -13,11 +13,6 @@ public class Member extends Person {
 
     }
 
-
-
-
-
-
     public int getMemberId() {
         return memberId;
     }
@@ -29,5 +24,17 @@ public class Member extends Person {
     @Override
     public String toString() {
         return "Member ID: " + this.memberId + "\nName: " + this.name + "\nAddress: " + this.address + "\nPhone: " + this.phone + "\nEmail: " + this.email + "\nMembership Date: " + this.membershipDate;
+    }
+
+    public void updateInfo(){
+        return;
+    }
+    public void displayMemberInfo() {
+        System.out.println("Member ID: " + this.memberId);
+        System.out.println("Name: " + this.name);
+        System.out.println("Address: " + this.address);
+        System.out.println("Phone: " + this.phone);
+        System.out.println("Email: " + this.email);
+        System.out.println("Membership Date: " + this.membershipDate);
     }
 }

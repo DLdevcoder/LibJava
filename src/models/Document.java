@@ -1,32 +1,32 @@
 package models;
 
 public abstract class Document {
-    private int id;
+    protected int id;
     protected String title;
     protected String author;
     protected String language;
     protected int publicationYear;
     protected int quantity;
-    private String description;
+    protected String description;
 
 
     protected Document(int id, String title, String author, String language, int publicationYear, String description, int quantity) {
         this.quantity = quantity;
-        this.id = this.id;
-        this.title = this.title;
-        this.author = this.author;
-        this.language = this.language;
-        this.publicationYear = this.publicationYear;
-        this.description = this.description;
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.language = language;
+        this.publicationYear = publicationYear;
+        this.description = description;
     }
 
     protected Document(String title, String author, String language, int publicationYear, String description, int quantity) {
         this.quantity = quantity;
-        this.title = this.title;
-        this.author = this.author;
-        this.language = this.language;
-        this.publicationYear = this.publicationYear;
-        this.description = this.description;
+        this.title = title;
+        this.author = author;
+        this.language = language;
+        this.publicationYear = publicationYear;
+        this.description = description;
     }
 
     protected Document() {
@@ -73,7 +73,7 @@ public abstract class Document {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {

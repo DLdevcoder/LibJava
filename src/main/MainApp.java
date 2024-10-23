@@ -1,8 +1,8 @@
 package main;
 import controllers.BorrowRecordController;
 import controllers.MemberController;
-
 import controllers.BookController;
+import controllers.AdminController;
 import utils.DatabaseConnection;
 
 
@@ -20,6 +20,7 @@ public class MainApp {
     public static void main(String[] args) throws SQLException {
         MemberController memberController = new MemberController();
         BookController bookController = new BookController();
+        AdminController adminController = new AdminController();
         Scanner scanner = new Scanner(System.in);
 
         Connection connection = DatabaseConnection.getConnection();
@@ -91,7 +92,7 @@ public class MainApp {
                         waitToRead(scanner);
                         break;
                     case 6:
-                        memberController.addMember();
+                        adminController.addMember();
                         waitToRead(scanner);
                         break;
                     case 7:
@@ -103,22 +104,21 @@ public class MainApp {
                         waitToRead(scanner);
                         break;
                     case 9:
-                        memberController.getMembers();
-                        System.out.print("Enter member ID: ");
-                        memberId = scanner.nextInt();
-                        memberController.displayMemberInfo(memberId);
+                        System.out.println("All members: ");
+                        adminController.displayAllMember();
+
                         waitToRead(scanner);
                         break;
                     case 10:
                         System.out.print("Enter member ID: ");
                         memberId = scanner.nextInt();
-                        memberController.removeMember(memberId);
+                        adminController.removeMember(memberId);
                         waitToRead(scanner);
                         break;
                     case 11:
                         System.out.print("Enter member ID: ");
                         memberId = scanner.nextInt();
-                        memberController.updateMember(memberId);
+                        adminController.updateMember(memberId);
                         waitToRead(scanner);
                         break;
                     default:

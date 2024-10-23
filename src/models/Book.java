@@ -9,6 +9,7 @@ public class Book extends Document {
     protected String publisher;
     protected String isbn;
     protected int categoryId;
+
     protected String googleId;
     protected String thumbnail;
 

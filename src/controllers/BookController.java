@@ -119,6 +119,7 @@ public class BookController {
      }
 
     public void displayDocument(int bookId) {
+         getBook();
          for (Book book : books) {
              if (book.getId() == bookId) {
                  System.out.println("Title: " + book.getTitle());
@@ -136,7 +137,8 @@ public class BookController {
         System.out.println("Book not found!");
     }
 
-    public void displayAllDocument(int bookId) {
+    public void displayAllDocument() {
+        getBook();
         for (Book book : books) {
                 System.out.println("Book ID: " + book.getId());
                 System.out.println("Title: " + book.getTitle());
@@ -152,6 +154,7 @@ public class BookController {
     }
 
     public void updateDocument(int documentId) {
+         getBook();
         for (Book book : books) {
             if (book.getId() == documentId) {
                 Scanner scanner = new Scanner(System.in);
@@ -201,6 +204,7 @@ public class BookController {
                         case 5:
                             System.out.print("Enter new quantity: ");
                             int newQuantity = scanner.nextInt();
+                            scanner.nextLine(); // consume the newline
                             if (newQuantity >= 0) { // Kiểm tra số lượng
                                 book.setQuantity(newQuantity);
                             } else {
@@ -240,7 +244,7 @@ public class BookController {
     }
 
     public void updateBookInDatabase(Book book) {
-        String sql = "UPDATE books SET title = ?, publisher = ?, publication_year = ?, isbn = ?, quantity = ?, description = ?, thumbnail = ?, language = ? WHERE book_id = ?";
+        String sql = "UPDATE books SET title = ?, publisher = ?, publication_year = ?, isbn = ?, quantity = ?, description = ?, thumbnail = ?, language = ? WHERE id = ?";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
