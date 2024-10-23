@@ -102,7 +102,6 @@ public class BookController {
              while (resultSet.next()) {
                  int bookId = resultSet.getInt("id");
                  String title = resultSet.getString("title");
-                 String author = resultSet.getString("author");
                  String publisher = resultSet.getString("publisher");
                  int year = resultSet.getInt("publication_year");
                  String isbn = resultSet.getString("isbn");
@@ -123,7 +122,6 @@ public class BookController {
          for (Book book : books) {
              if (book.getId() == bookId) {
                  System.out.println("Title: " + book.getTitle());
-                 System.out.println("Author: " + book.getAuthor());
                  System.out.println("Published: " + book.getPublisher());
                  System.out.println("Year: " + book.getPublicationYear());
                  System.out.println("International Standard Book Number: " + book.getIsbn());
@@ -138,12 +136,12 @@ public class BookController {
         System.out.println("Book not found!");
     }
 
-    public void displayAllDocument() {
+    public void displayAllDocument(int bookId) {
         for (Book book : books) {
                 System.out.println("Book ID: " + book.getId());
                 System.out.println("Title: " + book.getTitle());
                 System.out.println("Published: " + book.getPublisher());
-                System.out.println("Year: " + book.getId());
+                System.out.println("Year: " + book.getPublicationYear());
                 System.out.println("International Standard Book Number: " + book.getIsbn());
                 System.out.println("Quantity: " + book.getQuantity());
                 System.out.println("Description: " + book.getDescription());
@@ -153,31 +151,91 @@ public class BookController {
         }
     }
 
-    public static void updateBook(Connection connection, Book book) throws SQLException {
-        String sql = "UPDATE books SET title = ?, authorId = ?, publisher = ?, year = ?, isbn = ?, quantity = ?, categoryId = ?, googleId = ?, description = ?, thumbnail = ?, language = ? WHERE bookId = ?";
+    public void updateDocument(int documentId) {
+        for (Book book : books) {
+            if (book.getId() == documentId) {
+                Scanner scanner = new Scanner(System.in);
+                boolean running = true;
 
-        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+                while (running) {
+                    System.out.println("Updating book with ID: " + documentId);
+                    System.out.println("[1] Update Title");
+                    System.out.println("[2] Update Publisher");
+                    System.out.println("[3] Update Publication Year");
+                    System.out.println("[4] Update ISBN");
+                    System.out.println("[5] Update Quantity");
+                    System.out.println("[6] Update Description");
+                    System.out.println("[7] Update Thumbnail");
+                    System.out.println("[8] Update Language");
+                    System.out.println("[0] Exit Update Menu");
+                    System.out.print("Please select an option: ");
 
-            // Update information of book...
+                    int choice = scanner.nextInt();
+                    scanner.nextLine(); // consume the newline
 
-            pstmt.setString(1, book.getTitle());
-            pstmt.setString(2, book.getAuthor());
-            pstmt.setString(3, book.getPublisher());
-            pstmt.setInt(4, book.getPublicationYear());
-            pstmt.setString(5, book.getIsbn());
-            pstmt.setInt(6, book.getQuantity());
-            pstmt.setInt(7, book.getCategoryId());
-            pstmt.setString(8, book.getGoogleId());
-            pstmt.setString(9, book.getDescription());
-            pstmt.setString(10, book.getThumbnail());
-            pstmt.setString(11, book.getLanguage());
-            pstmt.setInt(12, book.getId());
-            pstmt.executeUpdate();
+                    switch (choice) {
+                        case 1:
+                            System.out.print("Enter new title: ");
+                            String newTitle = scanner.nextLine();
+                            book.setTitle(newTitle);
+                            break;
+                        case 2:
+                            System.out.print("Enter new publisher: ");
+                            String newPublisher = scanner.nextLine();
+                            book.setPublisher(newPublisher);
+                            break;
+                        case 3:
+                            System.out.print("Enter new publication year: ");
+                            int newYear = scanner.nextInt();
+                            book.setPublicationYear(newYear);
+                            break;
+                        case 4:
+                            System.out.print("Enter new ISBN: ");
+                            String newIsbn = scanner.nextLine();
+                            book.setIsbn(newIsbn);
+                            break;
+                        case 5:
+                            System.out.print("Enter new quantity: ");
+                            int newQuantity = scanner.nextInt();
+                            book.setQuantity(newQuantity);
+                            break;
+                        case 6:
+                            System.out.print("Enter new description: ");
+                            String newDescription = scanner.nextLine();
+                            book.setDescription(newDescription);
+                            break;
+                        case 7:
+                            System.out.print("Enter new thumbnail: ");
+                            String newThumbnail = scanner.nextLine();
+                            book.setThumbnail(newThumbnail);
+                            break;
+                        case 8:
+                            System.out.print("Enter new language: ");
+                            String newLanguage = scanner.nextLine();
+                            book.setLanguage(newLanguage);
+                            break;
+                        case 0:
+                            running = false;
+                            break;
+                        default:
+                            System.out.println("Invalid choice. Please try again.");
+                    }
+                }
 
-            System.out.println("Book updated successfully!");
-        } catch (SQLException e) {
-            System.out.println("Error updating book: " + e.getMessage());
+                return;
+            }
         }
+
+        System.out.println("No document found with ID: " + documentId);
+    }
+
+    public boolean findDocument(int documentId) {
+        for (Book book : books) {
+            if (book.getId() == documentId) {
+                return true;
+            }
+        }
+        return false;
     }
 
 
