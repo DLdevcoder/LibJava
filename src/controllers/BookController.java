@@ -187,7 +187,11 @@ public class BookController {
                         case 3:
                             System.out.print("Enter new publication year: ");
                             int newYear = scanner.nextInt();
-                            book.setPublicationYear(newYear);
+                            if (newYear >= 0) { // Kiểm tra năm xuất bản
+                                book.setPublicationYear(newYear);
+                            } else {
+                                System.out.println("Invalid publication year!");
+                            }
                             break;
                         case 4:
                             System.out.print("Enter new ISBN: ");
@@ -197,7 +201,11 @@ public class BookController {
                         case 5:
                             System.out.print("Enter new quantity: ");
                             int newQuantity = scanner.nextInt();
-                            book.setQuantity(newQuantity);
+                            if (newQuantity >= 0) { // Kiểm tra số lượng
+                                book.setQuantity(newQuantity);
+                            } else {
+                                System.out.println("Invalid quantity!");
+                            }
                             break;
                         case 6:
                             System.out.print("Enter new description: ");
@@ -222,11 +230,42 @@ public class BookController {
                     }
                 }
 
+                // Cập nhật thông tin của sách vào cơ sở dữ liệu
+                updateBookInDatabase(book);
                 return;
             }
         }
 
         System.out.println("No document found with ID: " + documentId);
+    }
+
+    public void updateBookInDatabase(Book book) {
+        String sql = "UPDATE books SET title = ?, publisher = ?, publication_year = ?, isbn = ?, quantity = ?, description = ?, thumbnail = ?, language = ? WHERE book_id = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            // Thiết lập các tham số cho PreparedStatement
+            statement.setString(1, book.getTitle());
+            statement.setString(2, book.getPublisher());
+            statement.setInt(3, book.getPublicationYear());
+            statement.setString(4, book.getIsbn());
+            statement.setInt(5, book.getQuantity());
+            statement.setString(6, book.getDescription());
+            statement.setString(7, book.getThumbnail());
+            statement.setString(8, book.getLanguage());
+            statement.setInt(9, book.getId()); // Giả sử có phương thức getId() trong lớp Book
+
+            int rowsUpdated = statement.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Book updated successfully!");
+            } else {
+                System.out.println("No book found with the specified ID to update.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error updating book information.");
+        }
     }
 
     public boolean findDocument(int documentId) {

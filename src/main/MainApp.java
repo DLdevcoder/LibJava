@@ -68,7 +68,9 @@ public class MainApp {
                         waitToRead(scanner);
 
                     case 3:
-
+                        System.out.print("Enter the document ID to update: ");
+                        bookId = scanner.nextInt();
+                        bookController.updateDocument(bookId);
                         break;
                     case 4:
                         bookController.getBook();
