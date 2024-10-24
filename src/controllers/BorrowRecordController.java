@@ -204,7 +204,7 @@ public class BorrowRecordController {
             connection = DatabaseConnection.getConnection();
             connection.setAutoCommit(false);
 
-            String checkBorrowQuery = "SELECT status, quantity FROM Borrow_Records WHERE document_id = ? AND member_id = ?";
+            String checkBorrowQuery = "SELECT status, quantity FROM Borrow_Records WHERE document_id = ? AND member_id = ? AND status = 'borrowed'";
             PreparedStatement checkStmt = connection.prepareStatement(checkBorrowQuery);
             checkStmt.setInt(1,bookId);
             checkStmt.setInt(2,memberId);
@@ -226,18 +226,24 @@ public class BorrowRecordController {
                     }
                     LocalDate returnDate = LocalDate.now();
 
-                    String returnQuery = "UPDATE Borrow_Records SET status = 'returned', return_date = ?, quantity = ? WHERE document_id = ? AND member_id = ? LIMIT 1";
+                    String returnQuery = "UPDATE Borrow_Records SET status = ?, return_date = ?, quantity = ? WHERE document_id = ? AND member_id = ? AND status = 'borrowed' LIMIT 1";
                     returnStmt = connection.prepareStatement(returnQuery);
-                    returnStmt.setDate(1, Date.valueOf(returnDate));
-                    returnStmt.setInt(2, quantity - quantityReturn);
-                    returnStmt.setInt(3,bookId);
-                    returnStmt.setInt(4,memberId);
+                    if (quantity == quantityReturn) {
+                        returnStmt.setString(1, "returned");
+                    } else {
+                        returnStmt.setString(1, "borrowed");
+                    }
+                    returnStmt.setDate(2, Date.valueOf(returnDate));
+                    returnStmt.setInt(3, quantity - quantityReturn);
+                    returnStmt.setInt(4,bookId);
+                    returnStmt.setInt(5,memberId);
                     returnStmt.executeUpdate();
 
                     // Cập nhật lại số lượng sách trong bảng Books
-                    String updateQuery = "UPDATE Books SET quantity = quantity + 1 WHERE id = ?";
+                    String updateQuery = "UPDATE Books SET quantity = quantity + ? WHERE id = ?";
                     updateStmt = connection.prepareStatement(updateQuery);
-                    updateStmt.setInt(1, bookId);
+                    updateStmt.setInt(1, quantityReturn);
+                    updateStmt.setInt(2, bookId);
                     updateStmt.executeUpdate();
 
                     connection.commit();
