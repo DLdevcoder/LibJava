@@ -39,6 +39,7 @@ public class Book extends Document {
         this.publisher = publisher;
         this.setPublicationYear(year);
         this.isbn = isbn;
+        this.setDescription(description);
         this.quantity = quantity;
         this.setPublicationYear(publicationYear);
         this.thumbnail = thumbnail;
