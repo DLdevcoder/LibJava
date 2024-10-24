@@ -198,26 +198,40 @@ public class BorrowRecordController {
             scanner.nextLine();
             System.out.print("Please enter your ID: ");
             int memberId = scanner.nextInt();
-
+            System.out.print("Please enter the number of books you want to return: ");
+            int quantityReturn = scanner.nextInt();
             //Tạo kết nối database.
             connection = DatabaseConnection.getConnection();
             connection.setAutoCommit(false);
 
-            String checkBorrowQuery = "SELECT status FROM Borrow_Records WHERE document_id = ? AND member_id = ?";
+            String checkBorrowQuery = "SELECT status, quantity FROM Borrow_Records WHERE document_id = ? AND member_id = ?";
             PreparedStatement checkStmt = connection.prepareStatement(checkBorrowQuery);
             checkStmt.setInt(1,bookId);
             checkStmt.setInt(2,memberId);
             resultSet = checkStmt.executeQuery();
             if (resultSet.next()) {
+                int quantity = resultSet.getInt("quantity");
                 String status = resultSet.getString("status");
                 if (Objects.equals(status, "borrowed")) {
+                    if (quantityReturn > quantity) {
+                        while (quantityReturn > quantity && quantityReturn > 0) {
+                            if (quantity > 1) {
+                                System.out.print("You have " + quantity +
+                                        " books left to return, please re-enter the number of books you want to return:");
+                            } else if (quantity == 1) {
+                                System.out.print("You have 1 book left to return, please re-enter the number of books you want to return:");
+                            }
+                            quantityReturn = scanner.nextInt();
+                        }
+                    }
                     LocalDate returnDate = LocalDate.now();
 
-                    String returnQuery = "UPDATE Borrow_Records SET status = 'returned', return_date = ? WHERE document_id = ? AND member_id = ? LIMIT 1";
+                    String returnQuery = "UPDATE Borrow_Records SET status = 'returned', return_date = ?, quantity = ? WHERE document_id = ? AND member_id = ? LIMIT 1";
                     returnStmt = connection.prepareStatement(returnQuery);
                     returnStmt.setDate(1, Date.valueOf(returnDate));
-                    returnStmt.setInt(2,bookId);
-                    returnStmt.setInt(3,memberId);
+                    returnStmt.setInt(2, quantity - quantityReturn);
+                    returnStmt.setInt(3,bookId);
+                    returnStmt.setInt(4,memberId);
                     returnStmt.executeUpdate();
 
                     // Cập nhật lại số lượng sách trong bảng Books
