@@ -4,6 +4,7 @@ import controllers.MemberController;
 import controllers.BookController;
 import controllers.AdminController;
 import utils.DatabaseConnection;
+import utils.GoogleBooksAPI;
 
 
 import java.sql.Connection;
@@ -45,6 +46,8 @@ public class MainApp {
             System.out.println("[9] Display Member Info");
             System.out.println("[10] Remove Member");
             System.out.println("[11] Update Member");
+            System.out.println("[12] Search Book");
+            System.out.println("=====================================");
             System.out.print("Please select an option: ");
             if (scanner.hasNextInt()) {
                 choice = scanner.nextInt();
@@ -119,6 +122,14 @@ public class MainApp {
                         System.out.print("Enter member ID: ");
                         memberId = scanner.nextInt();
                         adminController.updateMember(memberId);
+                        waitToRead(scanner);
+                        break;
+                    case 12:
+                        Scanner sc = new Scanner(System.in);
+                        System.out.print("Enter a query: ");
+                        String query = sc.nextLine();
+                        String result = GoogleBooksAPI.searchBooks(query);
+                        System.out.println(result);
                         waitToRead(scanner);
                         break;
                     default:
