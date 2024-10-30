@@ -14,7 +14,7 @@ module main {
     requires mysql.connector.j;
     requires jdk.httpserver;
     requires okhttp3;
-
+    opens controllers to javafx.fxml;
     exports main;
 
     opens main to javafx.fxml;

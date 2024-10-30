@@ -1,5 +1,6 @@
 package models;
 import java.util.Date;
+import java.time.LocalDate;
 public class BorrowRecord {
     // Các thuộc tính của bảng Borrow_Records
     private int recordId;
@@ -9,6 +10,7 @@ public class BorrowRecord {
     private Date returnDate;
     private Date dueDate;
     private String status;
+    private int quantity;
 
     // Constructor không tham số
     public BorrowRecord() {
@@ -16,7 +18,7 @@ public class BorrowRecord {
     }
 
     // Constructor đầy đủ tham số
-    public BorrowRecord(int recordId, int bookId, int memberId, Date borrowDate, Date returnDate, Date dueDate, String status) {
+    public BorrowRecord(int recordId, int bookId, int memberId, Date borrowDate, Date returnDate, Date dueDate, String status, int quantity) {
         this.recordId = recordId;
         this.bookId = bookId;
         this.memberId = memberId;
@@ -24,6 +26,7 @@ public class BorrowRecord {
         this.returnDate = returnDate;
         this.dueDate = dueDate;
         this.status = status;
+        this.quantity = quantity;
     }
 
     // Getter và Setter cho từng thuộc tính
@@ -83,6 +86,14 @@ public class BorrowRecord {
         this.status = status;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     // Phương thức để hiển thị thông tin của bản ghi mượn
     @Override
     public String toString() {
@@ -93,8 +104,8 @@ public class BorrowRecord {
                 ", borrowDate=" + borrowDate +
                 ", returnDate=" + returnDate +
                 ", dueDate=" + dueDate +
-                ", status='" + status + '\'' +
+                ", status='" + status +
+                ", quantity='" + quantity + '\'' +
                 '}';
     }
-
 }
