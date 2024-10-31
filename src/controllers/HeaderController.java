@@ -35,7 +35,7 @@ public class HeaderController {
             Parent root = FXMLLoader.load(Objects.requireNonNull((getClass().getResource("/views/books/BookList.fxml"))));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
-            scene.getStylesheets().add(Paths.get("src/resources/BorrowList.css").toUri().toString());
+            scene.getStylesheets().add(Paths.get("src/resources/Frame.css").toUri().toString());
 
             stage.setScene(scene);
             stage.show();

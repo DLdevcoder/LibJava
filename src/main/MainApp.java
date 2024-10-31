@@ -21,10 +21,8 @@ public class MainApp extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().add(Paths.get("src/resources/Frame.css").toUri().toString());
         primaryStage.setTitle("ManageLib");
-        double screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
-        double screenHeight = Screen.getPrimary().getVisualBounds().getHeight();
-        primaryStage.setWidth(screenWidth);
-        primaryStage.setHeight(screenHeight);
+        primaryStage.setWidth(1350);
+        primaryStage.setHeight(750);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
