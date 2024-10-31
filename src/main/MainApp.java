@@ -9,12 +9,13 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.nio.file.Paths;
+import java.util.Objects;
 
 public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/icon_app.png")));
+        primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icon_app.png"))));
         FXMLLoader loader = new FXMLLoader(Paths.get("src/views/frame/Frame.fxml").toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
