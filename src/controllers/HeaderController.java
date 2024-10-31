@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 public class HeaderController {
     protected Parent root;
@@ -17,7 +18,7 @@ public class HeaderController {
 
     public void sceneBorrowRecordList(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/views/borrow_records/BorrowRecordList.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/borrow_records/BorrowRecordList.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             scene.getStylesheets().add(Paths.get("src/resources/BorrowList.css").toUri().toString());
