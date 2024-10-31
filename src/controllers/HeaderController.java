@@ -30,4 +30,18 @@ public class HeaderController {
         }
     }
 
+    // Chuyển đến trang quản lý thành viên
+    public void sceneMemberList(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/members/MemberList.fxml")));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error loading FXML file.");
+        }
+    }
+
 }

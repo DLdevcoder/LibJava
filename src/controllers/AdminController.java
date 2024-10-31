@@ -2,11 +2,10 @@ package controllers;
 import models.Admin;
 import models.Member;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 
-public class AdminController {
+public class AdminController extends HeaderController{
     private Admin admin;
 
     public AdminController() {
@@ -35,11 +34,6 @@ public class AdminController {
     public void findAdmin() {
     }
 
-    public void displayAllAdmin() {
-        this.admin.displayAllAdmin();
-
-    }
-
     public void displayAdminInfo() {
         this.admin.displayAdminInfo();
     }
@@ -47,9 +41,6 @@ public class AdminController {
     //member
     public List<Member> getMembers() {
         return this.admin.getMembers();
-    }
-    public void displayAllMember() {
-        this.admin.displayAllMember();
     }
     public void addMember () throws SQLException {
         this.admin.addMember();
@@ -62,19 +53,5 @@ public class AdminController {
     public void updateMember(int memberId) {
         this.admin.updateMember(memberId);
     }
-
-
-
-//    public static void main(String[] agrs) throws SQLException {
-//        Admin admin = new Admin( 1,"name", "address", "phone", "email", "membershipDate", "password");
-//        AdminController adminController = new AdminController(admin);
-//        adminController.displayAdminInfo();
-//        //adminController.addAdmin();
-//        //adminController.updateAdmin(1);
-//        //adminController.getAdmins();
-//
-//
-//
-//    }
 
 }

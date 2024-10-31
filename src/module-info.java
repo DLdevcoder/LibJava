@@ -16,6 +16,6 @@ module main {
     requires okhttp3;
     opens controllers to javafx.fxml;
     exports main;
-
+    opens models to javafx.base;
     opens main to javafx.fxml;
 }
