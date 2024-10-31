@@ -42,6 +42,7 @@ public class HeaderController {
             e.printStackTrace();
             System.out.println("Error loading FXML file.");
         }
+    }
       
     public void BookList(ActionEvent event) {
         try {
