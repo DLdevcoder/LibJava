@@ -155,22 +155,6 @@ public class Admin extends Person {
             e.printStackTrace();
         }
     }
-
-    public void displayAllAdmin() {
-        List<Admin> Admins = this.getAdmins();
-        for (Admin Admin : Admins) {
-            System.out.println("Admin ID: " + Admin.getAdminId());
-            System.out.println("Name: " + Admin.getName());
-            System.out.println("Address: " + Admin.getAddress());
-            System.out.println("Phone: " + Admin.getPhone());
-            System.out.println("Email: " + Admin.getEmail());
-            System.out.println("Create Date: " + Admin.getCreateDate());
-            System.out.println("Password: " + Admin.getPassword());
-            System.out.println();
-        }
-
-    }
-
     // member
     public List<Member> getMembers() {
         String query = "SELECT * FROM members";
@@ -197,21 +181,6 @@ public class Admin extends Person {
         }
         return members;
     }
-
-    public void displayAllMember() {
-        List<Member> members = this.getMembers();
-        for (Member member : members) {
-            System.out.println("Member ID: " + member.getMemberId());
-            System.out.println("Name: " + member.getName());
-            System.out.println("Address: " + member.getAddress());
-            System.out.println("Phone: " + member.getPhone());
-            System.out.println("Email: " + member.getEmail());
-            System.out.println("Membership Date: " + member.getMembershipDate());
-            System.out.println("Password: " + member.getPassword());
-            System.out.println();
-        }
-    }
-
 
     public void addMember() throws SQLException {
         Scanner sc = new Scanner(System.in);

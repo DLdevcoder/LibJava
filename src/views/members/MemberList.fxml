@@ -1,1 +1,103 @@
- 
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane stylesheets="@../../resources/Frame.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MemberController">
+
+    <top>
+        <VBox>
+            <!-- Header -->
+            <HBox fx:id="header" spacing="10" styleClass="header">
+                <Label styleClass="header-label" text="ManageLib">
+                    <font>
+                        <Font size="35.0" />
+                    </font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS" />
+                <TextField promptText="Search document" styleClass="search-field">
+                    <font>
+                        <Font size="15.0" />
+                    </font></TextField>
+                <Button styleClass="search-button" text="Search">
+                    <font>
+                        <Font size="15.0" />
+                    </font></Button>
+                <Region HBox.hgrow="ALWAYS" />
+            </HBox>
+            <!-- Navbar -->
+            <HBox fx:id="navbar" spacing="20" styleClass="navbar">
+                <Button prefWidth="200" styleClass="navbar-button" text="Home">
+                    <graphic>
+                        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                            <image>
+                                <Image url="@/home.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button prefWidth="200" styleClass="navbar-button" text="Document management">
+                    <graphic>
+                        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                            <image>
+                                <Image url="@/document.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button onAction="#sceneBorrowRecordList" prefWidth="200" styleClass="navbar-button" text="Borrow documents">
+                    <graphic>
+                        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                            <image>
+                                <Image url="@/borrowBook.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button onAction="#sceneMemberList" prefWidth="200" styleClass="navbar-button" text="Member management">
+                    <graphic>
+                        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                            <image>
+                                <Image url="@/member.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </HBox>
+
+        </VBox>
+    </top>
+
+    <left>
+        <AnchorPane prefHeight="510.0" prefWidth="185.0" styleClass="sidebar-scroll">
+            <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="502.0" prefWidth="153.0" spacing="8" styleClass="sidebar">
+                <Label styleClass="sidebar-title" text="Sidebar" />
+                <Button maxWidth="Infinity" styleClass="sidebar-button" text="Member list" />
+                <Button maxWidth="Infinity" styleClass="sidebar-button" text="Add member" />
+                <Button maxWidth="Infinity" styleClass="sidebar-button" />
+                <Button maxWidth="Infinity" styleClass="sidebar-button" />
+                <Button maxWidth="Infinity" styleClass="sidebar-button" />
+                <Button maxWidth="Infinity" styleClass="sidebar-button" />
+            </VBox>
+            <Label layoutX="173.0" layoutY="35.0" prefHeight="18.0" prefWidth="12.0" />
+        </AnchorPane>
+    </left>
+    <right>
+        <Label prefHeight="10" prefWidth="30" />
+    </right>
+   <center>
+       <TableView fx:id="memberTableView" prefHeight="510.0" prefWidth="586.0" BorderPane.alignment="CENTER">
+           <columns>
+               <TableColumn fx:id="idColumn" prefWidth="39.19998323917389" text="ID" />
+               <TableColumn fx:id="nameColumn" prefWidth="106.60001373291016" text="Name" />
+               <TableColumn fx:id="emailColumn" prefWidth="80.5999755859375" text="Email" />
+               <TableColumn fx:id="passwordColumn" prefWidth="75.0" text="Password" />
+               <TableColumn fx:id="phoneColumn" prefWidth="82.20001220703125" text="Phone" />
+               <TableColumn fx:id="addressColumn" prefWidth="97.0" text="Address" />
+               <TableColumn fx:id="membershipDateColumn" prefWidth="122.19998168945312" text="Membership Date" />
+           </columns>
+       </TableView>
+   </center>
+</BorderPane>
