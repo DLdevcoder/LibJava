@@ -1,4 +1,4 @@
-package controllers;
+package controllers.member;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import models.Member;
@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Admin;
 
-public class MemberController extends HeaderController {
+public class MemberController extends SidebarMemberController {
     @FXML
     private TableView<Member> memberTableView; // TableView hiển thị danh sách thành viên
     @FXML
