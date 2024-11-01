@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane stylesheets="@../../resources/Frame.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MemberController">
+<BorderPane stylesheets="@../../resources/Frame.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.member.MemberController">
 
     <top>
         <VBox>
@@ -74,8 +74,8 @@
         <AnchorPane prefHeight="510.0" prefWidth="185.0" styleClass="sidebar-scroll">
             <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="502.0" prefWidth="153.0" spacing="8" styleClass="sidebar">
                 <Label styleClass="sidebar-title" text="Sidebar" />
-                <Button maxWidth="Infinity" styleClass="sidebar-button" text="Member list" />
-                <Button maxWidth="Infinity" styleClass="sidebar-button" text="Add member" />
+                <Button maxWidth="Infinity" styleClass="sidebar-button" text="Member list" onAction="#sceneMemberList"/>
+                <Button maxWidth="Infinity" styleClass="sidebar-button" text="Add member" onAction="#sceneAddMember"/>
                 <Button maxWidth="Infinity" styleClass="sidebar-button" />
                 <Button maxWidth="Infinity" styleClass="sidebar-button" />
                 <Button maxWidth="Infinity" styleClass="sidebar-button" />
@@ -87,17 +87,17 @@
     <right>
         <Label prefHeight="10" prefWidth="30" />
     </right>
-   <center>
-       <TableView fx:id="memberTableView" prefHeight="510.0" prefWidth="586.0" BorderPane.alignment="CENTER">
-           <columns>
-               <TableColumn fx:id="idColumn" prefWidth="39.19998323917389" text="ID" />
-               <TableColumn fx:id="nameColumn" prefWidth="106.60001373291016" text="Name" />
-               <TableColumn fx:id="emailColumn" prefWidth="80.5999755859375" text="Email" />
-               <TableColumn fx:id="passwordColumn" prefWidth="75.0" text="Password" />
-               <TableColumn fx:id="phoneColumn" prefWidth="82.20001220703125" text="Phone" />
-               <TableColumn fx:id="addressColumn" prefWidth="97.0" text="Address" />
-               <TableColumn fx:id="membershipDateColumn" prefWidth="122.19998168945312" text="Membership Date" />
-           </columns>
-       </TableView>
-   </center>
+    <center>
+        <TableView fx:id="memberTableView" prefHeight="510.0" prefWidth="586.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="39.19998323917389" text="ID" />
+                <TableColumn fx:id="nameColumn" prefWidth="106.60001373291016" text="Name" />
+                <TableColumn fx:id="emailColumn" prefWidth="80.5999755859375" text="Email" />
+                <TableColumn fx:id="passwordColumn" prefWidth="75.0" text="Password" />
+                <TableColumn fx:id="phoneColumn" prefWidth="82.20001220703125" text="Phone" />
+                <TableColumn fx:id="addressColumn" prefWidth="97.0" text="Address" />
+                <TableColumn fx:id="membershipDateColumn" prefWidth="122.19998168945312" text="Membership Date" />
+            </columns>
+        </TableView>
+    </center>
 </BorderPane>
