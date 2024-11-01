@@ -19,9 +19,6 @@ public class AdminController extends HeaderController{
         return this.admin.getAdmins();
     }
 
-    public void addAdmin() throws SQLException {
-        this.admin.addAdmin();
-    }
 
     public void removeAdmin(int AdminId) throws SQLException {
         this.admin.removeAdmin(AdminId);
@@ -42,16 +39,6 @@ public class AdminController extends HeaderController{
     public List<Member> getMembers() {
         return this.admin.getMembers();
     }
-    public void addMember () throws SQLException {
-        this.admin.addMember();
-    }
 
-    public void removeMember(int memberId) throws SQLException {
-        this.admin.removeMember(memberId);
-    }
-
-    public void updateMember(int memberId) {
-        this.admin.updateMember(memberId);
-    }
 
 }
