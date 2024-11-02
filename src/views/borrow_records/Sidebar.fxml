@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<BorderPane stylesheets="@/Frame.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BorrowRecordController">
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
-</AnchorPane>
+    <left>
+        <AnchorPane prefHeight="510.0" prefWidth="279.0" styleClass="sidebar-scroll">
+            <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="501.0" prefWidth="234.0" spacing="8" styleClass="sidebar">
+                <Label styleClass="sidebar-title" text="Sidebar" />
+                <Button maxWidth="Infinity" onAction="#sceneBorrowRecordList" styleClass="sidebar-button" text="Borrow record list" />
+                <Button maxWidth="Infinity" onAction="#sceneDataStatistics" styleClass="sidebar-button" text="Data statistics" />
+                <Button maxWidth="Infinity" styleClass="sidebar-button" />
+                <Button maxWidth="Infinity" styleClass="sidebar-button" />
+                <Button maxWidth="Infinity" styleClass="sidebar-button" />
+                <Button maxWidth="Infinity" styleClass="sidebar-button" />
+            </VBox>
+            <Label layoutX="241.0" layoutY="36.0" prefHeight="10.0" prefWidth="30.0" />
+        </AnchorPane>
+    </left>
+    <right>
+        <Label prefHeight="10" prefWidth="30" />
+    </right>
+</BorderPane>
