@@ -5,7 +5,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane stylesheets="@../../resources/Frame.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane stylesheets="@../../resources/Frame.css" xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.member.AddMemberController">
 
     <top>
         <VBox>
@@ -17,14 +18,7 @@
                     </font>
                 </Label>
                 <Region HBox.hgrow="ALWAYS" />
-                <TextField promptText="Search document" styleClass="search-field">
-                    <font>
-                        <Font size="15.0" />
-                    </font></TextField>
-                <Button styleClass="search-button" text="Search">
-                    <font>
-                        <Font size="15.0" />
-                    </font></Button>
+                    <Label layoutX="237.0" layoutY="24.0" style="-fx-font-size: 20; -fx-font-weight: bold;" text="MEMBER MANAGEMENT" />
                 <Region HBox.hgrow="ALWAYS" />
             </HBox>
             <!-- Navbar -->
@@ -71,34 +65,26 @@
     </top>
 
     <left>
-        <AnchorPane prefHeight="510.0" prefWidth="185.0" styleClass="sidebar-scroll">
-            <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="502.0" prefWidth="153.0" spacing="8" styleClass="sidebar">
-                <Label styleClass="sidebar-title" text="Sidebar" />
-                <Button maxWidth="Infinity" styleClass="sidebar-button" text="Member list" />
-                <Button maxWidth="Infinity" styleClass="sidebar-button" text="Add member" />
-                <Button maxWidth="Infinity" styleClass="sidebar-button" />
-                <Button maxWidth="Infinity" styleClass="sidebar-button" />
-                <Button maxWidth="Infinity" styleClass="sidebar-button" />
-                <Button maxWidth="Infinity" styleClass="sidebar-button" />
-            </VBox>
-            <Label layoutX="173.0" layoutY="35.0" prefHeight="18.0" prefWidth="12.0" />
-        </AnchorPane>
+        <fx:include source="Sidebar.fxml"/>
     </left>
     <right>
         <Label prefHeight="10" prefWidth="30" />
     </right>
-    <center>
-        <VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-        >
-            <Label text="Thêm Thành Viên" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+   <center>
+         <Pane prefHeight="25.0" prefWidth="606.0">
+            <children>
 
-            <TextField fx:id="nameField" promptText="Tên"/>
-            <TextField fx:id="emailField" promptText="Email"/>
-            <TextField fx:id="phoneField" promptText="Số Điện Thoại"/>
-            <TextField fx:id="addressField" promptText="Địa Chỉ"/>
+                  <Button layoutX="100.0" layoutY="325.0" prefHeight="23.0" prefWidth="80.0" text="Add" onAction="#handleAddMember" />
+                  <Button layoutX="430.0" layoutY="325.0" prefHeight="23.0" prefWidth="85.0" text="Cancel" onAction="#handleCancel"/>
+                  <Label layoutX="237.0" layoutY="24.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="ADD MEMBER" />
 
-            <Button text="Thêm"/>
-            <Button text="Hủy"/>
-        </VBox>
-    </center>
+                  <TextField fx:id="nameField" layoutX="100.0" layoutY="75.0" prefHeight="35.0" prefWidth="415.0" promptText="Name" />
+                  <TextField fx:id="emailField" layoutX="100.0" layoutY="125.0" prefHeight="35.0" prefWidth="415.0" promptText="Email" />
+                  <TextField fx:id="passwordField" layoutX="100.0" layoutY="175.0" prefHeight="35.0" prefWidth="415.0" promptText="Password" />
+                  <TextField fx:id="addressField" layoutX="100.0" layoutY="225.0" prefHeight="35.0" prefWidth="415.0" promptText="Address" />
+                  <TextField fx:id="phoneField" layoutX="100.0" layoutY="275.0" prefHeight="35.0" prefWidth="415.0" promptText="Phone" />
+            </children>
+         </Pane>
+
+   </center>
 </BorderPane>

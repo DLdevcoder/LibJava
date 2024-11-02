@@ -54,22 +54,7 @@ public class Admin extends Person {
         }
         return Admins;
     }
-    public void addAdmin() throws SQLException {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập tên thành viên: ");
-        String name = sc.nextLine();
-
-        System.out.print("Nhập địa chỉ: ");
-        String address = sc.nextLine();
-
-        System.out.print("Nhập số liên lạc: ");
-        String phone = sc.nextLine();
-
-        System.out.print("Nhập email: ");
-        String email = sc.nextLine();
-
-        System.out.print("Nhập mật khẩu: ");
-        String password = sc.nextLine();
+    public void addAdmin(String name, String address, String phone, String email, String password) throws SQLException {
 
         try(Connection connection = DatabaseConnection.getConnection()){
             PreparedStatement statement = connection.prepareStatement("INSERT INTO admin (name, address, phone_number, email, password)  VALUES (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
@@ -83,10 +68,6 @@ public class Admin extends Person {
                 System.out.println("Thành viên mới đã được thêm thành công!.");
             }
             ResultSet resultSet = statement.getGeneratedKeys();
-            if(resultSet.next()){
-                int id = resultSet.getInt(1);
-                System.out.println("ID của thành viên mới: " + id);
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -182,23 +163,7 @@ public class Admin extends Person {
         return members;
     }
 
-    public void addMember() throws SQLException {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập tên thành viên: ");
-        String name = sc.nextLine();
-
-        System.out.print("Nhập địa chỉ: ");
-        String address = sc.nextLine();
-
-        System.out.print("Nhập số liên lạc: ");
-        String phone = sc.nextLine();
-
-        System.out.print("Nhập email: ");
-        String email = sc.nextLine();
-
-        System.out.print("Nhập mật khẩu: ");
-        String password = sc.nextLine();
-
+    public void addMember(String name, String address, String phone, String email, String password) throws SQLException {
         try(Connection connection = DatabaseConnection.getConnection()){
             PreparedStatement statement = connection.prepareStatement("INSERT INTO members (name, address, phone_number, email, password)  VALUES (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, name);
@@ -238,23 +203,9 @@ public class Admin extends Person {
         }
     }
 
-    public void updateMember(int memberId) {
+    public void updateMember(int memberId, String name, String address, String phone, String email, String password) {
         String query = "UPDATE members SET name = ?, address = ?, phone_number = ?, email = ?, password = ? WHERE member_id = ?";
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập tên thành viên: ");
-        String name = sc.nextLine();
 
-        System.out.print("Nhập địa chỉ: ");
-        String address = sc.nextLine();
-
-        System.out.print("Nhập số liên lạc: ");
-        String phone = sc.nextLine();
-
-        System.out.print("Nhập email: ");
-        String email = sc.nextLine();
-
-        System.out.print("Nhập mật khẩu: ");
-        String password = sc.nextLine();
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, name);

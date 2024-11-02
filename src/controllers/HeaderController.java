@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,8 +32,8 @@ public class HeaderController {
     }
 
     // Chuyển đến trang quản lý thành viên
-    public void sceneMemberList(ActionEvent event, String path) {
-        changeScene(event, path);
+    public void sceneMemberList(ActionEvent event) {
+        changeScene(event, "/views/members/MemberList.fxml");
     }
       
     public void BookList(ActionEvent event) {
@@ -63,5 +64,14 @@ public class HeaderController {
             System.out.println("Error loading FXML file.");
         }
     }
+
+    public void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 
 }
