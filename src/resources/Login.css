@@ -3,13 +3,7 @@
 
 
 /* Định dạng cho tiêu đề */
-.login-title {
-    -fx-font-family: "Verdana";
 
-    -fx-font-size: 44px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #03000f /* Màu xanh lá đậm */
-}
 
 /* Định dạng cho các trường nhập liệu */
 /* Đặt chiều rộng cho các vùng nhập */
@@ -21,6 +15,7 @@
     -fx-border-color: #A5D6A7; /* Đường viền màu xanh lá nhạt */
     -fx-border-radius: 5px;
     -fx-border-width: 1px;
+     -fx-opacity: 0.8; /* Đặt độ trong suốt (0.0 đến 1.0) */
 
 }
 

@@ -19,7 +19,7 @@
 .sidebar-button {
     -fx-background-color: #54c392; /* Màu nền của button */
     -fx-text-fill: white;
-    -fx-font-size: 14px;
+    -fx-font-size: 16px;
     -fx-background-radius: 5;
     -fx-padding: 8 10;
     -fx-cursor: hand;

@@ -1,28 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <StackPane stylesheets="@../../resources/Login.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
     <!-- Hình nền -->
-    <ImageView fx:id="backgroundImage" fitWidth="1400" fitHeight="750" preserveRatio="true">
+    <ImageView fx:id="backgroundImage" fitHeight="750" fitWidth="1400" preserveRatio="true">
         <image>
             <Image url="@../../resources/background_login.png" />
         </image>
     </ImageView>
 
     <!-- Form đăng nhập -->
-    <BorderPane maxWidth="300" maxHeight="400" styleClass="login-container">
+    <BorderPane maxHeight="500" maxWidth="220" styleClass="login-container">
         <center>
-            <VBox alignment="CENTER" spacing="25">
-                <Label text="Login" styleClass="login-title"/>
-                <TextField fx:id="emailField" promptText="Email" styleClass="input-field"/>
-                <PasswordField fx:id="passwordField" promptText="Password" styleClass="input-field"/>
-                <Button text="Login" onAction="#handleLogin" styleClass="login-button"/>
+            <VBox alignment="CENTER" prefHeight="329.0" prefWidth="327.0" spacing="25">
+                <Label prefHeight="74.0" prefWidth="400.0" styleClass="login-title" text="WELCOME" textAlignment="CENTER" textFill="#20432b">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="41.0" />
+               </font>
+            </Label>
+                <TextField fx:id="emailField" prefWidth="332.0" promptText="Email" styleClass="input-field">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font></TextField>
+                <PasswordField fx:id="passwordField" promptText="Password" styleClass="input-field">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font></PasswordField>
+            <Region prefHeight="71.0" prefWidth="200.0" />
+                <Button onAction="#handleLogin" styleClass="login-button" text="Login">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
             </VBox>
         </center>
     </BorderPane>
 </StackPane>
-
