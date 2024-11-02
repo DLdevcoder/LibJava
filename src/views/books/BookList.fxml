@@ -97,14 +97,14 @@
         <Label prefHeight="10" prefWidth="30" />
     </right>
    <center>
-      <TableView prefHeight="510.0" prefWidth="530.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="Document_Table" prefHeight="510.0" prefWidth="530.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="75.0" text="ISBN" />
-          <TableColumn prefWidth="75.0" text="Title" />
-            <TableColumn prefWidth="90.39996337890625" text="Author" />
-            <TableColumn prefWidth="140.80001831054688" text="Publication Year" />
-            <TableColumn prefWidth="78.4000244140625" text="Publisher" />
-            <TableColumn prefWidth="127.19998168945312" text="Language" />
+          <TableColumn fx:id="Book_ISBN" prefWidth="75.0" text="ISBN" />
+          <TableColumn fx:id="Book_Title" prefWidth="75.0" text="Title" />
+            <TableColumn fx:id="Book_Author" prefWidth="90.39996337890625" text="Author" />
+            <TableColumn fx:id="Book_Year" prefWidth="140.80001831054688" text="Publication Year" />
+            <TableColumn fx:id="Book_Publisher" prefWidth="78.4000244140625" text="Publisher" />
+            <TableColumn fx:id="Book_Language" prefWidth="127.19998168945312" text="Language" />
             <TableColumn minWidth="0.0" prefWidth="0.0" />
         </columns>
       </TableView>

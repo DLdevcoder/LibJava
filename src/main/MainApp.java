@@ -16,7 +16,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icon_app.png"))));
-        FXMLLoader loader = new FXMLLoader(Paths.get("src/views/frame/Frame.fxml").toUri().toURL());
+        FXMLLoader loader = new FXMLLoader(Paths.get("src/views/books/BookList.fxml").toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
         scene.getStylesheets().add(Paths.get("src/resources/Frame.css").toUri().toString());
