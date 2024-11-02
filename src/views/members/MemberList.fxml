@@ -21,44 +21,7 @@
                 <Region HBox.hgrow="ALWAYS" />
             </HBox>
             <!-- Navbar -->
-            <HBox fx:id="navbar" spacing="20" styleClass="navbar">
-                <Button prefWidth="200" styleClass="navbar-button" text="Home">
-                    <graphic>
-                        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
-                            <image>
-                                <Image url="@/home.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-                <Button prefWidth="200" styleClass="navbar-button" text="Document management">
-                    <graphic>
-                        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
-                            <image>
-                                <Image url="@/document.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-                <Button onAction="#sceneBorrowRecordList" prefWidth="200" styleClass="navbar-button" text="Borrow documents">
-                    <graphic>
-                        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
-                            <image>
-                                <Image url="@/borrowBook.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-                <Button onAction="#sceneMemberList" prefWidth="200" styleClass="navbar-button" text="Member management">
-                    <graphic>
-                        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
-                            <image>
-                                <Image url="@/member.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-            </HBox>
+            <fx:include source="../frame/Navbar.fxml"/>
 
         </VBox>
     </top>
