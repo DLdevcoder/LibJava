@@ -5,10 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-import java.nio.file.Paths;
 import java.util.Objects;
 
 public class TestKien extends Application {
@@ -16,18 +14,15 @@ public class TestKien extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icon_app.png"))));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("src/views/login/Login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login/Login.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(Paths.get("src/resources/Frame.css").toUri().toString());
+        scene.getStylesheets().add(getClass().getResource("/resources/Frame.css").toExternalForm());
         primaryStage.setTitle("ManageLib");
-        primaryStage.setWidth(1350);
+        primaryStage.setWidth(1270);
         primaryStage.setHeight(750);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }

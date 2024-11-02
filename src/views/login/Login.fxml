@@ -3,12 +3,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.session.LoginController">
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<StackPane stylesheets="@../../resources/Login.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+    <!-- Hình nền -->
+    <ImageView fx:id="backgroundImage" fitWidth="1400" fitHeight="750" preserveRatio="true">
+        <image>
+            <Image url="@../../resources/background_login.png" />
+        </image>
+    </ImageView>
 
-    <VBox alignment="CENTER" prefHeight="316.0" prefWidth="346.0" spacing="10">
-        <Label text="Login" />
-        <TextField fx:id="emailField" promptText="Email"/>
-        <PasswordField fx:id="passwordField" promptText="Password"/>
-        <Button text="Login" onAction="#handleLogin"/>
-    </VBox>
-</AnchorPane>
+    <!-- Form đăng nhập -->
+    <BorderPane maxWidth="300" maxHeight="400" styleClass="login-container">
+        <center>
+            <VBox alignment="CENTER" spacing="25">
+                <Label text="Login" styleClass="login-title"/>
+                <TextField fx:id="emailField" promptText="Email" styleClass="input-field"/>
+                <PasswordField fx:id="passwordField" promptText="Password" styleClass="input-field"/>
+                <Button text="Login" onAction="#handleLogin" styleClass="login-button"/>
+            </VBox>
+        </center>
+    </BorderPane>
+</StackPane>
+

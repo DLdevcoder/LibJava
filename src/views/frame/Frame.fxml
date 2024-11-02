@@ -17,13 +17,13 @@
                 </Label>
                 <Region HBox.hgrow="ALWAYS" />
                 <TextField promptText="Search document" styleClass="search-field">
-               <font>
-                  <Font size="15.0" />
-               </font></TextField>
+                    <font>
+                        <Font size="15.0" />
+                    </font></TextField>
                 <Button styleClass="search-button" text="Search">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
+                    <font>
+                        <Font size="15.0" />
+                    </font></Button>
                 <Region HBox.hgrow="ALWAYS" />
             </HBox>
             <!-- Navbar -->
