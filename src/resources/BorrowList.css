@@ -1,0 +1,139 @@
+/* Sidebar */
+.sidebar-scroll {
+    -fx-background: #15b392; /* Màu chính */
+}
+
+.sidebar {
+    -fx-background-color: #15b392; /* Màu chính */
+    -fx-padding: 10;
+    -fx-pref-height: 50px;
+}
+
+.sidebar-title {
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 8 0;
+}
+
+.sidebar-button {
+    -fx-background-color: #54c392; /* Màu nền của button */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5;
+    -fx-padding: 8 10;
+    -fx-cursor: hand;
+}
+
+.sidebar-button:hover {
+    -fx-background-color: #73ec8b; /* Màu hover */
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.3), 4, 0.5, 0, 2);
+}
+
+.sidebar-button:pressed {
+    -fx-background-color: #388E3C; /* Màu khi nhấn */
+}
+
+/* Tổng thể TableView */
+.table-view {
+    -fx-background-color: #d2ff72;
+    -fx-table-cell-border-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-radius: 10;
+    -fx-background-radius: 8;
+}
+
+/* Header của các cột trong TableView */
+.table-view .column-header-background {
+    -fx-border-radius: 8 8 0 0;
+}
+
+.table-view .column-header .label {
+    -fx-border-color: lightgray;
+    -fx-border-width: 0 0 0 1;
+    -fx-border-style: solid;
+    -fx-text-fill: black;
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+    -fx-padding: 7 0 7 0;
+}
+
+/* Style cho các ô trong TableView */
+.table-view .table-cell {
+    -fx-font-size: 14;
+    -fx-text-fill: black;
+    -fx-alignment: CENTER;
+    -fx-padding: 5 !important;
+}
+
+/* Màu nền dòng khi di chuột vào */
+.table-view .table-row-cell:hover {
+    -fx-background-color: #73ec8b !important;
+    -fx-text-fill: black !important;
+}
+
+/* Dòng xen kẽ */
+.table-view .table-row-cell:odd {
+    -fx-background-color: #f5f5f5;
+}
+
+.table-view .table-row-cell:even {
+    -fx-background-color: #ffffff;
+}
+
+.table-view .table-cell, .table-view .column-header {
+    -fx-border-color: transparent;
+    -fx-background-insets: 0, 1 0 1 0;
+}
+
+.table-view .scroll-bar:horizontal .thumb,
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color: #01462F;
+    -fx-background-radius: 5;
+}
+
+.table-view .scroll-bar .track {
+    -fx-background-color: #e6e6e6;
+}
+
+/* Cột của TableView bo tròn góc */
+.table-view .column-header-background {
+    -fx-background-radius: 8 8 0 0;
+}
+
+/* Hiệu ứng đổ bóng */
+.table-view {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 10, 0.5, 0, 4);
+}
+
+/* Style cho ScrollPane để hiển thị đẹp hơn */
+.scroll-pane {
+    -fx-background-color: #ffffff; /* Nền trắng */
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 5;
+}
+
+/* BorderPane (khung tổng thể) tinh chỉnh */
+.border-pane {
+    -fx-background-color: #ffffff; /* Nền trắng */
+    -fx-padding: 10;
+}
+
+/* Button Style */
+.button {
+    -fx-background-color: #15b392; /* Màu xanh chính của ứng dụng */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8 15;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.button:hover {
+    -fx-background-color: #73ec8b; /* Màu xanh lá đậm hơn khi hover */
+}
+
+.button:pressed {
+    -fx-background-color: #54c392; /* Màu xanh lá đậm khi bấm */
+}

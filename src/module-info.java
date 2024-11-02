@@ -18,4 +18,5 @@ module main {
     exports main;
 
     opens main to javafx.fxml;
+    opens models to javafx.base;
 }
