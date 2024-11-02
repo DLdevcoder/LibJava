@@ -20,14 +20,14 @@ public class Theses extends Document{
         this.institution = institution;
     }
 
-    public Theses(int id, String title, String author, String language, int publicationYear,
+    public Theses(int id, String title, String author, String language, String publicationYear,
                   String description, int quantity, String degree, String institution) {
         super(id, title, author, language, publicationYear, description, quantity);
         this.degree = degree;
         this.institution = institution;
     }
 
-    public Theses(String title, String author, String language, int publicationYear,
+    public Theses(String title, String author, String language, String publicationYear,
                   String description, int quantity, String degree, String institution) {
         super(title, author, language, publicationYear, description, quantity);
         this.degree = degree;

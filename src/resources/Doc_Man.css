@@ -1,0 +1,102 @@
+/* Toàn bộ giao diện */
+.root {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-background-color: #f4f4f4; /* Nền tổng thể */
+}
+
+/* Header */
+.header {
+    -fx-background-color: #15b392; /* Màu nền cho header */
+    -fx-padding: 10;
+}
+
+.header-label {
+    -fx-font-size: 25; /* Kích thước chữ cho tiêu đề */
+    -fx-text-fill: black; /* Màu chữ cho tiêu đề */
+    -fx-font-weight: bold;
+}
+
+.search-field {
+    -fx-background-color: white; /* Nền trắng cho ô tìm kiếm */
+    -fx-border-color: #73ec8b; /* Màu viền cho ô tìm kiếm */
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 5;
+}
+
+.search-button {
+    -fx-background-color: #54c392; /* Màu nền cho nút tìm kiếm */
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-padding: 5 15;
+    -fx-cursor: hand;
+}
+
+.search-button:hover {
+    -fx-background-color: #66BB6A; /* Màu nền khi hover */
+    -fx-text-fill: black;
+}
+
+.search-button:pressed {
+    -fx-background-color: #2E7D32; /* Màu nền khi nhấn */
+}
+
+/* Navbar */
+.navbar {
+    -fx-background-color: #15b392; /* Màu nền cho navbar */
+    -fx-padding: 3;
+    -fx-alignment: center;
+    -fx-spacing: 5;
+}
+
+.navbar-button {
+    -fx-background-color: transparent; /* Nền trong suốt */
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+    -fx-padding: 8 15;
+    -fx-cursor: hand;
+}
+
+.navbar-button:hover {
+    -fx-background-color: #d2ff72; /* Màu nền khi hover */
+    -fx-text-fill: black;
+}
+
+.navbar-button:pressed {
+    -fx-background-color: #54c392; /* Màu nền khi nhấn */
+}
+
+/* Sidebar */
+.sidebar-scroll {
+    -fx-background: #2E8B57; /* Màu nền cho sidebar */
+}
+
+.sidebar {
+    -fx-background-color: #2E8B57; /* Màu nền cho sidebar */
+    -fx-padding: 10;
+    -fx-pref-height: 50; /* Chiều cao mặc định cho sidebar */
+}
+
+.sidebar-title {
+    -fx-font-size: 16; /* Kích thước chữ cho tiêu đề sidebar */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.sidebar-button {
+    -fx-background-color: #54c392; /* Màu nền cho nút sidebar */
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+    -fx-background-radius: 5;
+    -fx-padding: 8 10;
+    -fx-cursor: hand;
+}
+
+.sidebar-button:hover {
+    -fx-background-color: #66BB6A; /* Màu nền khi hover */
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.3), 4, 0.5, 0, 2);
+}
+
+.sidebar-button:pressed {
+    -fx-background-color: #388E3C; /* Màu nền khi nhấn */
+}
