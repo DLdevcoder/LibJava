@@ -5,12 +5,12 @@ public abstract class Document {
     protected String title;
     protected String author;
     protected String language;
-    protected int publicationYear;
+    protected String publicationYear;
     protected int quantity;
     protected String description;
 
 
-    protected Document(int id, String title, String author, String language, int publicationYear, String description, int quantity) {
+    protected Document(int id, String title, String author, String language, String publicationYear, String description, int quantity) {
         this.quantity = quantity;
         this.id = id;
         this.title = title;
@@ -20,7 +20,7 @@ public abstract class Document {
         this.description = description;
     }
 
-    protected Document(String title, String author, String language, int publicationYear, String description, int quantity) {
+    protected Document(String title, String author, String language, String publicationYear, String description, int quantity) {
         this.quantity = quantity;
         this.title = title;
         this.author = author;
@@ -56,11 +56,11 @@ public abstract class Document {
         this.language = language;
     }
 
-    public int getPublicationYear() {
+    public String getPublicationYear() {
         return publicationYear;
     }
 
-    public void setPublicationYear(int publicationYear) {
+    public void setPublicationYear(String publicationYear) {
         this.publicationYear = publicationYear;
     }
 

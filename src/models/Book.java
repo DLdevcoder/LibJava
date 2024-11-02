@@ -13,7 +13,7 @@ public class Book extends Document {
     protected String googleId;
     protected String thumbnail;
 
-    public Book(int bookId, String title, String author, String publisher, int year, String isbn, int quantity, int categoryId, String googleId, String description, String thumbnail, String language) {
+    public Book(int bookId, String title, String author, String publisher, String year, String isbn, int quantity, int categoryId, String googleId, String description, String thumbnail, String language) {
         super(bookId, title, author, language, year, description, quantity);
         this.publisher = publisher;
         this.isbn = isbn;
@@ -22,7 +22,7 @@ public class Book extends Document {
         this.thumbnail = thumbnail;
     }
 
-    public Book(String title, String publisher, int year, String isbn, int quantity, String description, String thumbnail, String language) {
+    public Book(String title, String publisher, String year, String isbn, int quantity, String description, String thumbnail, String language) {
         this.setTitle(title);
         this.publisher = publisher;
         this.setPublicationYear(year);
@@ -33,7 +33,7 @@ public class Book extends Document {
         this.setLanguage(language);
     }
 
-    public Book(int bookId, String title, String publisher, int year, String isbn, int quantity, String description, String thumbnail, String language) {
+    public Book(int bookId, String title, String publisher, String year, String isbn, int quantity, String description, String thumbnail, String language) {
         this.setId(bookId);
         this.title = title;
         this.publisher = publisher;
@@ -46,6 +46,27 @@ public class Book extends Document {
         this.setLanguage(language);
 
     }
+
+    public Book(String isbn, String title,String author, String year,String publisher, String language) {
+        this.setIsbn(isbn);
+        this.setTitle(title);
+        this.setAuthor(author);
+        this.publisher = publisher;
+        this.setLanguage(language);
+        this.setPublicationYear(year);
+
+
+    }
+
+    public Book(String title, String author, String publicationYear, String publisher, String language) {
+        this.setTitle(title);
+        this.setAuthor(author);
+        this.publisher = publisher;
+        this.setLanguage(language);
+        this.publicationYear = publicationYear;
+    }
+
+
 
     public String getPublisher() {
         return this.publisher;
