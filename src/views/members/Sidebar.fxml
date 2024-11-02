@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" prefHeight="510.0" prefWidth="185.0" styleClass="sidebar-scroll" fx:controller="controllers.member.SidebarMemberController">
+    <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="502.0" prefWidth="153.0" spacing="8" styleClass="sidebar">
+        <Label styleClass="sidebar-title" text="Sidebar" />
+        <Button maxWidth="Infinity" styleClass="sidebar-button" text="Member list" onAction="#sceneMemberList" />
+        <Button maxWidth="Infinity" styleClass="sidebar-button" text="Add member" onAction="#sceneAddMember"/>
+        <Button maxWidth="Infinity" styleClass="sidebar-button" text="Find member"/>
+        <Button maxWidth="Infinity" styleClass="sidebar-button" />
+        <Button maxWidth="Infinity" styleClass="sidebar-button" />
+        <Button maxWidth="Infinity" styleClass="sidebar-button" />
+    </VBox>
+    <Label layoutX="173.0" layoutY="35.0" prefHeight="18.0" prefWidth="12.0" />
+</AnchorPane>

@@ -1,1 +1,90 @@
- 
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane stylesheets="@../../resources/Frame.css" xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.member.AddMemberController">
+
+    <top>
+        <VBox>
+            <!-- Header -->
+            <HBox fx:id="header" spacing="10" styleClass="header">
+                <Label styleClass="header-label" text="ManageLib">
+                    <font>
+                        <Font size="35.0" />
+                    </font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS" />
+                    <Label layoutX="237.0" layoutY="24.0" style="-fx-font-size: 20; -fx-font-weight: bold;" text="MEMBER MANAGEMENT" />
+                <Region HBox.hgrow="ALWAYS" />
+            </HBox>
+            <!-- Navbar -->
+            <HBox fx:id="navbar" spacing="20" styleClass="navbar">
+                <Button prefWidth="200" styleClass="navbar-button" text="Home">
+                    <graphic>
+                        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                            <image>
+                                <Image url="@/home.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button prefWidth="200" styleClass="navbar-button" text="Document management">
+                    <graphic>
+                        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                            <image>
+                                <Image url="@/document.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button prefWidth="200" styleClass="navbar-button" text="Borrow documents">
+                    <graphic>
+                        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                            <image>
+                                <Image url="@/borrowBook.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button prefWidth="200" styleClass="navbar-button" text="Member management">
+                    <graphic>
+                        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                            <image>
+                                <Image url="@/member.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </HBox>
+
+        </VBox>
+    </top>
+
+    <left>
+        <fx:include source="Sidebar.fxml"/>
+    </left>
+    <right>
+        <Label prefHeight="10" prefWidth="30" />
+    </right>
+   <center>
+         <Pane prefHeight="25.0" prefWidth="606.0">
+            <children>
+
+                  <Button layoutX="100.0" layoutY="325.0" prefHeight="23.0" prefWidth="80.0" text="Add" onAction="#handleAddMember" />
+                  <Button layoutX="430.0" layoutY="325.0" prefHeight="23.0" prefWidth="85.0" text="Cancel" onAction="#handleCancel"/>
+                  <Label layoutX="237.0" layoutY="24.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="ADD MEMBER" />
+
+                  <TextField fx:id="nameField" layoutX="100.0" layoutY="75.0" prefHeight="35.0" prefWidth="415.0" promptText="Name" />
+                  <TextField fx:id="emailField" layoutX="100.0" layoutY="125.0" prefHeight="35.0" prefWidth="415.0" promptText="Email" />
+                  <TextField fx:id="passwordField" layoutX="100.0" layoutY="175.0" prefHeight="35.0" prefWidth="415.0" promptText="Password" />
+                  <TextField fx:id="addressField" layoutX="100.0" layoutY="225.0" prefHeight="35.0" prefWidth="415.0" promptText="Address" />
+                  <TextField fx:id="phoneField" layoutX="100.0" layoutY="275.0" prefHeight="35.0" prefWidth="415.0" promptText="Phone" />
+            </children>
+         </Pane>
+
+   </center>
+</BorderPane>
