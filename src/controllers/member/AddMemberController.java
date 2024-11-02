@@ -2,8 +2,6 @@ package controllers.member;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import models.Member;
 import models.Admin;
 
 public class AddMemberController extends SidebarMemberController {
@@ -26,7 +24,13 @@ public class AddMemberController extends SidebarMemberController {
         String phone = phoneField.getText();
         String address = addressField.getText();
         String password = passwordField.getText();
-        // Gọi lớp Admin để thêm thành viên vào hệ thống
+
+        if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || address.isEmpty() || password.isEmpty()) {
+            showAlert("Error", "Please fill in all fields!");
+            refreshForm();
+            return;
+        }
+
         Admin admin = new Admin();
         try {
             admin.addMember(name, address, phone, email, password);
@@ -34,9 +38,8 @@ public class AddMemberController extends SidebarMemberController {
             e.printStackTrace();
         }
 
-        // Đóng form sau khi thêm thành viên thành công
         showAlert("Success", "Member added successfully!");
-        handleCancel();
+        refreshForm();
     }
 
     // Hàm xử lý khi nhấn nút "Hủy"
@@ -47,5 +50,10 @@ public class AddMemberController extends SidebarMemberController {
         phoneField.setText("");
         addressField.setText("");
         passwordField.setText("");
+    }
+
+    @FXML
+    private void refreshForm() {
+        handleCancel();
     }
 }

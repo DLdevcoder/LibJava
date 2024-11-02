@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<HBox fx:id="navbar" spacing="20" styleClass="navbar"  xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.HeaderController">
+<Button prefWidth="200" styleClass="navbar-button" text="Home">
+    <graphic>
+        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+            <image>
+                <Image url="@/home.png" />
+            </image>
+        </ImageView>
+    </graphic>
+</Button>
+<Button prefWidth="200" styleClass="navbar-button" text="Document management">
+    <graphic>
+        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+            <image>
+                <Image url="@/document.png" />
+            </image>
+        </ImageView>
+    </graphic>
+</Button>
+<Button onAction="#sceneBorrowRecordList" prefWidth="200" styleClass="navbar-button" text="Borrow documents">
+    <graphic>
+        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+            <image>
+                <Image url="@/borrowBook.png" />
+            </image>
+        </ImageView>
+    </graphic>
+</Button>
+<Button onAction="#sceneMemberList" prefWidth="200" styleClass="navbar-button" text="Member management">
+    <graphic>
+        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+            <image>
+                <Image url="@/member.png" />
+            </image>
+        </ImageView>
+    </graphic>
+</Button>
+</HBox>

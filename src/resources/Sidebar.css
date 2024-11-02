@@ -1,0 +1,35 @@
+/* Sidebar */
+.sidebar-scroll {
+    -fx-background: #15b392; /* Màu chính */
+}
+
+.sidebar {
+    -fx-background-color: #15b392; /* Màu chính */
+    -fx-padding: 10;
+    -fx-pref-height: 50px;
+}
+
+.sidebar-title {
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 8 0;
+}
+
+.sidebar-button {
+    -fx-background-color: #54c392; /* Màu nền của button */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5;
+    -fx-padding: 8 10;
+    -fx-cursor: hand;
+}
+
+.sidebar-button:hover {
+    -fx-background-color: #73ec8b; /* Màu hover */
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.3), 4, 0.5, 0, 2);
+}
+
+.sidebar-button:pressed {
+    -fx-background-color: #388E3C; /* Màu khi nhấn */
+}

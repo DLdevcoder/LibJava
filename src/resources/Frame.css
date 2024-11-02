@@ -11,7 +11,7 @@
 }
 
 .header-label {
-    -fx-font-size: 25; /* Kích thước chữ cho tiêu đề */
+    -fx-font-size: 35; /* Kích thước chữ cho tiêu đề */
     -fx-text-fill: white; /* Màu chữ cho tiêu đề */
     -fx-font-weight: bold;
 }
@@ -19,26 +19,18 @@
 .search-field {
     -fx-background-color: white; /* Nền trắng cho ô tìm kiếm */
     -fx-border-color: #73ec8b; /* Màu viền cho ô tìm kiếm */
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
-    -fx-padding: 5;
+    -fx-border-radius: 30;
+    -fx-background-radius: 30;
+    -fx-padding: 5 70 5 20 ;
 }
 
-.search-button {
-    -fx-background-color: #54c392; /* Màu nền cho nút tìm kiếm */
-    -fx-text-fill: white;
-    -fx-background-radius: 5;
-    -fx-padding: 5 15;
-    -fx-cursor: hand;
+.search-field:focused {
+    -fx-border-color: #ffcc00;
+    -fx-effect: dropshadow(gaussian, rgba(210, 255, 0, 0.5), 5, 0.0, 0, 0);
 }
 
-.search-button:hover {
-    -fx-background-color: #66BB6A; /* Màu nền khi hover */
-    -fx-text-fill: black;
-}
-
-.search-button:pressed {
-    -fx-background-color: #2E7D32; /* Màu nền khi nhấn */
+.search-field::placeholder {
+    -fx-opacity: 0.7; /* Độ mờ cho placeholder */
 }
 
 /* Navbar */
@@ -66,37 +58,6 @@
     -fx-background-color: #54c392; /* Màu nền khi nhấn */
 }
 
-/* Sidebar */
-.sidebar-scroll {
-    -fx-background: #2E8B57; /* Màu nền cho sidebar */
-}
-
-.sidebar {
-    -fx-background-color: #2E8B57; /* Màu nền cho sidebar */
-    -fx-padding: 10;
-    -fx-pref-height: 50; /* Chiều cao mặc định cho sidebar */
-}
-
-.sidebar-title {
-    -fx-font-size: 16; /* Kích thước chữ cho tiêu đề sidebar */
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-}
-
-.sidebar-button {
-    -fx-background-color: #54c392; /* Màu nền cho nút sidebar */
-    -fx-text-fill: white;
-    -fx-font-size: 14;
-    -fx-background-radius: 5;
-    -fx-padding: 8 10;
-    -fx-cursor: hand;
-}
-
-.sidebar-button:hover {
-    -fx-background-color: #66BB6A; /* Màu nền khi hover */
-    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.3), 4, 0.5, 0, 2);
-}
-
-.sidebar-button:pressed {
-    -fx-background-color: #388E3C; /* Màu nền khi nhấn */
+.separator {
+    -fx-background-color: #ccc; /* Màu vạch ngăn cách */
 }
