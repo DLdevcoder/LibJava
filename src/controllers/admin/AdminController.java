@@ -1,15 +1,12 @@
-package controllers;
-import com.mysql.cj.log.Log;
+package controllers.admin;
+
+import controllers.HeaderController;
+import controllers.LoginController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import models.Admin;
-import models.Member;
-import java.sql.*;
-import java.util.List;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 
-public class AdminController extends HeaderController{
+public class AdminController extends HeaderController {
     @FXML
     private TextField nameField;
     @FXML
@@ -40,8 +37,6 @@ public class AdminController extends HeaderController{
         addressField.setText(admin.getAddress());
         createDateField.setText(admin.getCreateDate());
     }
-
-
 
 
 }

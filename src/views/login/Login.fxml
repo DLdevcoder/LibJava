@@ -17,7 +17,7 @@
     <BorderPane maxHeight="500" maxWidth="220" styleClass="login-container">
         <center>
             <VBox alignment="CENTER" prefHeight="329.0" prefWidth="327.0" spacing="25">
-                <Label prefHeight="74.0" prefWidth="400.0" styleClass="login-title" text="WELCOME" textAlignment="CENTER" textFill="#20432b">
+                <Label prefHeight="74.0" prefWidth="400.0" styleClass="login-title" text="WELCOME" textAlignment="CENTER">
                <font>
                   <Font name="Arial Rounded MT Bold" size="41.0" />
                </font>
