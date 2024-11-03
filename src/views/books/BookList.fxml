@@ -107,5 +107,6 @@
             <TableColumn fx:id="Book_Cover" prefWidth="211.20000000000005" text="Book Cover" />
         </columns>
       </TableView>
+
    </center>
 </BorderPane>

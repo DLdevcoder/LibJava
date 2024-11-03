@@ -1,5 +1,6 @@
 package controllers.Document;
 import controllers.HeaderController;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -43,9 +44,6 @@ public class BookController extends HeaderController {
      private TableColumn<Book, ImageView> Book_Cover;
 
 
-
-
-
      private ObservableList<Book> bookList;
 
      public BookController() {
@@ -61,48 +59,47 @@ public class BookController extends HeaderController {
           Book_Language.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getLanguage()));
           Book_Cover.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getImageLink()));
 
-               loadBooks();
+          loadBooks();
 
 
      }
+
      private void loadBooks() {
-          DatabaseConnection databaseConnection = new DatabaseConnection();
-          try(Connection connection = DatabaseConnection.getConnection(); Statement statement = connection.createStatement()) {
-               String sql = "SELECT title, author, publication_year, publisher, language, preview_link FROM books";
-               ResultSet resultSet = statement.executeQuery(sql);
+          new Thread(() -> {
+               DatabaseConnection databaseConnection = new DatabaseConnection();
+               try (Connection connection = DatabaseConnection.getConnection(); Statement statement = connection.createStatement()) {
+                    String sql = "SELECT title, author, publication_year, publisher, language, preview_link FROM books";
+                    ResultSet resultSet = statement.executeQuery(sql);
 
-               while (resultSet.next()) {
-                    String title = resultSet.getString("title");
-                    String author = resultSet.getString("author");
-                    String publicationYear = resultSet.getString("publication_year");
-                    String publisher = resultSet.getString("publisher");
-                    String language = resultSet.getString("language");
-                    String cover = resultSet.getString("preview_link");
+                    while (resultSet.next()) {
+                         String title = resultSet.getString("title");
+                         String author = resultSet.getString("author");
+                         String publicationYear = resultSet.getString("publication_year");
+                         String publisher = resultSet.getString("publisher");
+                         String language = resultSet.getString("language");
+                         String cover = resultSet.getString("preview_link");
 
-                    Image image = new Image(cover);
-                    ImageView coverImageView = new ImageView(image);
-                    coverImageView.setFitWidth(100); // Đặt chiều rộng
-                    coverImageView.setFitHeight(150); // Đặt chiều cao
+                         Image image = new Image(cover);
+                         ImageView coverImageView = new ImageView(image);
+                         coverImageView.setFitWidth(100); // Đặt chiều rộng
+                         coverImageView.setFitHeight(150); // Đặt chiều cao
 
-                    bookList.add(new Book(title, author, publicationYear, publisher, language, coverImageView));
+                         bookList.add(new Book(title, author, publicationYear, publisher, language, coverImageView));
+                         Platform.runLater(() -> Document_Table.setItems(bookList));
+
+                    }
+                    Platform.runLater(() -> {
+                         Document_Table.setItems(bookList);
+                    });
+
+
+               } catch (SQLException e) {
+                    e.printStackTrace();
                }
-               Document_Table.setItems(bookList);
+          }).start();
 
 
-
-
-          } catch (SQLException e) {
-              e.printStackTrace();          }
      }
-
-
-
-
-
-
-
-
-
 }
 
 
