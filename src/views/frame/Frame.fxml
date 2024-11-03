@@ -38,7 +38,7 @@
                     </graphic>
                 </Button>
 
-                <Button onAction="#BookList" prefWidth="200" styleClass="navbar-button" text="Document management">
+                <Button onAction="#BookList" prefWidth="200" styleClass="navbar-button" text="controllers.Document management">
                     <graphic>
                         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                             <image>

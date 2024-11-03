@@ -4,6 +4,8 @@
 //
 
 package models;
+import javafx.scene.image.ImageView;
+
 
 public class Book extends Document {
     protected String publisher;
@@ -12,6 +14,16 @@ public class Book extends Document {
 
     protected String googleId;
     protected String thumbnail;
+
+    public Book(String title, String author, String publisher, String year, String language, ImageView ImageLink) {
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.publicationYear = year;
+        this.language = language;
+        this.ImageLink = ImageLink;
+
+    }
 
     public Book(int bookId, String title, String author, String publisher, String year, String isbn, int quantity, int categoryId, String googleId, String description, String thumbnail, String language) {
         super(bookId, title, author, language, year, description, quantity);
@@ -47,16 +59,6 @@ public class Book extends Document {
 
     }
 
-    public Book(String isbn, String title,String author, String year,String publisher, String language) {
-        this.setIsbn(isbn);
-        this.setTitle(title);
-        this.setAuthor(author);
-        this.publisher = publisher;
-        this.setLanguage(language);
-        this.setPublicationYear(year);
-
-
-    }
 
     public Book(String title, String author, String publicationYear, String publisher, String language) {
         this.setTitle(title);
