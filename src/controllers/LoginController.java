@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import models.Admin;
 
 public class LoginController extends HeaderController {
+    public static Admin admin;
     @FXML
     private TextField emailField;
     @FXML
@@ -43,8 +44,9 @@ public class LoginController extends HeaderController {
             showAlert("Error", "Please fill in all fields!");
             return;
         }
-        Admin admin = new Admin();
-        if (admin.checkLogin(email, password)) {
+        Admin check = new Admin();
+        if (check.checkLogin(email, password)) {
+            admin = Admin.getAdminByLogin(email, password);
             sceneHome(event);
         } else {
             showAlert("Error", "Email or password is incorrect!");
