@@ -49,7 +49,7 @@
                     </graphic>
                 </Button>
                 <Region prefWidth="0.1" styleClass="separator" />
-                <Button prefWidth="210" styleClass="navbar-button" text="Document management">
+                <Button prefWidth="210" styleClass="navbar-button" text="controllers.Document management">
                     <graphic>
                         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                             <image>

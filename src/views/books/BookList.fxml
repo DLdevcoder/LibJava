@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BookController">
+<BorderPane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.BookController">
 
     <top>
         <VBox>
@@ -97,14 +97,14 @@
         <Label prefHeight="10" prefWidth="30" />
     </right>
    <center>
-      <TableView fx:id="Document_Table" prefHeight="510.0" prefWidth="1098.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="Document_Table" prefHeight="510.0" prefWidth="1079.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="Book_Title" prefWidth="215.1999603509903" text="Title" />
             <TableColumn fx:id="Book_Author" minWidth="0.0" prefWidth="141.5999755859375" text="Author" />
             <TableColumn fx:id="Book_Year" prefWidth="196.80001831054688" text="Publication Year" />
-            <TableColumn fx:id="Book_Publisher" prefWidth="225.60003662109375" text="Publisher" />
-            <TableColumn fx:id="Book_Language" prefWidth="324.0" text="Language" />
-            <TableColumn minWidth="0.0" prefWidth="0.0" />
+            <TableColumn fx:id="Book_Publisher" prefWidth="192.00006103515625" text="Publisher" />
+            <TableColumn fx:id="Book_Language" prefWidth="120.0" text="Language" />
+            <TableColumn fx:id="Book_Cover" prefWidth="211.20000000000005" text="Book Cover" />
         </columns>
       </TableView>
    </center>

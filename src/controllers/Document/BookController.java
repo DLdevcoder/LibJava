@@ -1,27 +1,21 @@
-package controllers;
-import com.mysql.cj.protocol.Resultset;
-import javafx.beans.property.SimpleListProperty;
+package controllers.Document;
+import controllers.HeaderController;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import models.Book;
-import models.Member;
 import utils.DatabaseConnection;
 
-import java.net.URL;
 import java.sql.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
-import java.util.Scanner;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class BookController extends HeaderController {
@@ -45,6 +39,9 @@ public class BookController extends HeaderController {
      @FXML
      private TableColumn<Book, String> Book_Language;
 
+     @FXML
+     private TableColumn<Book, ImageView> Book_Cover;
+
 
 
 
@@ -62,14 +59,16 @@ public class BookController extends HeaderController {
           Book_Year.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getPublicationYear())));
           Book_Publisher.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPublisher()));
           Book_Language.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getLanguage()));
-          loadBooks();
+          Book_Cover.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getImageLink()));
+
+               loadBooks();
 
 
      }
      private void loadBooks() {
           DatabaseConnection databaseConnection = new DatabaseConnection();
           try(Connection connection = DatabaseConnection.getConnection(); Statement statement = connection.createStatement()) {
-               String sql = "SELECT title, author, publication_year, publisher, language FROM books";
+               String sql = "SELECT title, author, publication_year, publisher, language, preview_link FROM books";
                ResultSet resultSet = statement.executeQuery(sql);
 
                while (resultSet.next()) {
@@ -78,7 +77,14 @@ public class BookController extends HeaderController {
                     String publicationYear = resultSet.getString("publication_year");
                     String publisher = resultSet.getString("publisher");
                     String language = resultSet.getString("language");
-                    bookList.add(new Book(title, author, publicationYear, publisher, language));
+                    String cover = resultSet.getString("preview_link");
+
+                    Image image = new Image(cover);
+                    ImageView coverImageView = new ImageView(image);
+                    coverImageView.setFitWidth(100); // Đặt chiều rộng
+                    coverImageView.setFitHeight(150); // Đặt chiều cao
+
+                    bookList.add(new Book(title, author, publicationYear, publisher, language, coverImageView));
                }
                Document_Table.setItems(bookList);
 

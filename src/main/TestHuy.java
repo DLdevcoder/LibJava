@@ -18,7 +18,7 @@ public class TestHuy extends Application {
         FXMLLoader loader = new FXMLLoader(Paths.get("src/views/books/BookList.fxml").toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(Paths.get("src/resources/Doc_Man.css").toUri().toString());
+        scene.getStylesheets().add(Paths.get("src/resources/Frame.css").toUri().toString());
         primaryStage.setTitle("ManageLib");
         primaryStage.setWidth(1350);
         primaryStage.setHeight(750);
