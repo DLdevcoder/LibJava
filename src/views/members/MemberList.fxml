@@ -33,7 +33,7 @@
         <Label prefHeight="10" prefWidth="30" />
     </right>
     <center>
-      <AnchorPane BorderPane.alignment="CENTER">
+      <AnchorPane BorderPane.alignment="CENTER" stylesheets="@../../resources/MemberList.css">
          <children>
              <TableView fx:id="memberTableView" AnchorPane.topAnchor="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                   <columns>

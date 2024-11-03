@@ -1,0 +1,39 @@
+VBox {
+    -fx-background-color: #e8f5e9;
+    -fx-padding: 20;
+    -fx-border-color: #81c784;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+
+.label {
+    -fx-text-fill: #388e3c;
+    -fx-font-size: 30;
+    -fx-font-weight: bold;
+}
+
+
+.text-field {
+    -fx-prompt-text-fill: #66bb6a;
+    -fx-text-fill: #388e3c;
+    -fx-background-color: #c8e6c9;
+    -fx-border-color: #66bb6a;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 18;
+}
+
+/* Button */
+.button {
+    -fx-background-color: #66bb6a;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-font-size: 20;
+}
+
+.button:hover {
+    -fx-background-color: #388e3c;
+}

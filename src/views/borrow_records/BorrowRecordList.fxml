@@ -25,7 +25,7 @@
             <TableView fx:id="tableView" prefHeight="482.0" prefWidth="1002.0" VBox.vgrow="ALWAYS">
                 <columns>
                     <TableColumn fx:id="recordIdColumn" prefWidth="120" text="Record ID" />
-                    <TableColumn fx:id="documentIdColumn" prefWidth="120" text="Document ID" />
+                    <TableColumn fx:id="documentIdColumn" prefWidth="120" text="controllers.Document ID" />
                     <TableColumn fx:id="memberIdColumn" prefWidth="120" text="Member ID" />
                     <TableColumn fx:id="borrowDateColumn" prefWidth="140" text="Borrow Date" />
                     <TableColumn fx:id="returnDateColumn" prefWidth="140" text="Return Date" />

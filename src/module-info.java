@@ -20,4 +20,5 @@ module main {
     opens main to javafx.fxml;
     opens controllers.member to javafx.fxml;
     opens controllers.borrow_record to javafx.fxml;
+    opens controllers.Document to javafx.fxml;
 }

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HeaderController">
+<BorderPane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.BookController">
 
     <top>
         <VBox>
@@ -84,9 +84,9 @@
             <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="501.6" prefWidth="234.4" spacing="8" styleClass="sidebar">
                 <Label styleClass="sidebar-title" text="Sidebar" />
                 <Button maxWidth="Infinity" onAction="#sceneBorrowRecordList" styleClass="sidebar-button" text="BookList" />
-                <Button maxWidth="Infinity" styleClass="sidebar-button" />
-                <Button maxWidth="Infinity" styleClass="sidebar-button" />
-                <Button maxWidth="Infinity" prefHeight="26.0" prefWidth="229.0" styleClass="sidebar-button" />
+                <Button maxWidth="Infinity" styleClass="sidebar-button" text="Add Book" />
+                <Button maxWidth="Infinity" styleClass="sidebar-button" text="Remove Book" />
+                <Button maxWidth="Infinity" prefHeight="26.0" prefWidth="229.0" styleClass="sidebar-button" text="Review" />
                 <Button maxWidth="Infinity" styleClass="sidebar-button" />
                 <Button maxWidth="Infinity" styleClass="sidebar-button" />
             </VBox>
@@ -97,15 +97,14 @@
         <Label prefHeight="10" prefWidth="30" />
     </right>
    <center>
-      <TableView prefHeight="510.0" prefWidth="530.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="Document_Table" prefHeight="510.0" prefWidth="1079.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="75.0" text="ISBN" />
-          <TableColumn prefWidth="75.0" text="Title" />
-            <TableColumn prefWidth="90.39996337890625" text="Author" />
-            <TableColumn prefWidth="140.80001831054688" text="Publication Year" />
-            <TableColumn prefWidth="78.4000244140625" text="Publisher" />
-            <TableColumn prefWidth="127.19998168945312" text="Language" />
-            <TableColumn minWidth="0.0" prefWidth="0.0" />
+          <TableColumn fx:id="Book_Title" prefWidth="215.1999603509903" text="Title" />
+            <TableColumn fx:id="Book_Author" minWidth="0.0" prefWidth="141.5999755859375" text="Author" />
+            <TableColumn fx:id="Book_Year" prefWidth="196.80001831054688" text="Publication Year" />
+            <TableColumn fx:id="Book_Publisher" prefWidth="192.00006103515625" text="Publisher" />
+            <TableColumn fx:id="Book_Language" prefWidth="120.0" text="Language" />
+            <TableColumn fx:id="Book_Cover" prefWidth="211.20000000000005" text="Book Cover" />
         </columns>
       </TableView>
    </center>
