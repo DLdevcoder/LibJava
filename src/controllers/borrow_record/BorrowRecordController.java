@@ -1,5 +1,6 @@
 
-package controllers;
+package controllers.borrow_record;
+import controllers.HeaderController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,7 +21,7 @@ import java.nio.file.Paths;
 import java.sql.*;
 import java.util.Objects;
 
-public class BorrowRecordController extends HeaderController {
+public class BorrowRecordController extends SidebarController {
     @FXML
     private TableView<BorrowRecord> tableView;
 
@@ -44,7 +45,7 @@ public class BorrowRecordController extends HeaderController {
     private ObservableList<BorrowRecord> borrowRecordList = FXCollections.observableArrayList();
 
     @FXML
-    public void initialize() {
+    public void initialize() throws SQLException {
         recordIdColumn.setCellValueFactory(new PropertyValueFactory<>("recordId"));
         documentIdColumn.setCellValueFactory(new PropertyValueFactory<>("bookId"));
         memberIdColumn.setCellValueFactory(new PropertyValueFactory<>("memberId"));
@@ -57,13 +58,12 @@ public class BorrowRecordController extends HeaderController {
         loadBorrowRecords();
     }
 
-    private void loadBorrowRecords() {
+    private void loadBorrowRecords() throws SQLException {
         String query = "SELECT * FROM Borrow_Records";
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query);
-             ResultSet rs = stmt.executeQuery()) {
-
+        Connection conn = DatabaseConnection.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(query);
+        ResultSet rs = stmt.executeQuery();
+        try {
             while (rs.next()) {
                 BorrowRecord record = new BorrowRecord(
                         rs.getInt("record_id"),
@@ -82,20 +82,15 @@ public class BorrowRecordController extends HeaderController {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
-
-    public void sceneDataStatistics(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/borrow_records/DataStatistics.fxml")));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            scene.getStylesheets().add(Paths.get("src/resources/DataStatistics.css").toUri().toString());
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error loading FXML file.");
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

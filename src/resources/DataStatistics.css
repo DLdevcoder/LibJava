@@ -1,0 +1,27 @@
+.pie-chart {
+    -fx-background-color: transparent; /* Để phần nền trong suốt */
+        -fx-pref-width: 600 !important; /* Đặt chiều rộng mong muốn */
+        -fx-pref-height: 600 !important; /* Đặt chiều cao mong muốn */
+}
+
+.pie-chart .slice {
+    -fx-stroke: white; /* Đường viền màu trắng cho các phần */
+    -fx-stroke-width: 2; /* Độ dày của đường viền */
+}
+
+/* Gán màu cho các phần */
+.pie-chart .slice:nth-child(1) {
+    -fx-background-color: #FF5733; /* Màu cho phần đầu tiên */
+}
+
+.pie-chart .slice:nth-child(2) {
+    -fx-background-color: #33FF57; /* Màu cho phần thứ hai */
+}
+
+.pie-chart .slice:nth-child(3) {
+    -fx-background-color: #3357FF; /* Màu cho phần thứ ba */
+}
+
+.pie-chart .slice:nth-child(4) {
+    -fx-background-color: #FFD700; /* Màu cho phần "Other book" */
+}
