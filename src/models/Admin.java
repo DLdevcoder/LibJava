@@ -148,6 +148,22 @@ public class Admin extends Person {
         return null;
     }
 
+    public void changePassword(int adminId, String newPassword) {
+        String query = "UPDATE admin SET password = ? WHERE admin_id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, newPassword);
+            stmt.setInt(2, adminId);
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Password changed successfully!");
+            } else {
+                System.out.println("Admin not found!");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     // member
     public List<Member> getMembers() {
         String query = "SELECT * FROM members";
