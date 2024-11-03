@@ -1,44 +1,47 @@
 package controllers;
+import com.mysql.cj.log.Log;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import models.Admin;
 import models.Member;
 import java.sql.*;
 import java.util.List;
-
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
 public class AdminController extends HeaderController{
-    private Admin admin;
+    @FXML
+    private TextField nameField;
+    @FXML
+    private TextField emailField;
+    @FXML
+    private TextField phoneField;
+    @FXML
+    private TextField addressField;
+    @FXML
+    private TextField createDateField;
 
-    public AdminController() {
-        this.admin = new Admin();
-    }
-    public AdminController(Admin admin) {
-        this.admin = admin;
+    @FXML
+    public void initialize() {
+        nameField.setEditable(false);
+        emailField.setEditable(false);
+        addressField.setEditable(false);
+        phoneField.setEditable(false);
+        createDateField.setEditable(false);
+
+        Admin admin = LoginController.admin;
+        if ( admin == null) {
+            showAlert("Error", "Please login first!");
+            return;
+        }
+        nameField.setText(admin.getName());
+        emailField.setText(admin.getEmail());
+        phoneField.setText(admin.getPhone());
+        addressField.setText(admin.getAddress());
+        createDateField.setText(admin.getCreateDate());
     }
 
-    public List<Admin> getAdmins() {
-        return this.admin.getAdmins();
-    }
 
-
-    public void removeAdmin(int AdminId) throws SQLException {
-        this.admin.removeAdmin(AdminId);
-    }
-
-    public void updateAdmin(int adminId) {
-        this.admin.updateAdmin(adminId);
-    }
-
-    public void findAdmin() {
-    }
-
-    public void displayAdminInfo() {
-        this.admin.displayAdminInfo();
-    }
-
-    //member
-    public List<Member> getMembers() {
-        return this.admin.getMembers();
-    }
 
 
 }

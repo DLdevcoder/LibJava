@@ -8,21 +8,7 @@
 
     <top>
         <VBox>
-            <!-- Header -->
-            <HBox fx:id="header" spacing="10" styleClass="header">
-                <Label styleClass="header-label" text="ManageLib">
-                    <font>
-                        <Font size="35.0" />
-                    </font>
-                </Label>
-                <Region HBox.hgrow="ALWAYS" />
-                    <Label layoutX="237.0" layoutY="24.0" style="-fx-font-size: 20; -fx-font-weight: bold;" text="MEMBER MANAGEMENT" />
-                <Region HBox.hgrow="ALWAYS" />
-            </HBox>
-
-            <!-- Navbar -->
-            <fx:include source="../frame/Navbar.fxml" />
-
+            <fx:include source="../frame/Header.fxml"/>
         </VBox>
     </top>
 

@@ -52,6 +52,12 @@ public class HeaderController {
         }
     }
 
+    public void sceneAdmin(ActionEvent event) {
+        changeScene(event, "/views/admin/AdminInfo.fxml");
+    }
+    public void logout(ActionEvent event) {
+        changeScene(event, "/views/login/Login.fxml");
+    }
     public void changeScene(ActionEvent event, String path) {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(path)));
@@ -64,7 +70,6 @@ public class HeaderController {
             System.out.println("Error loading FXML file.");
         }
     }
-
     public void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

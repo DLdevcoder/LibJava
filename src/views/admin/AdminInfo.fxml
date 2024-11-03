@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane stylesheets="@../../resources/Frame.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminController">
+
+    <top>
+        <VBox>
+            <fx:include source="../frame/Header.fxml" />
+        </VBox>
+    </top>
+    <right>
+        <Label prefHeight="10" prefWidth="30" />
+    </right>
+    <left>
+        <fx:include source="Sidebar.fxml" />
+    </left>
+    <center>
+        <AnchorPane prefHeight="300.0" prefWidth="606.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+            <children>
+                <VBox alignment="CENTER" spacing="20" stylesheets="@../../resources/AddMember.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
+                    <!-- Tiêu đề -->
+                    <Label style="-fx-font-size: 30; -fx-font-weight: bold;" text="ADMIN INFOMATION" />
+
+                    <!-- Hàng 1: Tên -->
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                  <Region prefHeight="38.0" prefWidth="185.0" />
+                        <Label prefWidth="120.0" style="-fx-font-size: 18;" text="Name:" />
+                        <TextField fx:id="nameField" prefHeight="30.0" prefWidth="400.0" />
+                    </HBox>
+
+                    <!-- Hàng 2: Email -->
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Region prefHeight="38.0" prefWidth="185.0" />
+                        <Label prefWidth="120.0" style="-fx-font-size: 18;" text="Email:" />
+                        <TextField fx:id="emailField" prefHeight="30.0" prefWidth="400.0" />
+                    </HBox>
+
+                    <!-- Hàng 3: Địa chỉ -->
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Region prefHeight="38.0" prefWidth="185.0" />
+                        <Label prefWidth="120.0" style="-fx-font-size: 18;" text="Address:" />
+                        <TextField fx:id="addressField" prefHeight="30.0" prefWidth="400.0" />
+                    </HBox>
+
+                    <!-- Hàng 4: Số điện thoại -->
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Region prefHeight="38.0" prefWidth="185.0" />
+                        <Label prefWidth="120.0" style="-fx-font-size: 18;" text="Phone:" />
+                        <TextField fx:id="phoneField" prefHeight="30.0" prefWidth="400.0" />
+                    </HBox>
+
+                    <!-- Hàng 5: Ngày tạo -->
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Region prefHeight="38.0" prefWidth="185.0" />
+                        <Label prefWidth="120.0" style="-fx-font-size: 18;" text="Create Date:" />
+                        <TextField fx:id="createDateField" prefHeight="30.0" prefWidth="400.0" />
+                    </HBox>
+                </VBox>
+
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>
