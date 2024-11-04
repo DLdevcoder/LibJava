@@ -97,7 +97,7 @@
         <Label prefHeight="10" prefWidth="30" />
     </right>
    <center>
-      <TableView fx:id="Document_Table" prefHeight="510.0" prefWidth="1079.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="Document_Table" prefHeight="510.0" prefWidth="1040.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="Book_Title" prefWidth="215.1999603509903" text="Title" />
             <TableColumn fx:id="Book_Author" minWidth="0.0" prefWidth="141.5999755859375" text="Author" />
