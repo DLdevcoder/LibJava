@@ -33,9 +33,6 @@ public class AdminController extends HeaderController {
     public void findAdmin() {
     }
 
-    public void displayAdminInfo() {
-        this.admin.displayAdminInfo();
-    }
 
     //member
     public List<Member> getMembers() {
