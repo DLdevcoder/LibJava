@@ -15,7 +15,7 @@ public class Book extends Document {
     protected String googleId;
     protected String thumbnail;
 
-    public Book(String title, String author, String publisher, String year, String language, ImageView ImageLink) {
+    public Book(String title, String author, String year, String publisher, String language, ImageView ImageLink) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
