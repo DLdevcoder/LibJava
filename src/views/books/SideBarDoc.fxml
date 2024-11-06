@@ -5,13 +5,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="509.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.DocumentSideBarController" stylesheets="@../../resources/Sidebar.css" >
+<AnchorPane prefHeight="509.0" prefWidth="250.0" stylesheets="@../../resources/Sidebar.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.DocumentSideBarController">
 
     <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="501.6" prefWidth="234.4" spacing="8" styleClass="sidebar">
         <Label styleClass="sidebar-title" text="Sidebar" />
-        <Button maxWidth="Infinity" styleClass="sidebar-button" text="BookList" />
-        <Button maxWidth="Infinity" styleClass="sidebar-button" text="Add Book" />
-        <Button maxWidth="Infinity" styleClass="sidebar-button" text="Remove Book" />
+        <Button maxWidth="Infinity" onAction="#ScenceBookList" styleClass="sidebar-button" text="BookList" />
+        <Button maxWidth="Infinity" onAction="#ScenceAddBook" styleClass="sidebar-button" text="Add Book" />
+        <Button maxWidth="Infinity"  styleClass="sidebar-button" text="Remove Book" />
         <Button maxWidth="Infinity" prefHeight="26.0" prefWidth="229.0" styleClass="sidebar-button" text="Review" />
         <Button maxWidth="Infinity" styleClass="sidebar-button" />
         <Button maxWidth="Infinity" styleClass="sidebar-button" />
