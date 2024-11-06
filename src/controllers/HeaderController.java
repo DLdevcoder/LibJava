@@ -36,7 +36,7 @@ public class HeaderController {
         changeScene(event, "/views/members/MemberList.fxml");
     }
       
-    public void BookList(ActionEvent event) {
+    public void ScenceBookList(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull((getClass().getResource("/views/books/BookList.fxml"))));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

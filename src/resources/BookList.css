@@ -10,9 +10,6 @@
     -fx-font-weight: bold;
     -fx-wrap-text: true;
     -fx-alignment: TOP_LEFT;
-    -fx-border-color: black; /* Màu của đường viền giữa các hàng */
-    -fx-border-width: 0.5px 0.5px 0.5px 0.5px; /* Chỉ có đường viền dưới */
-    -fx-border-style: solid;
 
 }
 #Book_Cover .table-cell{
@@ -50,9 +47,6 @@
     -fx-effect: dropshadow(gaussian, rgba(210, 255, 0, 0.5), 5, 0.0, 0, 0);
 }
 
-.search-field::placeholder {
-    -fx-opacity: 0.7; /* Độ mờ cho placeholder */
-}
 
 /* Navbar */
 .navbar {
