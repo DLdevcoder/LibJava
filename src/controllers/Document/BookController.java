@@ -43,6 +43,9 @@ public class BookController extends HeaderController {
      @FXML
      private TableColumn<Book, ImageView> Book_Cover;
 
+     @FXML
+     private TableColumn<Book, String> Book_ID;
+
 
      private ObservableList<Book> bookList;
 
@@ -58,6 +61,8 @@ public class BookController extends HeaderController {
           Book_Publisher.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPublisher()));
           Book_Language.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getLanguage()));
           Book_Cover.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getImageLink()));
+          Book_ID.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getId())));
+
 
           loadBooks();
 
@@ -68,7 +73,7 @@ public class BookController extends HeaderController {
           new Thread(() -> {
                DatabaseConnection databaseConnection = new DatabaseConnection();
                try (Connection connection = DatabaseConnection.getConnection(); Statement statement = connection.createStatement()) {
-                    String sql = "SELECT title, author, publication_year, publisher, language, preview_link FROM books";
+                    String sql = "SELECT id, title, author, publication_year, publisher, language, preview_link FROM books";
                     ResultSet resultSet = statement.executeQuery(sql);
 
                     while (resultSet.next()) {
@@ -78,13 +83,15 @@ public class BookController extends HeaderController {
                          String publisher = resultSet.getString("publisher");
                          String language = resultSet.getString("language");
                          String cover = resultSet.getString("preview_link");
+                         int id = resultSet.getInt("id");
+
 
                          Image image = new Image(cover);
                          ImageView coverImageView = new ImageView(image);
                          coverImageView.setFitWidth(100); // Đặt chiều rộng
                          coverImageView.setFitHeight(150); // Đặt chiều cao
 
-                         bookList.add(new Book(title, author, publicationYear, publisher, language, coverImageView));
+                         bookList.add(new Book(id,title, author, publicationYear, publisher, language, coverImageView));
                          Platform.runLater(() -> Document_Table.setItems(bookList));
 
                     }

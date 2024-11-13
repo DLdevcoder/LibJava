@@ -28,7 +28,7 @@
             </HBox>
             <!-- Navbar -->
             <HBox fx:id="navbar" spacing="20" styleClass="navbar">
-                <Button prefWidth="200" styleClass="navbar-button" text="Home">
+                <Button prefWidth="200" styleClass="navbar-button" text="controllers.Home">
                     <graphic>
                         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                             <image>

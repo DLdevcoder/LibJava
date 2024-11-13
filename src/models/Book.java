@@ -68,6 +68,17 @@ public class Book extends Document {
         this.publicationYear = publicationYear;
     }
 
+    public Book(int id, String title, String author, String publicationYear, String publisher, String language, ImageView ImageLink) {
+        this.setId(id);
+        this.title = title;
+        this.author = author;
+        this.publicationYear = publicationYear;
+        this.publisher = publisher;
+        this.language = language;
+        this.ImageLink = ImageLink;
+
+    }
+
 
 
     public String getPublisher() {
