@@ -24,6 +24,7 @@ public abstract class Document {
         this.description = description;
     }
 
+
     protected Document(String title, String author, String language, String publicationYear, String description, int quantity) {
         this.quantity = quantity;
         this.title = title;

@@ -29,12 +29,12 @@ public class AddBookController extends HeaderController {
           if(!isbn.isEmpty()){
               Book book = googleBooksAPI.getBookByISBN(isbn, imageLink);
               if(book != null){
-               System.out.println("Book added successfully");
+               showAlert("Succcessfully","Book added successfully");
                saveBookToDatabase(book);
 
 
               } else{
-                  System.out.println("Book not found");
+                  showAlert("Error", "Book not found");
                              }
           } else{
                   showAlert("Error","Please Enter Book Title");          }

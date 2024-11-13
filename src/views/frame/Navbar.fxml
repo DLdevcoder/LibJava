@@ -11,7 +11,7 @@
 <HBox fx:id="navbar" spacing="20" styleClass="navbar"  xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="controllers.HeaderController">
-<Button prefWidth="200" styleClass="navbar-button" text="Home">
+<Button prefWidth="200" styleClass="navbar-button" text="controllers.Home">
     <graphic>
         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
             <image>

@@ -21,9 +21,7 @@ public class DocumentSideBarController extends HeaderController {
             stage.show();
 
 
-
-
-        }  catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -37,9 +35,26 @@ public class DocumentSideBarController extends HeaderController {
             stage.show();
 
 
-        }  catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public void ScenceRemoveBook(ActionEvent event) {
+
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/DeleteBook.fxml")));
+
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
+}
 
