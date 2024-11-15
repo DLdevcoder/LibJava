@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane stylesheets="@../../resources/DataStatistics.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.borrow_record.DataStatisticsController">
     <top>
@@ -17,6 +19,16 @@
          <children>
             <PieChart fx:id="pieChart1" layoutY="5.0" prefHeight="505.0" prefWidth="525.0" />
             <PieChart fx:id="pieChart2" layoutX="530.0" layoutY="5.0" prefHeight="505.0" prefWidth="525.0" />
+             <Label layoutX="111.0" layoutY="28.0" prefHeight="35.0" prefWidth="372.0" text="Top member borrow documents" styleClass="header-label">
+                 <font>
+                     <Font size="24.0" />
+                 </font>
+             </Label>
+             <Label layoutX="662.0" layoutY="28.0" text="Most borrow documents" styleClass="header-label">
+                 <font>
+                     <Font size="24.0" />
+                 </font>
+             </Label>
          </children>
       </AnchorPane>
    </center>

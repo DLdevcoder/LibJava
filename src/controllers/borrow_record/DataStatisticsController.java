@@ -38,7 +38,6 @@ public class DataStatisticsController extends SidebarController{
                 "ORDER BY COUNT(record_id) DESC\n" +
                 "LIMIT 3";
         try (Connection conn = DatabaseConnection.getConnection()) {
-            pieChart1.setTitle("Top members borrow documents");
             PreparedStatement stmt1 = conn.prepareStatement(query1);
             ResultSet rs = stmt1.executeQuery();
             int sumMember = 0;
@@ -76,6 +75,7 @@ public class DataStatisticsController extends SidebarController{
             pieChart1.getData().clear();
             pieChart1.getData().addAll(memberData);
             for (PieChart.Data data : memberData) {
+                int originData = (int) data.getPieValue();
                 double actualPercentage = (data.getPieValue() / sumMember) * 100;
                 data.setName(String.format("%s %.2f%%", data.getName(), actualPercentage));
                 // Cập nhật tooltip để hiển thị phần trăm
@@ -84,7 +84,7 @@ public class DataStatisticsController extends SidebarController{
 
                 // Thiết lập sự kiện cho khi chuột vào
                 data.getNode().setOnMouseEntered(event -> {
-                    tooltip.setText(String.format("%s %.2f%%", "", actualPercentage));
+                    tooltip.setText("Number of documents borrowed: " + originData);
                     tooltip.show(data.getNode(), event.getScreenX() - 5, event.getScreenY() + 10); // Hiện tooltip ở vị trí gần chuột
                     ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(300), data.getNode());
                     scaleTransition.setToX(1.1);
@@ -110,15 +110,15 @@ public class DataStatisticsController extends SidebarController{
         String query1 = "SELECT IFNULL(SUM(quantity),0) AS sumBook " +
                 "FROM borrow_records " +
                 "WHERE status = 'borrowed';";
-        String query2 = "SELECT br.document_id, \n" +
+        String query2 = "SELECT br.document_id,\n" +
                 "SUM(br.quantity) AS total_borrowed, d.title\n" +
                 "FROM borrow_records br LEFT JOIN documents d ON d.id = br.document_id\n" +
+                "WHERE br.status = 'borrowed'\n" +
                 "GROUP BY br.document_id, d.title\n" +
                 "ORDER BY total_borrowed DESC\n" +
                 "LIMIT 3";
 
         try (Connection conn = DatabaseConnection.getConnection()) {
-            pieChart2.setTitle("Most borrowed documents");
             PreparedStatement stmt1 = conn.prepareStatement(query1);
             ResultSet rs = stmt1.executeQuery();
             int sumBook = 0;
@@ -146,6 +146,7 @@ public class DataStatisticsController extends SidebarController{
                 PieChart.Data data = new PieChart.Data(title, totalBorrowed);
                 bookData.add(data);
             }
+            System.out.println(sumBook);
 
             // Thêm "Other book" nếu còn dư
             if (sumOfTop < sumBook) {
@@ -156,6 +157,7 @@ public class DataStatisticsController extends SidebarController{
             pieChart2.getData().clear();
             pieChart2.getData().addAll(bookData);
             for (PieChart.Data data : bookData) {
+                int originData = (int) data.getPieValue();
                 double actualPercentage = (data.getPieValue() / sumBook) * 100;
                 data.setName(String.format("%s %.2f%%", data.getName(), actualPercentage));
                 // Cập nhật tooltip để hiển thị phần trăm
@@ -164,7 +166,7 @@ public class DataStatisticsController extends SidebarController{
 
                 // Thiết lập sự kiện cho khi chuột vào
                 data.getNode().setOnMouseEntered(event -> {
-                    tooltip.setText(String.format("%s %.2f%%", "", actualPercentage));
+                    tooltip.setText("Number of documents: " + originData);
                     tooltip.show(data.getNode(), event.getScreenX() - 5, event.getScreenY() + 10); // Hiện tooltip ở vị trí gần chuột
                     ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(300), data.getNode());
                     scaleTransition.setToX(1.1);

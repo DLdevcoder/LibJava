@@ -1,0 +1,147 @@
+/* Label cho các trường thông tin */
+.label {
+    -fx-text-fill: #555555;
+    -fx-border-radius: 20;
+}
+
+.header-label {
+    -fx-text-fill: #388e3c;
+    -fx-font-weight: bold;
+}
+
+/* TextField cơ bản */
+.text-field {
+    -fx-padding: 10 20 10 20;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 20;
+    -fx-prompt-text-fill: #aaaaaa;
+    -fx-background-radius: 15;
+}
+
+.text-field:focused {
+    -fx-border-color: #73ec8b;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, #d2ff72 , 8, 0.2, 0, 0); /* Hiệu ứng bóng mờ khi được chọn */
+}
+
+/* Định dạng cho toàn bộ DatePicker */
+.date-picker {
+    -fx-background-color: #f4f4f9;
+    -fx-border-color: #15b392; /* Viền màu xanh */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+
+/* Định dạng cho phần hiển thị văn bản ngày đã chọn */
+.date-picker .text-field {
+    -fx-text-fill: #333333;
+    -fx-background-color: transparent; /* Trong suốt để giữ nguyên màu nền DatePicker */
+    -fx-font-weight: bold;
+}
+
+/* Đổi màu viền khi DatePicker được chọn */
+.date-picker:hover {
+    -fx-border-color: #54c392; /* Viền đậm hơn khi di chuột */
+}
+
+.date-picker:focused {
+    -fx-border-color: #73ec8b ; /* Viền đậm khi được chọn */
+}
+
+/* Định dạng cho nút hiển thị lịch (Calendar Icon Button) */
+.date-picker .arrow-button {
+    -fx-background-color: #d2ff72;
+    -fx-background-radius: 5px;
+    -fx-padding: 4px;
+}
+
+.date-picker .arrow-button:hover {
+    -fx-background-color: #73ec8b ; /* Màu khi di chuột vào */
+}
+
+.date-picker .arrow-button:pressed {
+    -fx-background-color: #54c392 ; /* Màu khi nhấn vào */
+}
+
+/* Định dạng cho các ô trong cửa sổ lịch */
+.date-picker-popup .calendar-pane .day-cell {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
+}
+
+.date-picker-popup .calendar-pane .day-cell:hover {
+    -fx-background-color: #54c392 ; /* Màu nền khi di chuột vào ngày */
+}
+
+.date-picker-popup .calendar-pane .day-cell:selected {
+    -fx-background-color: #4a90e2; /* Màu nền cho ngày được chọn */
+    -fx-text-fill: #ffffff; /* Màu chữ trắng khi được chọn */
+    -fx-font-weight: bold;
+}
+
+/* Định dạng cho các nút điều hướng (next, previous month) */
+.date-picker-popup .month-button,
+.date-picker-popup .year-button,
+.date-picker-popup .back-arrow,
+.date-picker-popup .forward-arrow {
+    -fx-background-color: #54c392;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.date-picker-popup .month-button:hover,
+.date-picker-popup .year-button:hover,
+.date-picker-popup .back-arrow:hover,
+.date-picker-popup .forward-arrow:hover {
+    -fx-background-color: #15b392; /* Màu khi di chuột vào */
+}
+
+.date-picker-popup .month-button:pressed,
+.date-picker-popup .year-button:pressed,
+.date-picker-popup .back-arrow:pressed,
+.date-picker-popup .forward-arrow:pressed {
+    -fx-background-color: #d2ff72 ; /* Màu khi nhấn vào */
+}
+
+/* Định dạng mặc định cho nút borrowButton */
+#borrowButton {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #15b392; /* Màu nền mặc định */
+    -fx-background-radius: 15;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+    -fx-border-color: transparent; /* Đảm bảo không có border làm thay đổi kích thước */
+    -fx-border-width: 0;           /* Thiết lập độ dày viền ban đầu */
+    -fx-min-width: 250px; /* Thay đổi giá trị cho phù hợp */
+    -fx-min-height: 50px;
+    -fx-max-width: 200px;
+    -fx-max-height: 40px;
+}
+
+/* Đổi màu khi di chuột vào nút borrowButton */
+#borrowButton:hover {
+    -fx-font-size: 18px;
+    -fx-background-color: #d2ff72;
+    -fx-text-fill: black;
+    -fx-border-color: transparent; /* Giữ border nhất quán */
+    -fx-border-width: 0;           /* Giữ độ dày viền nhất quán */
+    -fx-padding: 10px 20px;        /* Đảm bảo padding không thay đổi */
+}
+
+/* Đổi màu khi nhấn nút borrowButton */
+#borrowButton:pressed {
+    -fx-font-size: 18px;
+    -fx-background-color: #73ec8b;
+    -fx-padding: 10px 20px;        /* Giữ padding nhất quán */
+    -fx-border-color: transparent; /* Giữ border nhất quán */
+    -fx-border-width: 0;           /* Giữ độ dày viền nhất quán */
+}
+
+.errol-label {
+    -fx-text-fill: red;
+}

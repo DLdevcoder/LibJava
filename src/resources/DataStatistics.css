@@ -1,27 +1,41 @@
+.header-label {
+    -fx-text-fill: #388e3c;
+    -fx-font-weight: bold;
+}
+
 .pie-chart {
-    -fx-background-color: transparent; /* Để phần nền trong suốt */
-        -fx-pref-width: 600 !important; /* Đặt chiều rộng mong muốn */
-        -fx-pref-height: 600 !important; /* Đặt chiều cao mong muốn */
+    -fx-background-color: transparent; /* Nền trong suốt */
 }
 
+/* Định dạng từng phần của biểu đồ */
 .pie-chart .slice {
-    -fx-stroke: white; /* Đường viền màu trắng cho các phần */
-    -fx-stroke-width: 2; /* Độ dày của đường viền */
+    -fx-stroke: #ffffff; /* Viền trắng cho các phần */
+    -fx-stroke-width: 2; /* Độ dày của viền */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 0, 0); /* Đổ bóng nhẹ */
 }
 
-/* Gán màu cho các phần */
-.pie-chart .slice:nth-child(1) {
-    -fx-background-color: #FF5733; /* Màu cho phần đầu tiên */
+/* Hiệu ứng di chuột để làm nổi bật */
+.pie-chart .slice:hover {
+    -fx-stroke-width: 3; /* Đường viền dày hơn khi di chuột vào */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 15, 0.6, 0, 0); /* Tăng độ đổ bóng */
+    -fx-cursor: hand; /* Con trỏ thành bàn tay */
 }
 
-.pie-chart .slice:nth-child(2) {
-    -fx-background-color: #33FF57; /* Màu cho phần thứ hai */
+/* Chú thích - Làm đẹp cho phần chú thích của biểu đồ */
+.chart-legend {
+    -fx-font-size: 12; /* Kích thước chữ */
+    -fx-text-fill: #333333; /* Màu chữ tối */
+    -fx-background-color: #f8f8f8; /* Màu nền nhẹ nhàng */
+    -fx-padding: 10px; /* Khoảng cách bên trong */
+    -fx-border-radius: 5px; /* Bo góc cho phần chú thích */
 }
 
-.pie-chart .slice:nth-child(3) {
-    -fx-background-color: #3357FF; /* Màu cho phần thứ ba */
+/* Chỉnh khoảng cách giữa các item trong chú thích */
+.chart-legend-item {
+    -fx-padding: 5px 0; /* Khoảng cách trên dưới */
 }
 
-.pie-chart .slice:nth-child(4) {
-    -fx-background-color: #FFD700; /* Màu cho phần "Other book" */
+/* Chú thích biểu đồ màu sắc cho văn bản và viền */
+.chart-legend-symbol {
+    -fx-background-radius: 5px; /* Bo góc */
 }
