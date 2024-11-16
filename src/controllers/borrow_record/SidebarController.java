@@ -27,9 +27,23 @@ public class SidebarController extends HeaderController {
         }
     }
 
-    public void sceneBorrow(ActionEvent event) {
+    public void sceneBorrowRecordList(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/borrow_records/Borrow.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/borrow_records/BorrowRecordList.fxml")));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            scene.getStylesheets().add(Paths.get("src/resources/BorrowList.css").toUri().toString());
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error loading FXML file.");
+        }
+    }
+
+    public void sceneReturn(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/borrow_records/Return.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             scene.getStylesheets().add(Paths.get("src/resources/Borrow.css").toUri().toString());

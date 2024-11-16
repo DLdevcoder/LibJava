@@ -3,24 +3,58 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="510.0" prefWidth="279.0" styleClass="sidebar-scroll" stylesheets="@../../resources/Sidebar.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.borrow_record.SidebarController">
-        <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="501.0" prefWidth="234.0" spacing="8" styleClass="sidebar">
+<AnchorPane prefHeight="510.0" prefWidth="224.0" styleClass="sidebar-scroll" stylesheets="@../../resources/Sidebar.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.borrow_record.SidebarController">
+        <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="414.0" prefWidth="201.0" spacing="8" styleClass="sidebar">
             <Label styleClass="sidebar-title" text="Sidebar" />
-            <Button maxWidth="Infinity" onAction="#sceneBorrowRecordList" styleClass="sidebar-button" text="Borrow record list" />
+            <Button maxWidth="Infinity" onAction="#sceneBorrow" styleClass="sidebar-button" text="Borrow Document">
+            <graphic>
+                <ImageView fitHeight="27" fitWidth="27" preserveRatio="true">
+                    <image>
+                        <Image url="@/borrowDoc.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            </Button>
             <Separator orientation="horizontal" />
-            <Button maxWidth="Infinity" onAction="#sceneDataStatistics" styleClass="sidebar-button" text="Data statistics" />
+            <Button alignment="CENTER_RIGHT" maxWidth="Infinity" onAction="#sceneReturn" styleClass="sidebar-button" text="Return Document">
+                <graphic>
+                    <ImageView fitHeight="27" fitWidth="27" preserveRatio="true">
+                        <image>
+                            <Image url="@/returnDoc.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
             <Separator orientation="horizontal" />
-            <Button maxWidth="Infinity" onAction="#sceneBorrow" styleClass="sidebar-button" text="Borrow Document" />
+            <Button alignment="CENTER_RIGHT" maxWidth="Infinity" onAction="#sceneBorrowRecordList" styleClass="sidebar-button" text="Borrow record list">
+                <graphic>
+                    <ImageView fitHeight="27" fitWidth="27" preserveRatio="true">
+                        <image>
+                            <Image url="@/borrowList.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
             <Separator orientation="horizontal" />
-            <Button maxWidth="Infinity" styleClass="sidebar-button" />
+            <Button alignment="CENTER_RIGHT" maxWidth="Infinity" onAction="#sceneDataStatistics" styleClass="sidebar-button" text="       Data statistics">
+                <graphic>
+                    <ImageView fitHeight="27" fitWidth="27" preserveRatio="true">
+                        <image>
+                            <Image url="@/statistic.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
             <Separator orientation="horizontal" />
             <Button maxWidth="Infinity" styleClass="sidebar-button" />
             <Separator orientation="horizontal" />
             <Button maxWidth="Infinity" styleClass="sidebar-button" />
         </VBox>
-        <Label layoutX="241.0" layoutY="36.0" prefHeight="10.0" prefWidth="30.0" />
+
 
 </AnchorPane>

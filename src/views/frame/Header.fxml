@@ -89,7 +89,7 @@
                </effect>
                 </Button>
                 <Region prefWidth="0.1" styleClass="separator" />
-                <Button onAction="#sceneBorrowRecordList" prefWidth="180" styleClass="navbar-button" text="Borrow documents">
+                <Button onAction="#sceneBorrow" prefWidth="180" styleClass="navbar-button" text="Borrow documents">
                     <graphic>
                         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                             <image>

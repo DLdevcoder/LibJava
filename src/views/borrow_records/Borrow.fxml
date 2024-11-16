@@ -19,70 +19,70 @@
         <AnchorPane styleClass="anchor-pane">
 
             <!-- Tiêu đề -->
-            <Label layoutX="412.0" layoutY="8.0" prefHeight="46.0" prefWidth="231.0" styleClass="header-label" text="Borrow Document" AnchorPane.leftAnchor="412.0" AnchorPane.topAnchor="8.0">
+            <Label layoutX="415.0" layoutY="15.0" prefHeight="46.0" prefWidth="231.0" styleClass="header-label" text="Borrow Document" AnchorPane.leftAnchor="415.0" AnchorPane.topAnchor="15.0">
             <font>
                <Font size="25.0" />
             </font></Label>
 
             <!-- Chọn tài liệu -->
-            <Label layoutX="159.0" layoutY="68.0" prefWidth="150" text="Document ID:" AnchorPane.leftAnchor="159.0" AnchorPane.topAnchor="68.0">
+            <Label layoutX="159.0" layoutY="89.0" prefWidth="150" text="Document ID:" AnchorPane.leftAnchor="159.0" AnchorPane.topAnchor="89.0">
             <font>
                <Font size="18.0" />
             </font></Label>
 
-            <TextField fx:id="documentIdField" layoutX="314.0" layoutY="62.0" prefHeight="30.0" prefWidth="500.0" promptText="Enter document id">
+            <TextField fx:id="documentIdField" layoutX="314.0" layoutY="82.0" prefHeight="30.0" prefWidth="500.0" promptText="Enter document id">
                 <font>
                     <Font size="14.0" />
                 </font>
             </TextField>
 
             <!-- Chọn người mượn -->
-            <Label layoutX="159.0" layoutY="137.0" prefWidth="150" text="Member ID:" AnchorPane.leftAnchor="159.0" AnchorPane.topAnchor="137.0">
+            <Label layoutX="159.0" layoutY="162.0" prefWidth="150" text="Member ID:" AnchorPane.leftAnchor="159.0" AnchorPane.topAnchor="162.0">
             <font>
                <Font size="18.0" />
             </font></Label>
-            <TextField fx:id="memberIdField" layoutX="314.0" layoutY="134.0" prefHeight="30.0" prefWidth="500.0" promptText="Enter member id">
+            <TextField fx:id="memberIdField" layoutX="314.0" layoutY="155.0" prefHeight="30.0" prefWidth="500.0" promptText="Enter member id">
                 <font>
                     <Font size="14.0" />
                 </font>
             </TextField>
 
             <!-- Ngày mượn -->
-            <Label layoutX="159.0" layoutY="210.0" prefWidth="150" text="Borrow Date:" AnchorPane.leftAnchor="159.0" AnchorPane.topAnchor="210.0">
+            <Label layoutX="159.0" layoutY="241.0" prefWidth="150" text="Borrow Date:" AnchorPane.leftAnchor="159.0" AnchorPane.topAnchor="241.0">
             <font>
                <Font size="18.0" />
             </font></Label>
-            <DatePicker fx:id="borrowDate" layoutX="313.0" layoutY="202.0" AnchorPane.leftAnchor="313.0" AnchorPane.topAnchor="202.0" />
+            <DatePicker fx:id="borrowDate" layoutX="313.0" layoutY="229.0" AnchorPane.leftAnchor="313.0" AnchorPane.topAnchor="229.0" />
 
             <!-- Ngày trả dự kiến -->
-            <Label layoutX="159.0" layoutY="285.0" prefWidth="150" text="Due Date:" AnchorPane.leftAnchor="159.0" AnchorPane.topAnchor="285.0">
+            <Label layoutX="159.0" layoutY="325.0" prefWidth="150" text="Due Date:" AnchorPane.leftAnchor="159.0" AnchorPane.topAnchor="325.0">
             <font>
                <Font size="18.0" />
             </font></Label>
-            <DatePicker fx:id="dueDate" layoutX="313.0" layoutY="277.0" AnchorPane.leftAnchor="313.0" AnchorPane.topAnchor="277.0" />
+            <DatePicker fx:id="dueDate" layoutX="313.0" layoutY="312.0" AnchorPane.leftAnchor="313.0" AnchorPane.topAnchor="312.0" />
 
 <!--            Số lượng sách mượn-->
-            <Label layoutX="159.0" layoutY="364.0" prefWidth="150" text="Quantity:">
+            <Label layoutX="159.0" layoutY="398.0" prefWidth="150" text="Quantity:">
                 <font>
                     <Font size="18.0" />
                 </font>
             </Label>
-            <TextField fx:id="quantityBorrowField" layoutX="314.0" layoutY="362.0" prefHeight="30.0" prefWidth="500.0" promptText="Enter your quantity documents you want to borrow">
+            <TextField fx:id="quantityBorrowField" layoutX="314.0" layoutY="391.0" prefHeight="30.0" prefWidth="500.0" promptText="Enter your quantity documents you want to borrow">
                 <font>
                     <Font size="14.0" />
                 </font>
             </TextField>
 
             <!-- Nút mượn tài liệu -->
-            <Button fx:id="borrowButton" layoutX="403.0" layoutY="440.0" onAction="#onSubmit" styleClass="borrow-button" text="Borrow Document" AnchorPane.leftAnchor="403.0" AnchorPane.topAnchor="440.0">
+            <Button fx:id="borrowButton" layoutX="404.0" layoutY="478.0" onAction="#onSubmit" styleClass="submit-button" text="Borrow Document" AnchorPane.leftAnchor="404.0" AnchorPane.topAnchor="478.0">
             <font>
                <Font size="20.0" />
             </font></Button>
-            <Label fx:id="errorDoc" layoutX="315.0" layoutY="104.0" prefHeight="30.0" prefWidth="497.0" styleClass="errol-label" />
-            <Label fx:id="errorMem" layoutX="315.0" layoutY="176.0" prefHeight="30.0" prefWidth="492.0" styleClass="errol-label"  />
-            <Label layoutX="316.0" layoutY="255.0" prefHeight="30.0" prefWidth="504.0" styleClass="errol-label" />
-            <Label fx:id="errorDate" layoutX="316.0" layoutY="336.0" prefHeight="27.0" prefWidth="492.0" styleClass="errol-label" />
-            <Label fx:id="errorQuantity" layoutX="313.0" layoutY="404.0" prefHeight="18.0" prefWidth="501.0" styleClass="errol-label"  />
+            <Label fx:id="errorDoc" layoutX="315.0" layoutY="124.0" prefHeight="30.0" prefWidth="497.0" styleClass="errol-label" />
+            <Label fx:id="errorMem" layoutX="315.0" layoutY="198.0" prefHeight="30.0" prefWidth="492.0" styleClass="errol-label" />
+            <Label layoutX="312.0" layoutY="281.0" prefHeight="30.0" prefWidth="504.0" styleClass="errol-label" />
+            <Label fx:id="errorDate" layoutX="315.0" layoutY="363.0" prefHeight="27.0" prefWidth="492.0" styleClass="errol-label" />
+            <Label fx:id="errorQuantity" layoutX="313.0" layoutY="433.0" prefHeight="44.0" prefWidth="806.0" styleClass="errol-label" />
         </AnchorPane>
 
     </center>

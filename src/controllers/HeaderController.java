@@ -17,12 +17,12 @@ public class HeaderController {
     protected Stage stage;
     protected Scene scene;
 
-    public void sceneBorrowRecordList(ActionEvent event) {
+    public void sceneBorrow(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/borrow_records/BorrowRecordList.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/borrow_records/Borrow.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
-            scene.getStylesheets().add(Paths.get("src/resources/BorrowList.css").toUri().toString());
+            scene.getStylesheets().add(Paths.get("src/resources/Borrow.css").toUri().toString());
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {

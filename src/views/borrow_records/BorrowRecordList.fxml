@@ -20,21 +20,21 @@
     <center>
         <VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
             <Label />
-         <Label text="Borrow record list" styleClass="header-label">
+         <Label styleClass="header-label" text="Borrow record list">
             <font>
                <Font size="24.0" />
             </font>
          </Label>
             <TableView fx:id="tableView" prefHeight="482.0" prefWidth="1042.0" VBox.vgrow="ALWAYS">
                 <columns>
-                    <TableColumn fx:id="recordIdColumn" prefWidth="120" text="Record ID" />
-                    <TableColumn fx:id="documentIdColumn" prefWidth="120" text="Document ID" />
-                    <TableColumn fx:id="memberIdColumn" prefWidth="120" text="Member ID" />
-                    <TableColumn fx:id="borrowDateColumn" prefWidth="140" text="Borrow Date" />
-                    <TableColumn fx:id="returnDateColumn" prefWidth="140" text="Return Date" />
-                    <TableColumn fx:id="dueDateColumn" prefWidth="140" text="Due Date" />
-                    <TableColumn fx:id="statusColumn" prefWidth="140" text="Status" />
-                    <TableColumn fx:id="quantityColumn" maxWidth="117.5999877929687" prefWidth="110" text="Quantity" />
+                    <TableColumn fx:id="recordIdColumn" prefWidth="115" text="Record ID" />
+                    <TableColumn fx:id="documentIdColumn" prefWidth="115" text="Document ID" />
+                    <TableColumn fx:id="memberIdColumn" prefWidth="115" text="Member ID" />
+                    <TableColumn fx:id="borrowDateColumn" prefWidth="150" text="Borrow Date" />
+                    <TableColumn fx:id="returnDateColumn" prefWidth="150" text="Return Date" />
+                    <TableColumn fx:id="dueDateColumn" prefWidth="150" text="Due Date" />
+                    <TableColumn fx:id="statusColumn" prefWidth="180" text="Status" />
+                    <TableColumn fx:id="quantityColumn" maxWidth="100.0" prefWidth="132.0" text="Quantity" />
                 </columns>
             </TableView>
         </VBox>

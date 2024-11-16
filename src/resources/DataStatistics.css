@@ -1,41 +1,40 @@
-.header-label {
-    -fx-text-fill: #388e3c;
+.header-title {
     -fx-font-weight: bold;
+    -fx-text-fill: #15b392;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 3, 0.5, 0, 1);
 }
 
-.pie-chart {
-    -fx-background-color: transparent; /* Nền trong suốt */
+/* Content Section */
+.content-container {
+    -fx-padding: 30 0 10 5;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0.3, 0, 2); /* Hiệu ứng đổ bóng nhẹ */
 }
 
-/* Định dạng từng phần của biểu đồ */
-.pie-chart .slice {
-    -fx-stroke: #ffffff; /* Viền trắng cho các phần */
-    -fx-stroke-width: 2; /* Độ dày của viền */
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 0, 0); /* Đổ bóng nhẹ */
+/* Chart Box */
+.chart-box {
+    -fx-background-color: #e8f7f0; /* Màu nền nhẹ tương phản với biểu đồ */
+    -fx-padding: 20px;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0.5, 0, 2); /* Đổ bóng mềm mại */
 }
 
-/* Hiệu ứng di chuột để làm nổi bật */
-.pie-chart .slice:hover {
-    -fx-stroke-width: 3; /* Đường viền dày hơn khi di chuột vào */
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 15, 0.6, 0, 0); /* Tăng độ đổ bóng */
-    -fx-cursor: hand; /* Con trỏ thành bàn tay */
+.chart-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #15b392;
 }
 
-/* Chú thích - Làm đẹp cho phần chú thích của biểu đồ */
-.chart-legend {
-    -fx-font-size: 12; /* Kích thước chữ */
-    -fx-text-fill: #333333; /* Màu chữ tối */
-    -fx-background-color: #f8f8f8; /* Màu nền nhẹ nhàng */
-    -fx-padding: 10px; /* Khoảng cách bên trong */
-    -fx-border-radius: 5px; /* Bo góc cho phần chú thích */
+/* PieChart */
+.custom-piechart {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+    -fx-border-color: #15b392;
+    -fx-border-width: 3;
+    -fx-border-radius: 10;
 }
 
-/* Chỉnh khoảng cách giữa các item trong chú thích */
-.chart-legend-item {
-    -fx-padding: 5px 0; /* Khoảng cách trên dưới */
-}
-
-/* Chú thích biểu đồ màu sắc cho văn bản và viền */
-.chart-legend-symbol {
-    -fx-background-radius: 5px; /* Bo góc */
+.custom-piechart:hover {
+    -fx-border-color: #73ec8b;
+    -fx-border-width: 4;
 }

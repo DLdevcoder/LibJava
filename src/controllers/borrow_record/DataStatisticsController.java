@@ -5,7 +5,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
+import javafx.stage.Popup;
 import javafx.util.Duration;
 import utils.DatabaseConnection;
 
@@ -79,25 +81,41 @@ public class DataStatisticsController extends SidebarController{
                 double actualPercentage = (data.getPieValue() / sumMember) * 100;
                 data.setName(String.format("%s %.2f%%", data.getName(), actualPercentage));
                 // Cập nhật tooltip để hiển thị phần trăm
-                Tooltip tooltip = new Tooltip();
-                Tooltip.install(data.getNode(), tooltip);
+                Popup customTooltip = new Popup();
+                Label tooltipLabel = new Label();
+                tooltipLabel.setStyle("-fx-background-color: #68d69d; " +
+                        "-fx-text-fill: #401d83;" +
+                        "-fx-padding: 5; " +
+                        "-fx-border-color: #73ec8b ; " +
+                        "-fx-border-width: 1; " +
+                        "-fx-border-radius: 10; " +
+                        "-fx-background-radius: 10;");
+                customTooltip.getContent().add(tooltipLabel);
 
-                // Thiết lập sự kiện cho khi chuột vào
+                // Sự kiện khi chuột vào Node
                 data.getNode().setOnMouseEntered(event -> {
-                    tooltip.setText("Number of documents borrowed: " + originData);
-                    tooltip.show(data.getNode(), event.getScreenX() - 5, event.getScreenY() + 10); // Hiện tooltip ở vị trí gần chuột
+                    tooltipLabel.setText("Number of documents borrowed: " + originData);
+                    customTooltip.show(data.getNode(), event.getScreenX() + 10, event.getScreenY() + 10); // Vị trí Tooltip gần chuột
+
+                    // Hiệu ứng phóng to
                     ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(300), data.getNode());
                     scaleTransition.setToX(1.1);
                     scaleTransition.setToY(1.1);
                     scaleTransition.play();
                 });
 
-                // Thiết lập sự kiện cho khi chuột ra
+                // Sự kiện khi chuột di chuyển (cập nhật vị trí Tooltip)
+                data.getNode().setOnMouseMoved(event -> {
+                    customTooltip.setX(event.getScreenX() + 10); // Cập nhật vị trí X
+                    customTooltip.setY(event.getScreenY() + 10); // Cập nhật vị trí Y
+                });
+
+                // Sự kiện khi chuột rời khỏi Node
                 data.getNode().setOnMouseExited(event -> {
-                    tooltip.hide();
+                    customTooltip.hide(); // Ẩn Tooltip
                     ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(300), data.getNode());
-                    scaleTransition.setToX(1);
-                    scaleTransition.setToY(1);
+                    scaleTransition.setToX(1.0); // Thu nhỏ về kích thước gốc
+                    scaleTransition.setToY(1.0);
                     scaleTransition.play();
                 });
             }
@@ -146,7 +164,6 @@ public class DataStatisticsController extends SidebarController{
                 PieChart.Data data = new PieChart.Data(title, totalBorrowed);
                 bookData.add(data);
             }
-            System.out.println(sumBook);
 
             // Thêm "Other book" nếu còn dư
             if (sumOfTop < sumBook) {
@@ -160,26 +177,42 @@ public class DataStatisticsController extends SidebarController{
                 int originData = (int) data.getPieValue();
                 double actualPercentage = (data.getPieValue() / sumBook) * 100;
                 data.setName(String.format("%s %.2f%%", data.getName(), actualPercentage));
-                // Cập nhật tooltip để hiển thị phần trăm
-                Tooltip tooltip = new Tooltip();
-                Tooltip.install(data.getNode(), tooltip);
+                // Cập nhật popup để hiển thị phần trăm
+                Popup customTooltip = new Popup();
+                Label tooltipLabel = new Label();
+                tooltipLabel.setStyle("-fx-background-color: #68d69d; " +
+                        "-fx-text-fill: #401d83;" +
+                        "-fx-padding: 5; " +
+                        "-fx-border-color: #73ec8b ; " +
+                        "-fx-border-width: 1; " +
+                        "-fx-border-radius: 10; " +
+                        "-fx-background-radius: 10;");
+                customTooltip.getContent().add(tooltipLabel);
 
-                // Thiết lập sự kiện cho khi chuột vào
+                // Sự kiện khi chuột vào Node
                 data.getNode().setOnMouseEntered(event -> {
-                    tooltip.setText("Number of documents: " + originData);
-                    tooltip.show(data.getNode(), event.getScreenX() - 5, event.getScreenY() + 10); // Hiện tooltip ở vị trí gần chuột
+                    tooltipLabel.setText("Number of documents: " + originData);
+                    customTooltip.show(data.getNode(), event.getScreenX() + 10, event.getScreenY() + 10); // Vị trí Tooltip gần chuột
+
+                    // Hiệu ứng phóng to
                     ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(300), data.getNode());
                     scaleTransition.setToX(1.1);
                     scaleTransition.setToY(1.1);
                     scaleTransition.play();
                 });
 
-                // Thiết lập sự kiện cho khi chuột ra
+                // Sự kiện khi chuột di chuyển (cập nhật vị trí Tooltip)
+                data.getNode().setOnMouseMoved(event -> {
+                    customTooltip.setX(event.getScreenX() + 10); // Cập nhật vị trí X
+                    customTooltip.setY(event.getScreenY() + 10); // Cập nhật vị trí Y
+                });
+
+                // Sự kiện khi chuột rời khỏi Node
                 data.getNode().setOnMouseExited(event -> {
-                    tooltip.hide();
+                    customTooltip.hide(); // Ẩn Tooltip
                     ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(300), data.getNode());
-                    scaleTransition.setToX(1);
-                    scaleTransition.setToY(1);
+                    scaleTransition.setToX(1.0); // Thu nhỏ về kích thước gốc
+                    scaleTransition.setToY(1.0);
                     scaleTransition.play();
                 });
             }
