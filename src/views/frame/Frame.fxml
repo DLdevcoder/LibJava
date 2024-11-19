@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane stylesheets="@../../resources/Frame.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HeaderController">
+<BorderPane stylesheets="@../../resources/stylesheet/Frame.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HeaderController">
 
     <top>
         <VBox>
@@ -32,7 +32,7 @@
                     <graphic>
                         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                             <image>
-                                <Image url="@/home.png" />
+                                <Image url="@/image/home.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -42,7 +42,7 @@
                     <graphic>
                         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                             <image>
-                                <Image url="@/document.png" />
+                                <Image url="@/image/document.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -51,7 +51,7 @@
                     <graphic>
                         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                             <image>
-                                <Image url="@/borrowBook.png" />
+                                <Image url="@/image/borrowBook.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -60,7 +60,7 @@
                     <graphic>
                         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                             <image>
-                                <Image url="@/member.png" />
+                                <Image url="@/image/member.png" />
                             </image>
                         </ImageView>
                     </graphic>

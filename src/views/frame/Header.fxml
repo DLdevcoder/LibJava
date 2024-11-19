@@ -17,7 +17,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@../../resources/Frame.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HeaderController">
+<BorderPane stylesheets="@../../resources/stylesheet/Frame.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HeaderController">
 
     <top>
         <VBox>
@@ -52,7 +52,7 @@
                     </TextField>
                     <ImageView fitHeight="46.0" fitWidth="45.0" layoutX="317.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                            <Image url="@/search.png" />
+                            <Image url="@../../resources/image/search.png" />
                         </image>
                     </ImageView>
                 </AnchorPane>
@@ -67,7 +67,7 @@
                     <graphic>
                         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                             <image>
-                                <Image url="@/home.png" />
+                                <Image url="@../../resources/image/home.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -80,7 +80,7 @@
                     <graphic>
                         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                             <image>
-                                <Image url="@/document.png" />
+                                <Image url="@../../resources/image/document.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -93,7 +93,7 @@
                     <graphic>
                         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                             <image>
-                                <Image url="@/borrowBook.png" />
+                                <Image url="@../../resources/image/borrowBook.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -106,7 +106,7 @@
                     <graphic>
                         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                             <image>
-                                <Image url="@/member.png" />
+                                <Image url="@../../resources/image/member.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -119,7 +119,7 @@
                     <graphic>
                         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                             <image>
-                                <Image url="@/admin.png" />
+                                <Image url="@../../resources/image/admin.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -132,7 +132,7 @@
                     <graphic>
                         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                             <image>
-                                <Image url="@/logout_icon.png" />
+                                <Image url="@../../resources/image/logout_icon.png" />
                             </image>
                         </ImageView>
                     </graphic>

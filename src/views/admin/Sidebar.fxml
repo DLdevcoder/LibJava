@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane stylesheets="@../../resources/Sidebar.css" xmlns:fx="http://javafx.com/fxml" prefHeight="510.0" prefWidth="185.0" styleClass="sidebar-scroll" fx:controller="controllers.admin.SidebarAdmin">
+<AnchorPane stylesheets="@../../resources/stylesheet/Sidebar.css" xmlns:fx="http://javafx.com/fxml" prefHeight="510.0" prefWidth="185.0" styleClass="sidebar-scroll" fx:controller="controllers.admin.SidebarAdmin">
     <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="502.0" prefWidth="180.0" spacing="8" styleClass="sidebar">
         <Label styleClass="sidebar-title" text="Sidebar" />
         <Button maxWidth="Infinity" styleClass="sidebar-button" text="Profile" onAction="#sceneAdminProfile">
             <graphic>
                 <ImageView fitHeight="1" fitWidth="1" preserveRatio="true">
                     <image>
-                        <Image url="@/member_list.png" />
+                        <Image url="@/image/member_list.png" />
                     </image>
                 </ImageView>
             </graphic>
@@ -21,7 +21,7 @@
             <graphic>
                 <ImageView fitHeight="1" fitWidth="1" preserveRatio="true">
                     <image>
-                        <Image url="@/add_member.png" />
+                        <Image url="@/image/add_member.png" />
                     </image>
                 </ImageView>
             </graphic>

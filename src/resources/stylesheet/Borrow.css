@@ -112,7 +112,7 @@
     -fx-font-weight: bold;
     -fx-text-fill: #ffffff;
     -fx-background-color: #15b392; /* Màu nền mặc định */
-    -fx-background-radius: 20;
+    -fx-background-radius: 30;
     -fx-padding: 10px 20px;
     -fx-cursor: hand;
     -fx-border-color: transparent; /* Đảm bảo không có border làm thay đổi kích thước */

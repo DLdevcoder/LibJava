@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import utils.DatabaseConnection;
 
+import java.nio.file.Paths;
 import java.sql.*;
 import java.time.LocalDate;
 
@@ -298,6 +299,9 @@ public class ReturnController extends SidebarController {
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(Paths.get("src/resources/Alert.css").toUri().toString());
+        dialogPane.getStyleClass().add("dialog-pane");
         alert.showAndWait();
     }
 

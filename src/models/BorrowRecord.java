@@ -4,7 +4,7 @@ import java.time.LocalDate;
 public class BorrowRecord {
     // Các thuộc tính của bảng Borrow_Records
     private int recordId;
-    private int bookId;
+    private int documentId;
     private int memberId;
     private Date borrowDate;
     private Date returnDate;
@@ -18,9 +18,9 @@ public class BorrowRecord {
     }
 
     // Constructor đầy đủ tham số
-    public BorrowRecord(int recordId, int bookId, int memberId, Date borrowDate, Date returnDate, Date dueDate, String status, int quantity) {
+    public BorrowRecord(int recordId, int documentId, int memberId, Date borrowDate, Date returnDate, Date dueDate, String status, int quantity) {
         this.recordId = recordId;
-        this.bookId = bookId;
+        this.documentId = documentId;
         this.memberId = memberId;
         this.borrowDate = borrowDate;
         this.returnDate = returnDate;
@@ -38,12 +38,12 @@ public class BorrowRecord {
         this.recordId = recordId;
     }
 
-    public int getBookId() {
-        return bookId;
+    public int getDocumentId() {
+        return documentId;
     }
 
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
+    public void setDocumentId(int documentId) {
+        this.documentId = documentId;
     }
 
     public int getMemberId() {
@@ -99,7 +99,7 @@ public class BorrowRecord {
     public String toString() {
         return "BorrowRecord{" +
                 "recordId=" + recordId +
-                ", bookId=" + bookId +
+                ", documentId=" + documentId +
                 ", memberId=" + memberId +
                 ", borrowDate=" + borrowDate +
                 ", returnDate=" + returnDate +

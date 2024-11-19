@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="509.0" prefWidth="250.0" stylesheets="@../../resources/Sidebar.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.DocumentSideBarController">
+<AnchorPane prefHeight="509.0" prefWidth="250.0" stylesheets="@../../resources/stylesheet/Sidebar.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.DocumentSideBarController">
 
     <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="501.6" prefWidth="234.4" spacing="8" styleClass="sidebar">
         <Label styleClass="sidebar-title" text="Sidebar" />

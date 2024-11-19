@@ -15,7 +15,7 @@
     <graphic>
         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
             <image>
-                <Image url="@/home.png" />
+                <Image url="@/image/home.png" />
             </image>
         </ImageView>
     </graphic>
@@ -24,7 +24,7 @@
     <graphic>
         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
             <image>
-                <Image url="@/document.png" />
+                <Image url="@/image/document.png" />
             </image>
         </ImageView>
     </graphic>
@@ -33,7 +33,7 @@
     <graphic>
         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
             <image>
-                <Image url="@/borrowBook.png" />
+                <Image url="@/image/borrowBook.png" />
             </image>
         </ImageView>
     </graphic>
@@ -42,7 +42,7 @@
     <graphic>
         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
             <image>
-                <Image url="@/member.png" />
+                <Image url="@/image/member.png" />
             </image>
         </ImageView>
     </graphic>
