@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@../../resources/stylesheet/DataStatistics.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.borrow_record.DataStatisticsController">
+<BorderPane stylesheets="@../../resources/stylesheet/CommonBorrow.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.borrow_record.DataStatisticsController">
     <top>
         <fx:include source="../frame/Header.fxml" />
     </top>
@@ -17,11 +17,11 @@
         <fx:include source="SidebarBorrow.fxml" />
     </left>
    <center>
-       <AnchorPane prefHeight="649.0" prefWidth="1126.0">
+       <AnchorPane prefHeight="649.0" prefWidth="1126.0" stylesheets="@../../resources/stylesheet/DataStatistics.css">
                <!-- Header -->
                <AnchorPane layoutY="37.0" prefHeight="26.0" prefWidth="1100.0" styleClass="header">
                    <children>
-                       <Label layoutX="420.0" layoutY="-23.0" prefHeight="50.0" prefWidth="261.0" styleClass="header-title" text="Library Dashboard">
+                       <Label layoutX="420.0" layoutY="-23.0" prefHeight="50.0" prefWidth="261.0" styleClass="header-title" text="Data statistics">
                   <font>
                      <Font size="30.0" />
                   </font></Label>

@@ -12,19 +12,17 @@ import java.time.temporal.ChronoUnit;
 import java.util.Locale;
 
 
-public class BorrowController extends SidebarController {
+public class BorrowController extends BorrowAndReturn {
     @FXML
     private TextField documentIdField;
     @FXML
     private TextField memberIdField;
     @FXML
-    private TextField quantityBorrowField;
+    private TextField quantityField;
     @FXML
     private DatePicker borrowDate;
     @FXML
     private DatePicker dueDate;
-    @FXML
-    private Button borrowButton;
     @FXML
     private Label errorDoc;
     @FXML
@@ -42,118 +40,36 @@ public class BorrowController extends SidebarController {
         // Thiết lập dueDate là một tuần sau ngày hiện tại
         dueDate.setValue(LocalDate.now().plusDays(7));
 
-        documentIdField.setOnAction(event -> fetchDocumentTitle());
+        documentIdField.setOnAction(event -> fetchDocumentTitle(documentIdField, errorDoc));
 
         // Xử lý khi người dùng rời khỏi TextField
         documentIdField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) { // Chỉ thực hiện khi mất focus
-                fetchDocumentTitle();
+                fetchDocumentTitle(documentIdField, errorDoc);
             }
         });
 
-        memberIdField.setOnAction(event -> fetchMemberName());
+        memberIdField.setOnAction(event -> fetchMemberName(memberIdField, errorMem));
 
         // Xử lý khi người dùng rời khỏi TextField
         memberIdField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) { // Chỉ thực hiện khi mất focus
-                fetchMemberName();
+                fetchMemberName(memberIdField, errorMem);
             }
         });
 
-        quantityBorrowField.setOnAction(event -> fetchQuantity());
+        quantityField.setOnAction(event -> fetchQuantity());
 
         // Xử lý khi người dùng rời khỏi TextField
-        quantityBorrowField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+        quantityField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) { // Chỉ thực hiện khi mất focus
                 fetchQuantity();
             }
         });
     }
 
-    //Xử lý documentIdField
-    private void fetchDocumentTitle() {
-        String documentIdText = documentIdField.getText();
-        // Xóa thông báo cũ (nếu có)
-        errorDoc.setText("");
-
-        if (documentIdText.isEmpty()) {
-            return;
-        }
-        // Kiểm tra nếu ID không phải số hợp lệ
-        if (!documentIdText.matches("\\d+")) {
-            errorDoc.setText("Invalid document ID! Please enter a valid number.");
-            errorDoc.setStyle("-fx-text-fill: red; -fx-font-weight: bold;"); // Tô đỏ thông báo lỗi
-            return;
-        }
-
-        int documentId = Integer.parseInt(documentIdText);
-
-        try (Connection connection = DatabaseConnection.getConnection()) {
-            // Truy vấn tên tài liệu từ bảng documents
-            String query = "SELECT title FROM documents WHERE id = ?";
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, documentId);
-
-            ResultSet resultSet = statement.executeQuery();
-
-            if (resultSet.next()) {
-                String title = resultSet.getString("title");
-                errorDoc.setText("Document Title: " + title); // Hiển thị tên tài liệu
-                errorDoc.setStyle("-fx-text-fill: green; -fx-font-weight: bold;");
-            } else {
-                errorDoc.setText("Document not found!");
-                errorDoc.setStyle("-fx-text-fill: orange; -fx-font-weight: bold;");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            errorDoc.setText("Error fetching document title.");
-            errorDoc.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
-        }
-    }
-
-    //Xử lý memberIdField
-    private void fetchMemberName() {
-        String memberIdText = memberIdField.getText();
-        // Xóa thông báo cũ (nếu có)
-        errorMem.setText("");
-
-        if (memberIdText.isEmpty()) {
-            return;
-        }
-        // Kiểm tra nếu ID không phải số hợp lệ
-        if (!memberIdText.matches("\\d+")) {
-            errorMem.setText("Invalid document ID! Please enter a valid number.");
-            errorMem.setStyle("-fx-text-fill: red; -fx-font-weight: bold;"); // Tô đỏ thông báo lỗi
-            return;
-        }
-
-        int memberId = Integer.parseInt(memberIdText);
-
-        try (Connection connection = DatabaseConnection.getConnection()) {
-            // Truy vấn tên tài liệu từ bảng documents
-            String query = "SELECT name FROM members WHERE member_id = ?";
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, memberId);
-
-            ResultSet resultSet = statement.executeQuery();
-
-            if (resultSet.next()) {
-                String name = resultSet.getString("name");
-                errorMem.setText("Member name: " + name); // Hiển thị tên tài liệu
-                errorMem.setStyle("-fx-text-fill: green; -fx-font-weight: bold;");
-            } else {
-                errorMem.setText("Member not found!");
-                errorMem.setStyle("-fx-text-fill: orange; -fx-font-weight: bold;");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            errorMem.setText("Error fetching member name.");
-            errorMem.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
-        }
-    }
-
     private void fetchQuantity() {
-        String quantity = quantityBorrowField.getText();
+        String quantity = quantityField.getText();
         // Xóa thông báo cũ (nếu có)
         errorQuantity.setText("");
 
@@ -165,25 +81,6 @@ public class BorrowController extends SidebarController {
             errorQuantity.setText("Invalid quantity! Please enter a valid number.");
             errorQuantity.setStyle("-fx-text-fill: red; -fx-font-weight: bold;"); // Tô đỏ thông báo lỗi
         }
-    }
-
-    // Phương thức kiểm tra ID hợp lệ
-    public boolean checkDocId() {
-        String input = documentIdField.getText();
-        if (!input.isEmpty()) {
-            int res = Integer.parseInt(input);
-            return res > 0;
-        }
-        return false;
-    }
-
-    public boolean checkMemId() {
-        String input = memberIdField.getText();
-        if (!input.isEmpty()) {
-            int res = Integer.parseInt(input);
-            return res > 0;
-        }
-        return false;
     }
 
     public boolean checkQuantity(int quantity, int quantityBorrow) {
@@ -224,12 +121,12 @@ public class BorrowController extends SidebarController {
         errorDoc.setText("");
         errorMem.setText("");
         errorQuantity.setText("");
-        boolean cksDocId = checkDocId();
-        boolean cksMemId = checkMemId();
+        boolean cksDocId = checkDocId(documentIdField);
+        boolean cksMemId = checkMemId(memberIdField);
         if (cksDocId && cksMemId) {
             int documentId = Integer.parseInt(documentIdField.getText());
             int memberId = Integer.parseInt(memberIdField.getText());
-            int quantityBorrow = Integer.parseInt(quantityBorrowField.getText());
+            int quantityBorrow = Integer.parseInt(quantityField.getText());
             Connection connection = null;
             PreparedStatement borrowStmt = null;
             PreparedStatement updateStmt = null;
