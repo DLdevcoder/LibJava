@@ -1,11 +1,13 @@
 package controllers;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,17 +20,7 @@ public class HeaderController {
     protected Scene scene;
 
     public void sceneBorrow(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/borrow_records/Borrow.fxml")));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            scene.getStylesheets().add(Paths.get("src/resources/stylesheet/Borrow.css").toUri().toString());
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error loading FXML file.");
-        }
+        changeScene(event, "/views/borrow_records/Borrow.fxml");
     }
 
     // Chuyển đến trang quản lý thành viên

@@ -12,7 +12,7 @@
             <graphic>
                 <ImageView fitHeight="1" fitWidth="1" preserveRatio="true">
                     <image>
-                        <Image url="@/image/member_list.png" />
+                        <Image url="@../../resources/image/member_list.png" />
                     </image>
                 </ImageView>
             </graphic>
@@ -21,7 +21,7 @@
             <graphic>
                 <ImageView fitHeight="1" fitWidth="1" preserveRatio="true">
                     <image>
-                        <Image url="@/image/add_member.png" />
+                        <Image url="@../../resources/image/add_member.png" />
                     </image>
                 </ImageView>
             </graphic>

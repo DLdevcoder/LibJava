@@ -1,50 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<HBox fx:id="navbar" spacing="20" styleClass="navbar"  xmlns="http://javafx.com/javafx"
+<?import javafx.scene.effect.Blend?>
+<HBox stylesheets="@../../resources/stylesheet/Frame.css" fx:id="navbar" spacing="20" styleClass="navbar" xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="controllers.HeaderController">
-<Button prefWidth="200" styleClass="navbar-button" text="controllers.Home">
-    <graphic>
-        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
-            <image>
-                <Image url="@/image/home.png" />
-            </image>
-        </ImageView>
-    </graphic>
-</Button>
-<Button prefWidth="200" styleClass="navbar-button" text="controllers.Document management">
-    <graphic>
-        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
-            <image>
-                <Image url="@/image/document.png" />
-            </image>
-        </ImageView>
-    </graphic>
-</Button>
-<Button onAction="#sceneBorrowRecordList" prefWidth="200" styleClass="navbar-button" text="Borrow documents">
-    <graphic>
-        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
-            <image>
-                <Image url="@/image/borrowBook.png" />
-            </image>
-        </ImageView>
-    </graphic>
-</Button>
-<Button onAction="#sceneMemberList" prefWidth="200" styleClass="navbar-button" text="Member management">
-    <graphic>
-        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
-            <image>
-                <Image url="@/image/member.png" />
-            </image>
-        </ImageView>
-    </graphic>
-</Button>
-</HBox>
+        <Button fx:id="homeButtonScene" prefHeight="36.0" prefWidth="110.0" styleClass="navbar-button" text="Home">
+            <graphic>
+                <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                    <image>
+                        <Image url="@../../resources/image/home.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            <effect>
+                <Blend />
+            </effect>
+        </Button>
+        <Region prefWidth="0.1" styleClass="separator" />
+        <Button fx:id="docButtonScene" onAction="#ScenceBookList" prefWidth="210" styleClass="navbar-button" text="Document management">
+            <graphic>
+                <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                    <image>
+                        <Image url="@../../resources/image/document.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            <effect>
+                <Blend />
+            </effect>
+        </Button>
+        <Region prefWidth="0.1" styleClass="separator" />
+        <Button fx:id="borrowButtonScene" onAction="#sceneBorrow" prefWidth="180" styleClass="navbar-button" text="Borrow documents">
+            <graphic>
+                <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                    <image>
+                        <Image url="@../../resources/image/borrowBook.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            <effect>
+                <Blend />
+            </effect>
+        </Button>
+        <Region prefWidth="0.1" styleClass="separator" />
+        <Button fx:id="memberButtonScene" onAction="#sceneMemberList" prefWidth="200" styleClass="navbar-button" text="Member management">
+            <graphic>
+                <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                    <image>
+                        <Image url="@../../resources/image/member.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            <effect>
+                <Blend />
+            </effect>
+        </Button>
+        <Region prefWidth="0.1" styleClass="separator" />
+        <Button fx:id="adminButtonScene" onAction="#sceneAdmin" prefWidth="130" styleClass="navbar-button" text="Admin Info">
+            <graphic>
+                <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                    <image>
+                        <Image url="@../../resources/image/admin.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            <effect>
+                <Blend />
+            </effect>
+        </Button>
+        <Region prefWidth="0.1" styleClass="separator" />
+        <Button fx:id="logoutButtonScene" onAction="#logout" prefHeight="36.0" prefWidth="110.0" styleClass="navbar-button" text="Logout">
+            <graphic>
+                <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+                    <image>
+                        <Image url="@../../resources/image/logout_icon.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            <effect>
+                <Blend />
+            </effect>
+        </Button>
+    </HBox>

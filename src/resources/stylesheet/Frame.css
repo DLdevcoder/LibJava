@@ -52,6 +52,8 @@
 .navbar-button:hover {
     -fx-background-color: #d2ff72; /* Màu nền khi hover */
     -fx-text-fill: black;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
 }
 
 .navbar-button:pressed {
