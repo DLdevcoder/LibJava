@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="510.0" prefWidth="224.0" styleClass="sidebar-scroll" stylesheets="@../../resources/Sidebar.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.borrow_record.SidebarController">
+<AnchorPane prefHeight="510.0" prefWidth="224.0" styleClass="sidebar-scroll" stylesheets="@../../resources/stylesheet/Sidebar.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.borrow_record.SidebarController">
         <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="414.0" prefWidth="201.0" spacing="8" styleClass="sidebar">
-            <Label styleClass="sidebar-title" text="Sidebar" />
+            <Label styleClass="sidebar-title" text="Borrow Management" />
             <Button maxWidth="Infinity" onAction="#sceneBorrow" styleClass="sidebar-button" text="Borrow Document">
             <graphic>
                 <ImageView fitHeight="27" fitWidth="27" preserveRatio="true">
                     <image>
-                        <Image url="@/borrowDoc.png" />
+                        <Image url="@../../resources/image/borrowDoc.png" />
                     </image>
                 </ImageView>
             </graphic>
@@ -25,7 +25,7 @@
                 <graphic>
                     <ImageView fitHeight="27" fitWidth="27" preserveRatio="true">
                         <image>
-                            <Image url="@/returnDoc.png" />
+                            <Image url="@../../resources/image/returnDoc.png" />
                         </image>
                     </ImageView>
                 </graphic>
@@ -35,7 +35,7 @@
                 <graphic>
                     <ImageView fitHeight="27" fitWidth="27" preserveRatio="true">
                         <image>
-                            <Image url="@/borrowList.png" />
+                            <Image url="@../../resources/image/borrowList.png" />
                         </image>
                     </ImageView>
                 </graphic>
@@ -45,7 +45,7 @@
                 <graphic>
                     <ImageView fitHeight="27" fitWidth="27" preserveRatio="true">
                         <image>
-                            <Image url="@/statistic.png" />
+                            <Image url="@../../resources/image/statistic.png" />
                         </image>
                     </ImageView>
                 </graphic>

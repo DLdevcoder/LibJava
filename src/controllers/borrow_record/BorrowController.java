@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import utils.DatabaseConnection;
 
+import java.nio.file.Paths;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -272,7 +273,6 @@ public class BorrowController extends SidebarController {
                             updateStmt.setInt(1, quantityBorrow);
                             updateStmt.setInt(2, documentId);
                             updateStmt.executeUpdate();
-
                             connection.commit();  // Lưu thay đổi sau khi tất cả lệnh SQL thành công
                             showAlert(Alert.AlertType.INFORMATION, "Success", "You have successfully borrowed the book!");
                             errorQuantity.setText("");
@@ -325,6 +325,9 @@ public class BorrowController extends SidebarController {
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(Paths.get("src/resources/stylesheet/Alert.css").toUri().toString());
+        dialogPane.getStyleClass().add("dialog-pane");
         alert.showAndWait();
     }
 

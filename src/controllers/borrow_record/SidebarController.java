@@ -18,7 +18,7 @@ public class SidebarController extends HeaderController {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/borrow_records/DataStatistics.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
-            scene.getStylesheets().add(Paths.get("src/resources/DataStatistics.css").toUri().toString());
+            scene.getStylesheets().add(Paths.get("src/resources/stylesheet/DataStatistics.css").toUri().toString());
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -32,7 +32,7 @@ public class SidebarController extends HeaderController {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/borrow_records/BorrowRecordList.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
-            scene.getStylesheets().add(Paths.get("src/resources/BorrowList.css").toUri().toString());
+            scene.getStylesheets().add(Paths.get("src/resources/stylesheet/BorrowList.css").toUri().toString());
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -46,7 +46,7 @@ public class SidebarController extends HeaderController {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/borrow_records/Return.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
-            scene.getStylesheets().add(Paths.get("src/resources/Borrow.css").toUri().toString());
+            scene.getStylesheets().add(Paths.get("src/resources/stylesheet/Borrow.css").toUri().toString());
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {

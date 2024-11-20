@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@../../resources/Borrow.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.borrow_record.ReturnController">
+<BorderPane stylesheets="@../../resources/stylesheet/Borrow.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.borrow_record.ReturnController">
     <top>
         <fx:include source="../frame/Header.fxml" />
     </top>

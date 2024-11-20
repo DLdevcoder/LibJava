@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane stylesheets="@../../resources/Frame.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.admin.AdminController">
+<BorderPane stylesheets="@../../resources/stylesheet/Frame.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.admin.AdminController">
 
     <top>
         <VBox>
@@ -19,7 +19,7 @@
     <center>
         <AnchorPane prefHeight="300.0" prefWidth="606.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
             <children>
-                <VBox alignment="CENTER" spacing="20" stylesheets="@../../resources/AddMember.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
+                <VBox alignment="CENTER" spacing="20" stylesheets="@../../resources/stylesheet/AddMember.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
                     <!-- Tiêu đề -->
                     <Label style="-fx-font-size: 30; -fx-font-weight: bold;" text="ADMIN INFOMATION" />
 

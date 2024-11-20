@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane stylesheets="@../../resources/Frame.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.member.MemberController">
+<BorderPane stylesheets="@../../resources/stylesheet/Frame.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.member.MemberController">
 
     <top>
         <VBox>
@@ -21,7 +21,7 @@
         <Label prefHeight="10" prefWidth="30" />
     </right>
     <center>
-      <AnchorPane BorderPane.alignment="CENTER" stylesheets="@../../resources/MemberList.css">
+      <AnchorPane BorderPane.alignment="CENTER" stylesheets="@../../resources/stylesheet/MemberList.css">
          <children>
              <TableView fx:id="memberTableView" AnchorPane.topAnchor="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                   <columns>

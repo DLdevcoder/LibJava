@@ -22,7 +22,7 @@ public class HeaderController {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/borrow_records/Borrow.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
-            scene.getStylesheets().add(Paths.get("src/resources/Borrow.css").toUri().toString());
+            scene.getStylesheets().add(Paths.get("src/resources/stylesheet/Borrow.css").toUri().toString());
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -41,7 +41,7 @@ public class HeaderController {
             Parent root = FXMLLoader.load(Objects.requireNonNull((getClass().getResource("/views/books/BookList.fxml"))));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
-            scene.getStylesheets().add(Paths.get("src/resources/Frame.css").toUri().toString());
+            scene.getStylesheets().add(Paths.get("src/resources/stylesheet/Frame.css").toUri().toString());
 
             stage.setScene(scene);
             stage.show();
