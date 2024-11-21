@@ -34,9 +34,6 @@ public class Theses extends Document{
         this.institution = institution;
     }
 
-    @Override
-    public String getInfo() {
-        return "";
-    }
+
 
 }

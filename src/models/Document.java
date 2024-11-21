@@ -34,6 +34,12 @@ public abstract class Document {
         this.description = description;
     }
 
+    public Document(int id, String title) {
+        this.id = id;
+        this.title = title;
+
+    }
+
     public void setImageLink(ImageView imageLink) {
         this.ImageLink = imageLink;
     }
@@ -100,6 +106,5 @@ public abstract class Document {
         this.quantity = quantity;
     }
 
-    public abstract String getInfo();
 
 }

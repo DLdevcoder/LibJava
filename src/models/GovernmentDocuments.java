@@ -21,8 +21,5 @@ public class GovernmentDocuments extends Document{
         this.documentType = documentType;
     }
 
-    @Override
-    public String getInfo() {
-        return "";
-    }
+
 }

@@ -10,7 +10,7 @@ import javafx.scene.image.ImageView;
 public class Book extends Document {
     protected String publisher;
     protected String isbn;
-    protected int categoryId;
+
 
     protected String googleId;
     protected String thumbnail;
@@ -25,14 +25,7 @@ public class Book extends Document {
 
     }
 
-    public Book(int bookId, String title, String author, String publisher, String year, String isbn, int quantity, int categoryId, String googleId, String description, String thumbnail, String language) {
-        super(bookId, title, author, language, year, description, quantity);
-        this.publisher = publisher;
-        this.isbn = isbn;
-        this.categoryId = categoryId;
-        this.googleId = googleId;
-        this.thumbnail = thumbnail;
-    }
+
 
     public Book(String title, String publisher, String year, String isbn, int quantity, String description, String thumbnail, String language) {
         this.setTitle(title);
@@ -79,6 +72,10 @@ public class Book extends Document {
 
     }
 
+    public Book(int id, String title) {
+       super(id,title);
+
+    }
 
 
     public String getPublisher() {
@@ -97,18 +94,8 @@ public class Book extends Document {
         this.isbn = isbn;
     }
 
-    @Override
-    public String getInfo() {
-        return "";
-    }
 
-    public int getCategoryId() {
-        return this.categoryId;
-    }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
 
     public String getGoogleId() {
         return this.googleId;

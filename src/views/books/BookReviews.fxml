@@ -12,10 +12,13 @@
         <fx:include source="SideBarDoc.fxml" />
     </left>
    <center>
-      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="ReviewTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="BookId" prefWidth="116.0000137090683" text="Book ID" />
+            <TableColumn fx:id="BookTitle" prefWidth="148.79999542236328" text="Title" />
+          <TableColumn fx:id="BookReviews" prefWidth="190.39996337890625" text="Reviews" />
+            <TableColumn fx:id="ReviewDate" prefWidth="154.40005493164062" text="Date" />
+            <TableColumn fx:id="BookReviewer" prefWidth="143.2000732421875" text="Reviewer" />
         </columns>
       </TableView>
    </center>
