@@ -1,10 +1,12 @@
 package controllers.borrow_record;
 
-import controllers.HeaderController;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import utils.DatabaseConnection;
 
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -103,5 +105,17 @@ public class BorrowAndReturn extends SidebarController {
             return res > 0;
         }
         return false;
+    }
+
+    // Hàm tiện ích để hiển thị các thông báo
+    protected void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(Paths.get("src/resources/stylesheet/Alert.css").toUri().toString());
+        dialogPane.getStyleClass().add("dialog-pane");
+        alert.showAndWait();
     }
 }

@@ -7,9 +7,7 @@ import utils.DatabaseConnection;
 import java.nio.file.Paths;
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
-import java.util.Locale;
 
 
 public class BorrowController extends BorrowAndReturn {
@@ -144,8 +142,8 @@ public class BorrowController extends BorrowAndReturn {
 
                 if (resultSet.next()) {
                     // Kiểm tra xem sách có tồn tại và có sẵn không
-                    String checkBookQuery = "SELECT quantity FROM Books WHERE id = ?";
-                    checkStmt = connection.prepareStatement(checkBookQuery);
+                    String checkDocQuery = "SELECT quantity FROM documents WHERE id = ?";
+                    checkStmt = connection.prepareStatement(checkDocQuery);
                     checkStmt.setInt(1, documentId);
                     resultSet = checkStmt.executeQuery();
 
@@ -165,7 +163,7 @@ public class BorrowController extends BorrowAndReturn {
                             borrowStmt.executeUpdate();
 
                             // Cập nhật lại số lượng sách trong bảng Books
-                            String updateQuery = "UPDATE Books SET quantity = quantity - ? WHERE id = ?";
+                            String updateQuery = "UPDATE documents SET quantity = quantity - ? WHERE id = ?";
                             updateStmt = connection.prepareStatement(updateQuery);
                             updateStmt.setInt(1, quantityBorrow);
                             updateStmt.setInt(2, documentId);
@@ -214,18 +212,6 @@ public class BorrowController extends BorrowAndReturn {
                 }
             }
         }
-    }
-
-    // Hàm tiện ích để hiển thị các thông báo
-    private void showAlert(Alert.AlertType alertType, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(Paths.get("src/resources/stylesheet/Alert.css").toUri().toString());
-        dialogPane.getStyleClass().add("dialog-pane");
-        alert.showAndWait();
     }
 
 }

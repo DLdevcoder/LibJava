@@ -191,17 +191,4 @@ public class ReturnController extends BorrowAndReturn {
         }
     }
 
-
-    // Hàm tiện ích để hiển thị các thông báo
-    private void showAlert(Alert.AlertType alertType, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(Paths.get("src/resources/Alert.css").toUri().toString());
-        dialogPane.getStyleClass().add("dialog-pane");
-        alert.showAndWait();
-    }
-
 }
