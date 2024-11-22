@@ -10,14 +10,20 @@ public class Review  {
     protected Member member;
 
 
-    public Review( int book_id,String reviewText, Date reviewDate, double rating, int memberid ) {
-        this.book.setId(book_id);
+    public Review( Book book,String reviewText, Date reviewDate, double rating, Member member ) {
+        this.book = book;
         this.ReviewText = reviewText;
         this.ReviewDate = reviewDate;
         this.rating = rating;
-        this.member.setMemberId(memberid);
+        this.member = member;
 
 
+    }
+    public Review(Book book,String reviewText, Date reviewDate,Member member) {
+        this.book = book;
+        this.ReviewText = reviewText;
+        this.ReviewDate = reviewDate;
+        this.member = member;
     }
 
 
@@ -41,19 +47,28 @@ public class Review  {
     public void setRating(double rating) {
         this.rating = rating;
     }
-    public int getMemberid() {
-        return member.getMemberId();
-    }
-    public void setMemberid(int memberid) {
-        member.setMemberId(memberid);
-    }
-    public int getBookid() {
-        return book.getId();
-    }
-    public void setBookid(int bookid) {
-        book.setId(bookid);
-    }
 
+    public Member getMember() {
+        return member;
+    }
+    public void setMember(Member member) {
+        this.member = member;
+    }
+    public Book getBook() {
+        return book;
+    }
+    public void setBook(Book book) {
+        this.book = book;
+    }
+    public int getBookId() {
+        return book != null ? book.getId() : null; // Trả về id từ đối tượng Book
+    }
+    public String getBookTitle() {
+        return book != null ? book.getTitle() : null;
+    }
+    public String getReviewerName() {
+        return member != null ? member.getName() : null;
+    }
 
 
     }

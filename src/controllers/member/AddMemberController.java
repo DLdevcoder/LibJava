@@ -3,6 +3,7 @@ package controllers.member;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import models.Admin;
+import models.Member;
 
 public class AddMemberController extends SidebarMemberController {
     @FXML
@@ -30,6 +31,7 @@ public class AddMemberController extends SidebarMemberController {
             refreshForm();
             return;
         }
+        Member member = new Member(name, email, phone, address, password);
 
         Admin admin = new Admin();
         try {

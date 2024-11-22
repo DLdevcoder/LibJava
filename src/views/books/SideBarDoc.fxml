@@ -12,8 +12,7 @@
         <Button maxWidth="Infinity" onAction="#ScenceBookList" styleClass="sidebar-button" text="BookList" />
         <Button maxWidth="Infinity" onAction="#ScenceAddBook" styleClass="sidebar-button" text="Add Book" />
         <Button maxWidth="Infinity" onAction="#ScenceRemoveBook" styleClass="sidebar-button" text="Delete Book" />
-        <Button maxWidth="Infinity"  prefHeight="26.0" prefWidth="229.0" styleClass="sidebar-button" text="Review" />
-        <Button maxWidth="Infinity" styleClass="sidebar-button" text="Search Books" />
+        <Button maxWidth="Infinity" onAction="#ReviewScence" prefHeight="26.0" prefWidth="229.0" styleClass="sidebar-button" text="Review" />
       <Button mnemonicParsing="false" onAction="#AddReviewScence" prefHeight="26.0" prefWidth="210.0" styleClass="sidebar-button" text="Add Review" />
     </VBox>
     <Label layoutX="173.0" layoutY="35.0" prefHeight="18.0" prefWidth="12.0" />

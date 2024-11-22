@@ -16,9 +16,6 @@ public class DeleteBookController extends HeaderController {
 
     @FXML
     private TextField RemoveBook_TextField;
-
-
-
     public void HandleRemoveBookButton(ActionEvent event) {
         String id = RemoveBook_TextField.getText();
         if (id.isEmpty()) {
