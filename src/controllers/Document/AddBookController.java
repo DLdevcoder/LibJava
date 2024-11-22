@@ -4,7 +4,9 @@ import controllers.HeaderController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import models.Admin;
 import models.Book;
+import models.LibararyManager;
 import utils.DatabaseConnection;
 import utils.GoogleBooksAPI;
 
@@ -28,9 +30,14 @@ public class AddBookController extends HeaderController {
          String imageLink = ImageLink_TextField.getText().trim();
           if(!isbn.isEmpty()){
               Book book = googleBooksAPI.getBookByISBN(isbn, imageLink);
+              LibararyManager libararyManager = LibararyManager.getInstance();
+              libararyManager.addBook(book);
+
+
               if(book != null){
                showAlert("Succcessfully","Book added successfully");
-               saveBookToDatabase(book);
+                  Admin admin  = new Admin();
+                  admin.saveBookToDatabase(book);
 
 
               } else{
@@ -41,25 +48,7 @@ public class AddBookController extends HeaderController {
 
     }
 
-    private void saveBookToDatabase(Book book) {
-        String sql = "INSERT INTO books (title, author, publication_year, publisher, language, preview_link) VALUES (?, ?, ?, ?, ?, ?)";
-        DatabaseConnection databaseConnection = new DatabaseConnection();
 
-        try( Connection connection = DatabaseConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql) ){
-           preparedStatement.setString(1, book.getTitle());
-           preparedStatement.setString(2, book.getAuthor());
-           preparedStatement.setString(3, book.getPublicationYear());
-           preparedStatement.setString(4, book.getPublisher());
-           preparedStatement.setString(5, book.getLanguage());
-           preparedStatement.setString(6, book.getImageLink().getImage().getUrl());
-
-           preparedStatement.executeUpdate();
-
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-
-        }
     }
 
 
