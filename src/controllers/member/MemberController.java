@@ -1,9 +1,6 @@
 package controllers.member;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
@@ -15,6 +12,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import models.Admin;
 
 public class MemberController extends SidebarMemberController {
+    @FXML
+    private TextField nameSearchField;
     @FXML
     private TableView<Member> memberTableView; // TableView hiển thị danh sách thành viên
     @FXML
@@ -156,6 +155,15 @@ public class MemberController extends SidebarMemberController {
             }
         };
     }
+
+    // Hàm xử lý khi nhấn nút "Tìm kiếm"
+    @FXML
+    private void handleSearch() {
+        String name = nameSearchField.getText();
+        Admin admin = new Admin();
+        memberList.setAll(admin.findMemberbyName(name));
+    }
+
 }
 
 

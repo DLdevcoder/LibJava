@@ -253,6 +253,50 @@ public class Admin extends Person {
         }
     }
 
+    public Member findMember(int id) {
+        String query = "SELECT * FROM members WHERE member_id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String name = rs.getString("name");
+                String address = rs.getString("address");
+                String phone = rs.getString("phone_number");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                String membershipDate = rs.getString("membership_date");
+                return new Member(id, name, address, phone, email, membershipDate, password);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Member> findMemberbyName(String nameToFind) {
+        String query = "SELECT * FROM members WHERE name LIKE ?";
+        List<Member> members = new ArrayList<>();
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, "%" + nameToFind + "%");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int memberId = rs.getInt("member_id");
+                String name = rs.getString("name");
+                String address = rs.getString("address");
+                String phone = rs.getString("phone_number");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                String membershipDate = rs.getString("membership_date");
+                Member member = new Member(memberId, name, address, phone, email, membershipDate, password);
+                members.add(member);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return members;
+    }
     // login
     public boolean checkLogin(String email, String password) {
         String query = "SELECT * FROM admin WHERE email = ? AND password = ?";

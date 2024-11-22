@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ComboBox?>
+<BorderPane stylesheets="@../../resources/stylesheet/CommonMember.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.member.StatisticMemberController">
+
+    <top>
+        <VBox spacing="10">
+            <!-- Header -->
+            <fx:include source="../frame/Header.fxml"/>
+        </VBox>
+    </top>
+
+    <left>
+        <fx:include source="Sidebar.fxml"/>
+    </left>
+
+    <center>
+        <VBox>
+            <HBox spacing="10" alignment="CENTER" style="-fx-padding: 10px; -fx-alignment: center;">
+                <Label text="Select year:" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+                <ComboBox fx:id="yearSelector" promptText="Select year" style="-fx-font-size: 14px; -fx-pref-width: 150px; -fx-background-color: #f0f0f0; -fx-border-color: #b0b0b0; -fx-border-radius: 5px; -fx-padding: 5px;" />
+            </HBox>
+
+            <BarChart fx:id="barChart" prefHeight="400" prefWidth="400">
+                <xAxis>
+                    <CategoryAxis fx:id="xAxis"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis fx:id="yAxis"/>
+                </yAxis>
+            </BarChart>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-padding: 10; -fx-background-color: #f2f2f2;">
+            <Label text="© 2024 Your Application Name. All Rights Reserved." style="-fx-font-size: 12px;" />
+        </HBox>
+    </bottom>
+
+</BorderPane>
