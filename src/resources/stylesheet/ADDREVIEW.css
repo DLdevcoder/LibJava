@@ -1,0 +1,37 @@
+#Vbox_AddReview{
+    -fx-background-color: #e8f5e9;
+    -fx-padding: 20;
+    -fx-border-color: #81c784;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+#AddReview_Label{
+    -fx-text-fill: #388e3c;
+    -fx-font-size: 30;
+    -fx-font-weight: bold;
+}
+
+.AddReview_TextField{
+    -fx-prompt-text-fill: #66bb6a;
+    -fx-text-fill: #388e3c;
+    -fx-background-color: #c8e6c9;
+    -fx-border-color: #66bb6a;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 18;
+}
+
+#AddReview_Button{
+    -fx-background-color: #66bb6a;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-font-size: 20;
+}
+
+#AddReview_Button:hover {
+    -fx-background-color: #388e3c;
+
+}

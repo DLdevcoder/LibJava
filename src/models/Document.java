@@ -8,30 +8,29 @@ public abstract class Document {
     protected String author;
     protected String language;
     protected String publicationYear;
-    protected int quantity;
-    protected String description;
+
+
     protected ImageView ImageLink;
 
 
 
     protected Document(int id, String title, String author, String language, String publicationYear, String description, int quantity) {
-        this.quantity = quantity;
+
         this.id = id;
         this.title = title;
         this.author = author;
         this.language = language;
         this.publicationYear = publicationYear;
-        this.description = description;
+
     }
 
 
     protected Document(String title, String author, String language, String publicationYear, String description, int quantity) {
-        this.quantity = quantity;
+
         this.title = title;
         this.author = author;
         this.language = language;
         this.publicationYear = publicationYear;
-        this.description = description;
     }
 
     public Document(int id, String title) {
@@ -90,21 +89,9 @@ public abstract class Document {
         this.author = author;
     }
 
-    public String getDescription() {
-        return this.description;
-    }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
-    public int getQuantity() {
-        return quantity;
-    }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 
 
 }

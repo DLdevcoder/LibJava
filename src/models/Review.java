@@ -1,53 +1,63 @@
 package models;
 
+import java.util.Date;
+
 public class Review  {
-    protected int id;
-    protected String title;
-    protected String ReviewerName;
+    protected Book book;
     protected String ReviewText;
-    protected String ReviewDate;
+    protected Date ReviewDate;
+    protected double rating;
+    protected Member member;
 
 
-    public Review(int id,String title, String reviewText, String reviewDate, String reviewName) {
-        this.id = id;
-        this.title = title;
-        this.ReviewerName = reviewName;
+    public Review( int book_id,String reviewText, Date reviewDate, double rating, int memberid ) {
+        this.book.setId(book_id);
         this.ReviewText = reviewText;
         this.ReviewDate = reviewDate;
+        this.rating = rating;
+        this.member.setMemberId(memberid);
 
 
     }
 
-    public String getReviewerName() {
-        return ReviewerName;
-    }
+
     public String getReviewText() {
         return ReviewText;
     }
 
-    public void setReviewerName(String reviewerName) {
-        ReviewerName = reviewerName;
-    }
+
     public void setReviewText(String reviewText) {
         ReviewText = reviewText;
     }
-    public String getReviewDate() {
-        return ReviewDate;
+    public java.sql.Date getReviewDate() {
+        return (java.sql.Date) ReviewDate;
     }
-    public void setReviewDate(String reviewDate) {
+    public void setReviewDate(Date reviewDate) {
         ReviewDate = reviewDate;
     }
-    public int getId() {
-        return id;
+    public double getRating() {
+        return rating;
     }
-    public void setId(int id) {
-        this.id = id;
+    public void setRating(double rating) {
+        this.rating = rating;
     }
-    public String getTitle() {
-        return title;
+    public int getMemberid() {
+        return member.getMemberId();
     }
-    public void setTitle(String title) {
-        this.title = title;
+    public void setMemberid(int memberid) {
+        member.setMemberId(memberid);
+    }
+    public int getBookid() {
+        return book.getId();
+    }
+    public void setBookid(int bookid) {
+        book.setId(bookid);
     }
 
-}
+
+
+    }
+
+
+
+

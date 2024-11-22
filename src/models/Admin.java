@@ -271,4 +271,46 @@ public class Admin extends Person {
     }
     // book
 
+    public void saveBookToDatabase(Book book) {
+        String sql = "INSERT INTO books (title, author, publication_year, publisher, language, preview_link) VALUES (?, ?, ?, ?, ?, ?)";
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+
+        try( Connection connection = DatabaseConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql) ){
+            preparedStatement.setString(1, book.getTitle());
+            preparedStatement.setString(2, book.getAuthor());
+            preparedStatement.setString(3, book.getPublicationYear());
+            preparedStatement.setString(4, book.getPublisher());
+            preparedStatement.setString(5, book.getLanguage());
+            preparedStatement.setString(6, book.getImageLink().getImage().getUrl());
+
+            preparedStatement.executeUpdate();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void deleteBook(String id) {
+        String sql = "DELETE FROM books WHERE id = ?";
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+
+        try (Connection connection = databaseConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, id);
+            int affectRows = preparedStatement.executeUpdate();
+            if (affectRows > 0) {
+                System.out.println("Book deleted successfully");
+            } else {
+                System.out.println("Book could not be deleted");
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
 }

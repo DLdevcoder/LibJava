@@ -57,10 +57,10 @@ public class DocumentSideBarController extends HeaderController {
 
     }
 
-    public void ScenceReview(ActionEvent event) {
+    public void AddReviewScence(ActionEvent event) {
         {
             try{
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/BookReviewEnter.fxml")));
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/AddReviews.fxml")));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);

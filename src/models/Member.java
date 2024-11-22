@@ -3,6 +3,8 @@ public class Member extends Person {
     private int memberId; // id tự tăng nên k cần setter
     private String membershipDate; // tu dong lay ngay hien tai nen k can setter
 
+
+
     public Member() {
     }
 
@@ -11,6 +13,10 @@ public class Member extends Person {
         this.memberId = memberId;
         this.membershipDate = membershipDate;
 
+    }
+
+    public void setMemberId(int memberId) {
+        this.memberId = memberId;
     }
 
     public int getMemberId() {

@@ -6,14 +6,19 @@
 package models;
 import javafx.scene.image.ImageView;
 
+import java.util.ArrayList;
+
 
 public class Book extends Document {
     protected String publisher;
     protected String isbn;
+    protected static final ArrayList<Book> books = new ArrayList<>();
 
 
-    protected String googleId;
-    protected String thumbnail;
+
+
+
+
 
     public Book(String title, String author, String year, String publisher, String language, ImageView ImageLink) {
         this.title = title;
@@ -32,9 +37,8 @@ public class Book extends Document {
         this.publisher = publisher;
         this.setPublicationYear(year);
         this.isbn = isbn;
-        this.quantity = quantity;
-        this.setDescription(description);
-        this.thumbnail = thumbnail;
+
+
         this.setLanguage(language);
     }
 
@@ -44,10 +48,9 @@ public class Book extends Document {
         this.publisher = publisher;
         this.setPublicationYear(year);
         this.isbn = isbn;
-        this.setDescription(description);
-        this.quantity = quantity;
+
         this.setPublicationYear(publicationYear);
-        this.thumbnail = thumbnail;
+
         this.setLanguage(language);
 
     }
@@ -97,21 +100,7 @@ public class Book extends Document {
 
 
 
-    public String getGoogleId() {
-        return this.googleId;
-    }
 
-    public void setGoogleId(String googleId) {
-        this.googleId = googleId;
-    }
-
-    public String getThumbnail() {
-        return this.thumbnail;
-    }
-
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
-    }
 
 }
 
