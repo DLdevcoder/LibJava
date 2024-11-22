@@ -11,3 +11,53 @@
     -fx-text-fill: black;
     -fx-background-radius: 15;
 }
+
+/* Styling for the search section */
+GridPane {
+    -fx-padding: 20px;
+    -fx-background-color: #ffffff; /* White background */
+    -fx-border-color: #81c784; /* Green border */
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+
+/* TextField styles */
+TextField#idField {
+    -fx-background-color: #e8f5e9; /* Light green background */
+    -fx-border-color: #43a047; /* Green border */
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #2e7d32; /* Dark green text */
+}
+
+/* Button styles */
+Button#searchButton {
+    -fx-background-color: #4caf50; /* Green button */
+    -fx-text-fill: #ffffff; /* White text */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+/* Button hover effect */
+Button#searchButton:hover {
+    -fx-background-color: #388e3c; /* Darker green on hover */
+}
+
+/* Labels for result */
+Label {
+    -fx-text-fill: #2e7d32; /* Dark green text */
+}
+
+Label#nameLabel, Label#emailLabel {
+    -fx-font-style: italic;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4caf50; /* Brighter green for results */
+}
