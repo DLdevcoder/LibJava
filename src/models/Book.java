@@ -6,13 +6,14 @@
 package models;
 import javafx.scene.image.ImageView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Book extends Document {
+public class Book extends Document  {
     protected String publisher;
     protected String isbn;
-    protected static final ArrayList<Book> books = new ArrayList<>();
+
 
 
 
@@ -78,6 +79,10 @@ public class Book extends Document {
     public Book(int id, String title) {
        super(id,title);
 
+    }
+
+    public Book(int i) {
+        this.setId(i);
     }
 
 

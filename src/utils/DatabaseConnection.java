@@ -1,8 +1,6 @@
 package utils;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DatabaseConnection {
     private static final String URL = "jdbc:mysql://localhost:3306/LibraryManagement";
@@ -32,4 +30,33 @@ public class DatabaseConnection {
 
         return connection;
     }
+
+    private static boolean checkExists(String query, int id) throws SQLException {
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        try (Connection connection = databaseConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt(1) > 0;
+                }
+            }
+
+        }
+        return false;
+
+
+    }
+
+    public static boolean checkBookExists(int bookId) throws SQLException {
+        String query = "SELECT COUNT(*) FROM books WHERE id = ?";
+        return checkExists(query, bookId);
+
+    }
+
+    public static boolean checkMemberExists(int memberId) throws SQLException {
+        String query = "SELECT COUNT(*) FROM members WHERE member_id = ?";
+        return checkExists(query, memberId);
+
+    }
 }
+

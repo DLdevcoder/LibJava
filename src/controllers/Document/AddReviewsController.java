@@ -3,14 +3,13 @@ package controllers.Document;
 import controllers.HeaderController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import models.Book;
+import models.Member;
 import models.Review;
 import utils.DatabaseConnection;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -37,8 +36,16 @@ public class AddReviewsController extends HeaderController {
         String memberId = AddMemberId_TextField.getText();
 
         if(!bookId.isEmpty() && !comment.isEmpty() && !rating.isEmpty() && !memberId.isEmpty()){
-            Review review = new Review(Integer.parseInt(bookId), comment, Date.valueOf(now.toLocalDate()), Double.parseDouble(rating), Integer.parseInt(memberId));
-            saveReviewToDatabase(review);
+            if(!checkBookExists(Integer.parseInt(bookId)) || !checkMemberExists(Integer.parseInt(memberId))){
+                showAlert("Error","Book or member does not exist");
+                return;
+            }
+            Book book = new Book(Integer.parseInt(bookId));
+            Member member = new Member(Integer.parseInt(memberId));
+            Review review = new Review(book, comment, Date.valueOf(now.toLocalDate()), Double.parseDouble(rating), member);
+
+            member.saveReviewToDatabase(review);
+
             showAlert("Success", "Successfully Added Review");
 
 
@@ -52,23 +59,38 @@ public class AddReviewsController extends HeaderController {
 
     }
 
-    private void saveReviewToDatabase(Review review) {
-        String sql = "INSERT INTO reviews(book_id, review_date, comment, rating, member_id) VALUES(?,?,?,?)";
+    private static boolean checkExists(String query, int id) throws SQLException {
         DatabaseConnection databaseConnection = new DatabaseConnection();
+        try (Connection connection = databaseConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt(1) > 0;
+                }
+            }
 
-        try(Connection connection = databaseConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, review.getBookid()); // book_id
-            preparedStatement.setDate(2, review.getReviewDate()); // review_date (java.sql.Date)
-            preparedStatement.setString(3, review.getReviewText()); // comment
-            preparedStatement.setDouble(4, review.getRating()); // rating
-            preparedStatement.setInt(5, review.getMemberid()); // member_id
-
-
-            preparedStatement.executeUpdate();
-
-        } catch(SQLException e) {
-            e.printStackTrace();
         }
+        return false;
+
+
+    }
+
+    public static boolean checkBookExists(int bookId) throws SQLException {
+        String query = "SELECT COUNT(*) FROM books WHERE id = ?";
+        return checkExists(query, bookId);
+
+    }
+
+    public static boolean checkMemberExists(int memberId) throws SQLException {
+        String query = "SELECT COUNT(*) FROM members WHERE member_id = ?";
+        return checkExists(query, memberId);
+
+    }
+
+
+
+
+
 
 
 
@@ -77,4 +99,4 @@ public class AddReviewsController extends HeaderController {
 
 
 
-}
+

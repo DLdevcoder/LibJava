@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="593.0" prefWidth="1002.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.BookReviewController">
+<BorderPane prefHeight="630.0" prefWidth="1301.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.BookReviewController">
     <top>
         <fx:include source="../frame/Header.fxml" />
     </top>
@@ -12,13 +12,13 @@
         <fx:include source="SideBarDoc.fxml" />
     </left>
    <center>
-      <TableView fx:id="ReviewTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="ReviewTable" minWidth="-Infinity" prefHeight="510.0" prefWidth="1301.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="BookId" prefWidth="116.0000137090683" text="Book ID" />
-            <TableColumn fx:id="BookTitle" prefWidth="148.79999542236328" text="Title" />
-          <TableColumn fx:id="BookReviews" prefWidth="190.39996337890625" text="Reviews" />
-            <TableColumn fx:id="ReviewDate" prefWidth="154.40005493164062" text="Date" />
-            <TableColumn fx:id="BookReviewer" prefWidth="143.2000732421875" text="Reviewer" />
+          <TableColumn fx:id="BookId" prefWidth="70.39996182918549" resizable="false" text="Book ID" />
+            <TableColumn fx:id="BookTitle" prefWidth="311.2000198364258" resizable="false" text="Title" />
+          <TableColumn fx:id="BookReviews" prefWidth="468.8000183105469" resizable="false" text="Reviews" />
+            <TableColumn fx:id="ReviewDate" prefWidth="196.0" resizable="false" text="Date" />
+            <TableColumn fx:id="BookReviewer" prefWidth="256.7999267578125" resizable="false" text="Reviewer" />
         </columns>
       </TableView>
    </center>

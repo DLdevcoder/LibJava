@@ -71,5 +71,17 @@ public class DocumentSideBarController extends HeaderController {
             }
         }
     }
+    public void ReviewScence(ActionEvent event) {
+        try{
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/BookReviews.fxml")));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 }
 
