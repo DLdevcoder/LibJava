@@ -62,19 +62,14 @@
     -fx-padding: 5;
 }
 
-/* BorderPane (khung tổng thể) tinh chỉnh */
-.border-pane {
-    -fx-background-color: #ffffff; /* Nền trắng */
-    -fx-padding: 10;
-}
-
 /* Button Style */
 .button {
     -fx-background-color: #15b392; /* Màu xanh chính của ứng dụng */
     -fx-text-fill: white;
-    -fx-padding: 8 15;
+    -fx-padding: 10;
     -fx-border-radius: 5;
     -fx-background-radius: 5;
+    -fx-cursor: hand;
 }
 
 .button:hover {
@@ -99,15 +94,80 @@
     -fx-effect: dropshadow(gaussian, #d2ff72 , 8, 0.2, 0, 0); /* Hiệu ứng bóng mờ khi được chọn */
 }
 
+/* Định dạng cho toàn bộ DatePicker */
+.date-picker {
+    -fx-border-color: #15b392;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 2px;
+}
+
+.date-picker:hover {
+    -fx-border-color: #54c392; /* Viền đậm hơn khi di chuột */
+    -fx-cursor: hand;
+}
+.date-picker:focused {
+    -fx-border-color: #73ec8b ; /* Viền đậm khi được chọn */
+}
+
+/* Nút lịch */
 .date-picker .arrow-button {
     -fx-background-color: #d2ff72;
+    -fx-background-radius: 20px;
+    -fx-padding: 0 2;
+    -fx-cursor: hand;
+}
+
+.date-picker .arrow-button:hover {
+    -fx-background-color: #73ec8b ; /* Màu khi di chuột vào */
+}
+
+.date-picker .arrow-button:pressed {
+    -fx-background-color: #54c392 ; /* Màu khi nhấn vào */
+}
+
+/* Nội dung của lịch */
+.date-picker .day-cell {
+    -fx-cursor: hand;
+}
+
+.date-picker .cell:hover {
+  -fx-background-color: #73ec8b;
+}
+
+.date-picker .cell:focused {
+  -fx-background-color: #54c392;
+}
+
+/* Thanh chưa tháng và năm của lịch*/
+
+.date-picker-popup .month-year-pane {
+  -fx-background-color: #54c392;
+}
+
+.date-picker-popup .month-year-pane .label {
+  -fx-text-fill: white;
+}
+
+/* 2 mũi tên trái phải*/
+
+.date-picker-popup .spinner .button .left-arrow,
+.date-picker-popup .spinner .button .right-arrow {
+    -fx-background-color: white;
+    -fx-cursor: hand;
+}
+
+.date-picker-popup .spinner .button .left-arrow:hover,
+.date-picker-popup .spinner .button .right-arrow:hover {
+  -fx-background-color: #73ec8b;
 }
 
 .buttonList {
     -fx-font-weight: bold;
     -fx-text-fill: #ffffff;
     -fx-background-color: #15b392; /* Màu nền mặc định */
-    -fx-background-radius: 20;
+    -fx-background-radius: 30;
+    -fx-padding: 0;
     -fx-cursor: hand;
 }
 

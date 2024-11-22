@@ -36,7 +36,7 @@
                            <VBox alignment="CENTER" prefWidth="534.0" styleClass="chart-box">
                                <children>
                                    <Label styleClass="chart-title" text="Top Member Borrow Documents" />
-                                   <PieChart fx:id="pieChart1" prefHeight="450.0" prefWidth="505.0" styleClass="custom-piechart" />
+                                   <PieChart fx:id="memberChart" prefHeight="450.0" prefWidth="505.0" styleClass="custom-piechart" />
                                </children>
                            </VBox>
 
@@ -44,7 +44,7 @@
                            <VBox alignment="CENTER" styleClass="chart-box">
                                <children>
                                    <Label styleClass="chart-title" text="Most Borrow Documents" />
-                                   <PieChart fx:id="pieChart2" prefHeight="450.0" prefWidth="505.0" styleClass="custom-piechart" />
+                                   <PieChart fx:id="docChart" prefHeight="450.0" prefWidth="505.0" styleClass="custom-piechart" />
                                </children>
                            </VBox>
                        </HBox>

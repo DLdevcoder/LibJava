@@ -1,9 +1,10 @@
-
 package controllers.borrow_record;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
@@ -79,38 +80,47 @@ public class BorrowRecordController extends SidebarController {
         tableView.setItems(sortedRecords);
     }
 
-    private void loadBorrowRecords() throws SQLException {
-        String query = "SELECT * FROM Borrow_Records";
-        Connection conn = DatabaseConnection.getConnection();
-        PreparedStatement stmt = conn.prepareStatement(query);
-        ResultSet rs = stmt.executeQuery();
-        try {
-            borrowRecordList.clear();
-            while (rs.next()) {
-                BorrowRecord record = new BorrowRecord(
-                        rs.getInt("record_id"),
-                        rs.getInt("document_id"),
-                        rs.getInt("member_id"),
-                        rs.getDate("borrow_date"),
-                        rs.getDate("return_date"),
-                        rs.getDate("due_date"),
-                        rs.getString("status"),
-                        rs.getInt("quantity")
-                );
-                borrowRecordList.add(record);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) {
+    private void loadBorrowRecords() {
+        Task<ObservableList<BorrowRecord>> borrowListTask = new Task<>() {
+            @Override
+            protected ObservableList<BorrowRecord> call() throws SQLException {
+                ObservableList<BorrowRecord> tempList = FXCollections.observableArrayList();
+                String query = "SELECT * FROM Borrow_Records";
+                Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query);
+                ResultSet rs = stmt.executeQuery();
+                    while (rs.next()) {
+                        BorrowRecord record = new BorrowRecord(
+                                rs.getInt("record_id"),
+                                rs.getInt("document_id"),
+                                rs.getInt("member_id"),
+                                rs.getDate("borrow_date"),
+                                rs.getDate("return_date"),
+                                rs.getDate("due_date"),
+                                rs.getString("status"),
+                                rs.getInt("quantity")
+                        );
+                        tempList.add(record);
+                    }
                     rs.close();
-                }
-                stmt.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+                    stmt.close();
+                return tempList;
             }
-        }
+        };
+
+        borrowListTask.setOnSucceeded(event -> {
+            borrowRecordList.clear();
+            borrowRecordList.addAll(borrowListTask.getValue());
+        });
+
+        borrowListTask.setOnFailed(event -> {
+            Throwable exception = borrowListTask.getException();
+            exception.printStackTrace();
+        });
+
+        Thread loadThread = new Thread(borrowListTask);
+        loadThread.setDaemon(true); // Đảm bảo luồng dừng khi ứng dụng dừng
+        loadThread.start();
     }
 
     @FXML

@@ -2,16 +2,16 @@
     -fx-background-color: #e8f5e9;
     -fx-border-color: #81c784;
     -fx-border-width: 2;
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
+    -fx-border-radius: 30;
+    -fx-background-radius: 30;
 }
+
 .title-label {
     -fx-text-fill: #388e3c;
     -fx-font-weight: bold;
 }
 
-/* TextField cơ bản */
-.text-borrow {
+.text-field {
     -fx-padding: 10 20 10 20;
     -fx-background-color: #ffffff;
     -fx-border-color: #cccccc;
@@ -20,7 +20,7 @@
     -fx-background-radius: 20;
 }
 
-.text-borrow:focused {
+.text-field:focused {
     -fx-border-color: #73ec8b;
     -fx-border-width: 1;
     -fx-effect: dropshadow(gaussian, #d2ff72 , 8, 0.2, 0, 0); /* Hiệu ứng bóng mờ khi được chọn */
@@ -28,63 +28,78 @@
 
 /* Định dạng cho toàn bộ DatePicker */
 .date-picker {
-    -fx-font-size: 16;
     -fx-background-color: #f4f4f9;
-    -fx-border-color: #15b392; /* Viền màu xanh */
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
-    -fx-padding: 3px;
-    -fx-effect: dropshadow(gaussian, rgba(2, 237, 14, 0.15), 4, 0, 0, 2); /* Hiệu ứng bóng đổ nhẹ */
+    -fx-border-color: #15b392;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-padding: 2px;
 }
 
-/* Đổi màu viền khi di chuột qua DatePicker */
+.date-picker .text-field {
+    -fx-text-fill: #333333;
+    -fx-background-color: transparent; /* Trong suốt để giữ nguyên màu nền DatePicker */
+    -fx-font-weight: bold;
+}
+
 .date-picker:hover {
     -fx-border-color: #54c392; /* Viền đậm hơn khi di chuột */
-    -fx-cursor: hand; /* Con trỏ tay khi hover */
-    -fx-effect: dropshadow(gaussian, rgba(2, 237, 14, 0.2), 6, 0, 0, 4); /* Hiệu ứng bóng đổ mạnh hơn */
+    -fx-cursor: hand;
 }
-
-/* Đổi màu viền khi DatePicker được chọn */
 .date-picker:focused {
-    -fx-border-color: #73ec8b; /* Viền đậm khi được chọn */
-    -fx-effect: dropshadow(gaussian, rgba(138, 255, 144, 0.1), 6, 0, 0, 4); /* Hiệu ứng bóng đổ nhẹ khi focus */
+    -fx-border-color: #73ec8b ; /* Viền đậm khi được chọn */
 }
 
+/* Nút lịch */
 .date-picker .arrow-button {
-    -fx-background-color: #73ec8b; /* Nền trong suốt */
-    -fx-border-color: #73ec8b; /* Màu viền của nút */
-    -fx-padding: 2px;
-    -fx-cursor: hand; /* Con trỏ chuột hình ngón tay khi hover */
-}
-
-/* Khi nhấn vào button để mở calendar */
-.date-picker .arrow-button:pressed {
-    -fx-background-color: #54c392; /* Màu khi nhấn vào */
-    -fx-border-color: #45a07f; /* Viền đậm khi nhấn */
-    -fx-border-width: 2px;
+    -fx-background-color: #d2ff72;
+    -fx-background-radius: 20px;
+    -fx-padding: 0 15;
     -fx-cursor: hand;
 }
 
-/* Tùy chỉnh popup calendar */
-.date-picker .popup {
-    -fx-border-color: #73ec8b;
-    -fx-border-radius: 5px;
-    -fx-effect: dropshadow(gaussian, rgba(2, 237, 14, 0.2), 5, 0, 0, 5); /* Hiệu ứng bóng đổ cho popup */
+.date-picker .arrow-button:hover {
+    -fx-background-color: #73ec8b ; /* Màu khi di chuột vào */
 }
 
-/* Chỉnh sửa các ngày trong calendar */
+.date-picker .arrow-button:pressed {
+    -fx-background-color: #54c392 ; /* Màu khi nhấn vào */
+}
+
+/* Nội dung của lịch */
 .date-picker .day-cell {
     -fx-cursor: hand;
+    -fx-padding: 0 3 0 3;
 }
 
-/* Thay đổi màu nền ngày đang chọn */
-.date-picker .day-cell:selected {
-    -fx-background-color: #73ec8b; /* Nền ngày chọn */
+.date-picker .cell:hover {
+  -fx-background-color: #73ec8b;
 }
 
-/* Thay đổi màu nền ngày đang hover trong calendar */
-.date-picker .day-cell:hover {
-    -fx-background-color: #54c392; /* Nền khi hover */
+.date-picker .cell:focused {
+  -fx-background-color: #54c392;
+}
+
+/* Thanh chưa tháng và năm của lịch*/
+
+.date-picker-popup .month-year-pane {
+  -fx-background-color: #54c392;
+}
+
+.date-picker-popup .month-year-pane .label {
+  -fx-text-fill: white;
+}
+
+/* 2 mũi tên trái phải*/
+
+.date-picker-popup .spinner .button .left-arrow,
+.date-picker-popup .spinner .button .right-arrow {
+    -fx-background-color: white;
+    -fx-cursor: hand;
+}
+
+.date-picker-popup .spinner .button .left-arrow:hover,
+.date-picker-popup .spinner .button .right-arrow:hover {
+  -fx-background-color: #73ec8b;
 }
 
 /* Định dạng mặc định cho nút borrowButton */
@@ -92,7 +107,7 @@
     -fx-font-size: 20px;
     -fx-font-weight: bold;
     -fx-text-fill: #ffffff;
-    -fx-background-color: #15b392; /* Màu nền mặc định */
+    -fx-background-color: #15b392;
     -fx-background-radius: 30;
     -fx-padding: 10px 20px;
     -fx-cursor: hand;
@@ -104,7 +119,6 @@
     -fx-max-height: 40px;
 }
 
-/* Đổi màu khi di chuột vào nút borrowButton */
 .submit-button:hover {
     -fx-font-size: 18px;
     -fx-background-color: #d2ff72;
@@ -114,7 +128,6 @@
     -fx-padding: 10px 20px;        /* Đảm bảo padding không thay đổi */
 }
 
-/* Đổi màu khi nhấn nút borrowButton */
 .submit-button:pressed {
     -fx-font-size: 18px;
     -fx-background-color: #73ec8b;
