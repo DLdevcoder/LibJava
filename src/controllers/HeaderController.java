@@ -69,6 +69,7 @@ public class HeaderController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
-
+    public void HomeScence(ActionEvent event) {
+        changeScene(event, "/views/Home/Home.fxml");
+    }
 }
