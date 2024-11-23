@@ -16,7 +16,7 @@ import utils.DatabaseConnection;
 import java.sql.*;
 import java.time.LocalDate;
 
-public class BorrowRecordController extends SidebarController {
+public class BorrowRecordController  {
     @FXML
     private TableView<BorrowRecord> tableView;
 

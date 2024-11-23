@@ -12,7 +12,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class HomeController extends HeaderController {
+public class HomeController  {
     @FXML
     private PieChart Home_PieChart;
 

@@ -5,6 +5,8 @@
     import java.net.HttpURLConnection;
     import java.net.MalformedURLException;
     import java.net.URL;
+    import java.util.ArrayList;
+    import java.util.List;
     import java.util.Scanner;
 
     import javafx.scene.image.Image;
@@ -45,6 +47,57 @@
             }
             return null;
         }
+        public JSONArray fetchBooksByQuery(String query) {
+            String urlWithQuery = API_URL + query + "&key=" + API_KEY;
+            try {
+                URL url = new URL(urlWithQuery);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+
+                if (connection.getResponseCode() == 200) {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line);
+                    }
+                    reader.close();
+                    JSONObject json = new JSONObject(response.toString());
+                    return json.optJSONArray("items");
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            return null;
+        }
+        public List<Book> getBooksByQuery(String query) {
+            String urlWithQuery = API_URL + query + "&key=" + API_KEY; // URL với query tìm kiếm
+            List<Book> bookList = new ArrayList<>();  // Danh sách sách sẽ được trả về
+            try {
+                // Gọi API để lấy dữ liệu sách
+                JSONArray booksArray = fetchBooksByQuery(urlWithQuery);
+
+                if (booksArray != null) {
+                    // Duyệt qua tất cả các cuốn sách trả về từ API
+                    for (int i = 0; i < booksArray.length(); i++) {
+                        JSONObject volumeInfo = booksArray.getJSONObject(i).getJSONObject("volumeInfo");
+
+                        // Lấy thông tin chi tiết về sách
+                        String isbn = getIsbn(volumeInfo);
+
+                        String title = volumeInfo.getString("title");
+                        String author = volumeInfo.optString("authors", "No author detected");
+                        String publicationYear = volumeInfo.optString("publishedDate", "No Publication Year");
+                        // Tạo đối tượng Book và thêm vào danh sách
+                        Book book = new Book(isbn, title, author, publicationYear);
+                        bookList.add(book);
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return bookList;  // Trả về danh sách tất cả các cuốn sách
+        }
 
         private JSONObject getBookDetails(JSONObject response) {
             if(!response.getJSONArray("items").isEmpty()) {
@@ -77,5 +130,20 @@
             return null;
 
         }
+        private String getIsbn(JSONObject volumeInfo) {
+            String isbn = "No ISBN detected";
+            if (volumeInfo.has("industryIdentifiers")) {
+                JSONArray identifiers = volumeInfo.getJSONArray("industryIdentifiers");
+                for (int i = 0; i < identifiers.length(); i++) {
+                    JSONObject identifier = identifiers.getJSONObject(i);
+                    if ("ISBN_13".equals(identifier.getString("type"))) {
+                        isbn = identifier.getString("identifier");
+                        break;
+                    }
+                }
+            }
+            return isbn;
+        }
+
 
     }

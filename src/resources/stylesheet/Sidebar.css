@@ -36,3 +36,6 @@
 .sidebar-button:pressed {
     -fx-background-color: #388E3C; /* Màu khi nhấn */
 }
+.seperator{
+    -fx-background-color: black;
+}

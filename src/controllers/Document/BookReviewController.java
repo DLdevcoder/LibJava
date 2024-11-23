@@ -16,7 +16,7 @@ import utils.DatabaseConnection;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 
-public class BookReviewController extends HeaderController {
+public class BookReviewController  {
 
     @FXML
     private TableView<Review> ReviewTable;
