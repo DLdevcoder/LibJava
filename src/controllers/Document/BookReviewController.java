@@ -16,7 +16,7 @@ import utils.DatabaseConnection;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 
-public class BookReviewController extends HeaderController {
+public class BookReviewController  {
 
     @FXML
     private TableView<Review> ReviewTable;
@@ -67,10 +67,10 @@ public class BookReviewController extends HeaderController {
             try (Connection connection = databaseConnection.getConnection();
                  Statement statement = connection.createStatement()) {
 
-                String sql = "select b.id, b.title, r.comment, r.review_date, m.name " +
+                String sql = "select     b.id, b.title, r.comment, r.review_date, m.name " +
                         "from reviews r " +
                         "inner join books b on r.book_id = b.id " +
-                        "inner join members m on r.member_id = m.member_id";
+                        "inner join members m on r.member_id = m.member_id ";
 
                 ResultSet resultSet = statement.executeQuery(sql);
 

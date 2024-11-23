@@ -27,7 +27,7 @@ public class ReturnController extends BorrowAndReturn {
     private Label errorDate;
 
     @FXML
-    private void initialize() {
+    public void initialize() {
         // Thiết lập borrowDate là ngày hiện tại
         returnDate.setValue(LocalDate.now());
 

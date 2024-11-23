@@ -19,7 +19,7 @@
             <!-- Header -->
             <AnchorPane fx:id="header" prefHeight="70.0" prefWidth="1350" styleClass="header">
                 <Label styleClass="header-label" text="ManageLib" />
-                 <TextField layoutX="536.0" layoutY="19.0" prefHeight="34.0" prefWidth="366.0" promptText="Search document..." styleClass="search-field">
+                 <TextField fx:id="SearchDoc_TextField" layoutX="536.0" layoutY="19.0" prefHeight="34.0" prefWidth="366.0" promptText="Search document..." styleClass="search-field">
                      <font>
                          <Font size="15.0" />
                      </font>

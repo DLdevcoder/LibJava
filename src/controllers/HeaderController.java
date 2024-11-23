@@ -1,6 +1,7 @@
 package controllers;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -8,6 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,6 +21,12 @@ public class HeaderController {
     protected Parent root;
     protected Stage stage;
     protected Scene scene;
+    @FXML
+    private TextField SearchDoc_TextField;
+
+    private Stage tableStage;
+
+
 
     public void sceneBorrow(ActionEvent event) {
         changeScene(event, "/views/borrow_records/Borrow.fxml");
@@ -29,19 +38,7 @@ public class HeaderController {
     }
       
     public void ScenceBookList(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull((getClass().getResource("/views/books/BookList.fxml"))));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            scene.getStylesheets().add(Paths.get("src/resources/stylesheet/Frame.css").toUri().toString());
-
-            stage.setScene(scene);
-            stage.show();
-
-        } catch(IOException e) {
-            e.printStackTrace();
-            System.out.println("Error loading FXML file.");
-        }
+     changeScene(event, "/views/books/BookList.fxml");
     }
 
     public void sceneAdmin(ActionEvent event) {
@@ -68,6 +65,43 @@ public class HeaderController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+    public void HomeScence(ActionEvent event) {
+        changeScene(event, "/views/Home/Home.fxml");
+    }
+
+    @FXML
+    private void initialize() {
+        if(SearchDoc_TextField !=null) {
+            SearchDoc_TextField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                @Override
+                public void handle(KeyEvent keyEvent) {
+                    if (keyEvent.getCode().toString().equals("ENTER")) {
+                        String query = SearchDoc_TextField.getText();
+                        openTableViewWindow(query);
+
+
+                    }
+                }
+            });
+        }
+    }
+
+    private void openTableViewWindow(String query){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/DocSearch.fxml"));
+            Parent root = loader.load();
+            SearchController searchController = loader.getController();
+            searchController.performSearch(query);
+            tableStage = new Stage();
+            tableStage.setTitle("Doc Search");
+            tableStage.setScene(new Scene(root));
+            tableStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

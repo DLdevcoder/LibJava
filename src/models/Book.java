@@ -85,6 +85,13 @@ public class Book extends Document  {
         this.setId(i);
     }
 
+    public Book(String isbn, String title, String author, String publicationYear) {
+        this.setIsbn(isbn);
+        this.setTitle(title);
+        this.setAuthor(author);
+        this.setPublicationYear(publicationYear);
+    }
+
 
     public String getPublisher() {
         return this.publisher;
