@@ -10,27 +10,22 @@
         <Label styleClass="sidebar-title" text="Sidebar" />
         <Button maxWidth="Infinity" styleClass="sidebar-button" text="Profile" onAction="#sceneAdminProfile">
             <graphic>
-                <ImageView fitHeight="1" fitWidth="1" preserveRatio="true">
+                <ImageView fitHeight="27" fitWidth="27" preserveRatio="true">
                     <image>
-                        <Image url="@../../resources/image/member_list.png" />
+                        <Image url="@../../resources/image/adminprofile.png" />
                     </image>
                 </ImageView>
             </graphic>
         </Button>
-        <Button maxWidth="Infinity" styleClass="sidebar-button" text="Change Password" onAction="#sceneChangePassword">
+        <Button maxWidth="Infinity" styleClass="sidebar-button" text="Password" onAction="#sceneChangePassword">
             <graphic>
-                <ImageView fitHeight="1" fitWidth="1" preserveRatio="true">
+                <ImageView fitHeight="27" fitWidth="27" preserveRatio="true">
                     <image>
-                        <Image url="@../../resources/image/add_member.png" />
+                        <Image url="@../../resources/image/password.png" />
                     </image>
                 </ImageView>
             </graphic>
         </Button>
-
-        <Button maxWidth="Infinity" styleClass="sidebar-button" text="Find member"/>
-        <Button maxWidth="Infinity" styleClass="sidebar-button" />
-        <Button maxWidth="Infinity" styleClass="sidebar-button" />
-        <Button maxWidth="Infinity" styleClass="sidebar-button" />
     </VBox>
     <Label layoutX="173.0" layoutY="35.0" prefHeight="18.0" prefWidth="12.0" />
 </AnchorPane>
