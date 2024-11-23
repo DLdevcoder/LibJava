@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="349.0" prefWidth="224.0" styleClass="sidebar-scroll" stylesheets="@../../resources/stylesheet/Sidebar.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.borrow_record.SidebarController">
+<AnchorPane prefHeight="349.0" prefWidth="224.0" styleClass="sidebar-scroll" stylesheets="@../../resources/stylesheet/Sidebar.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BorrowRecord.SidebarController">
         <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="414.0" prefWidth="205.0" spacing="8" styleClass="sidebar">
             <Label styleClass="sidebar-title" text="Borrow Management" />
             <Button fx:id="borrowBut" alignment="TOP_LEFT" maxWidth="Infinity" onAction="#sceneBorrow" styleClass="sidebar-button" text="Borrow Document">

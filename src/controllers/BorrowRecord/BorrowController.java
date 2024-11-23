@@ -1,10 +1,9 @@
-package controllers.borrow_record;
+package controllers.BorrowRecord;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import utils.DatabaseConnection;
 
-import java.nio.file.Paths;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -31,7 +30,7 @@ public class BorrowController extends BorrowAndReturn {
     private Label errorDate;
 
     @FXML
-    public void initialize() {
+    private void initialize() {
         // Thiết lập borrowDate là ngày hiện tại
         borrowDate.setValue(LocalDate.now());
 
@@ -81,7 +80,7 @@ public class BorrowController extends BorrowAndReturn {
         }
     }
 
-    public boolean checkQuantity(int quantity, int quantityBorrow) {
+    private boolean checkQuantity(int quantity, int quantityBorrow) {
         if (quantityBorrow <= 0) {
             errorQuantity.setText("The number of documents you want to borrow must be greater than 0");
             return false;
@@ -99,11 +98,11 @@ public class BorrowController extends BorrowAndReturn {
         return true;
     }
 
-    public boolean checkValidDate() {
+    private boolean checkValidDate() {
         LocalDate borDate = borrowDate.getValue();
         LocalDate duDate = dueDate.getValue();
         long diffDate = ChronoUnit.DAYS.between(borDate, duDate);
-        if (diffDate <= 14 && diffDate >=0) {
+        if (diffDate <= 14 && diffDate >= 0) {
             return true;
         } else if (diffDate > 14){
             errorDate.setText("Books can only be borrowed within 14 days, please re-enter!");
@@ -114,7 +113,7 @@ public class BorrowController extends BorrowAndReturn {
     }
 
     @FXML
-    public void onSubmit() {
+    private void onSubmit() {
         errorDate.setText("");
         errorDoc.setText("");
         errorMem.setText("");
@@ -153,13 +152,14 @@ public class BorrowController extends BorrowAndReturn {
                         boolean cksDate = checkValidDate();
                         if (quantity > 0 && cksQuantity && cksDate) {
                             // Thêm bản ghi mượn vào bảng Borrow_Records
-                            String borrowQuery = "INSERT INTO Borrow_Records (document_id, member_id, borrow_date, due_date, status, quantity) VALUES (?, ?, ?, ?, 'borrowed', ?)";
+                            String borrowQuery = "INSERT INTO Borrow_Records (document_id, member_id, borrow_date, due_date, status, quantity, quantity_borrow) VALUES (?, ?, ?, ?, 'borrowed', ?, ?)";
                             borrowStmt = connection.prepareStatement(borrowQuery);
                             borrowStmt.setInt(1, documentId);
                             borrowStmt.setInt(2, memberId);
                             borrowStmt.setDate(3, Date.valueOf(borrowDate.getValue()));
                             borrowStmt.setDate(4, Date.valueOf(dueDate.getValue()));
                             borrowStmt.setInt(5, quantityBorrow);
+                            borrowStmt.setInt(6, quantityBorrow);
                             borrowStmt.executeUpdate();
 
                             // Cập nhật lại số lượng sách trong bảng Books

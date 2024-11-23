@@ -11,6 +11,7 @@ public class BorrowRecord {
     private Date dueDate;
     private String status;
     private int quantity;
+    private int quantityBorrow;
 
     // Constructor không tham số
     public BorrowRecord() {
@@ -18,7 +19,7 @@ public class BorrowRecord {
     }
 
     // Constructor đầy đủ tham số
-    public BorrowRecord(int recordId, int documentId, int memberId, Date borrowDate, Date returnDate, Date dueDate, String status, int quantity) {
+    public BorrowRecord(int recordId, int documentId, int memberId, Date borrowDate, Date returnDate, Date dueDate, String status, int quantity, int quantityBorrow) {
         this.recordId = recordId;
         this.documentId = documentId;
         this.memberId = memberId;
@@ -27,6 +28,7 @@ public class BorrowRecord {
         this.dueDate = dueDate;
         this.status = status;
         this.quantity = quantity;
+        this.quantityBorrow = quantityBorrow;
     }
 
     // Getter và Setter cho từng thuộc tính
@@ -107,5 +109,13 @@ public class BorrowRecord {
                 ", status='" + status +
                 ", quantity='" + quantity + '\'' +
                 '}';
+    }
+
+    public int getQuantityBorrow() {
+        return quantityBorrow;
+    }
+
+    public void setQuantityBorrow(int quantityBorrow) {
+        this.quantityBorrow = quantityBorrow;
     }
 }

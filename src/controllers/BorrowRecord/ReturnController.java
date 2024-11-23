@@ -1,12 +1,12 @@
-package controllers.borrow_record;
+package controllers.BorrowRecord;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import utils.DatabaseConnection;
 
-import java.nio.file.Paths;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class ReturnController extends BorrowAndReturn {
     @FXML
@@ -18,8 +18,6 @@ public class ReturnController extends BorrowAndReturn {
     @FXML
     private DatePicker returnDate;
     @FXML
-    private Button returnButton;
-    @FXML
     private Label errorDoc;
     @FXML
     private Label errorMem;
@@ -29,7 +27,7 @@ public class ReturnController extends BorrowAndReturn {
     private Label errorDate;
 
     @FXML
-    public void initialize() {
+    private void initialize() {
         // Thiết lập borrowDate là ngày hiện tại
         returnDate.setValue(LocalDate.now());
 
@@ -76,7 +74,7 @@ public class ReturnController extends BorrowAndReturn {
         }
     }
 
-    public boolean checkQuantity(int quantity, int quantityReturn) {
+    private boolean checkQuantity(int quantity, int quantityReturn) {
         if (quantityReturn > quantity) {
             if (quantity > 1) {
                 errorQuantity.setText("You have " + quantity +
@@ -89,8 +87,19 @@ public class ReturnController extends BorrowAndReturn {
         return true;
     }
 
+    private String dateReturned(LocalDate dueDate, LocalDate returnDate) {
+        long diffDate = ChronoUnit.DAYS.between(dueDate, returnDate);
+        if (diffDate == 0) {
+            return "returned on time";
+        } else if (diffDate > 0) {
+            return "returned late";
+        } else {
+            return "returned soon";
+        }
+    }
+
     @FXML
-    public void onSubmit() {
+    private void onSubmit() {
         errorDate.setText("");
         errorDoc.setText("");
         errorMem.setText("");
@@ -110,7 +119,7 @@ public class ReturnController extends BorrowAndReturn {
                 connection = DatabaseConnection.getConnection();
                 connection.setAutoCommit(false);
 
-                String checkBorrowQuery = "SELECT status, quantity FROM Borrow_Records WHERE document_id = ? AND member_id = ? AND status = 'borrowed'";
+                String checkBorrowQuery = "SELECT status, quantity, due_date FROM Borrow_Records WHERE document_id = ? AND member_id = ? AND status = 'borrowed'";
                 PreparedStatement checkStmt = connection.prepareStatement(checkBorrowQuery);
                 checkStmt.setInt(1,documentId);
                 checkStmt.setInt(2,memberId);
@@ -118,19 +127,19 @@ public class ReturnController extends BorrowAndReturn {
                 if (resultSet.next()) {
                     int quantity = resultSet.getInt("quantity");
                     String status = resultSet.getString("status");
+                    LocalDate dueDate = resultSet.getDate("due_date").toLocalDate();
                     boolean cksQuantity = checkQuantity(quantity, quantityReturn);
                     if (status.equals("borrowed") && cksQuantity) {
-
-                        LocalDate returnDate = LocalDate.now();
 
                         String returnQuery = "UPDATE Borrow_Records SET status = ?, return_date = ?, quantity = ? WHERE document_id = ? AND member_id = ? AND status = 'borrowed' LIMIT 1";
                         returnStmt = connection.prepareStatement(returnQuery);
                         if (quantity == quantityReturn) {
-                            returnStmt.setString(1, "returned");
+                            String statusStr = dateReturned(dueDate, returnDate.getValue());
+                            returnStmt.setString(1, statusStr);
                         } else {
                             returnStmt.setString(1, "borrowed");
                         }
-                        returnStmt.setDate(2, Date.valueOf(returnDate));
+                        returnStmt.setDate(2, Date.valueOf(returnDate.getValue()));
                         returnStmt.setInt(3, quantity - quantityReturn);
                         returnStmt.setInt(4,documentId);
                         returnStmt.setInt(5,memberId);

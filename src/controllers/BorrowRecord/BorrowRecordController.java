@@ -1,4 +1,4 @@
-package controllers.borrow_record;
+package controllers.BorrowRecord;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,6 +37,8 @@ public class BorrowRecordController extends SidebarController {
     @FXML
     private TableColumn<BorrowRecord, Integer> quantityColumn;
     @FXML
+    private TableColumn<BorrowRecord, Integer> quantityBorrowColumn;
+    @FXML
     private TextField recordIdSearch;
     @FXML
     private TextField docIdSearch;
@@ -52,12 +54,14 @@ public class BorrowRecordController extends SidebarController {
     private TextField statusSearch;
     @FXML
     private TextField quantitySearch;
+    @FXML
+    private TextField quantityBorrowSearch;
 
-    private ObservableList<BorrowRecord> borrowRecordList = FXCollections.observableArrayList();
+    private final ObservableList<BorrowRecord> borrowRecordList = FXCollections.observableArrayList();
     private FilteredList<BorrowRecord> filteredRecords;
 
     @FXML
-    public void initialize() throws SQLException {
+    private void initialize() throws SQLException {
         recordIdColumn.setCellValueFactory(new PropertyValueFactory<>("recordId"));
         documentIdColumn.setCellValueFactory(new PropertyValueFactory<>("documentId"));
         memberIdColumn.setCellValueFactory(new PropertyValueFactory<>("memberId"));
@@ -66,6 +70,7 @@ public class BorrowRecordController extends SidebarController {
         dueDateColumn.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        quantityBorrowColumn.setCellValueFactory(new PropertyValueFactory<>("quantityBorrow"));
         loadBorrowRecords();
 
         filteredRecords = new FilteredList<>(borrowRecordList, b -> true);
@@ -98,7 +103,8 @@ public class BorrowRecordController extends SidebarController {
                                 rs.getDate("return_date"),
                                 rs.getDate("due_date"),
                                 rs.getString("status"),
-                                rs.getInt("quantity")
+                                rs.getInt("quantity"),
+                                rs.getInt("quantity_borrow")
                         );
                         tempList.add(record);
                     }
@@ -178,9 +184,12 @@ public class BorrowRecordController extends SidebarController {
 
             if (!quantitySearch.getText().isEmpty()) {
                 String searchText = quantitySearch.getText();
-                if (!String.valueOf(borrowRecord.getQuantity()).contains(searchText)) {
-                    return false;
-                }
+                return String.valueOf(borrowRecord.getQuantity()).contains(searchText);
+            }
+
+            if (!quantityBorrowSearch.getText().isEmpty()) {
+                String searchText = quantityBorrowSearch.getText();
+                return String.valueOf(borrowRecord.getQuantityBorrow()).contains(searchText);
             }
 
             // Nếu tất cả kiểm tra đều thỏa mãn, trả về true (hiển thị bản ghi)
@@ -198,6 +207,7 @@ public class BorrowRecordController extends SidebarController {
         returnDateSearch.setValue(null);
         statusSearch.setText("");
         quantitySearch.setText("");
+        quantityBorrowSearch.setText("");
         loadBorrowRecords();
     }
 

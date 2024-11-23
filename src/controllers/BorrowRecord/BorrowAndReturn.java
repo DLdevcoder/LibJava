@@ -1,4 +1,4 @@
-package controllers.borrow_record;
+package controllers.BorrowRecord;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.DialogPane;
@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 public class BorrowAndReturn extends SidebarController {
     // Kiểm tra và truy vấn tên tài liệu từ ID tài liệu
-    public static void fetchDocumentTitle(TextField documentIdField, Label errorDoc) {
+    protected static void fetchDocumentTitle(TextField documentIdField, Label errorDoc) {
         String documentIdText = documentIdField.getText();
         errorDoc.setText(""); // Xóa thông báo cũ
 
@@ -52,7 +52,7 @@ public class BorrowAndReturn extends SidebarController {
     }
 
     // Kiểm tra và truy vấn tên thành viên từ ID thành viên
-    public static void fetchMemberName(TextField memberIdField, Label errorMem) {
+    protected static void fetchMemberName(TextField memberIdField, Label errorMem) {
         String memberIdText = memberIdField.getText();
         errorMem.setText(""); // Xóa thông báo cũ
 
@@ -89,7 +89,7 @@ public class BorrowAndReturn extends SidebarController {
         }
     }
 
-    public boolean checkDocId(TextField documentIdField) {
+    protected boolean checkDocId(TextField documentIdField) {
         String input = documentIdField.getText();
         if (!input.isEmpty()) {
             int res = Integer.parseInt(input);
@@ -98,7 +98,7 @@ public class BorrowAndReturn extends SidebarController {
         return false;
     }
 
-    public boolean checkMemId(TextField memberIdField) {
+    protected boolean checkMemId(TextField memberIdField) {
         String input = memberIdField.getText();
         if (!input.isEmpty()) {
             int res = Integer.parseInt(input);

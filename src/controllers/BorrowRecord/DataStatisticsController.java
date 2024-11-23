@@ -1,4 +1,4 @@
-package controllers.borrow_record;
+package controllers.BorrowRecord;
 
 import javafx.animation.ScaleTransition;
 import javafx.collections.FXCollections;
@@ -23,7 +23,7 @@ public class DataStatisticsController extends SidebarController{
     private PieChart docChart; // Biểu đồ sách
 
     @FXML
-    public void initialize() {
+    private void initialize() {
         loadMemberData();
         loadBookData();
     }
