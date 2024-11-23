@@ -1,4 +1,4 @@
-package controllers.borrow_record;
+package controllers.BorrowRecord;
 
 import controllers.HeaderController;
 import javafx.event.ActionEvent;

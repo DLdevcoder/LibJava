@@ -28,7 +28,8 @@ public class BorrowRecordDAO {
                         rs.getDate("return_date"),
                         rs.getDate("due_date"),
                         rs.getString("status"),
-                        rs.getInt("quantity")
+                        rs.getInt("quantity"),
+                        rs.getInt("quantityBorrow")
                 );
                 records.add(record);
             }

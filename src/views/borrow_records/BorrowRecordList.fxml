@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@../../resources/stylesheet/CommonBorrow.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.borrow_record.BorrowRecordController">
+<BorderPane prefHeight="750" prefWidth="1350" stylesheets="@../../resources/stylesheet/CommonBorrow.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BorrowRecord.BorrowRecordController">
     <top>
         <fx:include source="../frame/Header.fxml" />
     </top>
@@ -24,7 +24,7 @@
         <Label prefHeight="10" prefWidth="30" />
     </right>
     <center>
-        <VBox stylesheets="@../../resources/stylesheet/BorrowList.css" alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+        <VBox alignment="CENTER" spacing="10.0" stylesheets="@../../resources/stylesheet/BorrowList.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
          <AnchorPane prefHeight="120.0" prefWidth="1096.0">
             <children>
                <Label layoutX="425.0" layoutY="15.0" styleClass="header-label" text="Borrow record list">
@@ -35,11 +35,12 @@
                <TextField fx:id="recordIdSearch" alignment="CENTER" layoutY="53.0" prefHeight="26.0" prefWidth="111.0" promptText="Enter record id" />
                <TextField fx:id="docIdSearch" alignment="CENTER" layoutX="125.0" layoutY="53.0" prefHeight="26.0" prefWidth="111.0" promptText="Enter document id" />
                <TextField fx:id="memIdSearch" alignment="CENTER" layoutX="245.0" layoutY="53.0" prefHeight="26.0" prefWidth="111.0" promptText="Enter member id" />
-               <DatePicker fx:id="borrowDateSearch" layoutX="370.0" layoutY="53.0" prefHeight="26.0" prefWidth="135.0" promptText="Enter borrow date" />
-               <DatePicker fx:id="dueDateSearch" layoutX="666.0" layoutY="53.0" prefHeight="26.0" prefWidth="135.0" promptText="Enter due date" />
-               <DatePicker fx:id="returnDateSearch" layoutX="517.0" layoutY="53.0" prefHeight="26.0" prefWidth="135.0" promptText="Enter return date" />
-                <TextField fx:id="statusSearch" alignment="CENTER" layoutX="828.0" layoutY="53.0" prefHeight="26.0" prefWidth="139.0" promptText="Enter status" />
-                <TextField fx:id="quantitySearch" alignment="CENTER" layoutX="982.0" layoutY="53.0" prefHeight="26.0" prefWidth="100.0" promptText="Enter quantity" />
+               <DatePicker fx:id="borrowDateSearch" layoutX="363.0" layoutY="50.0" prefHeight="32.0" prefWidth="124.0" promptText="Enter borrow date" />
+               <DatePicker fx:id="dueDateSearch" layoutX="610.0" layoutY="50.0" prefHeight="26.0" prefWidth="124.0" promptText="Enter due date" />
+               <DatePicker fx:id="returnDateSearch" layoutX="486.0" layoutY="50.0" prefHeight="32.0" prefWidth="124.0" promptText="Enter return date" />
+               <TextField fx:id="statusSearch" alignment="CENTER" layoutX="741.0" layoutY="53.0" prefHeight="26.0" prefWidth="110.0" promptText="Enter status" />
+               <TextField fx:id="quantitySearch" alignment="CENTER" layoutX="861.0" layoutY="53.0" prefHeight="26.0" prefWidth="82.0" promptText="Enter quantity" />
+                <TextField fx:id="quantityBorrowSearch" alignment="CENTER" layoutX="956.0" layoutY="53.0" prefHeight="26.0" prefWidth="130.0" promptText="Enter quantity borrow" />
                <Button layoutX="210.0" layoutY="91.0" mnemonicParsing="false" onAction="#clearField" prefHeight="36.0" prefWidth="120.0" styleClass="buttonList" text="Clear">
                   <font>
                      <Font size="14.0" />
@@ -71,11 +72,12 @@
                     <TableColumn fx:id="recordIdColumn" prefWidth="120" text="Record ID" />
                     <TableColumn fx:id="documentIdColumn" prefWidth="120" text="Document ID" />
                     <TableColumn fx:id="memberIdColumn" prefWidth="120" text="Member ID" />
-                    <TableColumn fx:id="borrowDateColumn" prefWidth="150" text="Borrow Date" />
-                    <TableColumn fx:id="returnDateColumn" prefWidth="150" text="Return Date" />
-                    <TableColumn fx:id="dueDateColumn" prefWidth="150" text="Due Date" />
-                    <TableColumn fx:id="statusColumn" prefWidth="165" text="Status" />
-                    <TableColumn fx:id="quantityColumn" maxWidth="100.0" prefWidth="132.0" text="Quantity" />
+                    <TableColumn fx:id="borrowDateColumn" prefWidth="125" text="Borrow Date" />
+                    <TableColumn fx:id="returnDateColumn" prefWidth="115" text="Return Date" />
+                    <TableColumn fx:id="dueDateColumn" prefWidth="125" text="Due Date" />
+                    <TableColumn fx:id="statusColumn" prefWidth="125" text="Status" />
+                    <TableColumn fx:id="quantityColumn" maxWidth="100" prefWidth="92.800048828125" text="Quantity" />
+                    <TableColumn fx:id="quantityBorrowColumn" maxWidth="150.4000244140625" prefWidth="148.0" text="Quantity Borrow" />
                 </columns>
             </TableView>
         </VBox>

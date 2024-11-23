@@ -19,7 +19,7 @@ module main {
     opens models to javafx.base;
     opens main to javafx.fxml;
     opens controllers.member to javafx.fxml;
-    opens controllers.borrow_record to javafx.fxml;
+    opens controllers.BorrowRecord to javafx.fxml;
     opens controllers.Document to javafx.fxml;
     opens controllers.admin to javafx.fxml;
     opens controllers.Home to javafx.fxml;

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@../../resources/stylesheet/CommonBorrow.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.borrow_record.DataStatisticsController">
+<BorderPane stylesheets="@../../resources/stylesheet/CommonBorrow.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BorrowRecord.DataStatisticsController">
     <top>
         <fx:include source="../frame/Header.fxml" />
     </top>
