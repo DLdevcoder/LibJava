@@ -297,6 +297,53 @@ public class Admin extends Person {
         }
         return members;
     }
+
+    public List<Member> findMemberwithFilter(String name, String address, String phone, String email, String membershipDate) {
+        List<Member> members = new ArrayList<>();
+        String query = "SELECT * FROM members WHERE " +
+                "(name LIKE ? OR ? IS NULL) AND " +
+                "(address LIKE ? OR ? IS NULL) AND " +
+                "(phone_number LIKE ? OR ? IS NULL) AND " +
+                "(email LIKE ? OR ? IS NULL) AND " +
+                "(membership_date > ? OR ? IS NULL)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            // Set các giá trị cho tham số
+            stmt.setString(1, name != null && !name.isEmpty() ? "%" + name + "%" : null);
+            stmt.setString(2, name != null && !name.isEmpty() ? "%" + name + "%" : null);
+
+            stmt.setString(3, address != null && !address.isEmpty() ? "%" + address + "%" : null);
+            stmt.setString(4, address != null && !address.isEmpty() ? "%" + address + "%" : null);
+
+            stmt.setString(5, phone != null && !phone.isEmpty() ? "%" + phone + "%" : null);
+            stmt.setString(6, phone != null && !phone.isEmpty() ? "%" + phone + "%" : null);
+
+            stmt.setString(7, email != null && !email.isEmpty() ? "%" + email + "%" : null);
+            stmt.setString(8, email != null && !email.isEmpty() ? "%" + email + "%" : null);
+
+            stmt.setString(9, membershipDate != null && !membershipDate.isEmpty() ? membershipDate : null);
+            stmt.setString(10, membershipDate != null && !membershipDate.isEmpty() ? membershipDate : null);
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int memberId = rs.getInt("member_id");
+                String memberName = rs.getString("name");
+                String memberAddress = rs.getString("address");
+                String memberPhone = rs.getString("phone_number");
+                String memberEmail = rs.getString("email");
+                String memberPassword = rs.getString("password");
+                String memberMembershipDate = rs.getString("membership_date");
+                Member member = new Member(memberId, memberName, memberAddress, memberPhone, memberEmail, memberMembershipDate, memberPassword);
+                members.add(member);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return members;
+    }
     // login
     public boolean checkLogin(String email, String password) {
         String query = "SELECT * FROM admin WHERE email = ? AND password = ?";

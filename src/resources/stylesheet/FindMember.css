@@ -1,62 +1,36 @@
-/* Styling for the search section */
-GridPane {
-    -fx-padding: 30px;
-    -fx-background-color: #ffffff; /* White background */
-    -fx-border-color: #81c784; /* Green border */
-    -fx-border-width: 3px;
-    -fx-border-radius: 12px;
-    -fx-background-radius: 12px;
+/* style.css */
+
+/* Màu nền xanh lá cây cho header */
+.header-label {
+    -fx-text-fill: green; /* Màu chữ */
+    -fx-font-weight: bold; /* Đậm chữ */
+    -fx-background-color: #eaffea; /* Màu nền nhạt */
+    -fx-padding: 5; /* Khoảng cách trong */
 }
 
-/* TextField styles */
-TextField#idField {
-    -fx-background-color: #e8f5e9; /* Light green background */
-    -fx-border-color: #43a047; /* Green border */
-    -fx-border-width: 2px;
-    -fx-border-radius: 6px;
-    -fx-background-radius: 6px;
-    -fx-padding: 8px;
-    -fx-font-size: 16px;
-    -fx-text-fill: #2e7d32; /* Dark green text */
-    -fx-pref-width: 400px; /* Increased width */
+/* Button với màu xanh lá */
+.buttonList {
+    -fx-background-color: #28a745; /* Nền xanh lá */
+    -fx-text-fill: white; /* Màu chữ trắng */
+    -fx-border-radius: 5; /* Góc bo tròn */
+    -fx-background-radius: 5;
+    -fx-font-size: 14px;
 }
 
-/* Button styles */
-Button#searchButton {
-    -fx-background-color: #4caf50; /* Green button */
-    -fx-text-fill: #ffffff; /* White text */
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-padding: 12px 24px; /* Larger padding */
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
-    -fx-cursor: hand;
-    -fx-pref-width: 150px; /* Increased button width */
+.buttonList:hover {
+    -fx-background-color: #218838; /* Màu khi hover */
 }
 
-Button#searchButton:hover {
-    -fx-background-color: #388e3c; /* Darker green on hover */
+/* TextField với đường viền xanh lá */
+.text-field {
+    -fx-border-color: green;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
 }
 
-/* Labels for result */
-Label {
-    -fx-text-fill: #2e7d32; /* Dark green text */
-    -fx-font-size: 16px; /* Larger font size */
-}
-
-/* Specific result labels */
-Label#nameLabel, Label#emailLabel, Label#addressLabel,
-Label#phoneLabel, Label#membershipDateLabel, Label#passwordLabel {
-    -fx-font-style: italic;
-    -fx-font-weight: bold;
-    -fx-text-fill: #4caf50; /* Brighter green for results */
-    -fx-pref-width: 400px; /* Ensure result label width matches the input */
-    -fx-alignment: CENTER_LEFT; /* Align text to the left */
-    -fx-padding: 10px 15px; /* Larger padding */
-    -fx-font-size: 16px; /* Larger font size */
-    -fx-background-color: #e8f5e9; /* Light green background for result labels */
-    -fx-border-color: #43a047; /* Green border for emphasis */
-    -fx-border-width: 2px;
-    -fx-border-radius: 6px;
-    -fx-background-radius: 6px;
+/* DatePicker với nền xanh nhạt */
+.date-picker {
+    -fx-background-color: #eaffea;
+    -fx-border-color: green;
+    -fx-border-radius: 5;
 }

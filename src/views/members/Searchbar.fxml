@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="120.0" prefWidth="1096.0" stylesheets="@../../resources/stylesheet/FindMember.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.member.FilterController">
+    <children>
+        <Label layoutX="425.0" layoutY="0.0" styleClass="header-label" text="MEMBER LIST">
+            <font>
+                <Font size="30.0" />
+            </font>
+        </Label>
+        <TextField fx:id="nameField" alignment="CENTER" layoutX="210.0" layoutY="50.0" prefHeight="30.0" prefWidth="110.0" promptText="Enter name" />
+        <TextField fx:id="addressField" alignment="CENTER" layoutX="345.0" layoutY="50.0" prefHeight="30.0" prefWidth="110.0" promptText="Enter address" />
+        <TextField fx:id="phoneField" alignment="CENTER" layoutX="480.0" layoutY="50.0" prefHeight="30.0" prefWidth="110.0" promptText="Enter phone" />
+
+        <TextField fx:id="emailField" layoutX="615.0" layoutY="50.0" prefHeight="30.0" prefWidth="110.0" promptText="Enter email" />
+        <DatePicker fx:id="memberDateSearch" layoutX="750.0" layoutY="50.0" prefHeight="30.0" prefWidth="120.0" promptText="Enter membership date" />
+        <Button layoutX="210.0" layoutY="91.0" mnemonicParsing="false" onAction="#handleClearButtonAction" prefHeight="36.0" prefWidth="120.0" styleClass="buttonList" text="Clear">
+            <font>
+                <Font size="14.0" />
+            </font>
+            <graphic>
+                <ImageView fitHeight="25" fitWidth="25" preserveRatio="true">
+                    <image>
+                        <Image url="@../../resources/image/clear.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button layoutX="750.0" layoutY="91.0" mnemonicParsing="false" onAction="#handleSearchButtonAction" prefHeight="36.0" prefWidth="120.0" styleClass="buttonList" text="Search">
+            <font>
+                <Font size="14.0" />
+            </font>
+            <graphic>
+                <ImageView fitHeight="25" fitWidth="25" preserveRatio="true">
+                    <image>
+                        <Image url="@../../resources/image/searchBorrow.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+    </children>
+</AnchorPane>
