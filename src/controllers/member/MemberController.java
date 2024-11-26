@@ -33,7 +33,7 @@ public class MemberController extends SidebarMemberController {
     @FXML
     private TableColumn<Member, String> actionColumn; // Cột cho nút
 
-    private ObservableList<Member> memberList = FXCollections.observableArrayList();
+    public static ObservableList<Member> memberList = FXCollections.observableArrayList();
     private boolean isEditing = false;
     private void setEditing(boolean value) {
         isEditing = value;
