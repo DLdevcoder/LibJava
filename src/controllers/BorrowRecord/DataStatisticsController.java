@@ -49,15 +49,17 @@ public class DataStatisticsController extends SidebarController{
                 if (rs.next()) {
                     sumMember = rs.getInt("sumMember");
                 }
+                ObservableList<PieChart.Data> memberData = FXCollections.observableArrayList();
 
                 // Kiểm tra sumBook trước khi tiếp tục
                 if (sumMember == 0) {
-                    return null;
+                    memberData.add(new PieChart.Data("Null", 0));
+                    return memberData;
                 }
+
                 PreparedStatement stmt2 = conn.prepareStatement(query2);
                 rs = stmt2.executeQuery();
                 int sumOfTop = 0;
-                ObservableList<PieChart.Data> memberData = FXCollections.observableArrayList();
                 while (rs.next()) {
                     String name = rs.getString("name");
                     int sumBorrow = rs.getInt("sumBorrow");
@@ -81,8 +83,10 @@ public class DataStatisticsController extends SidebarController{
             memberChart.getData().addAll(memberData);
 
             // Cập nhật biểu đồ với dữ liệu
-            settingPieChart(memberData, "Number of documents borrowed: ", memberData.stream()
-                    .mapToInt(data -> (int) data.getPieValue()).sum());
+            int sumData = memberData.stream().mapToInt(data -> (int) data.getPieValue()).sum();
+            if (sumData > 0) {
+                settingPieChart(memberData, "Number of documents borrowed: ", sumData);
+            }
         });
 
         // Xử lý khi Task thất bại
@@ -118,15 +122,15 @@ public class DataStatisticsController extends SidebarController{
                 if (rs.next()) {
                     sumBook = rs.getInt("sumBook");
                 }
+                ObservableList<PieChart.Data> documentData = FXCollections.observableArrayList();
 
                 // Kiểm tra sumBook trước khi tiếp tục
                 if (sumBook == 0) {
-                    return null;
+                    documentData.add(new PieChart.Data("Null", 0));
                 }
 
                 PreparedStatement stmt2 = conn.prepareStatement(query2);
                 rs = stmt2.executeQuery();
-                ObservableList<PieChart.Data> documentData = FXCollections.observableArrayList();
 
                 int sumOfTop = 0;
                 while (rs.next()) {
@@ -151,10 +155,12 @@ public class DataStatisticsController extends SidebarController{
             ObservableList<PieChart.Data> docData = documentDataTask.getValue();
             docChart.getData().clear();
             docChart.getData().addAll(docData);
+            int sumData = docData.stream().mapToInt(data -> (int) data.getPieValue()).sum();
 
             // Cập nhật biểu đồ với dữ liệu
-            settingPieChart(docData, "Number of documents: ", docData.stream()
-                    .mapToInt(data -> (int) data.getPieValue()).sum());
+            if (sumData > 0) {
+                settingPieChart(docData, "Number of documents: ", sumData);
+            }
         });
 
         // Xử lý khi Task thất bại

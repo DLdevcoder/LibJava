@@ -27,7 +27,7 @@ public class ReturnController extends BorrowAndReturn {
     private Label errorDate;
 
     @FXML
-    public void initialize() {
+    private void initialize() {
         // Thiết lập borrowDate là ngày hiện tại
         returnDate.setValue(LocalDate.now());
 
@@ -74,6 +74,16 @@ public class ReturnController extends BorrowAndReturn {
         }
     }
 
+    private boolean checkValidDateReturn(LocalDate borrowDate, LocalDate returnDate) {
+        long diffDate = ChronoUnit.DAYS.between(borrowDate, returnDate);
+        errorDate.setText("");
+        if (diffDate < 0) {
+            errorDate.setText("The return date must be greater than the borrow date.");
+            return false;
+        }
+        return true;
+    }
+
     private boolean checkQuantity(int quantity, int quantityReturn) {
         if (quantityReturn > quantity) {
             if (quantity > 1) {
@@ -100,10 +110,6 @@ public class ReturnController extends BorrowAndReturn {
 
     @FXML
     private void onSubmit() {
-        errorDate.setText("");
-        errorDoc.setText("");
-        errorMem.setText("");
-        errorQuantity.setText("");
         boolean cksDocId = checkDocId(documentIdField);
         boolean cksMemId = checkMemId(memberIdField);
         if (cksDocId && cksMemId) {
@@ -119,7 +125,7 @@ public class ReturnController extends BorrowAndReturn {
                 connection = DatabaseConnection.getConnection();
                 connection.setAutoCommit(false);
 
-                String checkBorrowQuery = "SELECT status, quantity, due_date FROM Borrow_Records WHERE document_id = ? AND member_id = ? AND status = 'borrowed'";
+                String checkBorrowQuery = "SELECT status, quantity, borrow_date, due_date FROM Borrow_Records WHERE document_id = ? AND member_id = ? AND status = 'borrowed'";
                 PreparedStatement checkStmt = connection.prepareStatement(checkBorrowQuery);
                 checkStmt.setInt(1,documentId);
                 checkStmt.setInt(2,memberId);
@@ -127,9 +133,11 @@ public class ReturnController extends BorrowAndReturn {
                 if (resultSet.next()) {
                     int quantity = resultSet.getInt("quantity");
                     String status = resultSet.getString("status");
+                    LocalDate borrowDate = resultSet.getDate("borrow_date").toLocalDate();
                     LocalDate dueDate = resultSet.getDate("due_date").toLocalDate();
                     boolean cksQuantity = checkQuantity(quantity, quantityReturn);
-                    if (status.equals("borrowed") && cksQuantity) {
+                    boolean cksReturnDate = checkValidDateReturn(borrowDate, returnDate.getValue());
+                    if (status.equals("borrowed") && cksQuantity && cksReturnDate) {
 
                         String returnQuery = "UPDATE Borrow_Records SET status = ?, return_date = ?, quantity = ? WHERE document_id = ? AND member_id = ? AND status = 'borrowed' LIMIT 1";
                         returnStmt = connection.prepareStatement(returnQuery);
@@ -154,7 +162,13 @@ public class ReturnController extends BorrowAndReturn {
 
                         connection.commit();
                         showAlert(Alert.AlertType.INFORMATION, "Success", "You have successfully returned the book!");
+                        errorDate.setText("");
+                        errorDoc.setText("");
+                        errorMem.setText("");
+                        errorQuantity.setText("");
 
+                    } else if (!cksReturnDate) {
+                        showAlert(Alert.AlertType.WARNING, "Invalid", "The return date must be greater than the borrow date.");
                     } else if (!cksQuantity) {
                         if (quantity > 1) {
                             showAlert(Alert.AlertType.WARNING, "Invalid", "You have " + quantity +
@@ -197,6 +211,10 @@ public class ReturnController extends BorrowAndReturn {
                     e.printStackTrace();
                 }
             }
+        } else if (!cksDocId){
+            showAlert(Alert.AlertType.ERROR, "Error", "Document id must be a positive integer");
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Error", "Member id must be a positive integer");
         }
     }
 
