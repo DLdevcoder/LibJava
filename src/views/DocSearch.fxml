@@ -4,15 +4,15 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SearchController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SearchController">
    <children>
-      <TableView fx:id="DocumentsTable" prefHeight="400.0" prefWidth="604.0">
+      <TableView fx:id="DocumentsTable" prefHeight="400.0" prefWidth="643.0">
         <columns>
           <TableColumn fx:id="DocISBN" prefWidth="131.20001220703125" text="ISBN" />
           <TableColumn fx:id="DocTitle" prefWidth="172.79998779296875" text="Title" />
             <TableColumn fx:id="DocAuthor" prefWidth="124.0" text="Author" />
             <TableColumn fx:id="DocYear" prefWidth="100.00006103515625" text="Year" />
-            <TableColumn fx:id="DocCopy" prefWidth="69.5999755859375" />
+            <TableColumn fx:id="DocCopy" prefWidth="107.99997558593748" />
         </columns>
       </TableView>
    </children>

@@ -15,7 +15,7 @@ import utils.GoogleBooksAPI;
 
 import java.util.List;
 
-public class SearchController {
+public class SearchController extends HeaderController{
     @FXML
     private TableView<Book> DocumentsTable;
 
@@ -57,6 +57,8 @@ public class SearchController {
                         Book book = getTableRow().getItem();
                         if (book != null) {
                             copyISBN(book);
+                            showAlert("Success","ISBN copied");
+
                         }
                     });
                     setGraphic(copy);
@@ -76,7 +78,7 @@ public class SearchController {
 
     public void performSearch(String query) {
         if (query == null || query.isEmpty()) {
-            System.out.println("Query is empty!");
+            showAlert("Error", "Please enter a valid search term");
             return;
         }
 
@@ -89,7 +91,7 @@ public class SearchController {
             DocumentsTable.setItems(observableBooks);  // Cập nhật dữ liệu vào TableView
         } else {
             // Thông báo nếu không tìm thấy sách
-            System.out.println("No books found for the query: " + query);
+            showAlert("Error", "No books found with the query");
         }
     }
 
@@ -102,9 +104,8 @@ public class SearchController {
                 ClipboardContent content = new ClipboardContent();
                 content.putString(isbn);
                 clipboard.setContent(content);
-                System.out.println("ISBN copied: " + isbn);  // Thông báo cho người dùng
             } catch (Exception e) {
-                System.err.println("Failed to copy ISBN: " + e.getMessage());
+                showAlert("Error","Error copying ISBN");
             }
         }
     }
