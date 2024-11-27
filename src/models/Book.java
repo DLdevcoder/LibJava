@@ -14,13 +14,6 @@ public class Book extends Document  {
     protected String publisher;
     protected String isbn;
 
-
-
-
-
-
-
-
     public Book(String title, String author, String year, String publisher, String language, ImageView ImageLink) {
         this.title = title;
         this.author = author;
@@ -31,15 +24,11 @@ public class Book extends Document  {
 
     }
 
-
-
     public Book(String title, String publisher, String year, String isbn, int quantity, String description, String thumbnail, String language) {
         this.setTitle(title);
         this.publisher = publisher;
         this.setPublicationYear(year);
         this.isbn = isbn;
-
-
         this.setLanguage(language);
     }
 

@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="544.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Home.HomeController">
-    <top>
-        <fx:include source="../frame/Header.fxml" />
-    </top>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="544.0" prefWidth="1353.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Home.HomeController">
+   <top>
+      <fx:include source="../frame/Header.fxml" />
+   </top>
    <center>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" style="-fx-background-color: #E8F5E9;" BorderPane.alignment="CENTER">
          <children>
-            <PieChart fx:id="Home_PieChart" prefHeight="175.0" prefWidth="400.0">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </PieChart>
-            <PieChart prefHeight="430.0" prefWidth="333.0" />
+            <!-- Chart Titles -->
+            <HBox alignment="CENTER" spacing="300.0">
+               <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Language Distribution of Books" />
+               <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Books by Category" />
+            </HBox>
+            <!-- Main Layout -->
+            <HBox alignment="CENTER" prefHeight="400.0" spacing="10.0">
+               <!-- Left Pie Chart -->
+               <PieChart fx:id="Home_PieChart" prefHeight="400.0" prefWidth="400.0" />
+               <!-- Divider -->
+               <Separator orientation="VERTICAL" style="-fx-background-color: black; -fx-pref-width: 2px;" />
+               <!-- Right Pie Chart -->
+               <PieChart fx:id="Category_PieChart" prefHeight="400.0" prefWidth="455.0" />
+               <!-- Sidebar Right -->
+            </HBox>
          </children>
-      </HBox>
+      </VBox>
    </center>
 </BorderPane>
