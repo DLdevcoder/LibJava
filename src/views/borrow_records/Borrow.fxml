@@ -81,7 +81,7 @@
                 </font></Button>
                 <Label fx:id="errorDoc" layoutX="315.0" layoutY="124.0" prefHeight="20.0" prefWidth="498.0" styleClass="errol-label" />
                 <Label fx:id="errorMem" layoutX="315.0" layoutY="186.0" prefHeight="20.0" prefWidth="492.0" styleClass="errol-label" />
-                <Label fx:id="errorDate" layoutX="315.0" layoutY="314.0" prefHeight="13.0" prefWidth="492.0" styleClass="errol-label" />
+                <Label fx:id="errorDate" layoutX="315.0" layoutY="316.0" prefHeight="18.0" prefWidth="492.0" styleClass="errol-label" />
                 <Label fx:id="errorQuantity" layoutX="314.0" layoutY="376.0" prefHeight="34.0" prefWidth="500.0" styleClass="errol-label" />
             </AnchorPane>
         </AnchorPane>

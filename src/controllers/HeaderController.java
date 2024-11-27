@@ -106,4 +106,7 @@ public class HeaderController {
     }
 
 
+    public void homeButton(ActionEvent event) {
+        changeScene(event, "/views/Home/Home.fxml");
+    }
 }

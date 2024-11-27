@@ -92,8 +92,12 @@ public class BorrowAndReturn extends SidebarController {
     protected boolean checkDocId(TextField documentIdField) {
         String input = documentIdField.getText();
         if (!input.isEmpty()) {
-            int res = Integer.parseInt(input);
-            return res > 0;
+            try {
+                int res = Integer.parseInt(input);
+                return res > 0;
+            } catch (Exception e) {
+                return false;
+            }
         }
         return false;
     }

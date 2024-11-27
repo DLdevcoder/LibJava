@@ -55,6 +55,18 @@ public class BorrowController extends BorrowAndReturn {
             }
         });
 
+        dueDate.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) { // Chỉ thực hiện khi mất focus
+                fetchDateValid();
+            }
+        });
+
+        borrowDate.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) { // Chỉ thực hiện khi mất focus
+                fetchDateValid();
+            }
+        });
+
         quantityField.setOnAction(event -> fetchQuantity());
 
         // Xử lý khi người dùng rời khỏi TextField
@@ -63,6 +75,18 @@ public class BorrowController extends BorrowAndReturn {
                 fetchQuantity();
             }
         });
+    }
+
+    private void fetchDateValid() {
+        LocalDate borDate = borrowDate.getValue();
+        LocalDate duDate = dueDate.getValue();
+        errorDate.setText("");
+        long diffDate = ChronoUnit.DAYS.between(borDate, duDate);
+        if (diffDate > 14){
+            errorDate.setText("Books can only be borrowed within 14 days, please re-enter!");
+        } else if (diffDate < 0){
+            errorDate.setText("The book return date cannot be less than the book's borrow date, please re-enter!");
+        }
     }
 
     private void fetchQuantity() {
@@ -89,9 +113,13 @@ public class BorrowController extends BorrowAndReturn {
             if (quantity > 1) {
                 errorQuantity.setText("The library does not have enough books for you to borrow.\nThere are only "
                         + quantity + " books left. Please re-enter the number of books you want to borrow.");
+            } else if (quantity == 1){
+                errorQuantity.setText("The library does not have enough documents for you to borrow.\n" +
+                                "There are only 1 document left. Please re-enter.");
+            } else if (quantity == 0) {
+                errorQuantity.setText("The library is out of documents you want to borrow.\nPlease come back later.");
             } else {
-                errorQuantity.setText("The library does not have enough books for you to borrow.\n" +
-                        "There are only 1 books left. Please re-enter the number of books you want to borrow.");
+                errorQuantity.setText("Oops, there was an error, please enter again.");
             }
             return false;
         }
@@ -102,22 +130,11 @@ public class BorrowController extends BorrowAndReturn {
         LocalDate borDate = borrowDate.getValue();
         LocalDate duDate = dueDate.getValue();
         long diffDate = ChronoUnit.DAYS.between(borDate, duDate);
-        if (diffDate <= 14 && diffDate >= 0) {
-            return true;
-        } else if (diffDate > 14){
-            errorDate.setText("Books can only be borrowed within 14 days, please re-enter!");
-        } else {
-            errorDate.setText("The book return date cannot be less than the book's borrow date, please re-enter!");
-        }
-        return false;
+        return diffDate <= 14 && diffDate >= 0;
     }
 
     @FXML
     private void onSubmit() {
-        errorDate.setText("");
-        errorDoc.setText("");
-        errorMem.setText("");
-        errorQuantity.setText("");
         boolean cksDocId = checkDocId(documentIdField);
         boolean cksMemId = checkMemId(memberIdField);
         if (cksDocId && cksMemId) {
@@ -170,16 +187,24 @@ public class BorrowController extends BorrowAndReturn {
                             updateStmt.executeUpdate();
                             connection.commit();  // Lưu thay đổi sau khi tất cả lệnh SQL thành công
                             showAlert(Alert.AlertType.INFORMATION, "Success", "You have successfully borrowed the book!");
-                            errorQuantity.setText("");
-                            errorMem.setText("");
+                            errorDate.setText("");
                             errorDoc.setText("");
+                            errorMem.setText("");
+                            errorQuantity.setText("");
                         } else if (!cksQuantity) {
                             if (quantity > 1) {
-                                showAlert(Alert.AlertType.WARNING, "Unavailable", "The library does not have enough documents for you to borrow. There are only "
+                                showAlert(Alert.AlertType.WARNING, "Unavailable",
+                                        "The library does not have enough documents for you to borrow. There are only "
                                         + quantity + " documents left. Please re-enter.");
-                            } else {
-                                showAlert(Alert.AlertType.WARNING, "Unavailable", "The library does not have enough documents for you to borrow. " +
+                            } else if (quantity == 1){
+                                showAlert(Alert.AlertType.WARNING, "Unavailable",
+                                        "The library does not have enough documents for you to borrow. " +
                                         "There are only 1 document left. Please re-enter.");
+                            } else if (quantity == 0) {
+                                showAlert(Alert.AlertType.WARNING, "Unavailable",
+                                        "The library is out of documents you want to borrow. Please come back later.");
+                            } else {
+                                showAlert(Alert.AlertType.ERROR, "Error", "Oops, there was an error, please enter again.");
                             }
                         } else if (!cksDate) {
                             showAlert(Alert.AlertType.WARNING, "Invalid Date", "Sorry, you cannot borrow documents for longer than 2 weeks.");
@@ -211,6 +236,10 @@ public class BorrowController extends BorrowAndReturn {
                     e.printStackTrace();
                 }
             }
+        } else if (!cksDocId){
+            showAlert(Alert.AlertType.ERROR, "Error", "Document id must be a positive integer");
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Error", "Member id must be a positive integer");
         }
     }
 
