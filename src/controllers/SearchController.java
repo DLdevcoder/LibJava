@@ -52,6 +52,15 @@ public class SearchController extends HeaderController{
                     setGraphic(null);  // Không có gì khi cell trống
                 } else {
                     Button copy = new Button("Copy ISBN");
+                    copy.setStyle(
+                            "-fx-background-color: #4CAF50; " + // Màu nền xanh lá
+                                    "-fx-text-fill: white; " +          // Màu chữ trắng
+                                    "-fx-font-weight: bold; " +         // Chữ đậm
+                                    "-fx-padding: 5 10; " +             // Khoảng cách trong nút
+                                    "-fx-border-radius: 5; " +          // Bo góc nút
+                                    "-fx-background-radius: 5; " +      // Bo góc nền
+                                    "-fx-cursor: hand;"                 // Hiển thị bàn tay khi hover
+                    );
                     copy.setOnAction(event -> {
                         // Lấy Book từ dòng hiện tại và sao chép ISBN
                         Book book = getTableRow().getItem();
