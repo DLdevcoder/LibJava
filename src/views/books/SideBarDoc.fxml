@@ -9,6 +9,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 
 <AnchorPane prefHeight="509.0" prefWidth="250.0" stylesheets="@../../resources/stylesheet/Sidebar.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.DocumentSideBarController">
 
@@ -23,7 +26,7 @@
             </ImageView>
          </graphic></Button>
       <Separator prefWidth="200.0" styleClass="seperator" />
-      <MenuButton alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="15.0" prefWidth="204.0" styleClass="sidebar-menubutton" text="Add Document" textFill="WHITE">
+      <MenuButton alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="15.0" prefWidth="204.0" styleClass="sidebar-menubutton" text="Add Document">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#ScenceAddBook" text="Add Book" />
           <MenuItem mnemonicParsing="false" onAction="#ScenceAddTheses" text="Add Theses" />
@@ -36,6 +39,27 @@
                </image>
             </ImageView>
          </graphic>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006729475100942127">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill>
       </MenuButton>
       <Separator prefWidth="212.0" styleClass="seperator" />
         <Button alignment="TOP_LEFT" maxWidth="Infinity" onAction="#ScenceRemoveBook" prefWidth="197.0" styleClass="sidebar-button" text="Delete Book">
