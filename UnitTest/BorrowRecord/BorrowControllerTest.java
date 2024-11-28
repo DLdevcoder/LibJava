@@ -1,3 +1,5 @@
+package BorrowRecord;
+
 import org.testfx.framework.junit5.ApplicationTest;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;

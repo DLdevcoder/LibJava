@@ -15,7 +15,7 @@ import utils.GoogleBooksAPI;
 
 import java.util.List;
 
-public class SearchController {
+public class SearchController extends HeaderController{
     @FXML
     private TableView<Book> DocumentsTable;
 
@@ -52,11 +52,22 @@ public class SearchController {
                     setGraphic(null);  // Không có gì khi cell trống
                 } else {
                     Button copy = new Button("Copy ISBN");
+                    copy.setStyle(
+                            "-fx-background-color: #4CAF50; " + // Màu nền xanh lá
+                                    "-fx-text-fill: white; " +          // Màu chữ trắng
+                                    "-fx-font-weight: bold; " +         // Chữ đậm
+                                    "-fx-padding: 5 10; " +             // Khoảng cách trong nút
+                                    "-fx-border-radius: 5; " +          // Bo góc nút
+                                    "-fx-background-radius: 5; " +      // Bo góc nền
+                                    "-fx-cursor: hand;"                 // Hiển thị bàn tay khi hover
+                    );
                     copy.setOnAction(event -> {
                         // Lấy Book từ dòng hiện tại và sao chép ISBN
                         Book book = getTableRow().getItem();
                         if (book != null) {
                             copyISBN(book);
+                            showAlert("Success","ISBN copied");
+
                         }
                     });
                     setGraphic(copy);
@@ -76,7 +87,7 @@ public class SearchController {
 
     public void performSearch(String query) {
         if (query == null || query.isEmpty()) {
-            System.out.println("Query is empty!");
+            showAlert("Error", "Please enter a valid search term");
             return;
         }
 
@@ -89,7 +100,7 @@ public class SearchController {
             DocumentsTable.setItems(observableBooks);  // Cập nhật dữ liệu vào TableView
         } else {
             // Thông báo nếu không tìm thấy sách
-            System.out.println("No books found for the query: " + query);
+            showAlert("Error", "No books found with the query");
         }
     }
 
@@ -102,9 +113,8 @@ public class SearchController {
                 ClipboardContent content = new ClipboardContent();
                 content.putString(isbn);
                 clipboard.setContent(content);
-                System.out.println("ISBN copied: " + isbn);  // Thông báo cho người dùng
             } catch (Exception e) {
-                System.err.println("Failed to copy ISBN: " + e.getMessage());
+                showAlert("Error","Error copying ISBN");
             }
         }
     }
