@@ -13,6 +13,11 @@ public class GovernmentDocuments extends Document{
         this.documentType = documentType;
     }
 
+    public GovernmentDocuments(String title, String author) {
+        this.title = title;
+        this.author = author;
+    }
+
     public String getDocumentType() {
         return documentType;
     }

@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,7 +30,7 @@ public class DocumentSideBarController extends HeaderController {
     public void ScenceAddBook(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/AddBook.fxml")));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -75,6 +76,32 @@ public class DocumentSideBarController extends HeaderController {
         try{
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/BookReviews.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void ScenceAddTheses(ActionEvent event) {
+        try{
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/AddTheses.fxml")));
+            Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void ScenceAddGovermentDoc(ActionEvent event) {
+        try{
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/AddGovermentDoc.fxml")));
+            Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

@@ -39,3 +39,10 @@
 .seperator{
     -fx-background-color: black;
 }
+.sidebar-menubutton {
+    -fx-background-color: #54c392; /* Màu nền giống button */
+    -fx-text-fill: white; /* Màu chữ */
+    -fx-font-size: 16px; /* Kích thước font chữ */
+    -fx-background-radius: 15; /* Bo góc giống button */
+    -fx-cursor: hand; /* Con trỏ tay khi hover */
+}
