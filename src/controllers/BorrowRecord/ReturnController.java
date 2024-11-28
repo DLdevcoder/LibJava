@@ -8,7 +8,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class ReturnController extends BorrowAndReturn {
+public class ReturnController extends SidebarController implements BorrowAndReturn {
     @FXML
     private TextField documentIdField;
     @FXML
@@ -31,21 +31,21 @@ public class ReturnController extends BorrowAndReturn {
         // Thiết lập borrowDate là ngày hiện tại
         returnDate.setValue(LocalDate.now());
 
-        documentIdField.setOnAction(event -> fetchDocumentTitle(documentIdField, errorDoc));
+        documentIdField.setOnAction(event -> BorrowAndReturn.fetchDocumentTitle(documentIdField, errorDoc));
 
         // Xử lý khi người dùng rời khỏi TextField
         documentIdField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) { // Chỉ thực hiện khi mất focus
-                fetchDocumentTitle(documentIdField, errorDoc);
+                BorrowAndReturn.fetchDocumentTitle(documentIdField, errorDoc);
             }
         });
 
-        memberIdField.setOnAction(event -> fetchMemberName(memberIdField, errorMem));
+        memberIdField.setOnAction(event -> BorrowAndReturn.fetchMemberName(memberIdField, errorMem));
 
         // Xử lý khi người dùng rời khỏi TextField
         memberIdField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) { // Chỉ thực hiện khi mất focus
-                fetchMemberName(memberIdField, errorMem);
+                BorrowAndReturn.fetchMemberName(memberIdField, errorMem);
             }
         });
 
@@ -59,7 +59,7 @@ public class ReturnController extends BorrowAndReturn {
         });
     }
 
-    private void fetchQuantity() {
+    public void fetchQuantity() {
         String quantity = quantityField.getText();
         // Xóa thông báo cũ (nếu có)
         errorQuantity.setText("");

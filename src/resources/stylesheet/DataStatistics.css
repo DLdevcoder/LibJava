@@ -24,17 +24,3 @@
     -fx-font-weight: bold;
     -fx-text-fill: #15b392;
 }
-
-/* PieChart */
-.custom-piechart {
-    -fx-background-color: transparent;
-    -fx-padding: 10px;
-    -fx-border-color: #15b392;
-    -fx-border-width: 3;
-    -fx-border-radius: 10;
-}
-
-.custom-piechart:hover {
-    -fx-border-color: #73ec8b;
-    -fx-border-width: 4;
-}
