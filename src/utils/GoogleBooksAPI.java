@@ -23,11 +23,13 @@
         public JSONObject fetchBookInfoByISBN(String isbn) {
             String urlWithISBN = API_URL + isbn;
             try {
+                //Thiết lập kết nối với http
                 URL url = new URL(urlWithISBN);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
-
+               // Kiểm tra phản hồi từ server
                 if(connection.getResponseCode() == 200) {
+                    //Đọc dữ liệu từ phản hồi
                     BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                     StringBuilder response = new StringBuilder();
                     String line;
@@ -35,6 +37,7 @@
                         response.append(line);
                     }
                     reader.close();
+                    //Chuyển chuỗi phản hồi sang đối tượng Json
                     JSONObject json = new JSONObject(response.toString());
                     return getBookDetails(json);
                 } else{
@@ -50,11 +53,13 @@
         public JSONArray fetchBooksByQuery(String query) {
             String urlWithQuery = API_URL + query + "&key=" + API_KEY;
             try {
+                //Thiết lập kết nối với http
                 URL url = new URL(urlWithQuery);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
 
                 if (connection.getResponseCode() == 200) {
+                    //Đọc dữ liệu từ sever
                     BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                     StringBuilder response = new StringBuilder();
                     String line;
@@ -62,6 +67,7 @@
                         response.append(line);
                     }
                     reader.close();
+                    //Chuyển chuỗi phản hồi sang đối tượng Json
                     JSONObject json = new JSONObject(response.toString());
                     return json.optJSONArray("items");
                 }
@@ -71,27 +77,36 @@
             return null;
         }
         public List<Book> getBooksByQuery(String query) {
-            String urlWithQuery = API_URL + query + "&key=" + API_KEY; // URL với query tìm kiếm
-            List<Book> bookList = new ArrayList<>();  // Danh sách sách sẽ được trả về
+            String urlWithQuery = API_URL + query + "&maxResults=40&key="  + API_KEY; // URL với query tìm kiếm
+            List<Book> bookList = new ArrayList<>();
+            int startIndex = 0;// Danh sách sách sẽ được trả về
             try {
-                // Gọi API để lấy dữ liệu sách
-                JSONArray booksArray = fetchBooksByQuery(urlWithQuery);
+                while (true) {
+                    // Xây dựng URL với startIndex
+                    String paginatedUrl = urlWithQuery + "&startIndex=" + startIndex;
 
-                if (booksArray != null) {
-                    // Duyệt qua tất cả các cuốn sách trả về từ API
+                    // Gọi API để lấy dữ liệu sách
+                    JSONArray booksArray = fetchBooksByQuery(paginatedUrl);
+
+                    if (booksArray == null || booksArray.length() == 0) {
+                        break; // Không còn sách để lấy
+                    }
+
+                    // Duyệt qua kết quả và thêm vào danh sách
                     for (int i = 0; i < booksArray.length(); i++) {
                         JSONObject volumeInfo = booksArray.getJSONObject(i).getJSONObject("volumeInfo");
 
-                        // Lấy thông tin chi tiết về sách
                         String isbn = getIsbn(volumeInfo);
-
                         String title = volumeInfo.getString("title");
                         String author = volumeInfo.optString("authors", "No author detected");
                         String publicationYear = volumeInfo.optString("publishedDate", "No Publication Year");
-                        // Tạo đối tượng Book và thêm vào danh sách
+
                         Book book = new Book(isbn, title, author, publicationYear);
                         bookList.add(book);
                     }
+
+                    // Tăng startIndex để lấy trang tiếp theo
+                    startIndex += 40;
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -130,6 +145,7 @@
             return null;
 
         }
+
         private String getIsbn(JSONObject volumeInfo) {
             String isbn = "No ISBN detected";
             if (volumeInfo.has("industryIdentifiers")) {

@@ -4,6 +4,11 @@ public class Theses extends Document{
     private String degree;
     private String institution;
 
+    public Theses(String title, String author) {
+        this.title = title;
+        this.author = author;
+    }
+
     public String getDegree() {
         return degree;
     }

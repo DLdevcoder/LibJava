@@ -402,6 +402,36 @@ public class Admin extends Person {
 
 
     }
+    //theses
+    public void saveThesesToDataBase(Theses theses) {
+        String sql = "INSERT INTO theses (title, author) VALUES (?, ?)";
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        try( Connection connection = DatabaseConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql) ){
+            preparedStatement.setString(1, theses.getTitle());
+            preparedStatement.setString(2, theses.getAuthor());
+           preparedStatement.executeUpdate();
+
+
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void saveGDToDatabase(GovernmentDocuments governmentDocuments) {
+        String sql = "INSERT INTO govermentdocuments (title, author) VALUES (?, ?)";
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        try( Connection connection = DatabaseConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql) ){
+            preparedStatement.setString(1, governmentDocuments.getTitle());
+            preparedStatement.setString(2, governmentDocuments.getAuthor());
+            preparedStatement.executeUpdate();
+
+
+
+
+    } catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 
 
 }

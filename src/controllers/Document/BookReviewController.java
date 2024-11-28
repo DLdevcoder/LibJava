@@ -86,7 +86,6 @@ public class BookReviewController  {
 
                     // Chuyển đổi ngày sang java.sql.Date
                     Date reviewDate = convertStringToSqlDate(reviewDateStr);
-
                     // Tạo Book và Member
                     Book book = new Book(Integer.parseInt(id), title);
                     Member member = new Member(reviewer);
