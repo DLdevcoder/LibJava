@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
@@ -25,7 +26,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Separator prefWidth="200.0" styleClass="seperator" />
+      <Separator prefWidth="200.0" />
       <MenuButton alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="15.0" prefWidth="204.0" styleClass="sidebar-menubutton" text="Add Document">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#ScenceAddBook" text="Add Book" />
@@ -61,7 +62,7 @@
             </RadialGradient>
          </textFill>
       </MenuButton>
-      <Separator prefWidth="212.0" styleClass="seperator" />
+      <Separator prefWidth="200.0" />
         <Button alignment="TOP_LEFT" maxWidth="Infinity" onAction="#ScenceRemoveBook" prefWidth="197.0" styleClass="sidebar-button" text="Delete Book">
          <graphic>
             <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
@@ -70,24 +71,23 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Separator prefWidth="200.0" styleClass="seperator" />
-        <Button alignment="TOP_LEFT" maxWidth="Infinity" onAction="#ReviewScence" prefHeight="26.0" prefWidth="229.0" styleClass="sidebar-button" text="Review">
+      <Separator prefWidth="200.0" />
+      <MenuButton alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="204.0" styleClass="sidebar-menubutton" text="Reviews">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#HandleAddReviews" text="Add Reviews" />
+          <MenuItem mnemonicParsing="false" onAction="#HandleShowReviews" text="Show Reviews" />
+        </items>
          <graphic>
-            <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../resources/image/reviews.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
-      <Separator prefWidth="200.0" styleClass="seperator" />
-      <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#AddReviewScence" prefHeight="26.0" prefWidth="210.0" styleClass="sidebar-button" text="Add Review">
-         <graphic>
-            <ImageView fitHeight="150.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" styleClass="sidebar-button">
                <image>
                   <Image url="@../../resources/image/addreviews.png" />
                </image>
             </ImageView>
-         </graphic></Button>
+         </graphic>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </MenuButton>
     </VBox>
     <Label layoutX="173.0" layoutY="35.0" prefHeight="18.0" prefWidth="12.0" />
 
