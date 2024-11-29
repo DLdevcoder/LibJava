@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="759.0" prefWidth="1401.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Home.HomeController">
+    <top>
+        <fx:include source="../frame/Header.fxml" />
+    </top>
+    <left>
+        <fx:include source="Sidebar.fxml" />
+    </left>
+    <center>
+        <VBox alignment="CENTER" style="-fx-background-color: #E8F5E9;" BorderPane.alignment="CENTER">
+            <children>
+                <!-- Chart Titles -->
+                <HBox alignment="CENTER" spacing="300.0">
+                    <children>
+                        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Language Distribution of Books" />
+                        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Books by Category" />
+                    </children>
+                </HBox>
+                <!-- Main Layout -->
+                <HBox alignment="CENTER" prefHeight="400.0" spacing="10.0">
+                    <children>
+                        <!-- Left Pie Chart -->
+                        <PieChart fx:id="Home_PieChart" prefHeight="400.0" prefWidth="420.0" />
+                        <!-- Divider -->
+                        <Separator orientation="VERTICAL" style="-fx-background-color: black; -fx-pref-width: 2px;" />
+                        <!-- Right Pie Chart -->
+                        <PieChart fx:id="Category_PieChart" prefHeight="355.0" prefWidth="502.0" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+
+    </center>
+</BorderPane>
