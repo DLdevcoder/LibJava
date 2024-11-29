@@ -22,9 +22,11 @@ public class DeleteBookController extends HeaderController {
             showAlert("Error","ID can not be empty");
             return;
         }
-        Admin admin = new Admin();
-        admin.deleteBook(id);
-
+        else{
+            Admin admin = new Admin();
+            admin.deleteBook(id);
+            showAlert("Success","Book deleted successfully");
+        }
 
 
 

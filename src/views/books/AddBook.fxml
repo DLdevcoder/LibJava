@@ -18,7 +18,7 @@
         <fx:include source="SideBarDoc.fxml" />
     </left>
    <center>
-      <AnchorPane stylesheets="@../../resources/stylesheet/ADDBOOK.css" prefHeight="510.0" prefWidth="819.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="510.0" prefWidth="819.0" stylesheets="@../../resources/stylesheet/ADDBOOK.css" BorderPane.alignment="CENTER">
          <children>
             <VBox fx:id="VBox_AddBook" alignment="CENTER" layoutX="122.0" layoutY="87.0" prefHeight="355.0" prefWidth="478.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
                <children>
@@ -30,6 +30,11 @@
                   <TextField fx:id="ImageLink_TextField" promptText="PLEASE ATTACH BOOK COVER LINK" styleClass="AddBook_TextField">
                      <VBox.margin>
                         <Insets top="20.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="EnterBookQuantity_TextField" promptText="ENTER QUANTITY" styleClass="AddBook_TextField">
+                     <VBox.margin>
+                        <Insets top="25.0" />
                      </VBox.margin>
                   </TextField>
                   <Button fx:id="AddBook_Button" mnemonicParsing="false" onAction="#HandleAddBookButton" prefHeight="36.8" prefWidth="100.0" text="ADD">

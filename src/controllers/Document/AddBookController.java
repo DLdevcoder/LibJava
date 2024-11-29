@@ -21,10 +21,16 @@ public class AddBookController extends HeaderController {
     private TextField ImageLink_TextField;
 
     @FXML
+    private TextField EnterBookQuantity_TextField;
+
+    @FXML
     private TextField EnterTheses_TextField;
 
     @FXML
     private TextField EnterAuthor_TextField;
+
+    @FXML
+    private TextField EnterThesesQuantity_TextField;
 
     @FXML
     private TextField EnterGovermentDoc_TextField;
@@ -32,14 +38,18 @@ public class AddBookController extends HeaderController {
     @FXML
     private TextField EnterGDAuthor_TextField;
 
+    @FXML
+    private TextField EnterGDQuantity_TextField;
+
     private GoogleBooksAPI googleBooksAPI = new GoogleBooksAPI();
 
      @FXML
     public void HandleAddBookButton() throws SQLException {
          String isbn = AddBook_TextField.getText().trim();
          String imageLink = ImageLink_TextField.getText().trim();
+         int quantity = Integer.parseInt(EnterBookQuantity_TextField.getText().trim());
           if(!isbn.isEmpty()){
-              Book book = googleBooksAPI.getBookByISBN(isbn, imageLink);
+              Book book = googleBooksAPI.getBookByISBN(isbn, imageLink,quantity);
 
 
               if(book != null){
@@ -60,8 +70,9 @@ public class AddBookController extends HeaderController {
     public void HandleAddThesesButton(ActionEvent event) {
          String title = EnterTheses_TextField.getText().trim();
          String author = EnterAuthor_TextField.getText().trim();
+         int quantity = Integer.parseInt(EnterThesesQuantity_TextField.getText().trim());
          if(!title.isEmpty() && !author.isEmpty()){
-             Theses theses = new Theses(title, author);
+             Theses theses = new Theses(title, author,quantity);
              Admin admin  = new Admin();
              admin.saveThesesToDataBase(theses);
              showAlert("Succcessfully","Theses added successfully");
@@ -75,8 +86,9 @@ public class AddBookController extends HeaderController {
     public void HandleAddGDButton(ActionEvent event) {
          String title = EnterGovermentDoc_TextField.getText().trim();
          String author = EnterGDAuthor_TextField.getText().trim();
+         int quantity = Integer.parseInt(EnterGDQuantity_TextField.getText().trim());
          if(!title.isEmpty() && !author.isEmpty()){
-             GovernmentDocuments governmentDocuments = new GovernmentDocuments(title, author);
+             GovernmentDocuments governmentDocuments = new GovernmentDocuments(title, author, quantity);
              Admin admin  = new Admin();
              admin.saveGDToDatabase(governmentDocuments);
              showAlert("Succcessfully","GD added successfully");

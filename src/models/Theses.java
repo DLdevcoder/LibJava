@@ -9,6 +9,12 @@ public class Theses extends Document{
         this.author = author;
     }
 
+    public Theses(String title, String author, int quantity) {
+        this.title = title;
+        this.author = author;
+        this.quantity = quantity;
+    }
+
     public String getDegree() {
         return degree;
     }
