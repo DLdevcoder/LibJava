@@ -58,11 +58,11 @@ public class DocumentSideBarController extends HeaderController {
 
     }
 
-    public void AddReviewScence(ActionEvent event) {
+    public void HandleAddReviews(ActionEvent event) {
         {
             try{
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/AddReviews.fxml")));
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
@@ -72,10 +72,10 @@ public class DocumentSideBarController extends HeaderController {
             }
         }
     }
-    public void ReviewScence(ActionEvent event) {
+    public void HandleShowReviews(ActionEvent event) {
         try{
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/BookReviews.fxml")));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

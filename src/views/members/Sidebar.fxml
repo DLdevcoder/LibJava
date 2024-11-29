@@ -8,10 +8,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="510.0" prefWidth="185.0" styleClass="sidebar-scroll" stylesheets="@../../resources/stylesheet/Sidebar.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23" fx:controller="controllers.member.SidebarMemberController">
-    <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="502.0" prefWidth="170.0" spacing="8" styleClass="sidebar">
+<AnchorPane prefHeight="510.0" prefWidth="269.0" styleClass="sidebar-scroll" stylesheets="@../../resources/stylesheet/Sidebar.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.member.SidebarMemberController">
+    <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="326.0" prefWidth="234.0" spacing="8" styleClass="sidebar">
         <Label styleClass="sidebar-title" text="Management" />
-        <Button maxWidth="Infinity" onAction="#sceneMemberList" styleClass="sidebar-button" text="Member list">
+        <Button alignment="TOP_LEFT" maxWidth="Infinity" onAction="#sceneMemberList" styleClass="sidebar-button" text="Member list">
             <graphic>
                 <ImageView fitHeight="27" fitWidth="27" preserveRatio="true">
                     <image>
@@ -21,7 +21,7 @@
             </graphic>
         </Button>
       <Separator prefWidth="200.0" />
-        <Button maxWidth="Infinity" onAction="#sceneAddMember" styleClass="sidebar-button" text="Add member">
+        <Button alignment="TOP_LEFT" maxWidth="Infinity" onAction="#sceneAddMember" styleClass="sidebar-button" text="Add member">
             <graphic>
                 <ImageView fitHeight="27" fitWidth="27" preserveRatio="true">
                     <image>
@@ -32,7 +32,7 @@
         </Button>
       <Separator prefWidth="200.0" />
 
-        <Button maxWidth="Infinity" onAction="#sceneFindMember" styleClass="sidebar-button" text="Find member">
+        <Button alignment="TOP_LEFT" maxWidth="Infinity" onAction="#sceneFindMember" styleClass="sidebar-button" text="Find member">
             <graphic>
                 <ImageView fitHeight="27" fitWidth="27" preserveRatio="true">
                     <image>
@@ -43,7 +43,7 @@
         </Button>
       <Separator prefWidth="200.0" />
 
-        <Button maxWidth="Infinity" onAction="#scenceStatisticMember" styleClass="sidebar-button" text="Statistic member">
+        <Button alignment="TOP_LEFT" maxWidth="Infinity" onAction="#scenceStatisticMember" styleClass="sidebar-button" text="Statistic member">
             <graphic>
                 <ImageView fitHeight="27" fitWidth="27" preserveRatio="true">
                     <image>
