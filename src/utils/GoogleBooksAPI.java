@@ -9,10 +9,13 @@
     import java.util.List;
     import java.util.Scanner;
 
+    import javafx.application.Platform;
+    import javafx.scene.control.Alert;
     import javafx.scene.image.Image;
     import javafx.scene.image.ImageView;
     import models.Book;
     import org.json.JSONArray;
+    import org.json.JSONException;
     import org.json.JSONObject;
 
     public class GoogleBooksAPI {
@@ -115,13 +118,15 @@
         }
 
         private JSONObject getBookDetails(JSONObject response) {
-            if(!response.getJSONArray("items").isEmpty()) {
-                return response.getJSONArray("items").getJSONObject(0).getJSONObject("volumeInfo");
+            if(response.getJSONArray("items") == null || response.getJSONArray("items").isEmpty()) {
+                throw new JSONException("No books found for the given ISBN.");
             }
-            return null;
+            return response.getJSONArray("items").getJSONObject(0).getJSONObject("volumeInfo");
+
+
         }
 
-        public Book getBookByISBN(String isbn, String imageLink) {
+        public Book getBookByISBN(String isbn, String imageLink, int quantity) {
             JSONObject volumeInfo = fetchBookInfoByISBN(isbn);
             if(volumeInfo != null) {
                 String title = volumeInfo.getString("title");
@@ -138,7 +143,7 @@
 
                 Image image = new Image(imageLink);
                 ImageView imageView = new ImageView(image);
-                return new Book(title, author,publicationYear, publisher, language, imageView);
+                return new Book(title, author,publicationYear, publisher, language, imageView,quantity);
 
 
             }

@@ -1,5 +1,6 @@
 package models;
 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public abstract class Document {
@@ -8,6 +9,7 @@ public abstract class Document {
     protected String author;
     protected String language;
     protected String publicationYear;
+    protected int quantity;
 
 
     protected ImageView ImageLink;
@@ -89,9 +91,16 @@ public abstract class Document {
         this.author = author;
     }
 
-
-
-
-
-
+    public int getQuantity() {
+        return quantity;
+    }
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+    public Image getImage() {
+        return this.ImageLink.getImage();
+    }
+    public void setImage(Image image) {
+        this.ImageLink.setImage(image);
+    }
 }
