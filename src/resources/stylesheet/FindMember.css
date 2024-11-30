@@ -28,9 +28,3 @@
     -fx-border-radius: 5;
 }
 
-/* DatePicker với nền xanh nhạt */
-.date-picker {
-    -fx-background-color: #eaffea;
-    -fx-border-color: green;
-    -fx-border-radius: 5;
-}

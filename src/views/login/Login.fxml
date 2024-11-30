@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -14,27 +15,57 @@
     </ImageView>
 
     <!-- Form đăng nhập -->
-    <BorderPane maxHeight="500" maxWidth="220" styleClass="login-container">
+    <BorderPane maxHeight="350" maxWidth="350" styleClass="login-container">
         <center>
-            <VBox alignment="CENTER" prefHeight="329.0" prefWidth="327.0" spacing="25">
-                <Label prefHeight="74.0" prefWidth="400.0" styleClass="login-title" text="WELCOME" textAlignment="CENTER">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="41.0" />
-               </font>
-            </Label>
-                <TextField fx:id="emailField" prefWidth="332.0" promptText="Email" styleClass="input-field">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font></TextField>
-                <PasswordField fx:id="passwordField" promptText="Password" styleClass="input-field">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font></PasswordField>
-            <Region prefHeight="71.0" prefWidth="200.0" />
+            <VBox alignment="CENTER" prefHeight="500.0" prefWidth="374.0" spacing="25" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ffffff, #c8e6c9);                         -fx-background-radius: 20px;">
+                <!-- Tiêu đề -->
+                <Label prefHeight="74.0" prefWidth="400.0" styleClass="login-title" text="      WELCOME" textAlignment="CENTER">
+                    <font>
+                        <Font name="Arial Rounded MT Bold" size="41.0" />
+                    </font>
+                </Label>
+
+                <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="367.0" spacing="10">
+                    <!-- Biểu tượng -->
+                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../../resources/image/account_login.png" />
+                        </image>
+                    </ImageView>
+
+                    <!-- Trường nhập Email -->
+                    <TextField fx:id="emailField" prefWidth="300.0" promptText="Email">
+                        <font>
+                            <Font name="System Bold" size="16.0" />
+                        </font>
+                    </TextField>
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <!-- Biểu tượng -->
+                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../../resources/image/password_log.png" />
+                        </image>
+                    </ImageView>
+
+                    <!-- Trường nhập Mật khẩu -->
+                    <PasswordField fx:id="passwordField" prefWidth="300.0" promptText="Password" visible="true">
+                        <font>
+                            <Font name="System Bold" size="16.0" />
+                        </font>
+                    </PasswordField>
+                </HBox>
+
+                <!-- Nút đăng nhập -->
                 <Button onAction="#handleLogin" styleClass="login-button" text="Login">
-               <font>
-                  <Font size="18.0" />
-               </font></Button>
+                    <font>
+                        <Font size="22.0" />
+                    </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+                </Button>
             </VBox>
         </center>
     </BorderPane>

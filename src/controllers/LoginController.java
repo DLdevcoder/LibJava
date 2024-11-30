@@ -3,6 +3,7 @@ package controllers;
 import controllers.HeaderController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -17,7 +18,6 @@ public class LoginController extends HeaderController {
     @FXML
     private ImageView backgroundImage;
 
-    @FXML
     public void initialize() {
         // Đợi cho đến khi scene của backgroundImage được gán trước khi thiết lập liên kết kích thước
         backgroundImage.sceneProperty().addListener((obs, oldScene, newScene) -> {

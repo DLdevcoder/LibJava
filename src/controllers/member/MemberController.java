@@ -1,5 +1,7 @@
 package controllers.member;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
@@ -11,11 +13,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Admin;
 
+import java.util.List;
+
 public class MemberController extends SidebarMemberController {
     @FXML
     private TextField nameSearchField;
     @FXML
-    private TableView<Member> memberTableView; // TableView hiển thị danh sách thành viên
+    public TableView<Member> memberTableView = new TableView<>(); // TableView hiển thị danh sách thành viên
     @FXML
     private TableColumn<Member, Integer> idColumn;
     @FXML
@@ -32,15 +36,11 @@ public class MemberController extends SidebarMemberController {
     private TableColumn<Member, String> membershipDateColumn;
     @FXML
     private TableColumn<Member, String> actionColumn; // Cột cho nút
+    @FXML
+    private ProgressIndicator loadingIndicator = new ProgressIndicator();
 
     public static ObservableList<Member> memberList = FXCollections.observableArrayList();
-    private boolean isEditing = false;
-    private void setEditing(boolean value) {
-        isEditing = value;
-    }
-    private boolean isEditing() {
-        return isEditing;
-    }
+
     @FXML
     public void initialize() {
         memberTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -64,13 +64,56 @@ public class MemberController extends SidebarMemberController {
             }
         });
         // Lấy danh sách thành viên từ database và thêm vào TableView
-        memberList.setAll(admin.getMembers());
-        memberTableView.setItems(memberList);
+//        memberList.setAll(admin.getMembers());
+//        memberTableView.setItems(memberList);
 
+        loadMembers(admin.getMembers(), memberTableView);
         // Chỉnh sửa trực tiếp trong TableView
 
         setUpEditCommitHandlers(admin);
 
+    }
+
+    @FXML
+    public void loadMembers(List<Member> members, TableView<Member> memberTableView) {
+        Task<ObservableList<Member>> loadMembersTask = new Task<>() {
+            @Override
+            protected ObservableList<Member> call() throws Exception {
+                // Giả lập tải dữ liệu với độ trễ (nếu cần, bỏ dòng này khi dùng thật)
+                //Thread.sleep(2000);
+                return FXCollections.observableArrayList(members);
+            }
+
+            @Override
+            protected void succeeded() {
+                super.succeeded();
+                Platform.runLater(() -> {
+                    // Ẩn thanh quay và cập nhật dữ liệu
+                    loadingIndicator.setVisible(false);
+                    memberList.setAll(getValue());
+                    memberTableView.setItems(memberList);
+                });
+            }
+
+            @Override
+            protected void failed() {
+                super.failed();
+                Platform.runLater(() -> {
+                    loadingIndicator.setVisible(false);
+                    // Có thể thêm thông báo lỗi khác, nếu cần
+                });
+            }
+        };
+
+        // Hiển thị thanh quay khi bắt đầu tải
+        loadingIndicator.setVisible(true);
+
+        // Chạy task trên một luồng nền
+        new Thread(loadMembersTask).start();
+    }
+
+    public TableView<Member> getMemberTableView() {
+        return memberTableView;
     }
 
     // udpate
@@ -125,7 +168,7 @@ public class MemberController extends SidebarMemberController {
         return new TableCell<Member, String>() {
             private final Button deleteButton = new Button("Delete");
             private final Button updateButton = new Button("them sau");
-            private final HBox hbox = new HBox(10, deleteButton, updateButton);
+            private final HBox hbox = new HBox(10, deleteButton);
 
             {
                 // Xử lý sự kiện khi nhấn nút
@@ -155,15 +198,6 @@ public class MemberController extends SidebarMemberController {
             }
         };
     }
-
-    // Hàm xử lý khi nhấn nút "Tìm kiếm"
-    @FXML
-    private void handleSearch() {
-        String name = nameSearchField.getText();
-        Admin admin = new Admin();
-        memberList.setAll(admin.findMemberbyName(name));
-    }
-
 }
 
 
