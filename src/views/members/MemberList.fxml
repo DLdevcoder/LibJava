@@ -25,6 +25,8 @@
                <children>
                    <fx:include source="Searchbar.fxml"/>
                   <Region prefHeight="21.0" prefWidth="1115.0" />
+                   <ProgressIndicator fx:id="loadingIndicator" visible="false" />
+
                    <TableView fx:id="memberTableView">
                         <columns>
                             <TableColumn fx:id="idColumn" prefWidth="40" text="ID" />
