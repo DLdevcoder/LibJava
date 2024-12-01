@@ -172,9 +172,9 @@ public class ReturnController extends SidebarController implements BorrowAndRetu
                     } else if (!cksQuantity) {
                         if (quantity > 1) {
                             showAlert(Alert.AlertType.WARNING, "Invalid", "You have " + quantity +
-                                    " documents left to return, please re-enter the number of documents you want to return:");
+                                    " documents left to return, please re-enter the number of documents you want to return.");
                         } else if (quantity == 1) {
-                            showAlert(Alert.AlertType.WARNING, "Invalid", "You have 1 document left to return, please re-enter the number of documents you want to return:");
+                            showAlert(Alert.AlertType.WARNING, "Invalid", "You have 1 document left to return, please re-enter the number of documents you want to return.");
                         }
                     } else {
                         showAlert(Alert.AlertType.ERROR,"Error", "You have been returned book.");

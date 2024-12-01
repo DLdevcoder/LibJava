@@ -18,7 +18,7 @@
         <VBox prefHeight="120.0" prefWidth="1350.0">
             <!-- Header -->
             <AnchorPane fx:id="header" prefHeight="70.0" prefWidth="1350" styleClass="header">
-                <Label styleClass="header-label" text="ManageLib" />
+                <Label alignment="TOP_CENTER" layoutX="10" styleClass="header-label" text="ManageLib" />
                  <TextField fx:id="SearchDoc_TextField" layoutX="536.0" layoutY="19.0" prefHeight="34.0" prefWidth="366.0" promptText="Search document..." styleClass="search-field">
                      <font>
                          <Font size="15.0" />
@@ -29,7 +29,7 @@
                          <Image url="@../../resources/image/search.png" />
                      </image>
                  </ImageView>
-                <Button fx:id="adminButtonScene" alignment="TOP_LEFT" layoutX="1165.0" layoutY="1.0" onAction="#sceneAdmin" prefWidth="140" styleClass="navbar-button" text="Account Info">
+                <Button fx:id="adminButtonScene" alignment="TOP_LEFT" layoutX="1165.0" layoutY="1.0" onAction="#sceneAdmin" prefWidth="145" styleClass="navbar-button" text="Account Info">
                     <graphic>
                         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                             <image>
@@ -42,7 +42,7 @@
                     </effect>
                 </Button>
                 <Region prefWidth="0.1" styleClass="separator" />
-                <Button fx:id="logoutButtonScene" alignment="TOP_LEFT" layoutX="1165.0" layoutY="43.0" onAction="#logout" prefHeight="36.0" prefWidth="140.0" styleClass="navbar-button" text="Logout">
+                <Button fx:id="logoutButtonScene" alignment="TOP_LEFT" layoutX="1165.0" layoutY="43.0" onAction="#logout" prefHeight="36.0" prefWidth="145.0" styleClass="navbar-button" text="Logout">
                     <graphic>
                         <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
                             <image>

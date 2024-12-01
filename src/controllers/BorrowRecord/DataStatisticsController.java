@@ -21,6 +21,10 @@ public class DataStatisticsController extends SidebarController{
     private PieChart memberChart; // Biểu đồ thành viên
     @FXML
     private PieChart docChart; // Biểu đồ sách
+    @FXML
+    private Label sumMemberBorrow;
+    @FXML
+    private Label sumDocBorrow;
 
     @FXML
     private void initialize() {
@@ -84,6 +88,7 @@ public class DataStatisticsController extends SidebarController{
 
             // Cập nhật biểu đồ với dữ liệu
             int sumData = memberData.stream().mapToInt(data -> (int) data.getPieValue()).sum();
+            sumMemberBorrow.setText("MEMBER BORROW\n" + sumData);
             if (sumData > 0) {
                 settingPieChart(memberData, "Number of documents borrowed: ", sumData);
             }
@@ -156,7 +161,7 @@ public class DataStatisticsController extends SidebarController{
             docChart.getData().clear();
             docChart.getData().addAll(docData);
             int sumData = docData.stream().mapToInt(data -> (int) data.getPieValue()).sum();
-
+            sumDocBorrow.setText("DOCUMENT BORROW\n" + sumData);
             // Cập nhật biểu đồ với dữ liệu
             if (sumData > 0) {
                 settingPieChart(docData, "Number of documents: ", sumData);

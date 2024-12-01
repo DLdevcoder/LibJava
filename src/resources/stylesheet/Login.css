@@ -7,6 +7,12 @@
 
 /* Định dạng cho các trường nhập liệu */
 /* Đặt chiều rộng cho các vùng nhập */
+.login-title {
+    -fx-font-family: 'Rockwell';
+    -fx-font-weight: bold;
+    -fx-text-fill: #15b392;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 5, 2, 1, 3);
+}
 .input-field {
     -fx-pref-width: 250px; /* Đặt chiều rộng theo ý muốn */
     -fx-pref-height: 40px; /* Đặt chiều cao theo ý muốn */

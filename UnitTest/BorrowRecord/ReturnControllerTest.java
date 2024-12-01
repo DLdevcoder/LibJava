@@ -7,7 +7,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
-import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 
 import java.time.LocalDate;
@@ -49,17 +48,16 @@ public class ReturnControllerTest extends ApplicationTest {
 
     @Test
     public void testErrorDate() {
-        FxRobot robot = new FxRobot();
-        robot.clickOn("#documentIdField").write("135");
-        robot.clickOn("#memberIdField").write("3");
-        robot.clickOn("#quantityField").write("1");
+        clickOn("#documentIdField").write("135");
+        clickOn("#memberIdField").write("3");
+        clickOn("#quantityField").write("1");
         clickOn("#returnDate");
         interact(() -> {
             DatePicker returnDate = lookup("#returnDate").queryAs(DatePicker.class);
             returnDate.setValue(LocalDate.parse("2010-01-01"));
         });
-        robot.clickOn("#returnButton");
-        Stage alertStage = (Stage) robot.targetWindow();
+        clickOn("#returnButton");
+        Stage alertStage = (Stage) targetWindow();
         assertTrue(alertStage.isShowing(), "Member id must be a positive integer");
     }
 
@@ -69,5 +67,25 @@ public class ReturnControllerTest extends ApplicationTest {
         clickOn("#returnButton");
         Label errorQuantity = lookup("#errorQuantity").queryAs(Label.class);
         assertEquals("Invalid quantity! Please enter a valid number.", errorQuantity.getText());
+    }
+
+    @Test
+    public void testSuccessReturn() {
+        clickOn("#documentIdField").write("135");
+        clickOn("#memberIdField").write("3");
+        clickOn("#quantityField").write("1");
+        clickOn("#returnButton");
+        Stage alertStage = (Stage) targetWindow();
+        assertTrue(alertStage.isShowing(), "Success");
+    }
+
+    @Test
+    public void testFailReturn() {
+        clickOn("#documentIdField").write("-5");
+        clickOn("#memberIdField").write("3");
+        clickOn("#quantityField").write("1");
+        clickOn("#returnButton");
+        Stage alertStage = (Stage) targetWindow();
+        assertTrue(alertStage.isShowing(), "Fail");
     }
 }
