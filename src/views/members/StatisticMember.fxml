@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ComboBox?>
 <BorderPane stylesheets="@../../resources/stylesheet/CommonMember.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.member.StatisticMemberController">
 
     <top>
         <VBox spacing="10">
-            <!-- Header -->
             <fx:include source="../frame/Header.fxml"/>
         </VBox>
     </top>
@@ -35,11 +32,4 @@
             </BarChart>
         </VBox>
     </center>
-
-    <bottom>
-        <HBox alignment="CENTER" style="-fx-padding: 10; -fx-background-color: #f2f2f2;">
-            <Label text="© 2024 Your Application Name. All Rights Reserved." style="-fx-font-size: 12px;" />
-        </HBox>
-    </bottom>
-
 </BorderPane>

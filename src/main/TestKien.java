@@ -14,7 +14,7 @@ public class TestKien extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/icon_app.png"))));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/login/Login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/members/MemberList.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/stylesheet/Frame.css").toExternalForm());
