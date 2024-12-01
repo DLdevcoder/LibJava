@@ -363,8 +363,7 @@ public class Admin extends Person {
     // book
 
     public void saveBookToDatabase(Book book) {
-        String sql = "INSERT INTO books (title, author, publication_year, publisher, language, preview_link) VALUES (?, ?, ?, ?, ?, ?)";
-        DatabaseConnection databaseConnection = new DatabaseConnection();
+        String sql = "INSERT INTO books (title, author, publication_year, publisher, language, preview_link, quantity) VALUES (?, ?, ?, ?, ?, ?,?)";
 
         try( Connection connection = DatabaseConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql) ){
             preparedStatement.setString(1, book.getTitle());
@@ -373,6 +372,7 @@ public class Admin extends Person {
             preparedStatement.setString(4, book.getPublisher());
             preparedStatement.setString(5, book.getLanguage());
             preparedStatement.setString(6, book.getImageLink().getImage().getUrl());
+            preparedStatement.setInt(7,book.getQuantity());
 
             preparedStatement.executeUpdate();
 
@@ -384,9 +384,8 @@ public class Admin extends Person {
 
     public void deleteBook(String id) {
         String sql = "DELETE FROM books WHERE id = ?";
-        DatabaseConnection databaseConnection = new DatabaseConnection();
 
-        try (Connection connection = databaseConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, id);
             int affectRows = preparedStatement.executeUpdate();
             if (affectRows > 0) {
@@ -404,11 +403,11 @@ public class Admin extends Person {
     }
     //theses
     public void saveThesesToDataBase(Theses theses) {
-        String sql = "INSERT INTO theses (title, author) VALUES (?, ?)";
-        DatabaseConnection databaseConnection = new DatabaseConnection();
+        String sql = "INSERT INTO theses (title, author,quantity) VALUES (?, ?, ?)";
         try( Connection connection = DatabaseConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql) ){
             preparedStatement.setString(1, theses.getTitle());
             preparedStatement.setString(2, theses.getAuthor());
+            preparedStatement.setInt(3, theses.getQuantity());
            preparedStatement.executeUpdate();
 
 
@@ -418,11 +417,11 @@ public class Admin extends Person {
     }
 
     public void saveGDToDatabase(GovernmentDocuments governmentDocuments) {
-        String sql = "INSERT INTO govermentdocuments (title, author) VALUES (?, ?)";
-        DatabaseConnection databaseConnection = new DatabaseConnection();
+        String sql = "INSERT INTO governmentdocuments (title, author, quantity) VALUES (?, ?, ?)";
         try( Connection connection = DatabaseConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql) ){
             preparedStatement.setString(1, governmentDocuments.getTitle());
             preparedStatement.setString(2, governmentDocuments.getAuthor());
+            preparedStatement.setInt(3, governmentDocuments.getQuantity());
             preparedStatement.executeUpdate();
 
 

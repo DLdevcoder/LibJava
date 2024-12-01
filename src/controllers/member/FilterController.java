@@ -57,7 +57,8 @@ public class FilterController {
                 : "";
 
         Admin admin = new Admin();
-        MemberController.memberList.setAll(admin.findMemberwithFilter(name, address, phone, email, membershipDate));
-
+        MemberController mb = new MemberController();
+        //MemberController.loadMembers(admin.findMemberwithFilter(name, address, phone, email, membershipDate), new MemberController().getMemberTableView());
+        mb.loadMembers(admin.findMemberwithFilter(name, address, phone, email, membershipDate), mb.getMemberTableView());
     }
 }

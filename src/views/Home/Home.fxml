@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="544.0" prefWidth="1353.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Home.HomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Home.Suggestion">
    <top>
       <fx:include source="../frame/Header.fxml" />
    </top>
+   <left>
+      <fx:include source="Sidebar.fxml" />
+   </left>
    <center>
-      <VBox alignment="CENTER" style="-fx-background-color: #E8F5E9;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #E8F5E9;" BorderPane.alignment="CENTER">
          <children>
-            <!-- Chart Titles -->
-            <HBox alignment="CENTER" spacing="300.0">
-               <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Language Distribution of Books" />
-               <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Books by Category" />
-            </HBox>
-            <!-- Main Layout -->
-            <HBox alignment="CENTER" prefHeight="400.0" spacing="10.0">
-               <!-- Left Pie Chart -->
-               <PieChart fx:id="Home_PieChart" prefHeight="400.0" prefWidth="400.0" />
-               <!-- Divider -->
-               <Separator orientation="VERTICAL" style="-fx-background-color: black; -fx-pref-width: 2px;" />
-               <!-- Right Pie Chart -->
-               <PieChart fx:id="Category_PieChart" prefHeight="400.0" prefWidth="455.0" />
-               <!-- Sidebar Right -->
-            </HBox>
+            <!-- Tiêu đề -->
+            <Label text="Thư viện sách" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+
+            <!-- Khu vực hiển thị sách -->
+            <ScrollPane fitToWidth="true" fitToHeight="true" prefHeight="500.0" prefWidth="1000.0">
+               <content>
+                  <TilePane fx:id="bookTilePane" hgap="20.0" vgap="20.0" alignment="CENTER" />
+               </content>
+            </ScrollPane>
          </children>
       </VBox>
    </center>

@@ -1,6 +1,6 @@
 /* Sidebar */
 .sidebar-scroll {
-    -fx-background: #15b392; /* Màu chính */
+    -fx-background: white; /* Màu chính */
 }
 
 .sidebar {
@@ -21,7 +21,7 @@
 
 .sidebar-button {
     -fx-background-color: #54c392; /* Màu nền của button */
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-font-size: 16px;
     -fx-background-radius: 15;
     -fx-padding: 8 10;
@@ -41,8 +41,20 @@
 }
 .sidebar-menubutton {
     -fx-background-color: #54c392; /* Màu nền giống button */
-    -fx-text-fill: white; /* Màu chữ */
+    -fx-text-fill: black; /* Màu chữ */
     -fx-font-size: 16px; /* Kích thước font chữ */
     -fx-background-radius: 15; /* Bo góc giống button */
     -fx-cursor: hand; /* Con trỏ tay khi hover */
 }
+.menu-item {
+    -fx-background-color: #f0f0f0; /* Màu nền khi không di chuột */
+    -fx-text-fill: #333;           /* Màu chữ */
+    -fx-font-size: 14px;           /* Kích thước chữ */
+}
+
+/* Hover effect for MenuItem */
+.menu-item:hover {
+    -fx-background-color: #4CAF50; /* Màu nền khi di chuột */
+    -fx-text-fill: white;          /* Màu chữ khi di chuột */
+}
+
