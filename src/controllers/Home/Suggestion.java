@@ -2,12 +2,12 @@ package controllers.Home;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
 import models.Book;
 import utils.DatabaseConnection;
 
@@ -28,24 +28,27 @@ public class Suggestion {
 
     private void loadBooks() {
         new Thread(() -> {
-            DatabaseConnection databaseConnection = new DatabaseConnection();
             try (Connection connection = DatabaseConnection.getConnection();
                  Statement statement = connection.createStatement()) {
 
-                String sql = "SELECT id, title, author, thumbnail, average_rating FROM books ORDER BY average_rating DESC";
+                // Truy vấn lấy thông tin sách từ cơ sở dữ liệu
+                String sql = "SELECT id, title, author, publication_year, page_count, description, average_rating, preview_link FROM books ORDER BY average_rating DESC limit 10";
                 ResultSet resultSet = statement.executeQuery(sql);
 
                 while (resultSet.next()) {
                     int id = resultSet.getInt("id");
                     String title = resultSet.getString("title");
-                    String author = resultSet.getString("author");
-                    String cover = resultSet.getString("thumbnail");
+                    String cover = resultSet.getString("preview_link");
                     if (cover == null || cover.isEmpty()) {
                         cover = "https://via.placeholder.com/120x160"; // Ảnh mặc định
                     }
+                    String author = resultSet.getString("author");
+                    int publicationYear = resultSet.getInt("publication_year");
+                    int pageCount = resultSet.getInt("page_count");
+                    String description = resultSet.getString("description");
                     double rating = resultSet.getDouble("average_rating");
 
-                    VBox bookCard = createBookCard(id, title, author, cover, rating);
+                    VBox bookCard = createBookCard(id, title, author, cover, publicationYear, pageCount, description, rating);
                     javafx.application.Platform.runLater(() -> bookTilePane.getChildren().add(bookCard));
                 }
 
@@ -55,7 +58,7 @@ public class Suggestion {
         }).start();
     }
 
-    private VBox createBookCard(int id, String title, String author, String cover, double rating) {
+    private VBox createBookCard(int id, String title, String author, String cover, int publicationYear, int pageCount, String description, double rating) {
         VBox card = new VBox();
         card.setSpacing(10);
         card.setStyle("-fx-padding: 10; -fx-background-color: #ffffff; -fx-border-color: #ddd; -fx-border-radius: 5; -fx-background-radius: 5;");
@@ -76,7 +79,7 @@ public class Suggestion {
         titleLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
 
         Label authorLabel = new Label("Tác giả: " + author);
-        authorLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #555;");
+        authorLabel.setStyle("-fx-font-size: 12px;");
 
         Label ratingLabel = new Label("Đánh giá: " + rating + "/5");
         ratingLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #888;");
@@ -84,40 +87,20 @@ public class Suggestion {
         card.getChildren().addAll(bookImage, titleLabel, authorLabel, ratingLabel);
 
         // Thêm sự kiện click vào card
-        card.setOnMouseClicked(event -> openBookDetailsTab(id, title, author, cover, rating));
+        card.setOnMouseClicked(event -> openBookDetailsWindow(id, title, cover, author, publicationYear, pageCount, description, rating));
 
         return card;
     }
-    @FXML
-    private TabPane tabPane;
-    private void openBookDetailsTab(int id, String title, String author, String cover, double rating) {
-        // Kiểm tra nếu tab với tên sách đã có sẵn, nếu có thì chuyển sang tab đó
-        TabPane tabPane = new TabPane();  // TabPane có thể đã có sẵn trong layout của bạn
 
-        for (Tab tab : tabPane.getTabs()) {
-            if (tab.getText().equals(title)) {
-                tabPane.getSelectionModel().select(tab);
-                return;
-            }
-        }
+    private void openBookDetailsWindow(int id, String title, String cover, String author, int publicationYear, int pageCount, String description, double rating) {
+        // Tạo một cửa sổ mới (Stage)
+        Stage detailStage = new Stage();
+        detailStage.setTitle(title);  // Tên cửa sổ là tên sách
 
-        // Nếu không, tạo một tab mới với thông tin sách
-        Tab bookTab = new Tab();
-        bookTab.setText(title);
-
+        // Tạo một VBox để chứa thông tin chi tiết sách
         VBox bookDetailView = new VBox();
         bookDetailView.setSpacing(10);
         bookDetailView.setStyle("-fx-padding: 20; -fx-background-color: #fff;");
-
-        // Tạo các Label cho các thông tin chi tiết
-        Label titleLabel = new Label("Tiêu đề: " + title);
-        titleLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
-
-        Label authorLabel = new Label("Tác giả: " + author);
-        authorLabel.setStyle("-fx-font-size: 14px;");
-
-        Label ratingLabel = new Label("Đánh giá: " + rating + "/5");
-        ratingLabel.setStyle("-fx-font-size: 14px;");
 
         // Thêm ảnh bìa vào ImageView
         ImageView bookImage = new ImageView();
@@ -129,16 +112,33 @@ public class Suggestion {
         bookImage.setFitWidth(300);
         bookImage.setFitHeight(400);
 
-        // Thêm các Label và ảnh bìa vào VBox
-        bookDetailView.getChildren().addAll(bookImage, titleLabel, authorLabel, ratingLabel);
+        // Tạo các Label cho các thông tin chi tiết
+        Label titleLabel = new Label("Tiêu đề: " + title);
+        titleLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
 
-        // Đặt VBox vào tab
-        bookTab.setContent(bookDetailView);
+        Label authorLabel = new Label("Tác giả: " + author);
+        authorLabel.setStyle("-fx-font-size: 14px;");
 
-        // Thêm tab vào TabPane và chọn tab này
-        tabPane.getTabs().add(bookTab);
-        tabPane.getSelectionModel().select(bookTab);
+        Label publicationYearLabel = new Label("Năm xuất bản: " + publicationYear);
+        publicationYearLabel.setStyle("-fx-font-size: 14px;");
+
+        Label pageCountLabel = new Label("Số trang: " + pageCount);
+        pageCountLabel.setStyle("-fx-font-size: 14px;");
+
+        Label descriptionLabel = new Label("Mô tả: " + (description != null ? description : "Không có mô tả"));
+        descriptionLabel.setStyle("-fx-font-size: 14px;");
+
+        Label ratingLabel = new Label("Đánh giá: " + rating + "/5");
+        ratingLabel.setStyle("-fx-font-size: 14px;");
+
+        // Thêm các thông tin vào VBox
+        bookDetailView.getChildren().addAll(bookImage, titleLabel, authorLabel, publicationYearLabel, pageCountLabel, descriptionLabel, ratingLabel);
+
+        // Tạo một Scene cho cửa sổ mới
+        Scene scene = new Scene(bookDetailView, 500, 650);
+        detailStage.setScene(scene);  // Đặt Scene cho cửa sổ mới
+
+        // Hiển thị cửa sổ mới
+        detailStage.show();
     }
-
-
 }
