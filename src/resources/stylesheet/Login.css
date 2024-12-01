@@ -1,12 +1,3 @@
-/* Đặt nền chung cho toàn bộ BorderPane */
-/* Căn giữa VBox và điều chỉnh kích thước */
-
-
-/* Định dạng cho tiêu đề */
-
-
-/* Định dạng cho các trường nhập liệu */
-/* Đặt chiều rộng cho các vùng nhập */
 .login-title {
     -fx-font-family: 'Rockwell';
     -fx-font-weight: bold;
@@ -35,7 +26,7 @@
 .login-button {
     -fx-background-color: #66bb6a; /* Màu nền xanh lá */
     -fx-text-fill: white;
-    -fx-font-size: 16px;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
     -fx-background-radius: 5;
     -fx-pref-width: 100px;
