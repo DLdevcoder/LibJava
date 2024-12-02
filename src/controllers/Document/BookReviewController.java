@@ -63,8 +63,7 @@ public class BookReviewController  {
 
     private void loadReview() {
         new Thread(() -> {
-            DatabaseConnection databaseConnection = new DatabaseConnection();
-            try (Connection connection = databaseConnection.getConnection();
+            try (Connection connection = DatabaseConnection.getConnection();
                  Statement statement = connection.createStatement()) {
 
                 String sql = "select     b.id, b.title, r.comment, r.review_date, m.name " +

@@ -15,10 +15,9 @@ public class  TestHuy extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/icon_app.png"))));
-        FXMLLoader loader = new FXMLLoader(Paths.get("src/views/books/BookList.fxml").toUri().toURL());
+        FXMLLoader loader = new FXMLLoader(Paths.get("src/views/Home/suggestion.fxml").toUri().toURL());
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(Paths.get("src/resources/BookList.css").toUri().toString());
         primaryStage.setTitle("ManageLib");
         primaryStage.setWidth(1350);
         primaryStage.setHeight(750);

@@ -28,24 +28,21 @@ public class Suggestion {
 
     private void loadBooks() {
         new Thread(() -> {
-            DatabaseConnection databaseConnection = new DatabaseConnection();
             try (Connection connection = DatabaseConnection.getConnection();
                  Statement statement = connection.createStatement()) {
 
-                String sql = "SELECT id, title, author, thumbnail, average_rating FROM books ORDER BY average_rating DESC";
+                String sql = "SELECT  title, average_rating, preview_link FROM books ORDER BY average_rating DESC limit 10";
                 ResultSet resultSet = statement.executeQuery(sql);
 
                 while (resultSet.next()) {
-                    int id = resultSet.getInt("id");
                     String title = resultSet.getString("title");
-                    String author = resultSet.getString("author");
-                    String cover = resultSet.getString("thumbnail");
+                    String cover = resultSet.getString("preview_link");
                     if (cover == null || cover.isEmpty()) {
                         cover = "https://via.placeholder.com/120x160"; // Ảnh mặc định
                     }
                     double rating = resultSet.getDouble("average_rating");
 
-                    VBox bookCard = createBookCard(id, title, author, cover, rating);
+                    VBox bookCard = createBookCard( title, cover,rating );
                     javafx.application.Platform.runLater(() -> bookTilePane.getChildren().add(bookCard));
                 }
 
@@ -55,7 +52,7 @@ public class Suggestion {
         }).start();
     }
 
-    private VBox createBookCard(int id, String title, String author, String cover, double rating) {
+    private VBox createBookCard( String title, String cover, double rating) {
         VBox card = new VBox();
         card.setSpacing(10);
         card.setStyle("-fx-padding: 10; -fx-background-color: #ffffff; -fx-border-color: #ddd; -fx-border-radius: 5; -fx-background-radius: 5;");
@@ -75,22 +72,21 @@ public class Suggestion {
         Label titleLabel = new Label(title);
         titleLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
 
-        Label authorLabel = new Label("Tác giả: " + author);
-        authorLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #555;");
+
 
         Label ratingLabel = new Label("Đánh giá: " + rating + "/5");
         ratingLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #888;");
 
-        card.getChildren().addAll(bookImage, titleLabel, authorLabel, ratingLabel);
+        card.getChildren().addAll(bookImage, titleLabel, ratingLabel);
 
         // Thêm sự kiện click vào card
-        card.setOnMouseClicked(event -> openBookDetailsTab(id, title, author, cover, rating));
+        card.setOnMouseClicked(event -> openBookDetailsTab( title,  cover, rating));
 
         return card;
     }
     @FXML
     private TabPane tabPane;
-    private void openBookDetailsTab(int id, String title, String author, String cover, double rating) {
+    private void openBookDetailsTab( String title, String cover, double rating) {
         // Kiểm tra nếu tab với tên sách đã có sẵn, nếu có thì chuyển sang tab đó
         TabPane tabPane = new TabPane();  // TabPane có thể đã có sẵn trong layout của bạn
 
@@ -113,8 +109,7 @@ public class Suggestion {
         Label titleLabel = new Label("Tiêu đề: " + title);
         titleLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
 
-        Label authorLabel = new Label("Tác giả: " + author);
-        authorLabel.setStyle("-fx-font-size: 14px;");
+
 
         Label ratingLabel = new Label("Đánh giá: " + rating + "/5");
         ratingLabel.setStyle("-fx-font-size: 14px;");
@@ -130,7 +125,7 @@ public class Suggestion {
         bookImage.setFitHeight(400);
 
         // Thêm các Label và ảnh bìa vào VBox
-        bookDetailView.getChildren().addAll(bookImage, titleLabel, authorLabel, ratingLabel);
+        bookDetailView.getChildren().addAll(bookImage, titleLabel, ratingLabel);
 
         // Đặt VBox vào tab
         bookTab.setContent(bookDetailView);

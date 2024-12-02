@@ -26,8 +26,8 @@ public class FindMemberController extends SidebarMemberController {
     public void handleFindMember() {
         int id = Integer.parseInt(idField.getText());
 
-        Admin adm = new Admin();
-        Member member = adm.findMember(id);
+        Admin admin = Admin.getInstance();
+        Member member = admin.findMember(id);
         if (member != null) {
             nameLabel.setText(member.getName());
             emailLabel.setText(member.getEmail());

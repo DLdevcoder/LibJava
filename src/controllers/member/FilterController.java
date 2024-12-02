@@ -56,7 +56,7 @@ public class FilterController {
                 ? memberDateSearch.getValue().toString()
                 : "";
 
-        Admin admin = new Admin();
+        Admin admin = Admin.getInstance();
         MemberController mb = new MemberController();
         //MemberController.loadMembers(admin.findMemberwithFilter(name, address, phone, email, membershipDate), new MemberController().getMemberTableView());
         mb.loadMembers(admin.findMemberwithFilter(name, address, phone, email, membershipDate), mb.getMemberTableView());
