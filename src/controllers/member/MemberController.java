@@ -46,7 +46,7 @@ public class MemberController extends SidebarMemberController {
         memberTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         memberTableView.setEditable(true);
 
-        Admin admin = new Admin();
+        Admin admin = Admin.getInstance();
 
         // Thiết lập các cell factories cho từng cột
         idColumn.setCellValueFactory(new PropertyValueFactory<>("memberId"));

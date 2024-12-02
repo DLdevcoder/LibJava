@@ -36,8 +36,8 @@ public class ChangePasswordController extends HeaderController {
         }
 
         LoginController.admin.setPassword(newPassword);
-        Admin ad = new Admin();
-        ad.changePassword(LoginController.admin.getAdminId(), newPassword);
+        Admin admin = Admin.getInstance();
+        admin.changePassword(LoginController.admin.getAdminId(), newPassword);
         showAlert("Success", "Password changed successfully!");
         reset();
     }

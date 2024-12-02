@@ -23,7 +23,9 @@
         private static final String API_KEY = "AIzaSyBStXWe0XlatZoNMyqVSY2xgZOWPDH4Ieo"; // Thay YOUR_API_KEY bằng API Key của bạn
         private static final String API_URL = "https://www.googleapis.com/books/v1/volumes?q=";
 
-        public JSONObject fetchBookInfoByISBN(String isbn) {
+        private GoogleBooksAPI() {}
+
+        public static JSONObject fetchBookInfoByISBN(String isbn) {
             String urlWithISBN = API_URL + isbn;
             try {
                 //Thiết lập kết nối với http
@@ -53,7 +55,7 @@
             }
             return null;
         }
-        public JSONArray fetchBooksByQuery(String query) {
+        public static JSONArray fetchBooksByQuery(String query) {
             String urlWithQuery = API_URL + query + "&key=" + API_KEY;
             try {
                 //Thiết lập kết nối với http
@@ -79,7 +81,7 @@
             }
             return null;
         }
-        public List<Book> getBooksByQuery(String query) {
+        public static List<Book> getBooksByQuery(String query) {
             String urlWithQuery = API_URL + query + "&maxResults=40&key="  + API_KEY; // URL với query tìm kiếm
             List<Book> bookList = new ArrayList<>();
             int startIndex = 0;// Danh sách sách sẽ được trả về
@@ -117,7 +119,7 @@
             return bookList;  // Trả về danh sách tất cả các cuốn sách
         }
 
-        private JSONObject getBookDetails(JSONObject response) {
+        private static JSONObject getBookDetails(JSONObject response) {
             if(response.getJSONArray("items") == null || response.getJSONArray("items").isEmpty()) {
                 throw new JSONException("No books found for the given ISBN.");
             }
@@ -126,7 +128,7 @@
 
         }
 
-        public Book getBookByISBN(String isbn, String imageLink, int quantity) {
+        public static Book getBookByISBN(String isbn, String imageLink, int quantity) {
             JSONObject volumeInfo = fetchBookInfoByISBN(isbn);
             if(volumeInfo != null) {
                 String title = volumeInfo.getString("title");
@@ -151,7 +153,7 @@
 
         }
 
-        private String getIsbn(JSONObject volumeInfo) {
+        private static String getIsbn(JSONObject volumeInfo) {
             String isbn = "No ISBN detected";
             if (volumeInfo.has("industryIdentifiers")) {
                 JSONArray identifiers = volumeInfo.getJSONArray("industryIdentifiers");

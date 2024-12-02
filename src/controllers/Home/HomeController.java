@@ -36,8 +36,7 @@ public class HomeController  {
 
     private void loadPieChartData(){
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
-        DatabaseConnection databaseConnection = new DatabaseConnection();
-        try(Connection connection = databaseConnection.getConnection()){
+        try(Connection connection = DatabaseConnection.getConnection()){
             String query = "SELECT language, COUNT(*) AS count FROM books GROUP BY language";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);

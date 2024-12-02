@@ -10,9 +10,7 @@
     <top>
         <fx:include source="../frame/Header.fxml" />
     </top>
-    <left>
-        <fx:include source="Sidebar.fxml" />
-    </left>
+
     <center>
         <VBox alignment="CENTER" style="-fx-background-color: #E8F5E9;" BorderPane.alignment="CENTER">
             <children>

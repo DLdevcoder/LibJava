@@ -81,7 +81,6 @@ public class SearchController extends HeaderController{
 
 
     public SearchController() {
-        googleBooksAPI = new GoogleBooksAPI();
         bookList = FXCollections.observableArrayList();
     }
 
@@ -92,7 +91,7 @@ public class SearchController extends HeaderController{
         }
 
         // Gọi phương thức getBooksByQuery để lấy danh sách sách từ Google Books API
-        List<Book> books = googleBooksAPI.getBooksByQuery(query);
+        List<Book> books = GoogleBooksAPI.getBooksByQuery(query);
 
         // Nếu danh sách sách không rỗng, cập nhật TableView
         if (books != null && !books.isEmpty()) {

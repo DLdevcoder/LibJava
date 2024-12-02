@@ -72,9 +72,8 @@ public class Member extends Person {
 
     public void saveReviewToDatabase(Review review) {
         String sql = "INSERT INTO reviews(book_id, review_date, comment, rating, member_id) VALUES(?,?,?,?,?)";
-        DatabaseConnection databaseConnection = new DatabaseConnection();
 
-        try(Connection connection = databaseConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        try(Connection connection = DatabaseConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, review.getBook().getId()); // book_id
             preparedStatement.setDate(2, review.getReviewDate()); // review_date (java.sql.Date)
             preparedStatement.setString(3, review.getReviewText()); // comment

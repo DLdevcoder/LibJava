@@ -33,7 +33,7 @@ public class AddMemberController extends SidebarMemberController {
         }
         Member member = new Member(name, email, phone, address, password);
 
-        Admin admin = new Admin();
+        Admin admin = Admin.getInstance();
         try {
             admin.addMember(name, address, phone, email, password);
         } catch (Exception e) {

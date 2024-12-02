@@ -9,9 +9,18 @@ import java.util.Scanner;
 
 public class Admin extends Person {
     private int adminId; // id tự tăng nên k cần setter
-    private String createDate; // tu dong lay ngay hien tai nen k can setter
+    private String createDate;
+    // tu dong lay ngay hien tai nen k can setter
+    private static Admin instance;
 
-    public Admin() {
+
+    private Admin() {
+    }
+    public static Admin getInstance() {
+        if (instance == null) {
+            instance = new Admin();
+        }
+        return instance;
     }
 
     public Admin(int adminId, String name, String address, String phone, String email, String createDate, String password) {

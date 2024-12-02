@@ -41,7 +41,6 @@ public class AddBookController extends HeaderController {
     @FXML
     private TextField EnterGDQuantity_TextField;
 
-    private GoogleBooksAPI googleBooksAPI = new GoogleBooksAPI();
 
      @FXML
     public void HandleAddBookButton() throws SQLException {
@@ -49,12 +48,12 @@ public class AddBookController extends HeaderController {
          String imageLink = ImageLink_TextField.getText().trim();
          int quantity = Integer.parseInt(EnterBookQuantity_TextField.getText().trim());
           if(!isbn.isEmpty()){
-              Book book = googleBooksAPI.getBookByISBN(isbn, imageLink,quantity);
+              Book book = GoogleBooksAPI.getBookByISBN(isbn, imageLink,quantity);
 
 
               if(book != null){
                showAlert("Succcessfully","Book added successfully");
-                  Admin admin  = new Admin();
+                  Admin admin = Admin.getInstance();
                   admin.saveBookToDatabase(book);
 
 
@@ -73,7 +72,7 @@ public class AddBookController extends HeaderController {
          int quantity = Integer.parseInt(EnterThesesQuantity_TextField.getText().trim());
          if(!title.isEmpty() && !author.isEmpty()){
              Theses theses = new Theses(title, author,quantity);
-             Admin admin  = new Admin();
+             Admin admin = Admin.getInstance();
              admin.saveThesesToDataBase(theses);
              showAlert("Succcessfully","Theses added successfully");
          }
@@ -89,7 +88,7 @@ public class AddBookController extends HeaderController {
          int quantity = Integer.parseInt(EnterGDQuantity_TextField.getText().trim());
          if(!title.isEmpty() && !author.isEmpty()){
              GovernmentDocuments governmentDocuments = new GovernmentDocuments(title, author, quantity);
-             Admin admin  = new Admin();
+             Admin admin = Admin.getInstance();
              admin.saveGDToDatabase(governmentDocuments);
              showAlert("Succcessfully","GD added successfully");
 

@@ -71,7 +71,6 @@ public class BookController extends HeaderController {
 
      private void loadBooks() {
           new Thread(() -> {
-               DatabaseConnection databaseConnection = new DatabaseConnection();
                try (Connection connection = DatabaseConnection.getConnection(); Statement statement = connection.createStatement()) {
                     String sql = "SELECT id, title, author, publication_year, publisher, language, preview_link FROM books";
                     ResultSet resultSet = statement.executeQuery(sql);

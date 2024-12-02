@@ -44,8 +44,8 @@ public class LoginController extends HeaderController {
             showAlert("Error", "Please fill in all fields!");
             return;
         }
-        Admin check = new Admin();
-        if (check.checkLogin(email, password)) {
+        Admin admin = Admin.getInstance();
+        if (admin.checkLogin(email, password)) {
             admin = Admin.getAdminByLogin(email, password);
             sceneHome(event);
         } else {

@@ -60,8 +60,7 @@ public class AddReviewsController extends HeaderController {
     }
 
     private static boolean checkExists(String query, int id) throws SQLException {
-        DatabaseConnection databaseConnection = new DatabaseConnection();
-        try (Connection connection = databaseConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {

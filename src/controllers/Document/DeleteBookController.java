@@ -23,7 +23,7 @@ public class DeleteBookController extends HeaderController {
             return;
         }
         else{
-            Admin admin = new Admin();
+            Admin admin = Admin.getInstance();
             admin.deleteBook(id);
             showAlert("Success","Book deleted successfully");
         }
