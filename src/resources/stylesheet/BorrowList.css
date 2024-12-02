@@ -1,7 +1,9 @@
 .header-label {
+    -fx-font-family: 'Comic Sans MS';
     -fx-text-fill: #388e3c;
     -fx-font-weight: bold;
 }
+
 /* TableView */
 .table-view {
     -fx-background-color: #e0f2f1; /* Màu nền bảng */
@@ -66,7 +68,6 @@
 .button {
     -fx-background-color: #15b392; /* Màu xanh chính của ứng dụng */
     -fx-text-fill: white;
-    -fx-padding: 10;
     -fx-border-radius: 5;
     -fx-background-radius: 5;
     -fx-cursor: hand;

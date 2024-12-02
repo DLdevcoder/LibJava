@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.XYChart?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Home.Borrows">
+    <top>
+        <fx:include source="../frame/Header.fxml" />
+    </top>
+    <left>
+        <fx:include source="Sidebar.fxml" />
+    </left>
+    <center>
+        <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #E8F5E9;" BorderPane.alignment="CENTER">
+            <Label text="Books Borrowed Over the Last Year" style="-fx-font-size: 18; -fx-font-weight: bold;" />
+            <!-- Line Chart for Books Borrowed -->
+            <LineChart fx:id="borrowLineChart" prefWidth="1000.0" prefHeight="400.0">
+                <xAxis>
+                    <CategoryAxis fx:id="xAxis" />
+                </xAxis>
+                <yAxis>
+                    <NumberAxis fx:id="yAxis" label="Number of Books" />
+                </yAxis>
+            </LineChart>
+        </VBox>
+    </center>
+</BorderPane>

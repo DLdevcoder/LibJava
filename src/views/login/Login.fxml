@@ -8,7 +8,7 @@
 
 <StackPane stylesheets="@../../resources/stylesheet/Login.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
     <!-- Hình nền -->
-    <ImageView fx:id="backgroundImage" fitHeight="750" fitWidth="1400" preserveRatio="true">
+    <ImageView fx:id="backgroundImage" fitHeight="750" fitWidth="1350">
         <image>
             <Image url="@../../resources/image/background_login.png" />
         </image>

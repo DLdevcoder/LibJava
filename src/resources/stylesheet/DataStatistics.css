@@ -1,7 +1,20 @@
 .header-title {
+    -fx-font-family: 'Comic Sans MS';
     -fx-font-weight: bold;
     -fx-text-fill: #15b392;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 3, 0.5, 0, 1);
+}
+
+.statisLabel {
+    -fx-font-family: 'Cooper Black';
+    -fx-text-fill: white;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-background-color: #15b392;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-color: #73ec8b;
 }
 
 /* Content Section */
@@ -25,7 +38,11 @@
     -fx-text-fill: #15b392;
 }
 
-/* PieChart */
+.chart-pie:hover{
+    -fx-border-width: 2;
+    -fx-border-color: #73ec8b;
+}
+
 .custom-piechart {
     -fx-background-color: transparent;
     -fx-padding: 10px;

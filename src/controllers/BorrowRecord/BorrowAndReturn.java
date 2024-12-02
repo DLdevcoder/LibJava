@@ -12,9 +12,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class BorrowAndReturn extends SidebarController {
+public interface BorrowAndReturn {
     // Kiểm tra và truy vấn tên tài liệu từ ID tài liệu
-    protected static void fetchDocumentTitle(TextField documentIdField, Label errorDoc) {
+    static void fetchDocumentTitle(TextField documentIdField, Label errorDoc) {
         String documentIdText = documentIdField.getText();
         errorDoc.setText(""); // Xóa thông báo cũ
 
@@ -52,7 +52,7 @@ public class BorrowAndReturn extends SidebarController {
     }
 
     // Kiểm tra và truy vấn tên thành viên từ ID thành viên
-    protected static void fetchMemberName(TextField memberIdField, Label errorMem) {
+    static void fetchMemberName(TextField memberIdField, Label errorMem) {
         String memberIdText = memberIdField.getText();
         errorMem.setText(""); // Xóa thông báo cũ
 
@@ -89,7 +89,7 @@ public class BorrowAndReturn extends SidebarController {
         }
     }
 
-    protected boolean checkDocId(TextField documentIdField) {
+    default boolean checkDocId(TextField documentIdField) {
         String input = documentIdField.getText();
         if (!input.isEmpty()) {
             try {
@@ -102,17 +102,21 @@ public class BorrowAndReturn extends SidebarController {
         return false;
     }
 
-    protected boolean checkMemId(TextField memberIdField) {
+    default boolean checkMemId(TextField memberIdField) {
         String input = memberIdField.getText();
         if (!input.isEmpty()) {
-            int res = Integer.parseInt(input);
-            return res > 0;
+            try {
+                int res = Integer.parseInt(input);
+                return res > 0;
+            } catch (Exception e) {
+                return false;
+            }
         }
         return false;
     }
 
     // Hàm tiện ích để hiển thị các thông báo
-    protected void showAlert(Alert.AlertType alertType, String title, String message) {
+    default void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -122,4 +126,6 @@ public class BorrowAndReturn extends SidebarController {
         dialogPane.getStyleClass().add("dialog-pane");
         alert.showAndWait();
     }
+
+    void fetchQuantity();
 }

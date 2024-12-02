@@ -1,6 +1,6 @@
 /* Sidebar */
 .sidebar-scroll {
-    -fx-background: white; /* Màu chính */
+     -fx-background: #15b392;
 }
 
 .sidebar {
@@ -21,7 +21,7 @@
 
 .sidebar-button {
     -fx-background-color: #54c392; /* Màu nền của button */
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-font-size: 16px;
     -fx-background-radius: 15;
     -fx-padding: 8 10;

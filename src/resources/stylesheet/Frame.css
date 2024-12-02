@@ -1,6 +1,5 @@
-/* Toàn bộ giao diện */
 .root {
-    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-family: 'Times New Roman';
     -fx-background-color: #f4f4f4; /* Nền tổng thể */
 }
 
@@ -11,7 +10,8 @@
 }
 
 .header-label {
-    -fx-font-size: 35; /* Kích thước chữ cho tiêu đề */
+    -fx-font-family: "Harlow Solid Italic";
+    -fx-font-size: 45; /* Kích thước chữ cho tiêu đề */
     -fx-text-fill: white; /* Màu chữ cho tiêu đề */
     -fx-font-weight: bold;
 }
@@ -42,6 +42,7 @@
 }
 
 .navbar-button {
+    -fx-font-family: 'Arial';
     -fx-background-color: transparent; /* Nền trong suốt */
     -fx-text-fill: white;
     -fx-font-size: 14;
