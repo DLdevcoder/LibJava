@@ -15,7 +15,7 @@ import java.util.Objects;
 public class DocumentSideBarController extends HeaderController {
     public void ScenceBookList(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/Booklist.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/BookList.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);

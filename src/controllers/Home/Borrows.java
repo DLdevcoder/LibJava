@@ -40,8 +40,7 @@ public class Borrows {
             }
         });
 
-        DatabaseConnection databaseConnection = new DatabaseConnection();
-        try (Connection connection = databaseConnection.getConnection()) {
+        try (Connection connection = DatabaseConnection.getConnection()) {
             String query = "SELECT MONTH(borrow_date) AS month, SUM(quantity_borrow) AS total_borrowed " +
                     "FROM borrow_records WHERE borrow_date BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 YEAR) AND CURDATE() " +
                     "GROUP BY MONTH(borrow_date) ORDER BY MONTH(borrow_date)";
