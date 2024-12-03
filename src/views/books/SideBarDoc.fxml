@@ -72,7 +72,7 @@
             </ImageView>
          </graphic></Button>
       <Separator prefWidth="200.0" />
-      <MenuButton alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="204.0" styleClass="sidebar-menubutton" text="Reviews">
+      <MenuButton fx:id="ReviewMenuButton" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="204.0" styleClass="sidebar-menubutton" text="Reviews">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#HandleAddReviews" text="Add Reviews" />
           <MenuItem mnemonicParsing="false" onAction="#HandleShowReviews" text="Show Reviews" />

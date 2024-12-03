@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="349.0" prefWidth="224.0" styleClass="sidebar-scroll" stylesheets="@../../resources/stylesheet/Sidebar.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.member.SidebarMemberController">
-    <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="414.0" prefWidth="205.0" spacing="8" styleClass="sidebar">
+    <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="326.0" prefWidth="234.0" spacing="8" styleClass="sidebar">
         <Label styleClass="sidebar-title" text="Management" />
         <Button alignment="TOP_LEFT" maxWidth="Infinity" onAction="#sceneMemberList" styleClass="sidebar-button" text="Member list">
             <graphic>

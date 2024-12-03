@@ -1,4 +1,5 @@
 package controllers.Document;
+
 import controllers.HeaderController;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
@@ -6,22 +7,30 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import models.Book;
 import utils.DatabaseConnection;
 
 import java.sql.*;
-
+import java.util.ArrayList;
 import java.util.List;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 public class BookController extends HeaderController {
 
-     protected static List<Book> books;
+     @FXML
+     private TextField searchField;
+
+     @FXML
+     private Button searchButton;
+
+     @FXML
+     private Button clearButton;
+
      @FXML
      private TableView<Book> Document_Table;
 
@@ -46,15 +55,17 @@ public class BookController extends HeaderController {
      @FXML
      private TableColumn<Book, String> Book_ID;
 
-
      private ObservableList<Book> bookList;
+     private SearchDocumentController searchController;
 
      public BookController() {
           bookList = FXCollections.observableArrayList();
+          searchController = new SearchDocumentController();
      }
 
      @FXML
      private void initialize() {
+          // Initialize columns
           Book_Title.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitle()));
           Book_Author.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAuthor()));
           Book_Year.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getPublicationYear())));
@@ -63,10 +74,11 @@ public class BookController extends HeaderController {
           Book_Cover.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getImageLink()));
           Book_ID.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getId())));
 
-
           loadBooks();
 
-
+          // Set up button actions
+          searchButton.setOnAction(event -> performSearch());
+          clearButton.setOnAction(event -> clearSearch());
      }
 
      private void loadBooks() {
@@ -75,40 +87,46 @@ public class BookController extends HeaderController {
                     String sql = "SELECT id, title, author, publication_year, publisher, language, preview_link FROM books";
                     ResultSet resultSet = statement.executeQuery(sql);
 
+                    List<Book> books = new ArrayList<>();
                     while (resultSet.next()) {
+                         int id = resultSet.getInt("id");
                          String title = resultSet.getString("title");
                          String author = resultSet.getString("author");
                          String publicationYear = resultSet.getString("publication_year");
                          String publisher = resultSet.getString("publisher");
                          String language = resultSet.getString("language");
                          String cover = resultSet.getString("preview_link");
-                         int id = resultSet.getInt("id");
-
 
                          Image image = new Image(cover);
                          ImageView coverImageView = new ImageView(image);
-                         coverImageView.setFitWidth(100); // Đặt chiều rộng
-                         coverImageView.setFitHeight(150); // Đặt chiều cao
+                         coverImageView.setFitWidth(100);
+                         coverImageView.setFitHeight(150);
 
-                         bookList.add(new Book(id,title, author, publicationYear, publisher, language, coverImageView));
-                         Platform.runLater(() -> Document_Table.setItems(bookList));
+                         books.add(new Book(id, title, author, publicationYear, publisher, language, coverImageView));
 
                     }
                     Platform.runLater(() -> {
+                         bookList.setAll(books);
                          Document_Table.setItems(bookList);
                     });
-
 
                } catch (SQLException e) {
                     e.printStackTrace();
                }
           }).start();
+     }
 
+     @FXML
+     private void performSearch() {
+          String keyword = searchField.getText();
+          searchController.setSearchStrategy(new SearchByTitleStrategy());
+          List<Book> result = searchController.executeSearch(bookList, keyword);
+          Document_Table.setItems(FXCollections.observableArrayList(result));
+     }
 
+     @FXML
+     private void clearSearch() {
+          searchField.clear();
+          Document_Table.setItems(bookList);
      }
 }
-
-
-
-
-

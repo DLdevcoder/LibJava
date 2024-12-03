@@ -23,4 +23,5 @@ module main {
     opens controllers.Document to javafx.fxml;
     opens controllers.admin to javafx.fxml;
     opens controllers.Home to javafx.fxml;
+
 }
