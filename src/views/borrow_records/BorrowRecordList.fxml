@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="750" prefWidth="1350" stylesheets="@../../resources/stylesheet/CommonBorrow.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BorrowRecord.BorrowRecordController">
+<BorderPane prefHeight="750" prefWidth="1350.0" stylesheets="@../../resources/stylesheet/CommonBorrow.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BorrowRecord.BorrowRecordController">
     <top>
         <fx:include source="../frame/Header.fxml" />
     </top>
@@ -25,7 +25,7 @@
     </right>
     <center>
         <VBox alignment="CENTER" prefWidth="1130.0" spacing="10.0" stylesheets="@../../resources/stylesheet/BorrowList.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-         <AnchorPane prefHeight="114.0" prefWidth="1096.0">
+         <AnchorPane prefHeight="114.0" prefWidth="1109.0">
             <children>
                <Label layoutX="425.0" layoutY="6.0" styleClass="header-label" text="Borrow record list">
                   <font>
@@ -67,7 +67,7 @@
                </Button>
             </children>
          </AnchorPane>
-            <TableView fx:id="tableView" prefHeight="430.0" prefWidth="1105.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="tableView" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="1110.0" VBox.vgrow="ALWAYS">
                 <columns>
                     <TableColumn fx:id="recordIdColumn" prefWidth="120" text="Record ID" />
                     <TableColumn fx:id="documentIdColumn" prefWidth="120" text="Document ID" />
@@ -77,7 +77,7 @@
                     <TableColumn fx:id="dueDateColumn" prefWidth="125" text="Due Date" />
                     <TableColumn fx:id="statusColumn" prefWidth="125" text="Status" />
                     <TableColumn fx:id="quantityColumn" maxWidth="100" prefWidth="92.800048828125" text="Quantity" />
-                    <TableColumn fx:id="quantityBorrowColumn" maxWidth="155" prefWidth="155.0" text="Quantity Borrow" />
+                    <TableColumn fx:id="quantityBorrowColumn" maxWidth="167.20000000000005" prefWidth="167.20000000000005" text="Quantity Borrow" />
                 </columns>
             </TableView>
         </VBox>
