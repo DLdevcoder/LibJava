@@ -1,0 +1,13 @@
+#homeButtonScene{
+    -fx-background-color: #73ec8b;
+    -fx-background-radius: 15;
+    -fx-font-size: 14;
+    -fx-padding: 8 15;
+    -fx-font-weight: bold;
+}
+
+#homeButtonScene:hover {
+    -fx-background-color: #d2ff72; /* Màu nền khi hover */
+    -fx-text-fill: black;
+    -fx-background-radius: 15;
+}

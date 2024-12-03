@@ -1,39 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="759.0" prefWidth="1401.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Home.HomeController">
+<BorderPane stylesheets="@../../resources/stylesheet/CommonHome.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Home.DocumentsController">
     <top>
         <fx:include source="../frame/Header.fxml" />
     </top>
 
+    <left>
+        <fx:include source="Sidebar.fxml" />
+    </left>
     <center>
-        <VBox alignment="CENTER" style="-fx-background-color: #E8F5E9;" BorderPane.alignment="CENTER">
-            <children>
-                <!-- Chart Titles -->
-                <HBox alignment="CENTER" spacing="300.0">
-                    <children>
-                        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Language Distribution of Books" />
-                        <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Books by Category" />
-                    </children>
-                </HBox>
-                <!-- Main Layout -->
-                <HBox alignment="CENTER" prefHeight="400.0" spacing="10.0">
-                    <children>
-                        <!-- Left Pie Chart -->
-                        <PieChart fx:id="Home_PieChart" prefHeight="400.0" prefWidth="420.0" />
-                        <!-- Divider -->
-                        <Separator orientation="VERTICAL" style="-fx-background-color: black; -fx-pref-width: 2px;" />
-                        <!-- Right Pie Chart -->
-                        <PieChart fx:id="Category_PieChart" prefHeight="355.0" prefWidth="502.0" />
-                    </children>
-                </HBox>
-            </children>
-        </VBox>
+        <AnchorPane stylesheets="@../../resources/stylesheet/DataStatistics.css">
+            <!-- Header -->
+            <Label alignment="CENTER" layoutX="419.0" layoutY="14.0" prefHeight="50.0" prefWidth="261.0" styleClass="header-title" text="Document statistics">
+                <font>
+                    <Font size="30.0" />
+                </font></Label>
+
+            <!-- Content Section -->
+            <AnchorPane layoutY="84.0" prefHeight="537.0" prefWidth="1100.0" styleClass="content-container">
+                <children>
+                    <HBox alignment="CENTER" layoutY="7.0" prefWidth="1086.0" spacing="5">
+                        <!-- PieChart 1 -->
+                        <VBox alignment="TOP_CENTER" prefWidth="534.0" styleClass="chart-box">
+                            <children>
+                                <Label styleClass="chart-title" text="Language Distribution of Books" />
+                                <PieChart fx:id="Home_PieChart" prefHeight="420.0" prefWidth="494.0" styleClass="custom-piechart" />
+                            </children>
+                        </VBox>
+
+                        <!-- PieChart 2 -->
+                        <VBox alignment="TOP_CENTER" prefHeight="498.0" prefWidth="548.0" styleClass="chart-box">
+                            <children>
+                                <Label styleClass="chart-title" text="Books by Category" />
+                                <PieChart fx:id="Category_PieChart" prefHeight="420.0" prefWidth="506.0" styleClass="custom-piechart" />
+                            </children>
+                        </VBox>
+                    </HBox>
+                </children>
+            </AnchorPane>
+        </AnchorPane>
+
 
     </center>
+
 </BorderPane>
