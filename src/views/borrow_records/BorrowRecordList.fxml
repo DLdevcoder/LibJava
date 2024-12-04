@@ -25,7 +25,7 @@
         <Label prefHeight="18.0" prefWidth="18.0" />
     </right>
     <center>
-        <VBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="1130.0" spacing="10.0" stylesheets="@../../resources/stylesheet/BorrowList.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+        <VBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="1162.0" spacing="10.0" stylesheets="@../../resources/stylesheet/BorrowList.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
          <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="119.0" prefWidth="1130.0" VBox.vgrow="ALWAYS">
             <children>
                <Label layoutX="425.0" layoutY="6.0" styleClass="header-label" text="Borrow record list">
@@ -68,17 +68,17 @@
                </Button>
             </children>
          </AnchorPane>
-            <TableView fx:id="tableView" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="1130.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="tableView" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="1143.0" VBox.vgrow="ALWAYS">
                 <columns>
-                    <TableColumn fx:id="recordIdColumn" prefWidth="120.0" text="Record ID" />
-                    <TableColumn fx:id="documentIdColumn" prefWidth="120.0" text="Document ID" />
-                    <TableColumn fx:id="memberIdColumn" prefWidth="120" text="Member ID" />
-                    <TableColumn fx:id="borrowDateColumn" prefWidth="125" text="Borrow Date" />
-                    <TableColumn fx:id="returnDateColumn" prefWidth="115" text="Return Date" />
-                    <TableColumn fx:id="dueDateColumn" prefWidth="125" text="Due Date" />
-                    <TableColumn fx:id="statusColumn" prefWidth="125" text="Status" />
-                    <TableColumn fx:id="quantityColumn" maxWidth="155.0" prefWidth="92.800048828125" text="Quantity" />
-                    <TableColumn fx:id="quantityBorrowColumn" maxWidth="264.0" prefWidth="200.0" text="Quantity Borrow" />
+                    <TableColumn fx:id="recordIdColumn" prefWidth="127.20002746582031" text="Record ID" />
+                    <TableColumn fx:id="documentIdColumn" prefWidth="122.39996337890625" text="Document ID" />
+                    <TableColumn fx:id="memberIdColumn" prefWidth="118.4000244140625" text="Member ID" />
+                    <TableColumn fx:id="borrowDateColumn" prefWidth="132.00006103515625" text="Borrow Date" />
+                    <TableColumn fx:id="returnDateColumn" prefWidth="123.199951171875" text="Return Date" />
+                    <TableColumn fx:id="dueDateColumn" prefWidth="120.800048828125" text="Due Date" />
+                    <TableColumn fx:id="statusColumn" prefWidth="123.0" text="Status" />
+                    <TableColumn fx:id="quantityColumn" maxWidth="155.0" prefWidth="96.0" text="Quantity" />
+                    <TableColumn fx:id="quantityBorrowColumn" maxWidth="264.0" prefWidth="185.0" text="Quantity Borrow" />
                 </columns>
             <VBox.margin>
                <Insets right="20.0" />
