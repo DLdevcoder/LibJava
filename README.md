@@ -43,6 +43,9 @@ B.UI
 
 - Thiết kế UML cùng các thành viên nhóm
 
+
+Nguyễn Nhất Huy
+
 A.Console
 + Xử lí phần Add Document, Remove Document, Add user
 
