@@ -15,13 +15,17 @@ public class Admin extends Person {
     private static Admin instance;
 
 
-    private Admin() {
+    public Admin() {
     }
     public static Admin getInstance() {
         if (instance == null) {
             instance = new Admin();
         }
         return instance;
+    }
+    public Admin(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
 
     public Admin(int adminId, String name, String address, String phone, String email, String createDate, String password) {

@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.control.TabPane?>
 <BorderPane stylesheets="@../../resources/stylesheet/CommonHome.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Home.Suggestion">
     <top>
         <fx:include source="../frame/Header.fxml" />
@@ -34,6 +35,11 @@
                                 <TilePane fx:id="bookTilePane" hgap="20.0" vgap="20.0" alignment="CENTER" styleClass="book-card"/>
                             </content>
                         </ScrollPane>
+
+                        <!-- Thêm TabPane để chứa các tab chi tiết sách -->
+                        <TabPane fx:id="tabPane" prefWidth="1000.0" prefHeight="400.0">
+                            <!-- Tab chi tiết sách sẽ được thêm vào đây khi người dùng nhấp vào sách -->
+                        </TabPane>
                     </children>
                 </VBox>
             </AnchorPane>
@@ -41,3 +47,4 @@
     </center>
 
 </BorderPane>
+

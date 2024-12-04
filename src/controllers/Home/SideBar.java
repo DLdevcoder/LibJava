@@ -15,31 +15,54 @@ public class SideBar {
     protected Stage stage;
     protected Scene scene;
 
-    public void changeScene(ActionEvent event, String path) {
+    // Enum hoặc constants để lưu trữ đường dẫn FXML
+    public enum ScenePaths {
+        SUGGESTION("/views/Home/Suggestion.fxml"),
+        DOCUMENTS("/views/Home/Documents.fxml"),
+        BORROWS("/views/Home/Borrows.fxml"),
+        REVIEWS("/views/Home/Reviews.fxml");
+
+        private final String path;
+
+        ScenePaths(String path) {
+            this.path = path;
+        }
+
+        public String getPath() {
+            return this.path;
+        }
+    }
+
+    // Phương thức chung để thay đổi scene
+    private void changeScene(ActionEvent event, ScenePaths scenePath) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(path)));
+            // Đảm bảo rằng bạn sử dụng đúng đường dẫn
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(scenePath.getPath())));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
+            // Cải thiện thông báo lỗi cho người dùng
             e.printStackTrace();
-            System.out.println("Error loading FXML file.");
+            System.out.println("Error loading FXML file: " + scenePath.getPath());
         }
     }
+
+    // Các phương thức hành động cho từng scene
     public void sceneSuggestion(ActionEvent event) {
-        changeScene(event, "/views/Home/Suggestion.fxml");
+        changeScene(event, ScenePaths.SUGGESTION);
     }
 
     public void sceneDocuments(ActionEvent event) {
-        changeScene(event,"/views/Home/Documents.fxml");
+        changeScene(event, ScenePaths.DOCUMENTS);
     }
 
     public void sceneBorrows(ActionEvent event) {
-        changeScene(event,"/views/Home/Borrows.fxml");
+        changeScene(event, ScenePaths.BORROWS);
     }
 
     public void sceneReviews(ActionEvent event) {
-        changeScene(event,"/views/Home/Reviews.fxml");
+        changeScene(event, ScenePaths.REVIEWS);
     }
 }

@@ -24,6 +24,14 @@ public class FindMemberController extends SidebarMemberController {
 
     @FXML
     public void handleFindMember() {
+        if (idField.getText().isEmpty()) {
+            showAlert("Error", "Please enter member ID!");
+            return;
+        }
+        if (!idField.getText().matches("[0-9]+")) {
+            showAlert("Error", "Member ID must be a number!");
+            return;
+        }
         int id = Integer.parseInt(idField.getText());
 
         Admin admin = Admin.getInstance();
