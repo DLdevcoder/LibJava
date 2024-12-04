@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="630.0" prefWidth="1301.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.BookReviewController">
+<BorderPane prefHeight="750.0" prefWidth="1350.0" stylesheets="@../../resources/stylesheet/CommonDoc.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.BookReviewController">
     <top>
         <fx:include source="../frame/Header.fxml" />
     </top>
@@ -12,7 +12,7 @@
         <fx:include source="SideBarDoc.fxml" />
     </left>
    <center>
-      <TableView fx:id="ReviewTable" minWidth="-Infinity" prefHeight="510.0" prefWidth="1301.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="ReviewTable" minWidth="-Infinity" prefHeight="510.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="BookId" prefWidth="70.39996182918549" resizable="false" text="Book ID" />
             <TableColumn fx:id="BookTitle" prefWidth="311.2000198364258" resizable="false" text="Title" />

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="572.0" prefWidth="1063.0" stylesheets="@../../resources/stylesheet/ADDREVIEW.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.AddReviewsController">
+<BorderPane prefHeight="572.0" prefWidth="1063.0" stylesheets="@../../resources/stylesheet/BookList.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.AddReviewsController">
 
 
     <top>
@@ -18,7 +18,7 @@
         <fx:include source="SideBarDoc.fxml" />
     </left>
     <center>
-        <AnchorPane prefHeight="510.0" prefWidth="819.0" stylesheets="@../../resources/stylesheet/ADDBOOK.css" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="510.0" prefWidth="819.0" stylesheets="@../../resources/stylesheet/ADDREVIEW.css" BorderPane.alignment="CENTER">
             <children>
                 <VBox fx:id="Vbox_AddReview" alignment="CENTER" layoutX="122.0" layoutY="87.0" prefHeight="355.0" prefWidth="478.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
                     <children>

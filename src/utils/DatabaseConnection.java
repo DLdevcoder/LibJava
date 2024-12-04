@@ -7,12 +7,12 @@ public class DatabaseConnection {
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
+    private static Connection connection;
+
     public DatabaseConnection() {
     }
 
     public static Connection getConnection() {
-        Connection connection = null;
-
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(URL, USER, PASSWORD);

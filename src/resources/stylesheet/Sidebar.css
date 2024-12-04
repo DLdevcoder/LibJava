@@ -37,17 +37,24 @@
     -fx-background-color: #388E3C; /* Màu khi nhấn */
 }
 .seperator{
-    -fx-background-color: black;
+    -fx-background-color: #15b392;
 }
+
+.sidebar-menubutton .label {
+    -fx-text-fill: white;
+}
+
 .sidebar-menubutton {
     -fx-background-color: #54c392; /* Màu nền giống button */
-    -fx-text-fill: black; /* Màu chữ */
+    -fx-text-fill: white; /* Màu chữ */
     -fx-font-size: 16px; /* Kích thước font chữ */
     -fx-background-radius: 15; /* Bo góc giống button */
     -fx-cursor: hand; /* Con trỏ tay khi hover */
 }
+
 .menu-item {
-    -fx-background-color: #f0f0f0; /* Màu nền khi không di chuột */
+    -fx-cursor: hand;
+    -fx-background-color: #15b392; /* Màu nền khi không di chuột */
     -fx-text-fill: #333;           /* Màu chữ */
     -fx-font-size: 14px;           /* Kích thước chữ */
 }
