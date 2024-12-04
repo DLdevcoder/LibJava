@@ -1,5 +1,7 @@
 # LibJava
-Đặng Tuấn Long:
+
+Đặng Tuấn Long(trưởng nhóm):
+
 A.Console
 
 - Thiết kế database
