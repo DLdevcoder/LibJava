@@ -37,6 +37,10 @@ public class SearchController extends HeaderController{
     private GoogleBooksAPI googleBooksAPI;
     private ObservableList<Book> bookList;
 
+    /**
+     * Initializes the columns of the TableView and sets up the button behavior for copying ISBN.
+     * This method is automatically called after the FXML file is loaded.
+     */
     @FXML
     public void initialize() {
         DocISBN.setCellValueFactory(new PropertyValueFactory<>("isbn"));
@@ -80,10 +84,19 @@ public class SearchController extends HeaderController{
 
 
 
+    /**
+     * Constructor for SearchController. Initializes an observable list for book data.
+     */
     public SearchController() {
         bookList = FXCollections.observableArrayList();
     }
 
+    /**
+     * Performs a search for books based on the given query.
+     * If books are found, the TableView is updated with the results.
+     *
+     * @param query The search term entered by the user.
+     */
     public void performSearch(String query) {
         if (query == null || query.isEmpty()) {
             showAlert("Error", "Please enter a valid search term");
@@ -103,7 +116,11 @@ public class SearchController extends HeaderController{
         }
     }
 
-
+    /**
+     * Copies the ISBN of a book to the system clipboard.
+     *
+     * @param book The book whose ISBN will be copied.
+     */
     private void copyISBN(Book book) {
         if (book != null) {
             String isbn = book.getIsbn();

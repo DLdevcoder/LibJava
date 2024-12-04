@@ -18,7 +18,15 @@ public class BookControllerTest extends ApplicationTest {
 
     private TableView<Book> Document_Table;
     private TextField searchField;
+    private TextField searchDocTextField;  // Thêm TextField mới cho header
 
+    /**
+     * This method initializes the JavaFX application.
+     * It loads the FXML layout for the BookList view and displays it in the window.
+     *
+     * @param stage The main window of the JavaFX application.
+     * @throws Exception If an error occurs during the loading of the FXML file.
+     */
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/books/BookList.fxml")); // Sửa đường dẫn nếu cần
@@ -29,12 +37,22 @@ public class BookControllerTest extends ApplicationTest {
         stage.show();
     }
 
+    /**
+     * This method sets up necessary nodes for testing.
+     * It is called before each test in JUnit.
+     */
     @BeforeEach
     public void setUpNodes() {
         Document_Table = lookup("#Document_Table").queryTableView();
         searchField = lookup("#searchField").query();
+        searchDocTextField = lookup("#SearchDoc_TextField").query(); // Tìm kiếm TextField trong header
+
     }
 
+    /**
+     * This method tests the performSearch functionality.
+     * It simulates a search query, performs the search, and checks the results in the table.
+     */
     @Test
     public void testPerformSearch() {
         // Đảm bảo bảng có dữ liệu
@@ -60,7 +78,10 @@ public class BookControllerTest extends ApplicationTest {
 
 
 
-
+    /**
+     * This method waits for the table to be populated (i.e., non-empty).
+     * It is used to ensure that the table has been updated after a search.
+     */
     private void waitForFxEvents() {
         // Đợi cho đến khi bảng không còn trống, tức là dữ liệu đã được tải
         while (Document_Table.getItems().isEmpty()) {
