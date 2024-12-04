@@ -6,7 +6,6 @@
 
     <top>
         <VBox>
-            <!-- Header -->
             <fx:include source="../frame/Header.fxml" />
         </VBox>
     </top>
