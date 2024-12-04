@@ -18,6 +18,9 @@ public class AdminController extends HeaderController {
     @FXML
     private TextField createDateField;
 
+    /**
+     * Initializes the controller class.
+     */
     @FXML
     public void initialize() {
         nameField.setEditable(false);

@@ -29,12 +29,18 @@ public class FilterController {
     @FXML
     private Button searchButton;
 
+    /**
+     * khởi tạo controller
+     */
     @FXML
     public void initialize() {
-        // Có thể thêm các thiết lập mặc định cho controller tại đây
         System.out.println("FindMemberController initialized!");
     }
 
+    /**
+     * Xử lý khi nhấn nút xóa
+     * @param event sự kiện
+     */
     @FXML
     private void handleClearButtonAction(ActionEvent event) {
         // Xóa toàn bộ các trường nhập liệu
@@ -45,9 +51,12 @@ public class FilterController {
         memberDateSearch.setValue(null);
     }
 
+    /**
+     * Xử lý khi nhấn nút tìm kiếm
+     * @param event sự kiện
+     */
     @FXML
     private void handleSearchButtonAction(ActionEvent event) {
-        // Lấy giá trị từ các trường nhập liệu
         String name = nameField.getText();
         String address = addressField.getText();
         String phone = phoneField.getText();
@@ -58,7 +67,6 @@ public class FilterController {
 
         Admin admin = Admin.getInstance();
         MemberController mb = new MemberController();
-        //MemberController.loadMembers(admin.findMemberwithFilter(name, address, phone, email, membershipDate), new MemberController().getMemberTableView());
         mb.loadMembers(admin.findMemberwithFilter(name, address, phone, email, membershipDate), mb.getMemberTableView());
     }
 }

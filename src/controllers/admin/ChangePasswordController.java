@@ -14,6 +14,9 @@ public class ChangePasswordController extends HeaderController {
     @FXML
     private TextField confirmPass;
 
+    /**
+     * xử lý khi nhấn
+     */
     @FXML
     public void handleChangePass () {
         String oldPassword = oldPass.getText();

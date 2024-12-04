@@ -57,6 +57,12 @@ public class HeaderController {
             System.out.println("Error loading FXML file.");
         }
     }
+
+    /**
+     * Hiển thị một cửa sổ thông báo với tiêu đề và nội dung được chỉ định.
+     * @param title Tiêu đề của cửa sổ thông báo.
+     * @param message Nội dung của cửa sổ thông báo.
+     */
     public void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

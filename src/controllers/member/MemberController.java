@@ -47,6 +47,9 @@ public class MemberController extends SidebarMemberController {
 
     public static ObservableList<Member> memberList = FXCollections.observableArrayList();
 
+    /**
+     * Khởi tạo controller
+     */
     @FXML
     public void initialize() {
         memberTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -69,9 +72,6 @@ public class MemberController extends SidebarMemberController {
                 return createActionCell(admin);
             }
         });
-        // Lấy danh sách thành viên từ database và thêm vào TableView
-//        memberList.setAll(admin.getMembers());
-//        memberTableView.setItems(memberList);
 
         loadMembers(admin.getMembers(), memberTableView);
         // Chỉnh sửa trực tiếp trong TableView
@@ -85,8 +85,6 @@ public class MemberController extends SidebarMemberController {
         Task<ObservableList<Member>> loadMembersTask = new Task<>() {
             @Override
             protected ObservableList<Member> call() throws Exception {
-                // Giả lập tải dữ liệu với độ trễ (nếu cần, bỏ dòng này khi dùng thật)
-                //Thread.sleep(2000);
                 return FXCollections.observableArrayList(members);
             }
 
@@ -140,6 +138,13 @@ public class MemberController extends SidebarMemberController {
         addressColumn.setOnEditCommit(event -> updateMember(event.getRowValue(), "address", event.getNewValue(), admin));
     }
 
+    /**
+     * Cập nhật thông tin thành viên
+     * @param member Thành viên cần cập nhật
+     * @param property Thuộc tính cần cập nhật
+     * @param newValue Giá trị mới
+     * @param admin Đối tượng Admin
+     */
     private void updateMember(Member member, String property, String newValue, Admin admin) {
         switch (property) {
             case "name":
@@ -169,7 +174,11 @@ public class MemberController extends SidebarMemberController {
 
     }
 
-    // tao nut sua, xoa
+    /**
+     * Tạo một TableCell chứa nút xóa và nút xem danh sách bình luận
+     * @param admin Đối tượng Admin
+     * @return TableCell chứa nút xóa và nút xem danh sách bình luận
+     */
     private TableCell<Member, String> createActionCell(Admin admin) {
         return new TableCell<Member, String>() {
             private final Button deleteButton = new Button("Delete");
@@ -210,6 +219,10 @@ public class MemberController extends SidebarMemberController {
         };
     }
 
+    /**
+     * Hiển thị danh sách bình luận của một thành viên
+     * @param member Thành viên cần xem bình luận
+     */
     private void showReviewList(Member member) {
         // Lấy danh sách bình luận của thành viên
         List<Review> reviews = member.getReviews();

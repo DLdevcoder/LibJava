@@ -61,3 +61,19 @@ B.UI
 +  Chuẩn bị dữ liệu sách cho Database
 + Xử lí tìm kiếm bằng GoogleBook API
 + Tham gia thiết kế UML cùng các thành viên trong nhóm
+
+
+**Nguyễn Trung Kiên:**
+
+A. UI 
++ Thiết kế giao diện và xử lí chức năng của Member
+   + Bao gồm các chức năng: Add Member, Remove Member, Edit Member, Display Member
+   + Thống kê số lượng người dùng theo từng tháng
+   + Thống kê bình luận của người dùng
+   + Tìm kiếm sử dụng bộ lọc
++ Thiết kế giao diện và xử lý chức năng của Admin
+  + Bao gồm các chức năng: Display Admin, Change Password
++ Thiết kế giao diện và xử lí phần Login, Logout
++ Cài đặt các Test cho các chức năng của Member và Admin
++ Thiết kế UML, Database cùng các thành viên nhóm
+

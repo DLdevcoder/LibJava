@@ -43,104 +43,13 @@ public class Admin extends Person {
         return this.createDate;
     }
     // admin
-    public List<Admin> getAdmins() {
-        String query = "SELECT * FROM admin";
-        List<Admin> Admins = new ArrayList<>();
-        // execute query
-        try (Connection conn = DatabaseConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
-            while (rs.next()) {
-                int AdminId = rs.getInt("admin_id");
-                String name = rs.getString("name");
-                String address = rs.getString("address");
-                String phone = rs.getString("phone_number");
-                String email = rs.getString("email");
-                String password = rs.getString("password");
-                String createDate = rs.getString("created_at");
-                Admin Admin = new Admin(AdminId, name, address, phone, email, createDate, password);
-                Admins.add(Admin);
-            }
-            //this.Admins = Admins;
-        } catch (SQLException e) {
 
-            e.printStackTrace();
-        }
-        return Admins;
-    }
-    public void addAdmin(String name, String address, String phone, String email, String password) throws SQLException {
-
-        try(Connection connection = DatabaseConnection.getConnection()){
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO admin (name, address, phone_number, email, password)  VALUES (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, name);
-            statement.setString(2, address);
-            statement.setString(3, phone);
-            statement.setString(4, email);
-            statement.setString(5, password);
-            int rowsAffected = statement.executeUpdate();
-            if(rowsAffected>0){
-                System.out.println("Thành viên mới đã được thêm thành công!.");
-            }
-            ResultSet resultSet = statement.getGeneratedKeys();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void removeAdmin(int AdminId) throws SQLException {
-        String query = "DELETE FROM admin WHERE Admin_id = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, AdminId);
-            int rowsAffected = stmt.executeUpdate();
-            if (rowsAffected > 0) {
-                System.out.println("Admin removed successfully!");
-            } else {
-                System.out.println("Admin not found!");
-            }
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void updateAdmin(int adminId) {
-        String query = "UPDATE admin SET name = ?, address = ?, phone_number = ?, email = ?, password = ? WHERE admin_id = ?";
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập tên thành viên: ");
-        String name = sc.nextLine();
-
-        System.out.print("Nhập địa chỉ: ");
-        String address = sc.nextLine();
-
-        System.out.print("Nhập số liên lạc: ");
-        String phone = sc.nextLine();
-
-        System.out.print("Nhập email: ");
-        String email = sc.nextLine();
-
-        System.out.print("Nhập mật khẩu: ");
-        String password = sc.nextLine();
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, name);
-            stmt.setString(2, address);
-            stmt.setString(3, phone);
-            stmt.setString(4, email);
-            stmt.setString(5, password);
-            stmt.setInt(6, adminId);
-            int rowsAffected = stmt.executeUpdate();
-            if (rowsAffected > 0) {
-                System.out.println("Admin updated successfully!");
-            } else {
-                System.out.println("Admin not found!");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     * Lấy thông tin admin từ database
+     * @param email email
+     * @param password mật khẩu
+     * @return admin
+     */
     public static Admin getAdminByLogin(String email, String password) {
         String query = "SELECT * FROM admin WHERE email = ? AND password = ?";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -162,6 +71,11 @@ public class Admin extends Person {
         return null;
     }
 
+    /**
+     * Đổi mật khẩu của admin
+     * @param adminId id của admin
+     * @param newPassword mật khẩu mới
+     */
     public void changePassword(int adminId, String newPassword) {
         String query = "UPDATE admin SET password = ? WHERE admin_id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -179,10 +93,14 @@ public class Admin extends Person {
         }
     }
     // member
+
+    /**
+     * Lấy danh sách các thành viên từ database
+     * @return danh sách thành viên
+     */
     public List<Member> getMembers() {
         String query = "SELECT * FROM members";
         List<Member> members = new ArrayList<>();
-        // execute query
         try (Connection conn = DatabaseConnection.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query);) {
@@ -197,15 +115,21 @@ public class Admin extends Person {
                 Member member = new Member(memberId, name, address, phone, email, membershipDate, password);
                 members.add(member);
             }
-            //this.members = members;
         } catch (SQLException e) {
-
             e.printStackTrace();
         }
         return members;
     }
 
-    public void addMember(String name, String address, String phone, String email, String password) throws SQLException {
+    /**
+     * Thêm một thành viên mới vào database
+     * @param name tên
+     * @param address địa chỉ
+     * @param phone số điện thoại
+     * @param email email
+     * @param password mật khẩu
+     */
+    public void addMember(String name, String address, String phone, String email, String password) {
         try(Connection connection = DatabaseConnection.getConnection()){
             PreparedStatement statement = connection.prepareStatement("INSERT INTO members (name, address, phone_number, email, password)  VALUES (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, name);
@@ -228,7 +152,11 @@ public class Admin extends Person {
 
     }
 
-    public void removeMember(int memberId) throws SQLException {
+    /**
+     * Xóa một thành viên khỏi database
+     * @param memberId id của thành viên
+     */
+    public void removeMember(int memberId) {
         String query = "DELETE FROM members WHERE member_id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -245,6 +173,15 @@ public class Admin extends Person {
         }
     }
 
+    /**
+     * Cập nhật thông tin của một thành viên
+     * @param memberId id của thành viên
+     * @param name tên
+     * @param address địa chỉ
+     * @param phone số điện thoại
+     * @param email email
+     * @param password mật khẩu
+     */
     public void updateMember(int memberId, String name, String address, String phone, String email, String password) {
         String query = "UPDATE members SET name = ?, address = ?, phone_number = ?, email = ?, password = ? WHERE member_id = ?";
 
@@ -267,6 +204,11 @@ public class Admin extends Person {
         }
     }
 
+    /**
+     * Tìm kiếm một thành viên theo id
+     * @param id id của thành viên
+     * @return thành viên
+     */
     public Member findMember(int id) {
         String query = "SELECT * FROM members WHERE member_id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -288,30 +230,15 @@ public class Admin extends Person {
         return null;
     }
 
-    public List<Member> findMemberbyName(String nameToFind) {
-        String query = "SELECT * FROM members WHERE name LIKE ?";
-        List<Member> members = new ArrayList<>();
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, "%" + nameToFind + "%");
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                int memberId = rs.getInt("member_id");
-                String name = rs.getString("name");
-                String address = rs.getString("address");
-                String phone = rs.getString("phone_number");
-                String email = rs.getString("email");
-                String password = rs.getString("password");
-                String membershipDate = rs.getString("membership_date");
-                Member member = new Member(memberId, name, address, phone, email, membershipDate, password);
-                members.add(member);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return members;
-    }
-
+    /**
+     * Tìm kiếm thành viên theo tên, địa chỉ, số điện thoại, email, ngày tham gia
+     * @param name tên
+     * @param address địa chỉ
+     * @param phone số điện thoại
+     * @param email email
+     * @param membershipDate ngày tham gia
+     * @return danh sách thành viên
+     */
     public List<Member> findMemberwithFilter(String name, String address, String phone, String email, String membershipDate) {
         List<Member> members = new ArrayList<>();
         String query = "SELECT * FROM members WHERE " +
@@ -359,6 +286,13 @@ public class Admin extends Person {
         return members;
     }
     // login
+
+    /**
+     * Kiểm tra thông tin đăng nhập
+     * @param email email
+     * @param password mật khẩu
+     * @return true nếu thông tin đúng, ngược lại false
+     */
     public boolean checkLogin(String email, String password) {
         String query = "SELECT * FROM admin WHERE email = ? AND password = ?";
         try (Connection conn = DatabaseConnection.getConnection();

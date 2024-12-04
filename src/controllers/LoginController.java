@@ -15,6 +15,9 @@ public class LoginController extends HeaderController {
     @FXML
     private ImageView backgroundImage;
 
+    /**
+     * Khởi tạo controller
+     */
     public void initialize() {
         // Đợi cho đến khi scene của backgroundImage được gán trước khi thiết lập liên kết kích thước
         backgroundImage.sceneProperty().addListener((obs, oldScene, newScene) -> {
@@ -28,7 +31,10 @@ public class LoginController extends HeaderController {
     }
 
 
-
+    /**
+     * Xử lý khi nhấn nút "Login"
+     * @param event sự kiện
+     */
     @FXML
     public void handleLogin(ActionEvent event) {
         String email = emailField.getText();
@@ -52,10 +58,14 @@ public class LoginController extends HeaderController {
         }
     }
 
+    /**
+     * Chuyển đến trang chính
+     * @param event sự kiện
+     */
     public void sceneHome(ActionEvent event) {
         try {
             HeaderController headerController = new HeaderController();
-            headerController.changeScene(event, "/views/members/MemberList.fxml");
+            headerController.changeScene(event, "/views/Home/Home.fxml");
         } catch (Exception e) {
             e.printStackTrace();
             showAlert("Error", "Failed to load the home scene.");
