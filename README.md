@@ -19,7 +19,7 @@ B.UI
 
 - Cấu trúc thư mục
 
-- Tạo khung các stage, thiết kế giao diện chung cho các thành viên khác (bao gồm header và footer)
+- Tạo khung các stage, thiết kế giao diện chung cho các thành viên khác (bao gồm header và sidebar)
 
 - Tạo mẫu Junit test, TableView cho các thành viên khác
 
