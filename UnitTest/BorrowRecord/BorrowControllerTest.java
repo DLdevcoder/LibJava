@@ -107,7 +107,7 @@ public class BorrowControllerTest extends ApplicationTest {
      */
     @Test
     public void testErrorQuantity() {
-        clickOn("#quantityField").write("2.5");
+        clickOn("#quantityField").write("a.5");
         clickOn("#borrowButton");
         Label errorQuantity = lookup("#errorQuantity").queryAs(Label.class);
         assertEquals("Invalid quantity! Please enter a valid number.", errorQuantity.getText());

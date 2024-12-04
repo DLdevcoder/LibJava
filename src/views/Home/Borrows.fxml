@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.chart.XYChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.CategoryAxis?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Home.Borrows">
+<?import javafx.scene.chart.NumberAxis?>
+<BorderPane stylesheets="@../../resources/stylesheet/CommonHome.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Home.Borrows">
     <top>
         <fx:include source="../frame/Header.fxml" />
     </top>
@@ -16,17 +17,38 @@
         <fx:include source="Sidebar.fxml" />
     </left>
     <center>
-        <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #E8F5E9;" BorderPane.alignment="CENTER">
-            <Label text="Books Borrowed Over the Last Year" style="-fx-font-size: 18; -fx-font-weight: bold;" />
-            <!-- Line Chart for Books Borrowed -->
-            <LineChart fx:id="borrowLineChart" prefWidth="1000.0" prefHeight="400.0">
-                <xAxis>
-                    <CategoryAxis fx:id="xAxis" />
-                </xAxis>
-                <yAxis>
-                    <NumberAxis fx:id="yAxis" label="Number of Books" />
-                </yAxis>
-            </LineChart>
-        </VBox>
+        <AnchorPane>
+            <AnchorPane layoutX="63.0" layoutY="14.0" prefHeight="500.0" prefWidth="1000.0" styleClass="anchorPane" stylesheets="@../../resources/stylesheet/Suggestion.css">
+                <!-- VBox chứa nội dung trung tâm -->
+                <VBox alignment="CENTER" spacing="10.0" styleClass="suggestion-container" BorderPane.alignment="CENTER">
+                    <children>
+                        <!-- Tiêu đề của trang -->
+                        <Label layoutX="460.0" layoutY="15.0" prefHeight="46.0" prefWidth="200.0" styleClass="title-label" text="Books Borrowed" AnchorPane.leftAnchor="415.0" AnchorPane.topAnchor="15.0">
+                            <font>
+                                <Font size="25.0" />
+                            </font></Label>
+                        <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #E8F5E9;" BorderPane.alignment="CENTER">
+                            <!-- Line Chart for Books Borrowed -->
+                            <LineChart fx:id="borrowLineChart" prefWidth="1000.0" prefHeight="400.0">
+                                <xAxis>
+                                    <CategoryAxis fx:id="xAxis" />
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis fx:id="yAxis" label="Number of Books" />
+                                </yAxis>
+                            </LineChart>
+
+                            <!-- Label to display the total number of books borrowed -->
+                            <Label fx:id="totalBooksLabel" text="Total Books Borrowed: 0" layoutX="400.0" layoutY="450.0" styleClass="total-books-label">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                        </VBox>
+                    </children>
+                </VBox>
+            </AnchorPane>
+        </AnchorPane>
     </center>
+
 </BorderPane>

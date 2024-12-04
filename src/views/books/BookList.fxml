@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane stylesheets="@../../resources/stylesheet/CommonDoc.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.BookController">
+<BorderPane prefHeight="700.0" prefWidth="1544.0" stylesheets="@../../resources/stylesheet/BookList.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.BookController">
 
     <top>
         <fx:include source="../frame/Header.fxml" />
@@ -16,19 +22,43 @@
     <right>
         <Label prefHeight="10" prefWidth="30" />
     </right>
-    <center>
-        <TableView fx:id="Document_Table" prefHeight="510.0" prefWidth="1209.0" BorderPane.alignment="CENTER">
-            <columns>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="151.0" prefWidth="1070.0">
+               <children>
+                  <Button fx:id="searchButton" alignment="CENTER_RIGHT" layoutX="260.0" layoutY="60.0" mnemonicParsing="false" onAction="#performSearch" prefHeight="50.0" prefWidth="71.0" styleClass="BookListButton" text="Search" />
+                  <Button fx:id="clearButton" alignment="CENTER_RIGHT" layoutX="799.0" layoutY="62.0" mnemonicParsing="false" onAction="#clearSearch" prefHeight="47.0" prefWidth="72.0" styleClass="BookListButton" text="Clear" AnchorPane.bottomAnchor="1.2000000000000028" />
+                  <TextField fx:id="searchField" layoutX="422.0" layoutY="22.0" prefHeight="34.0" prefWidth="310.0" promptText="Search books by title" styleClass="BookListSearchField" />
+                  <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="705.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/image/searchBorrow.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="260.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/image/search.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="808.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/image/clear.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <TableView fx:id="Document_Table" prefHeight="1000.0" prefWidth="1263.0">
+              <columns>
                 <TableColumn fx:id="Book_ID" prefWidth="108.8000625371933" text="Book ID" />
-
-                <TableColumn fx:id="Book_Title" prefWidth="176.79996490478516" text="Title" />
-                <TableColumn fx:id="Book_Author" minWidth="0.0" prefWidth="209.5999755859375" text="Author" />
-                <TableColumn fx:id="Book_Year" prefWidth="155.99996948242188" text="Publication Year" />
-                <TableColumn fx:id="Book_Publisher" prefWidth="193.599853515625" text="Publisher" />
-                <TableColumn fx:id="Book_Language" prefWidth="167.2000732421875" text="Language" />
-                <TableColumn fx:id="Book_Cover" prefWidth="247.2000732421875" text="Book Cover" />
-            </columns>
-        </TableView>
-
-    </center>
+                <TableColumn fx:id="Book_Title" minWidth="176.79996490478516" prefWidth="75.0" text="Title" />
+                  <TableColumn fx:id="Book_Author" prefWidth="209.5999755859375" text="Author" />
+                  <TableColumn fx:id="Book_Year" prefWidth="155.99996948242188" text="Publication Year" />
+                  <TableColumn fx:id="Book_Publisher" prefWidth="193.599853515625" text="Publisher" />
+                  <TableColumn fx:id="Book_Language" prefWidth="167.2000732421875" text="Language" />
+                  <TableColumn fx:id="Book_Cover" prefWidth="247.2000732421875" text="Book Cover" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+   </center>
 </BorderPane>

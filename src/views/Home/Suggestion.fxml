@@ -1,27 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Home.Suggestion">
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.TilePane?>
+<BorderPane stylesheets="@../../resources/stylesheet/CommonHome.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Home.Suggestion">
     <top>
         <fx:include source="../frame/Header.fxml" />
     </top>
-
+    <left>
+        <fx:include source="Sidebar.fxml" />
+    </left>
     <center>
-        <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #E8F5E9;" BorderPane.alignment="CENTER">
-            <children>
-                <!-- Tiêu đề -->
-                <Label text="Thư viện sách" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+        <AnchorPane>
+            <AnchorPane layoutX="63.0" layoutY="14.0" prefHeight="500.0" prefWidth="1000.0" styleClass="anchorPane" stylesheets="@../../resources/stylesheet/Suggestion.css">
+                <!-- VBox chứa nội dung trung tâm -->
+                <VBox alignment="CENTER" spacing="10.0" styleClass="suggestion-container" BorderPane.alignment="CENTER">
+                    <children>
+                        <!-- Tiêu đề của trang -->
+                        <Label layoutX="460.0" layoutY="15.0" prefHeight="46.0" prefWidth="200.0" styleClass="title-label" text="SUGGESTION" AnchorPane.leftAnchor="415.0" AnchorPane.topAnchor="15.0">
+                            <font>
+                                <Font size="25.0" />
+                            </font></Label>
 
-                <!-- Khu vực hiển thị sách -->
-                <ScrollPane fitToWidth="true" fitToHeight="true" prefHeight="500.0" prefWidth="1000.0">
-                    <content>
-                        <TilePane fx:id="bookTilePane" hgap="20.0" vgap="20.0" alignment="CENTER" />
-                    </content>
-                </ScrollPane>
-            </children>
-        </VBox>
+                        <!-- Khu vực hiển thị các sách -->
+                        <ScrollPane fitToWidth="true" fitToHeight="true" prefHeight="500.0" prefWidth="1000.0">
+                            <content>
+                                <!-- TilePane chứa các thẻ sách -->
+                                <TilePane fx:id="bookTilePane" hgap="20.0" vgap="20.0" alignment="CENTER" styleClass="book-card"/>
+                            </content>
+                        </ScrollPane>
+                    </children>
+                </VBox>
+            </AnchorPane>
+        </AnchorPane>
     </center>
+
 </BorderPane>
