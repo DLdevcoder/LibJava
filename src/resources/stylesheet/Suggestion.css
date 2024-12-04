@@ -53,3 +53,27 @@
     -fx-text-fill: red;
     -fx-font-family: 'SansSerif';
 }
+.book-card {
+    -fx-background-color: #ffffff; /* Màu nền thẻ sách */
+    -fx-border-color: #81c784;     /* Màu viền thẻ sách */
+    -fx-border-width: 2;
+    -fx-border-radius: 15;         /* Làm tròn viền */
+    -fx-padding: 10px;             /* Khoảng cách bên trong thẻ */
+    -fx-effect: dropshadow(gaussian, #000000, 5, 0.5, 0, 0); /* Hiệu ứng bóng mờ nhẹ */
+    -fx-transition: all 0.2s ease-in-out; /* Hiệu ứng chuyển tiếp mượt mà */
+}
+
+/* Khi di chuột vào thẻ sách */
+.book-card:hover {
+    -fx-background-color: #f1f1f1; /* Màu nền thay đổi khi hover */
+    -fx-border-color: #388e3c;      /* Màu viền thay đổi khi hover */
+    -fx-effect: dropshadow(gaussian, #388e3c, 10, 0.3, 0, 0); /* Hiệu ứng bóng mờ rõ rệt khi hover */
+    -fx-cursor: hand;               /* Đổi con trỏ thành ngón tay */
+}
+
+/* Khi thẻ sách được nhấn */
+.book-card:pressed {
+    -fx-background-color: #e8f5e9;  /* Màu nền thay đổi khi nhấn */
+    -fx-border-color: #388e3c;      /* Màu viền thay đổi khi nhấn */
+    -fx-effect: dropshadow(gaussian, #388e3c, 15, 0.5, 0, 0); /* Hiệu ứng bóng mờ mạnh hơn khi nhấn */
+}
