@@ -31,6 +31,27 @@ public class AddMemberController extends SidebarMemberController {
             refreshForm();
             return;
         }
+        if (!email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")) {
+            showAlert("Error", "Invalid email format!");
+            refreshForm();
+            return;
+        }
+        if (!phone.matches("[0-9]+")) {
+            showAlert("Error", "Phone number must be a number!");
+            refreshForm();
+            return;
+        }
+        if (!name.matches("[a-zA-Z ]+")) {
+            showAlert("Error", "Name must contain only letters and spaces!");
+            refreshForm();
+            return;
+        }
+        if (password.length() < 6) {
+            showAlert("Error", "Password must be at least 6 characters long!");
+            refreshForm();
+            return;
+        }
+
         Member member = new Member(name, email, phone, address, password);
 
         Admin admin = Admin.getInstance();

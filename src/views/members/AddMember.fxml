@@ -32,7 +32,7 @@
                    <TextField fx:id="phoneField" layoutX="100.0" layoutY="275.0" prefHeight="35.0" promptText="Phone" />
                    <!-- Phần chứa nút bấm -->
                    <HBox alignment="CENTER" spacing="50">
-                   <Button onAction="#handleAddMember" prefHeight="35.0" prefWidth="100.0" text="Add" />
+                   <Button fx:id="add" onAction="#handleAddMember" prefHeight="35.0" prefWidth="100.0" text="Add" />
                    <Button onAction="#handleCancel" prefHeight="35.0" prefWidth="100.0" text="Cancel" />
                    </HBox>
                </VBox>

@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 import models.Admin;
 
 public class LoginController extends HeaderController {
-    public static Admin admin;
+    public static Admin admin = new Admin("admin", "admin");
     @FXML
     private TextField emailField;
     @FXML
@@ -43,7 +43,7 @@ public class LoginController extends HeaderController {
         }
         Admin admin = Admin.getInstance();
         if (admin.checkLogin(email, password)) {
-            admin = Admin.getAdminByLogin(email, password);
+            this.admin = Admin.getAdminByLogin(email, password);
             sceneHome(event);
         } else {
             showAlert("Error", "Email or password is incorrect!");

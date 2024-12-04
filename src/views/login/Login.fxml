@@ -58,7 +58,7 @@
                 </HBox>
 
                 <!-- Nút đăng nhập -->
-                <Button onAction="#handleLogin" styleClass="login-button" text="Login">
+                <Button fx:id="loginButton" onAction="#handleLogin" styleClass="login-button" text="Login">
                     <font>
                         <Font size="22.0" />
                     </font>

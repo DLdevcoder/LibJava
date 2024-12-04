@@ -28,14 +28,14 @@
 
                    <TableView fx:id="memberTableView">
                         <columns>
-                            <TableColumn fx:id="idColumn" prefWidth="40" text="ID" />
-                            <TableColumn fx:id="nameColumn" prefWidth="110" text="Name" />
+                            <TableColumn fx:id="idColumn" prefWidth="20" text="ID" />
+                            <TableColumn fx:id="nameColumn" prefWidth="90" text="Name" />
                             <TableColumn fx:id="emailColumn" prefWidth="90" text="Email" />
                             <TableColumn fx:id="passwordColumn" prefWidth="75.0" text="Password" />
-                            <TableColumn fx:id="phoneColumn" prefWidth="85" text="Phone" />
+                            <TableColumn fx:id="phoneColumn" prefWidth="65" text="Phone" />
                             <TableColumn fx:id="addressColumn" prefWidth="100" text="Address" />
-                            <TableColumn fx:id="membershipDateColumn" prefWidth="130" text="Membership Date" />
-                            <TableColumn fx:id="actionColumn" text="Action" />
+                            <TableColumn fx:id="membershipDateColumn" prefWidth="110" text="Membership Date" />
+                            <TableColumn fx:id="actionColumn" prefWidth="130" text="Action" />
                         </columns>
                     </TableView>
                </children>
