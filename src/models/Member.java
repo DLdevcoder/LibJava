@@ -55,24 +55,10 @@ public class Member extends Person {
         return this.membershipDate;
     }
 
-
-    @Override
-    public String toString() {
-        return "Member ID: " + this.memberId + "\nName: " + this.name + "\nAddress: " + this.address + "\nPhone: " + this.phone + "\nEmail: " + this.email + "\nMembership Date: " + this.membershipDate;
-    }
-
-    public void updateInfo(){
-        return;
-    }
-    public void displayMemberInfo() {
-        System.out.println("Member ID: " + this.memberId);
-        System.out.println("Name: " + this.name);
-        System.out.println("Address: " + this.address);
-        System.out.println("Phone: " + this.phone);
-        System.out.println("Email: " + this.email);
-        System.out.println("Membership Date: " + this.membershipDate);
-    }
-
+    /**
+     * lưu bình luận của member vào database
+     * @param review member cần lấy thông tin
+     */
     public void saveReviewToDatabase(Review review) {
         String sql = "INSERT INTO reviews(book_id, review_date, comment, rating, member_id) VALUES(?,?,?,?,?)";
 
@@ -92,12 +78,17 @@ public class Member extends Person {
 
     }
 
+    /**
+     * lấy danh sách bình luận của member
+     * @return danh sách bình luận
+     */
     public List<Review> getReviews() {
-        String sql = "SELECT d.*,m.*, r.rating, r.comment, r.review_date\n" +
-                "FROM reviews r\n" +
-                "JOIN members m ON m.member_id = r.member_id\n" +
-                "JOIN documents d ON d.id = r.document_id\n" +
-                "WHERE m.member_id = ?";
+        String sql = """
+                SELECT d.*,m.*, r.rating, r.comment, r.review_date
+                FROM reviews r
+                JOIN members m ON m.member_id = r.member_id
+                JOIN documents d ON d.id = r.document_id
+                WHERE m.member_id = ?""";
         List<Review> reviews = new ArrayList<>();
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {

@@ -22,6 +22,9 @@ public class FindMemberController extends SidebarMemberController {
     @FXML
     private Label passwordLabel;
 
+    /**
+     * xử lý khi nhấn
+     */
     @FXML
     public void handleFindMember() {
         if (idField.getText().isEmpty()) {
