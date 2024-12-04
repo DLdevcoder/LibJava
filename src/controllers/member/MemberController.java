@@ -1,10 +1,15 @@
 package controllers.member;
 
 import javafx.application.Platform;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.concurrent.Task;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import models.Member;
 import javafx.collections.FXCollections;
@@ -12,6 +17,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Admin;
+import models.Review;
 
 import java.util.List;
 
@@ -167,8 +173,8 @@ public class MemberController extends SidebarMemberController {
     private TableCell<Member, String> createActionCell(Admin admin) {
         return new TableCell<Member, String>() {
             private final Button deleteButton = new Button("Delete");
-            private final Button updateButton = new Button("them sau");
-            private final HBox hbox = new HBox(10, deleteButton);
+            private final Button reviewList = new Button("Review List");
+            private final HBox hbox = new HBox(10, deleteButton, reviewList);
 
             {
                 // Xử lý sự kiện khi nhấn nút
@@ -182,8 +188,13 @@ public class MemberController extends SidebarMemberController {
                         e.printStackTrace();
                     }
                 });
-                updateButton.setOnAction(event -> {
-                    //pass
+                reviewList.setOnAction(event -> {
+                    Member selectedMember = getTableView().getItems().get(getIndex());
+                    try {
+                        showReviewList(selectedMember);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 });
             }
 
@@ -197,6 +208,35 @@ public class MemberController extends SidebarMemberController {
                 }
             }
         };
+    }
+
+    private void showReviewList(Member member) {
+        // Lấy danh sách bình luận của thành viên
+        List<Review> reviews = member.getReviews();
+
+        // Tạo một TableView để hiển thị các bình luận
+        TableView<Review> reviewTable = new TableView<>();
+        TableColumn<Review, String> bookColumn = new TableColumn<>("Book");
+        TableColumn<Review, String> commentColumn = new TableColumn<>("Comment");
+        TableColumn<Review, Integer> ratingColumn = new TableColumn<>("Rating");
+        TableColumn<Review, String> dateColumn = new TableColumn<>("Date");
+
+        bookColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getBook().getTitle()));
+        commentColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getReviewText()));
+        ratingColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty((int) cellData.getValue().getRating()).asObject());
+        dateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getReviewDate().toString()));
+
+        reviewTable.getColumns().addAll(bookColumn, commentColumn, ratingColumn, dateColumn);
+        reviewTable.getItems().setAll(reviews);
+
+        // Tạo cửa sổ mới hiển thị danh sách bình luận
+        Stage reviewStage = new Stage();
+        VBox vbox = new VBox(reviewTable);
+        Scene scene = new Scene(vbox, 450, 300);
+        scene.getStylesheets().add(getClass().getResource("/stylesheet/MemberList.css").toExternalForm());
+        reviewStage.setScene(scene);
+        reviewStage.setTitle("Reviews of " + member.getName());
+        reviewStage.show();
     }
 }
 

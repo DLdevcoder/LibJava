@@ -4,7 +4,10 @@ import utils.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Member extends Person {
     private int memberId; // id tự tăng nên k cần setter
@@ -88,4 +91,29 @@ public class Member extends Person {
         }
 
     }
+
+    public List<Review> getReviews() {
+        String sql = "SELECT d.*,m.*, r.rating, r.comment, r.review_date\n" +
+                "FROM reviews r\n" +
+                "JOIN members m ON m.member_id = r.member_id\n" +
+                "JOIN documents d ON d.id = r.document_id\n" +
+                "WHERE m.member_id = ?";
+        List<Review> reviews = new ArrayList<>();
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, this.memberId);
+            ResultSet rs  = preparedStatement.executeQuery();
+            while (rs.next()) {
+                Book document = new Book(rs.getInt("id"), rs.getString("title"));
+                Member member = new Member(rs.getInt("member_id"), rs.getString("name"));
+                Review review = new Review(document, rs.getString("comment"), rs.getDate("review_date"), rs.getDouble("rating"), member);
+                reviews.add(review);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return reviews;
+
     }
+}
