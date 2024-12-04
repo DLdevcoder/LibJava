@@ -4,10 +4,10 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="509.0" prefWidth="230.0" stylesheets="@../../resources/stylesheet/Sidebar.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Home.SideBar">
+<AnchorPane prefHeight="349.0" prefWidth="224.0" stylesheets="@../../resources/stylesheet/Sidebar.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Home.SideBar">
 
-    <VBox fx:id="sidebar" layoutX="14.0" prefHeight="326.0" prefWidth="234.0" spacing="8" styleClass="sidebar">
-        <Label styleClass="sidebar-title" />
+    <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="414.0" prefWidth="205.0" spacing="8" styleClass="sidebar">
+        <Label styleClass="sidebar-title" text="MENU" />
         <Button alignment="TOP_LEFT" maxWidth="Infinity" onAction="#sceneSuggestion" prefHeight="43.0" prefWidth="197.0" styleClass="sidebar-button" text="Proposal">
             <graphic>
                 <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
