@@ -1,4 +1,46 @@
 # LibJava
+Đặng Tuấn Long:
+A.Console
+
+- Thiết kế database
+
+- Kết nối database với JavaFX
+
+- Cấu trúc thư mục, xây dựng khung chương trình
+
+- Xử lí phần borrow, return document
+
+- Xử lí phần display Document
+  
+
+B.UI
+
+- Cấu trúc thư mục
+
+- Tạo khung các stage, thiết kế giao diện chung cho các thành viên khác (bao gồm header và footer)
+
+- Tạo mẫu Junit test, TableView cho các thành viên khác
+
+- Xử lí phần hiển thị thông tin các bản ghi mượn trả tài liệu.
+
+- Tìm kiếm các bản ghi mượn trả tài liệu
+
+- Sửa các lỗi của thành viên khác
+
+- Xử lí phần mượn trả tài liệu.
+
+- Thống kê các dữ liệu cho người dùng bao gồm:
+
++ Số người đang mượn sách và tỉ lệ sách được mượn bởi người đó
+
++ Số lượng sách đang được mượn và tỉ lệ sách được mượn nhiều nhất
+
+- Tạo các lớp Document, Book, Thesis, BorrowRecord trong model
+
+- kết nối API với javafx
+
+- Thiết kế UML cùng các thành viên nhóm
+
 A.Console
 + Xử lí phần Add Document, Remove Document, Add user
 
