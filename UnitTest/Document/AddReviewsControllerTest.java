@@ -46,7 +46,7 @@ public class AddReviewsControllerTest extends ApplicationTest {
         AddBookId_TextField.setText("1");
         AddComment_TextField.setText("Great book!");
         AddRating_TextField.setText("5");
-        AddMemberId_TextField.setText("1");
+        AddMemberId_TextField.setText("3");
 
 
 
@@ -59,7 +59,6 @@ public class AddReviewsControllerTest extends ApplicationTest {
         assertEquals("", AddComment_TextField.getText(), "Comment field should be empty after adding review");
         assertEquals("", AddRating_TextField.getText(), "Rating field should be empty after adding review");
         assertEquals("", AddMemberId_TextField.getText(), "Member ID field should be empty after adding review");
-
         // Optionally, you could check if the review is added to some data structure or displayed in a table
     }
 
