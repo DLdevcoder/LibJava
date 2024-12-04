@@ -67,7 +67,10 @@ public class HeaderController {
     public void HomeScence(ActionEvent event) {
         changeScene(event, "/views/Home/Home.fxml");
     }
-
+    /**
+     * Initializes the event handler for the SearchDoc_TextField.
+     * When the Enter key is pressed, it triggers the search process.
+     */
     @FXML
     private void initialize() {
         if(SearchDoc_TextField !=null) {
@@ -86,6 +89,12 @@ public class HeaderController {
         }
     }
 
+    /**
+     * Mở một cửa sổ mới để hiển thị kết quả tìm kiếm tài liệu.
+     * Tạo một cửa sổ mới và gọi phương thức tìm kiếm trong SearchController.
+     *
+     * @param query Từ khóa tìm kiếm được nhập vào TextField.
+     */
     private void openTableViewWindow(String query){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/DocSearch.fxml"));

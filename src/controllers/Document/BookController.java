@@ -62,7 +62,10 @@ public class BookController extends HeaderController {
           bookList = FXCollections.observableArrayList();
           searchController = new SearchDocumentController();
      }
-
+     /**
+      * Initializes the table columns, loads book data from the database,
+      * and sets up actions for the search and clear buttons.
+      */
      @FXML
      private void initialize() {
           // Initialize columns
@@ -81,6 +84,11 @@ public class BookController extends HeaderController {
           clearButton.setOnAction(event -> clearSearch());
      }
 
+
+     /**
+      * Loads book data from the database in a separate thread
+      * and populates the table with the retrieved data.
+      */
      private void loadBooks() {
           new Thread(() -> {
                try (Connection connection = DatabaseConnection.getConnection(); Statement statement = connection.createStatement()) {
@@ -116,6 +124,10 @@ public class BookController extends HeaderController {
           }).start();
      }
 
+     /**
+      * Executes a search for books based on the keyword entered in the search field
+      * and updates the table to display the search results.
+      */
      @FXML
      private void performSearch() {
           String keyword = searchField.getText();
@@ -123,7 +135,9 @@ public class BookController extends HeaderController {
           List<Book> result = searchController.executeSearch(bookList, keyword);
           Document_Table.setItems(FXCollections.observableArrayList(result));
      }
-
+     /**
+      * Clears the search field and resets the table to display all books.
+      */
      @FXML
      private void clearSearch() {
           searchField.clear();

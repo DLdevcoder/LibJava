@@ -25,6 +25,12 @@
 
         private GoogleBooksAPI() {}
 
+        /**
+         * Fetches detailed book information by its ISBN from the Google Books API.
+         *
+         * @param isbn The ISBN of the book to fetch information for.
+         * @return A JSONObject containing the book details, or null if not found.
+         */
         public static JSONObject fetchBookInfoByISBN(String isbn) {
             String urlWithISBN = API_URL + isbn;
             try {
@@ -55,6 +61,13 @@
             }
             return null;
         }
+
+        /**
+         * Fetches a list of books matching the search query from the Google Books API.
+         *
+         * @param query The search query (e.g., book title, author).
+         * @return A JSONArray of books matching the query, or null if no results are found.
+         */
         public static JSONArray fetchBooksByQuery(String query) {
             String urlWithQuery = API_URL + query + "&key=" + API_KEY;
             try {
@@ -81,6 +94,14 @@
             }
             return null;
         }
+
+        /**
+         * Retrieves a list of books based on the search query, with pagination support.
+         * Fetches books in batches of 40 until all results are retrieved.
+         *
+         * @param query The search query (e.g., book title, author).
+         * @return A List of Book objects that match the search query.
+         */
         public static List<Book> getBooksByQuery(String query) {
             String urlWithQuery = API_URL + query + "&maxResults=40&key="  + API_KEY; // URL với query tìm kiếm
             List<Book> bookList = new ArrayList<>();
@@ -119,6 +140,12 @@
             return bookList;  // Trả về danh sách tất cả các cuốn sách
         }
 
+        /**
+         * Extracts book details (title, author, etc.) from the given response.
+         *
+         * @param response The JSONObject containing the API response.
+         * @return A JSONObject containing the book's details (e.g., title, author).
+         */
         private static JSONObject getBookDetails(JSONObject response) {
             if(response.getJSONArray("items") == null || response.getJSONArray("items").isEmpty()) {
                 throw new JSONException("No books found for the given ISBN.");
@@ -128,6 +155,14 @@
 
         }
 
+        /**
+         * Retrieves book details by ISBN, including title, author, and cover image.
+         *
+         * @param isbn The ISBN of the book.
+         * @param imageLink The URL to the book's cover image.
+         * @param quantity The quantity of the book available in inventory.
+         * @return A Book object with the book's details, or null if not found.
+         */
         public static Book getBookByISBN(String isbn, String imageLink, int quantity) {
             JSONObject volumeInfo = fetchBookInfoByISBN(isbn);
             if(volumeInfo != null) {
@@ -153,6 +188,12 @@
 
         }
 
+        /**
+         * Extracts the ISBN number from the volume info of a book.
+         *
+         * @param volumeInfo The JSONObject containing the book's volume information.
+         * @return The ISBN number, or "No ISBN detected" if not found.
+         */
         private static String getIsbn(JSONObject volumeInfo) {
             String isbn = "No ISBN detected";
             if (volumeInfo.has("industryIdentifiers")) {

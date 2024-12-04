@@ -41,7 +41,10 @@ public class BookReviewController  {
     public BookReviewController() {
         ReviewData = FXCollections.observableArrayList();
     }
-
+    /**
+     * Initializes the Review TableView by setting up the column data bindings
+     * and calling the method to load reviews from the database.
+     */
     @FXML
     private void initialize() {
         // Liên kết các cột với dữ liệu
@@ -60,7 +63,10 @@ public class BookReviewController  {
         // Gọi hàm load dữ liệu
         loadReview();
     }
-
+    /**
+     * Loads review data from the database using a separate thread
+     * and populates the Review TableView.
+     */
     private void loadReview() {
         new Thread(() -> {
             try (Connection connection = DatabaseConnection.getConnection();
@@ -102,8 +108,12 @@ public class BookReviewController  {
         }).start();
     }
 
-    // Hàm chuyển đổi String sang java.sql.Date
-    private Date convertStringToSqlDate(String dateStr) {
+    /**
+     * Converts a date string in the format "yyyy-MM-dd" to a java.sql.Date object.
+     *
+     * @param dateStr the date string to convert
+     * @return the converted java.sql.Date object or null if conversion fails
+     */    private Date convertStringToSqlDate(String dateStr) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
             java.util.Date utilDate = format.parse(dateStr);
