@@ -26,6 +26,9 @@ public class ReturnController extends SidebarController implements BorrowAndRetu
     @FXML
     private Label errorDate;
 
+    /**
+     * Hiển thị bảng trả sách.
+     */
     @FXML
     private void initialize() {
         // Thiết lập borrowDate là ngày hiện tại
@@ -49,31 +52,22 @@ public class ReturnController extends SidebarController implements BorrowAndRetu
             }
         });
 
-        quantityField.setOnAction(event -> fetchQuantity());
+        quantityField.setOnAction(event -> fetchQuantity(quantityField, errorQuantity));
 
         // Xử lý khi người dùng rời khỏi TextField
         quantityField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) { // Chỉ thực hiện khi mất focus
-                fetchQuantity();
+                fetchQuantity(quantityField, errorQuantity);
             }
         });
     }
 
-    public void fetchQuantity() {
-        String quantity = quantityField.getText();
-        // Xóa thông báo cũ (nếu có)
-        errorQuantity.setText("");
-
-        if (quantity.isEmpty()) {
-            return;
-        }
-        // Kiểm tra nếu ID không phải số hợp lệ
-        if (!quantity.matches("\\d+")) {
-            errorQuantity.setText("Invalid quantity! Please enter a valid number.");
-            errorQuantity.setStyle("-fx-text-fill: red; -fx-font-weight: bold;"); // Tô đỏ thông báo lỗi
-        }
-    }
-
+    /**
+     * Hiển thị thông báo về ngày trả về.
+     * @param borrowDate
+     * @param returnDate
+     * @return
+     */
     private boolean checkValidDateReturn(LocalDate borrowDate, LocalDate returnDate) {
         long diffDate = ChronoUnit.DAYS.between(borrowDate, returnDate);
         errorDate.setText("");
@@ -84,6 +78,12 @@ public class ReturnController extends SidebarController implements BorrowAndRetu
         return true;
     }
 
+    /**
+     * kiểm tra số lượng nhập.
+     * @param quantity
+     * @param quantityReturn
+     * @return
+     */
     private boolean checkQuantity(int quantity, int quantityReturn) {
         if (quantityReturn > quantity) {
             if (quantity > 1) {
@@ -97,6 +97,12 @@ public class ReturnController extends SidebarController implements BorrowAndRetu
         return true;
     }
 
+    /**
+     * Đưa ra trạng thái trả về.
+     * @param dueDate
+     * @param returnDate
+     * @return
+     */
     private String dateReturned(LocalDate dueDate, LocalDate returnDate) {
         long diffDate = ChronoUnit.DAYS.between(dueDate, returnDate);
         if (diffDate == 0) {
@@ -108,6 +114,9 @@ public class ReturnController extends SidebarController implements BorrowAndRetu
         }
     }
 
+    /**
+     * Trả sách.
+     */
     @FXML
     private void onSubmit() {
         boolean cksDocId = checkDocId(documentIdField);

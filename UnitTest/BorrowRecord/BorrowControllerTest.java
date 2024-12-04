@@ -7,7 +7,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
-import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 
 import java.time.LocalDate;
@@ -17,6 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BorrowControllerTest extends ApplicationTest {
 
+    /**
+     * Khởi tạo màn hình.
+     */
     @Override
     public void start(Stage stage) throws Exception {
         // Tải giao diện từ tệp FXML
@@ -29,17 +31,22 @@ public class BorrowControllerTest extends ApplicationTest {
         stage.show();
     }
 
+    /**
+     * Nhập đúng.
+     */
     @Test
     public void testBorrowButtonFunctionality() {
-        FxRobot robot = new FxRobot();
-        robot.clickOn("#documentIdField").write("135");
-        robot.clickOn("#memberIdField").write("2");
-        robot.clickOn("#quantityField").write("1");
-        robot.clickOn("#borrowButton");
-        Stage alertStage = (Stage) robot.targetWindow();
+        clickOn("#documentIdField").write("135");
+        clickOn("#memberIdField").write("2");
+        clickOn("#quantityField").write("1");
+        clickOn("#borrowButton");
+        Stage alertStage = (Stage) targetWindow();
         assertTrue(alertStage.isShowing(), "You have successfully borrowed the book!");
     }
 
+    /**
+     * Nhập sai documentID.
+     */
     @Test
     public void testErrorDoc() {
         // Nhập giá trị không hợp lệ vào TextField documentIdField
@@ -49,6 +56,9 @@ public class BorrowControllerTest extends ApplicationTest {
         assertEquals("Invalid document ID! Please enter a valid number.", errorDoc.getText());
     }
 
+    /**
+     * Nhập sai memberId.
+     */
     @Test
     public void testErrorMem() {
         // Mô phỏng nhập sai
@@ -58,6 +68,9 @@ public class BorrowControllerTest extends ApplicationTest {
         assertEquals("Invalid member ID! Please enter a valid number.", errorMem.getText());
     }
 
+    /**
+     * Nhập sai ngày.
+     */
     @Test
     public void testErrorDate1() {
         clickOn("#dueDate");
@@ -72,6 +85,9 @@ public class BorrowControllerTest extends ApplicationTest {
                 errorDate.getText());
     }
 
+    /**
+     * Nhập sai ngày.
+     */
     @Test
     public void testErrorDate2() {
         clickOn("#dueDate");
@@ -86,6 +102,9 @@ public class BorrowControllerTest extends ApplicationTest {
                 errorDate.getText());
     }
 
+    /**
+     * Nhập sai số lượng.
+     */
     @Test
     public void testErrorQuantity() {
         clickOn("#quantityField").write("2.5");
@@ -94,25 +113,29 @@ public class BorrowControllerTest extends ApplicationTest {
         assertEquals("Invalid quantity! Please enter a valid number.", errorQuantity.getText());
     }
 
+    /**
+     * Nhập sai thông tin mượn.
+     */
     @Test
     public void testBorrowButtonFail1() {
-        FxRobot robot = new FxRobot();
-        robot.clickOn("#documentIdField").write("1.6");
-        robot.clickOn("#memberIdField").write("3");
-        robot.clickOn("#quantityField").write("1");
-        robot.clickOn("#borrowButton");
-        Stage alertStage = (Stage) robot.targetWindow();
+        clickOn("#documentIdField").write("1.6");
+        clickOn("#memberIdField").write("3");
+        clickOn("#quantityField").write("1");
+        clickOn("#borrowButton");
+        Stage alertStage = (Stage) targetWindow();
         assertTrue(alertStage.isShowing(), "Document id must be a positive integer");
     }
 
+    /**
+     * Nhập sai thông tin mượn.
+     */
     @Test
     public void testBorrowButtonFail2() {
-        FxRobot robot = new FxRobot();
-        robot.clickOn("#documentIdField").write("123");
-        robot.clickOn("#memberIdField").write("-10");
-        robot.clickOn("#quantityField").write("1");
-        robot.clickOn("#borrowButton");
-        Stage alertStage = (Stage) robot.targetWindow();
+        clickOn("#documentIdField").write("123");
+        clickOn("#memberIdField").write("-10");
+        clickOn("#quantityField").write("1");
+        clickOn("#borrowButton");
+        Stage alertStage = (Stage) targetWindow();
         assertTrue(alertStage.isShowing(), "Member id must be a positive integer");
     }
 }

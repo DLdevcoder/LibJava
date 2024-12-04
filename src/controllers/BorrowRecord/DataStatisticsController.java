@@ -22,16 +22,22 @@ public class DataStatisticsController extends SidebarController{
     @FXML
     private PieChart docChart; // Biểu đồ sách
     @FXML
-    private Label sumMemberBorrow;
+    private Label sumMemberBorrow; // Tổng số người đang mượn sách
     @FXML
-    private Label sumDocBorrow;
+    private Label sumDocBorrow; // Tổng số sách đang được mượn
 
+    /**
+     * Hiển thị chart.
+     */
     @FXML
     private void initialize() {
         loadMemberData();
-        loadBookData();
+        loadDocData();
     }
 
+    /**
+     * Hiển thị pieChart member.
+     */
     private void loadMemberData() {
         Task<ObservableList<PieChart.Data>> memberDataTask = new Task<>() {
             @Override
@@ -106,7 +112,10 @@ public class DataStatisticsController extends SidebarController{
         loadMemberThread.start();
     }
 
-    private void loadBookData() {
+    /**
+     * Hiển thị pieChart cho document.
+     */
+    private void loadDocData() {
         Task<ObservableList<PieChart.Data>> documentDataTask = new Task<>() {
             @Override
             protected ObservableList<PieChart.Data> call() throws SQLException {
@@ -180,6 +189,12 @@ public class DataStatisticsController extends SidebarController{
         loadMemberThread.start();
     }
 
+    /**
+     * Hiệu ứng cho pieChart.
+     * @param chartData
+     * @param labelText
+     * @param sumData
+     */
     private void settingPieChart(ObservableList<PieChart.Data> chartData, String labelText, int sumData) {
         for (PieChart.Data data : chartData) {
             int originData = (int) data.getPieValue();

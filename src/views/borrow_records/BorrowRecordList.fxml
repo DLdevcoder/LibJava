@@ -20,9 +20,6 @@
     <left>
         <fx:include source="SidebarBorrow.fxml" />
     </left>
-    <right>
-        <Label prefHeight="18.0" prefWidth="18.0" />
-    </right>
     <center>
         <VBox alignment="CENTER" prefWidth="1130.0" spacing="10.0" stylesheets="@../../resources/stylesheet/BorrowList.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
          <AnchorPane prefHeight="114.0" prefWidth="1096.0">
@@ -67,7 +64,7 @@
                </Button>
             </children>
          </AnchorPane>
-            <TableView fx:id="tableView" prefHeight="430.0" prefWidth="1105.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="tableView" prefHeight="430.0" prefWidth="1100.0" VBox.vgrow="ALWAYS">
                 <columns>
                     <TableColumn fx:id="recordIdColumn" prefWidth="120" text="Record ID" />
                     <TableColumn fx:id="documentIdColumn" prefWidth="120" text="Document ID" />
@@ -82,5 +79,8 @@
             </TableView>
         </VBox>
     </center>
+   <right>
+      <Label prefHeight="18.0" prefWidth="5.0" BorderPane.alignment="CENTER" />
+   </right>
 
 </BorderPane>

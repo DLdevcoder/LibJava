@@ -13,7 +13,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public interface BorrowAndReturn {
-    // Kiểm tra và truy vấn tên tài liệu từ ID tài liệu
+
+    /**
+     * Kiểm tra và truy vấn tên tài liệu từ ID tài liệu.
+     * @param documentIdField
+     * @param errorDoc
+     */
     static void fetchDocumentTitle(TextField documentIdField, Label errorDoc) {
         String documentIdText = documentIdField.getText();
         errorDoc.setText(""); // Xóa thông báo cũ
@@ -51,7 +56,11 @@ public interface BorrowAndReturn {
         }
     }
 
-    // Kiểm tra và truy vấn tên thành viên từ ID thành viên
+    /**
+     * Kiểm tra và truy vấn tên thành viên từ ID thành viên.
+     * @param memberIdField
+     * @param errorMem
+     */
     static void fetchMemberName(TextField memberIdField, Label errorMem) {
         String memberIdText = memberIdField.getText();
         errorMem.setText(""); // Xóa thông báo cũ
@@ -89,6 +98,11 @@ public interface BorrowAndReturn {
         }
     }
 
+    /**
+     * Kiểm tra document ID.
+     * @param documentIdField
+     * @return
+     */
     default boolean checkDocId(TextField documentIdField) {
         String input = documentIdField.getText();
         if (!input.isEmpty()) {
@@ -102,6 +116,11 @@ public interface BorrowAndReturn {
         return false;
     }
 
+    /**
+     * Kiểm tra memberID.
+     * @param memberIdField
+     * @return
+     */
     default boolean checkMemId(TextField memberIdField) {
         String input = memberIdField.getText();
         if (!input.isEmpty()) {
@@ -115,7 +134,12 @@ public interface BorrowAndReturn {
         return false;
     }
 
-    // Hàm tiện ích để hiển thị các thông báo
+    /**
+     * Hàm tiện ích để hiển thị các thông báo.
+     * @param alertType
+     * @param title
+     * @param message
+     */
     default void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -127,5 +151,21 @@ public interface BorrowAndReturn {
         alert.showAndWait();
     }
 
-    void fetchQuantity();
+    /**
+     * Thông báo số lượng nhập có hợp lệ không.
+     */
+    default void fetchQuantity(TextField quantityField, Label errorQuantity) {
+        String quantity = quantityField.getText();
+        // Xóa thông báo cũ (nếu có)
+        errorQuantity.setText("");
+
+        if (quantity.isEmpty()) {
+            return;
+        }
+        // Kiểm tra nếu ID không phải số hợp lệ
+        if (!quantity.matches("\\d+")) {
+            errorQuantity.setText("Invalid quantity! Please enter a valid number.");
+            errorQuantity.setStyle("-fx-text-fill: red; -fx-font-weight: bold;"); // Tô đỏ thông báo lỗi
+        }
+    }
 }

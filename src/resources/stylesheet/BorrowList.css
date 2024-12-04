@@ -8,8 +8,9 @@
 .table-view {
     -fx-background-color: #e0f2f1; /* Màu nền bảng */
     -fx-border-color: #4caf50; /* Màu viền bảng */
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
+    -fx-border-width: 2;
+    -fx-border-radius: 5pt;
+    -fx-background-radius: 5pt;
 }
 
 /* Các hàng của TableView */

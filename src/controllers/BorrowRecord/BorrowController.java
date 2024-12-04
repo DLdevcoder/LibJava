@@ -1,3 +1,4 @@
+
 package controllers.BorrowRecord;
 
 import javafx.fxml.FXML;
@@ -29,6 +30,13 @@ public class BorrowController extends SidebarController implements BorrowAndRetu
     @FXML
     private Label errorDate;
 
+    Connection connection = null;
+    ResultSet resultSet = null;
+    PreparedStatement checkStmt = null;
+
+    /**
+     * Hiển thị mượn sách.
+     */
     @FXML
     private void initialize() {
         // Thiết lập borrowDate là ngày hiện tại
@@ -67,16 +75,19 @@ public class BorrowController extends SidebarController implements BorrowAndRetu
             }
         });
 
-        quantityField.setOnAction(event -> fetchQuantity());
+        quantityField.setOnAction(event -> fetchQuantity(quantityField, errorQuantity));
 
         // Xử lý khi người dùng rời khỏi TextField
         quantityField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) { // Chỉ thực hiện khi mất focus
-                fetchQuantity();
+                fetchQuantity(quantityField, errorQuantity);
             }
         });
     }
 
+    /**
+     * Thông báo ngày có hợp lệ không.
+     */
     private void fetchDateValid() {
         LocalDate borDate = borrowDate.getValue();
         LocalDate duDate = dueDate.getValue();
@@ -89,21 +100,9 @@ public class BorrowController extends SidebarController implements BorrowAndRetu
         }
     }
 
-    public void fetchQuantity() {
-        String quantity = quantityField.getText();
-        // Xóa thông báo cũ (nếu có)
-        errorQuantity.setText("");
-
-        if (quantity.isEmpty()) {
-            return;
-        }
-        // Kiểm tra nếu ID không phải số hợp lệ
-        if (!quantity.matches("\\d+")) {
-            errorQuantity.setText("Invalid quantity! Please enter a valid number.");
-            errorQuantity.setStyle("-fx-text-fill: red; -fx-font-weight: bold;"); // Tô đỏ thông báo lỗi
-        }
-    }
-
+    /**
+     * Kiểm tra số lượng nhập có hợp lệ không.
+     */
     private boolean checkQuantity(int quantity, int quantityBorrow) {
         if (quantityBorrow <= 0) {
             errorQuantity.setText("The number of documents you want to borrow must be greater than 0");
@@ -115,7 +114,7 @@ public class BorrowController extends SidebarController implements BorrowAndRetu
                         + quantity + " books left. Please re-enter the number of books you want to borrow.");
             } else if (quantity == 1){
                 errorQuantity.setText("The library does not have enough documents for you to borrow.\n" +
-                                "There are only 1 document left. Please re-enter.");
+                        "There are only 1 document left. Please re-enter.");
             } else if (quantity == 0) {
                 errorQuantity.setText("The library is out of documents you want to borrow.\nPlease come back later.");
             } else {
@@ -126,6 +125,9 @@ public class BorrowController extends SidebarController implements BorrowAndRetu
         return true;
     }
 
+    /**
+     * Kiểm tra ngày có hợp lệ không.
+     */
     private boolean checkValidDate() {
         LocalDate borDate = borrowDate.getValue();
         LocalDate duDate = dueDate.getValue();
@@ -133,6 +135,45 @@ public class BorrowController extends SidebarController implements BorrowAndRetu
         return diffDate <= 14 && diffDate >= 0;
     }
 
+    /**
+     * Kiểm tra người dùng có được phép mượn sách không.
+     */
+    private boolean validBorrow(int memberId, int docId) throws SQLException {
+        String query = "SELECT COUNT(*) FROM borrow_records WHERE member_id = ? AND document_id = ? AND status = 'borrowed'";
+        try {
+            PreparedStatement checkStmt = connection.prepareStatement(query);
+            checkStmt.setInt(1, memberId);
+            checkStmt.setInt(2, docId);
+            resultSet = checkStmt.executeQuery();
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1); // Lấy giá trị COUNT(*)
+                return count == 0;
+            }
+        } catch (SQLException e) {
+            throw new SQLException(e);
+        }
+        return false;
+    }
+
+    /**
+     * Kiểm tra người dùng có tồn tại không.
+     */
+    private boolean validMember(int memberId) throws SQLException {
+        try {
+            String checkMemberId = "SELECT member_id FROM members WHERE member_id = ?";
+            checkStmt = connection.prepareStatement(checkMemberId);
+            checkStmt.setInt(1, memberId);
+            resultSet = checkStmt.executeQuery();
+            return resultSet.next();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * Mượn sách.
+     */
     @FXML
     private void onSubmit() {
         boolean cksDocId = checkDocId(documentIdField);
@@ -141,73 +182,69 @@ public class BorrowController extends SidebarController implements BorrowAndRetu
             int documentId = Integer.parseInt(documentIdField.getText());
             int memberId = Integer.parseInt(memberIdField.getText());
             int quantityBorrow = Integer.parseInt(quantityField.getText());
-            Connection connection = null;
             PreparedStatement borrowStmt = null;
             PreparedStatement updateStmt = null;
-            ResultSet resultSet = null;
-
             try {
                 connection = DatabaseConnection.getConnection();
                 connection.setAutoCommit(false);  // Tắt auto-commit
-
                 // Kiểm tra member_id có tồn tại hay không
-                String checkMemberId = "SELECT member_id FROM members WHERE member_id = ?";
-                PreparedStatement checkStmt = connection.prepareStatement(checkMemberId);
-                checkStmt.setInt(1, memberId);
-                resultSet = checkStmt.executeQuery();
-
-                if (resultSet.next()) {
+                boolean validMem = validMember(memberId);
+                boolean validBorrowDoc = validBorrow(memberId, documentId);
+                if (validMem) {
                     // Kiểm tra xem sách có tồn tại và có sẵn không
                     String checkDocQuery = "SELECT quantity FROM documents WHERE id = ?";
                     checkStmt = connection.prepareStatement(checkDocQuery);
                     checkStmt.setInt(1, documentId);
                     resultSet = checkStmt.executeQuery();
-
                     if (resultSet.next()) {
-                        int quantity = resultSet.getInt("quantity");
-                        boolean cksQuantity = checkQuantity(quantity, quantityBorrow);
-                        boolean cksDate = checkValidDate();
-                        if (quantity > 0 && cksQuantity && cksDate) {
-                            // Thêm bản ghi mượn vào bảng Borrow_Records
-                            String borrowQuery = "INSERT INTO Borrow_Records (document_id, member_id, borrow_date, due_date, status, quantity, quantity_borrow) VALUES (?, ?, ?, ?, 'borrowed', ?, ?)";
-                            borrowStmt = connection.prepareStatement(borrowQuery);
-                            borrowStmt.setInt(1, documentId);
-                            borrowStmt.setInt(2, memberId);
-                            borrowStmt.setDate(3, Date.valueOf(borrowDate.getValue()));
-                            borrowStmt.setDate(4, Date.valueOf(dueDate.getValue()));
-                            borrowStmt.setInt(5, quantityBorrow);
-                            borrowStmt.setInt(6, quantityBorrow);
-                            borrowStmt.executeUpdate();
+                        if (validBorrowDoc) {
+                            int quantity = resultSet.getInt("quantity");
+                            boolean cksQuantity = checkQuantity(quantity, quantityBorrow);
+                            boolean cksDate = checkValidDate();
+                            if (quantity > 0 && cksQuantity && cksDate) {
+                                // Thêm bản ghi mượn vào bảng Borrow_Records
+                                String borrowQuery = "INSERT INTO Borrow_Records (document_id, member_id, borrow_date, due_date, status, quantity, quantity_borrow) VALUES (?, ?, ?, ?, 'borrowed', ?, ?)";
+                                borrowStmt = connection.prepareStatement(borrowQuery);
+                                borrowStmt.setInt(1, documentId);
+                                borrowStmt.setInt(2, memberId);
+                                borrowStmt.setDate(3, Date.valueOf(borrowDate.getValue()));
+                                borrowStmt.setDate(4, Date.valueOf(dueDate.getValue()));
+                                borrowStmt.setInt(5, quantityBorrow);
+                                borrowStmt.setInt(6, quantityBorrow);
+                                borrowStmt.executeUpdate();
 
-                            // Cập nhật lại số lượng sách trong bảng Books
-                            String updateQuery = "UPDATE documents SET quantity = quantity - ? WHERE id = ?";
-                            updateStmt = connection.prepareStatement(updateQuery);
-                            updateStmt.setInt(1, quantityBorrow);
-                            updateStmt.setInt(2, documentId);
-                            updateStmt.executeUpdate();
-                            connection.commit();  // Lưu thay đổi sau khi tất cả lệnh SQL thành công
-                            showAlert(Alert.AlertType.INFORMATION, "Success", "You have successfully borrowed the book!");
-                            errorDate.setText("");
-                            errorDoc.setText("");
-                            errorMem.setText("");
-                            errorQuantity.setText("");
-                        } else if (!cksQuantity) {
-                            if (quantity > 1) {
-                                showAlert(Alert.AlertType.WARNING, "Unavailable",
-                                        "The library does not have enough documents for you to borrow. There are only "
-                                        + quantity + " documents left. Please re-enter.");
-                            } else if (quantity == 1){
-                                showAlert(Alert.AlertType.WARNING, "Unavailable",
-                                        "The library does not have enough documents for you to borrow. " +
-                                        "There are only 1 document left. Please re-enter.");
-                            } else if (quantity == 0) {
-                                showAlert(Alert.AlertType.WARNING, "Unavailable",
-                                        "The library is out of documents you want to borrow. Please come back later.");
-                            } else {
-                                showAlert(Alert.AlertType.ERROR, "Error", "Oops, there was an error, please enter again.");
+                                // Cập nhật lại số lượng sách trong bảng Books
+                                String updateQuery = "UPDATE documents SET quantity = quantity - ? WHERE id = ?";
+                                updateStmt = connection.prepareStatement(updateQuery);
+                                updateStmt.setInt(1, quantityBorrow);
+                                updateStmt.setInt(2, documentId);
+                                updateStmt.executeUpdate();
+                                connection.commit();  // Lưu thay đổi sau khi tất cả lệnh SQL thành công
+                                showAlert(Alert.AlertType.INFORMATION, "Success", "You have successfully borrowed the book!");
+                                errorDate.setText("");
+                                errorDoc.setText("");
+                                errorMem.setText("");
+                                errorQuantity.setText("");
+                            } else if (!cksQuantity) {
+                                if (quantity > 1) {
+                                    showAlert(Alert.AlertType.WARNING, "Unavailable",
+                                            "The library does not have enough documents for you to borrow. There are only "
+                                                    + quantity + " documents left. Please re-enter.");
+                                } else if (quantity == 1) {
+                                    showAlert(Alert.AlertType.WARNING, "Unavailable",
+                                            "The library does not have enough documents for you to borrow. " +
+                                                    "There are only 1 document left. Please re-enter.");
+                                } else if (quantity == 0) {
+                                    showAlert(Alert.AlertType.WARNING, "Unavailable",
+                                            "The library is out of documents you want to borrow. Please come back later.");
+                                } else {
+                                    showAlert(Alert.AlertType.ERROR, "Error", "Oops, there was an error, please enter again.");
+                                }
+                            } else if (!cksDate) {
+                                showAlert(Alert.AlertType.WARNING, "Invalid Date", "Sorry, you cannot borrow documents for longer than 2 weeks.");
                             }
-                        } else if (!cksDate) {
-                            showAlert(Alert.AlertType.WARNING, "Invalid Date", "Sorry, you cannot borrow documents for longer than 2 weeks.");
+                        } else {
+                            showAlert(Alert.AlertType.WARNING, "Invalid Borrow", "This document is being borrowed by you.");
                         }
                     } else {
                         showAlert(Alert.AlertType.ERROR, "Not Found", "Books do not exist.");

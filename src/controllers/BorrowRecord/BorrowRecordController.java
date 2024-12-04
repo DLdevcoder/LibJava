@@ -60,6 +60,10 @@ public class BorrowRecordController  {
     private final ObservableList<BorrowRecord> borrowRecordList = FXCollections.observableArrayList();
     private FilteredList<BorrowRecord> filteredRecords;
 
+    /**
+     * Hiển thị tableview.
+     * @throws SQLException
+     */
     @FXML
     private void initialize() throws SQLException {
         recordIdColumn.setCellValueFactory(new PropertyValueFactory<>("recordId"));
@@ -85,6 +89,9 @@ public class BorrowRecordController  {
         tableView.setItems(sortedRecords);
     }
 
+    /**
+     * Load dữ liệu của BorrowRecord.
+     */
     private void loadBorrowRecords() {
         Task<ObservableList<BorrowRecord>> borrowListTask = new Task<>() {
             @Override
@@ -113,7 +120,7 @@ public class BorrowRecordController  {
                 return tempList;
             }
         };
-
+        //Khi luồng thành công.
         borrowListTask.setOnSucceeded(event -> {
             borrowRecordList.clear();
             borrowRecordList.addAll(borrowListTask.getValue());
@@ -129,6 +136,9 @@ public class BorrowRecordController  {
         loadThread.start();
     }
 
+    /**
+     * Tìm kiếm thông tin trong tableview.
+     */
     @FXML
     private void search() {
         filteredRecords.setPredicate(borrowRecord -> {
@@ -197,6 +207,10 @@ public class BorrowRecordController  {
         });
     }
 
+    /**
+     * Xóa các textField trong tableView.
+     * @throws SQLException
+     */
     @FXML
     private void clearField() throws SQLException {
         recordIdSearch.setText("");

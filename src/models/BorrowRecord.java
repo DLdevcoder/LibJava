@@ -13,13 +13,28 @@ public class BorrowRecord {
     private int quantity;
     private int quantityBorrow;
 
-    // Constructor không tham số
+    /**
+     * Constructor không tham số
+     */
     public BorrowRecord() {
 
     }
 
-    // Constructor đầy đủ tham số
-    public BorrowRecord(int recordId, int documentId, int memberId, Date borrowDate, Date returnDate, Date dueDate, String status, int quantity, int quantityBorrow) {
+    /**
+     * Constructor đầy đủ tham số
+     * @param recordId
+     * @param documentId
+     * @param memberId
+     * @param borrowDate
+     * @param returnDate
+     * @param dueDate
+     * @param status
+     * @param quantity
+     * @param quantityBorrow
+     */
+    public BorrowRecord(int recordId, int documentId,
+                        int memberId, Date borrowDate, Date returnDate,
+                        Date dueDate, String status, int quantity, int quantityBorrow) {
         this.recordId = recordId;
         this.documentId = documentId;
         this.memberId = memberId;
