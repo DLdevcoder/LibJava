@@ -83,4 +83,15 @@ A. UI
 + Thiết kế giao diện và xử lí phần Login, Logout
 + Cài đặt các Test cho các chức năng của Member và Admin
 + Thiết kế UML, Database cùng các thành viên nhóm
+  
+**Trần Duy Khánh:**
 
+A. UI 
+- Thiết kế giao diện và xử lí chức năng của Home
+   + Hiển thị các sách được đề xuất (theo tỉ lệ đánh giá của người dùng)
+   + Thống kê sách theo ngôn ngữ, thể loại.
+   + Thống kê số sách được mượn trong năm vừa qua theo các tháng trong năm.
+   +  Xử lí tìm kiếm bằng GoogleBook API
+   +  Tham gia thiết kế UML cùng các thành viên trong nhóm.
+
+  
