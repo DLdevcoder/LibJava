@@ -1,6 +1,6 @@
 /* Màu nền cho Button */
 Button {
-    -fx-background-color: #15b392;  /* Màu chính của nút */
+    -fx-background-color:  #66bb6a;  /* Màu chính của nút */
     -fx-text-fill: white;
     -fx-font-size: 16px;
     -fx-padding: 10px 20px;
@@ -14,20 +14,20 @@ Button:hover {
 
 /* Màu nền cho TextField */
 TextField {
-    -fx-background-color: #73ec8b;  /* Màu nền của TextField */
-    -fx-border-radius: 5px;
-    -fx-border-color: #15b392;      /* Viền màu #15b392 */
-    -fx-padding: 10px;
-    -fx-pref-height: 30px;
-    -fx-pref-width: 100%;
+    -fx-prompt-text-fill: #66bb6a;
+    -fx-text-fill: #388e3c;
+    -fx-background-color: #c8e6c9;
+    -fx-border-color: #66bb6a;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 18;
 }
 
 /* Màu nền của ChoiceBox */
 ChoiceBox {
-    -fx-background-color: #15b392;  /* Màu nền của ChoiceBox */
+    -fx-background-color:#388e3c;  /* Màu nền của ChoiceBox */
     -fx-text-fill: white;
     -fx-border-radius: 5px;
-    -fx-border-color: #73ec8b;      /* Viền màu #73ec8b */
     -fx-padding: 5px;
 }
 

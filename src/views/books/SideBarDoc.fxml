@@ -39,14 +39,19 @@
          </graphic>
       </MenuButton>
         <Separator prefWidth="200.0" />
-        <Button alignment="TOP_LEFT" maxWidth="Infinity" onAction="#ScenceRemoveBook" prefHeight="43.0" prefWidth="194.0" styleClass="sidebar-button" text="Delete Book">
+      <MenuButton mnemonicParsing="false" prefHeight="37.0" prefWidth="180.0" styleClass="sidebar-menubutton" text="Update">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#ScenceEditBook" text="Edit Book Details" />
+          <MenuItem mnemonicParsing="false" onAction="#ScenceRemoveBook" text="Delete Book" />
+        </items>
          <graphic>
             <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../resources/image/deletebook.png" />
+                  <Image url="@../../resources/image/edit.png" />
                </image>
             </ImageView>
-         </graphic></Button>
+         </graphic>
+      </MenuButton>
         <Separator prefWidth="200.0" />
       <MenuButton fx:id="ReviewMenuButton" alignment="TOP_LEFT" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="183.0" styleClass="sidebar-menubutton" text="Reviews">
         <items>

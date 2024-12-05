@@ -1,6 +1,7 @@
 package controllers.Document;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -21,6 +22,10 @@ public class UpdateBookController {
     @FXML
     private TextField bookIdField;  // TextField để nhập ID sách
 
+    /**
+     * The initialize method is called when the controller is initialized.
+     * It sets up the options in the ChoiceBox and listens for value changes.
+     */
     @FXML
     public void initialize() {
         // Thêm các lựa chọn vào ChoiceBox
@@ -31,7 +36,7 @@ public class UpdateBookController {
             if (newValue != null) {
                 // Hiển thị TextField và thay đổi prompt text
                 inputField.setVisible(true);
-                inputField.setPromptText("Enter " + newValue.toLowerCase());
+                inputField.setPromptText("Enter new " + newValue.toLowerCase());
                 updateButton.setDisable(false); // Kích hoạt nút Update
             } else {
                 inputField.setVisible(false); // Ẩn TextField
@@ -40,6 +45,10 @@ public class UpdateBookController {
         });
     }
 
+    /**
+     * Handles the update operation when the Update button is clicked.
+     * It validates input, maps the field to the database column, and updates the record.
+     */
     @FXML
     private void handleUpdate() {
         String selectedField = choiceBox.getValue();
@@ -47,7 +56,7 @@ public class UpdateBookController {
         String bookId = bookIdField.getText();  // Lấy ID sách từ TextField
 
         if (selectedField == null || newValue.isEmpty() || bookId.isEmpty()) {
-            System.out.println("Please select a field, enter a value, and provide a book ID.");
+            showAlert("Invalid Input", "Please select a field, enter a value, and provide a book ID.");
             return;
         }
 
@@ -56,7 +65,7 @@ public class UpdateBookController {
         try {
             bookIdInt = Integer.parseInt(bookId);
         } catch (NumberFormatException e) {
-            System.out.println("Invalid book ID.");
+            showAlert("Error","Invalid book ID.");
             return;
         }
 
@@ -64,7 +73,7 @@ public class UpdateBookController {
         String column = getColumnForField(selectedField);
 
         if (column == null) {
-            System.out.println("Invalid field selected.");
+            showAlert("Error","Invalid field selected.");
             return;
         }
 
@@ -78,20 +87,25 @@ public class UpdateBookController {
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected > 0) {
-                System.out.println("Book updated successfully.");
+                showAlert("Success","Book updated successfully.");
             } else {
-                System.out.println("No book found with the given ID.");
+                showAlert("Eror","No book found with the given ID.");
             }
 
             statement.close();
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Error updating book.");
+            showAlert("Eror","Error updating book.");
         }
     }
 
-    // Hàm ánh xạ giá trị từ ChoiceBox tới tên cột trong database
-    private String getColumnForField(String field) {
+
+    /**
+     * Maps the field selected in the ChoiceBox to the corresponding database column name.
+     *
+     * @param field The field selected in the ChoiceBox
+     * @return The corresponding database column name, or null if no match is found
+     */    private String getColumnForField(String field) {
         switch (field) {
             case "Title":
                 return "title";
@@ -108,6 +122,20 @@ public class UpdateBookController {
             default:
                 return null;
         }
+    }
+
+    /**
+     * Displays an alert message with the given title and content.
+     *
+     * @param title The title of the alert
+     * @param message The content of the alert
+     */
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null); // Không cần header
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
 

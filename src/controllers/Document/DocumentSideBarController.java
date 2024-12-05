@@ -65,7 +65,7 @@ public class DocumentSideBarController extends HeaderController {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/DeleteBook.fxml")));
 
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -77,6 +77,19 @@ public class DocumentSideBarController extends HeaderController {
 
     }
 
+    public void ScenceEditBook(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/UpdateBook.fxml")));
+
+            Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+
     /**
      * Switches to the Add Reviews scene.
      * Loads the FXML for the Add Reviews view and sets the new scene to the current stage.
@@ -85,14 +98,14 @@ public class DocumentSideBarController extends HeaderController {
      */
     public void HandleAddReviews(ActionEvent event) {
         {
-            try{
+            try {
                 Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/AddReviews.fxml")));
                 Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
 
-            } catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -105,14 +118,14 @@ public class DocumentSideBarController extends HeaderController {
      * @param event the ActionEvent triggered by the button click
      */
     public void HandleShowReviews(ActionEvent event) {
-        try{
+        try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/BookReviews.fxml")));
             Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
 
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -124,14 +137,14 @@ public class DocumentSideBarController extends HeaderController {
      * @param event the ActionEvent triggered by the button click
      */
     public void ScenceAddTheses(ActionEvent event) {
-        try{
+        try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/AddTheses.fxml")));
             Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
 
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -143,16 +156,19 @@ public class DocumentSideBarController extends HeaderController {
      * @param event the ActionEvent triggered by the button click
      */
     public void ScenceAddGovermentDoc(ActionEvent event) {
-        try{
+        try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/AddGovermentDoc.fxml")));
             Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
 
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
+
 }
 
