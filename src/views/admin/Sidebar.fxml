@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane stylesheets="@../../resources/stylesheet/Sidebar.css" xmlns:fx="http://javafx.com/fxml" prefHeight="510.0" prefWidth="185.0" styleClass="sidebar-scroll" fx:controller="controllers.admin.SidebarAdmin">
-    <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="502.0" prefWidth="180.0" spacing="8" styleClass="sidebar">
+<AnchorPane prefHeight="349.0" prefWidth="224.0" styleClass="sidebar-scroll" stylesheets="@../../resources/stylesheet/Sidebar.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23" fx:controller="controllers.admin.SidebarAdmin">
+    <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="414.0" prefWidth="205.0" spacing="8" styleClass="sidebar">
         <Label styleClass="sidebar-title" text="Sidebar" />
-        <Button maxWidth="Infinity" styleClass="sidebar-button" text="Profile" onAction="#sceneAdminProfile">
+        <Button alignment="TOP_LEFT" maxWidth="Infinity" onAction="#sceneAdminProfile" styleClass="sidebar-button" text="Profile">
             <graphic>
                 <ImageView fitHeight="27" fitWidth="27" preserveRatio="true">
                     <image>
@@ -17,7 +19,7 @@
                 </ImageView>
             </graphic>
         </Button>
-        <Button maxWidth="Infinity" styleClass="sidebar-button" text="Password" onAction="#sceneChangePassword">
+        <Button alignment="TOP_LEFT" maxWidth="Infinity" onAction="#sceneChangePassword" styleClass="sidebar-button" text="Password">
             <graphic>
                 <ImageView fitHeight="27" fitWidth="27" preserveRatio="true">
                     <image>
