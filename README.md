@@ -1,7 +1,6 @@
 # LibJava
 
-![Uploading database.png…]()
-
+![database](https://github.com/user-attachments/assets/4ec78d62-d357-4dc3-a5d8-48b9d85233b9)
 
 Tài khoản admin: admin@example.com
 Mật khẩu admin: 123
