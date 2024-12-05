@@ -120,6 +120,10 @@ public class BorrowRecordController  {
                 return tempList;
             }
         };
+        multithreadedProcessing(borrowListTask);
+    }
+
+    private void multithreadedProcessing(Task<ObservableList<BorrowRecord>> borrowListTask) {
         //Khi luồng thành công.
         borrowListTask.setOnSucceeded(event -> {
             borrowRecordList.clear();
@@ -149,59 +153,50 @@ public class BorrowRecordController  {
                     return false;
                 }
             }
-
             if (!docIdSearch.getText().isEmpty()) {
                 String searchText = docIdSearch.getText();
                 if (!String.valueOf(borrowRecord.getDocumentId()).contains(searchText)) {
                     return false;
                 }
             }
-
             if (!memIdSearch.getText().isEmpty()) {
                 String searchText = memIdSearch.getText();
                 if (!String.valueOf(borrowRecord.getMemberId()).contains(searchText)) {
                     return false;
                 }
             }
-
             if (borrowDateSearch.getValue() != null) {
                 Date searchDate = Date.valueOf(borrowDateSearch.getValue());
                 if (!borrowRecord.getBorrowDate().equals(searchDate)) {
                     return false;
                 }
             }
-
             if (returnDateSearch.getValue() != null) {
                 Date searchDate = Date.valueOf(returnDateSearch.getValue());
                 if (borrowRecord.getReturnDate() == null || !borrowRecord.getReturnDate().equals(searchDate)) {
                     return false;
                 }
             }
-
             if (dueDateSearch.getValue() != null) {
                 LocalDate searchDate = dueDateSearch.getValue();
                 if (!borrowRecord.getDueDate().equals(searchDate)) {
                     return false;
                 }
             }
-
             if (!statusSearch.getText().isEmpty()) {
                 String searchText = statusSearch.getText().toLowerCase();
                 if (!borrowRecord.getStatus().toLowerCase().contains(searchText)) {
                     return false;
                 }
             }
-
             if (!quantitySearch.getText().isEmpty()) {
                 String searchText = quantitySearch.getText();
                 return String.valueOf(borrowRecord.getQuantity()).contains(searchText);
             }
-
             if (!quantityBorrowSearch.getText().isEmpty()) {
                 String searchText = quantityBorrowSearch.getText();
                 return String.valueOf(borrowRecord.getQuantityBorrow()).contains(searchText);
             }
-
             // Nếu tất cả kiểm tra đều thỏa mãn, trả về true (hiển thị bản ghi)
             return true;
         });

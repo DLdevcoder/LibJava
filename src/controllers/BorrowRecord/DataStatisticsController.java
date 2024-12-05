@@ -60,20 +60,17 @@ public class DataStatisticsController extends SidebarController{
                     sumMember = rs.getInt("sumMember");
                 }
                 ObservableList<PieChart.Data> memberData = FXCollections.observableArrayList();
-
                 // Kiểm tra sumBook trước khi tiếp tục
                 if (sumMember == 0) {
                     memberData.add(new PieChart.Data("Null", 0));
                     return memberData;
                 }
-
                 PreparedStatement stmt2 = conn.prepareStatement(query2);
                 rs = stmt2.executeQuery();
                 int sumOfTop = 0;
                 while (rs.next()) {
                     String name = rs.getString("name");
                     int sumBorrow = rs.getInt("sumBorrow");
-
                     // Cộng dồn vào sumOfTop
                     sumOfTop += sumBorrow;
                     // Thêm dữ liệu vào pie chart
@@ -137,27 +134,22 @@ public class DataStatisticsController extends SidebarController{
                     sumBook = rs.getInt("sumBook");
                 }
                 ObservableList<PieChart.Data> documentData = FXCollections.observableArrayList();
-
                 // Kiểm tra sumBook trước khi tiếp tục
                 if (sumBook == 0) {
                     documentData.add(new PieChart.Data("Null", 0));
                 }
-
                 PreparedStatement stmt2 = conn.prepareStatement(query2);
                 rs = stmt2.executeQuery();
-
                 int sumOfTop = 0;
                 while (rs.next()) {
                     String title = rs.getString("title");
                     int totalBorrowed = rs.getInt("total_borrowed");
-
                     // Cộng dồn vào sumOfTop
                     sumOfTop += totalBorrowed;
                     // Thêm dữ liệu vào pie chart
                     PieChart.Data data = new PieChart.Data(title, totalBorrowed);
                     documentData.add(data);
                 }
-
                 // Thêm "Other book" nếu còn dư
                 if (sumOfTop < sumBook) {
                     documentData.add(new PieChart.Data("Others book", sumBook - sumOfTop));
@@ -176,17 +168,15 @@ public class DataStatisticsController extends SidebarController{
                 settingPieChart(docData, "Number of documents: ", sumData);
             }
         });
-
         // Xử lý khi Task thất bại
         documentDataTask.setOnFailed(event -> {
             Throwable exception = documentDataTask.getException();
             exception.printStackTrace();
         });
-
         // Chạy Task trên luồng nền
-        Thread loadMemberThread = new Thread(documentDataTask);
-        loadMemberThread.setDaemon(true); // Đảm bảo dừng khi ứng dụng kết thúc
-        loadMemberThread.start();
+        Thread loadDocumentThread = new Thread(documentDataTask);
+        loadDocumentThread.setDaemon(true); // Đảm bảo dừng khi ứng dụng kết thúc
+        loadDocumentThread.start();
     }
 
     /**
@@ -211,25 +201,21 @@ public class DataStatisticsController extends SidebarController{
                     "-fx-border-radius: 10; " +
                     "-fx-background-radius: 10;");
             customTooltip.getContent().add(tooltipLabel);
-
             // Sự kiện khi chuột vào Node
             data.getNode().setOnMouseEntered(event -> {
                 tooltipLabel.setText(labelText + originData);
                 customTooltip.show(data.getNode(), event.getScreenX() + 10, event.getScreenY() + 10); // Vị trí Tooltip gần chuột
-
                 // Hiệu ứng phóng to
                 ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(300), data.getNode());
                 scaleTransition.setToX(1.1);
                 scaleTransition.setToY(1.1);
                 scaleTransition.play();
             });
-
             // Sự kiện khi chuột di chuyển (cập nhật vị trí Tooltip)
             data.getNode().setOnMouseMoved(event -> {
                 customTooltip.setX(event.getScreenX() + 10); // Cập nhật vị trí X
                 customTooltip.setY(event.getScreenY() + 10); // Cập nhật vị trí Y
             });
-
             // Sự kiện khi chuột rời khỏi Node
             data.getNode().setOnMouseExited(event -> {
                 customTooltip.hide(); // Ẩn Tooltip

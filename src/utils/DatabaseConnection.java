@@ -9,7 +9,7 @@ public class DatabaseConnection {
 
     private static Connection connection;
 
-    public DatabaseConnection() {
+    private DatabaseConnection() {
     }
 
     public static Connection getConnection() {

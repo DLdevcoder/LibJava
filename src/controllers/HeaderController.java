@@ -19,12 +19,10 @@ public class HeaderController {
     protected Parent root;
     protected Stage stage;
     protected Scene scene;
-    @FXML
-    private TextField SearchDoc_TextField;
-
     private Stage tableStage;
 
-
+    @FXML
+    private TextField SearchDoc_TextField;
 
     public void sceneBorrow(ActionEvent event) {
         changeScene(event, "/views/borrow_records/Borrow.fxml");
@@ -42,9 +40,11 @@ public class HeaderController {
     public void sceneAdmin(ActionEvent event) {
         changeScene(event, "/views/admin/AdminInfo.fxml");
     }
+
     public void logout(ActionEvent event) {
         changeScene(event, "/views/login/Login.fxml");
     }
+
     public void changeScene(ActionEvent event, String path) {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(path)));
@@ -70,9 +70,11 @@ public class HeaderController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
     public void HomeScence(ActionEvent event) {
         changeScene(event, "/views/Home/Home.fxml");
     }
+
     /**
      * Initializes the event handler for the SearchDoc_TextField.
      * When the Enter key is pressed, it triggers the search process.
