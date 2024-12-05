@@ -78,10 +78,10 @@ public class Suggestion {
         Label titleLabel = new Label(title);
         titleLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
 
-        Label authorLabel = new Label("Tác giả: " + author);
+        Label authorLabel = new Label("Author: " + author);
         authorLabel.setStyle("-fx-font-size: 12px;");
 
-        Label ratingLabel = new Label("Đánh giá: " + rating + "/5");
+        Label ratingLabel = new Label("Review: " + rating + "/5");
         ratingLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #888;");
 
         card.getChildren().addAll(bookImage, titleLabel, authorLabel, ratingLabel);
@@ -113,22 +113,22 @@ public class Suggestion {
         bookImage.setFitHeight(400);
 
         // Tạo các Label cho các thông tin chi tiết
-        Label titleLabel = new Label("Tiêu đề: " + title);
+        Label titleLabel = new Label("Title: " + title);
         titleLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
 
-        Label authorLabel = new Label("Tác giả: " + author);
+        Label authorLabel = new Label("Author: " + author);
         authorLabel.setStyle("-fx-font-size: 14px;");
 
-        Label publicationYearLabel = new Label("Năm xuất bản: " + publicationYear);
+        Label publicationYearLabel = new Label("Publication Year: " + publicationYear);
         publicationYearLabel.setStyle("-fx-font-size: 14px;");
 
-        Label pageCountLabel = new Label("Số trang: " + pageCount);
+        Label pageCountLabel = new Label("Page Count: " + pageCount);
         pageCountLabel.setStyle("-fx-font-size: 14px;");
 
-        Label descriptionLabel = new Label("Mô tả: " + (description != null ? description : "Không có mô tả"));
+        Label descriptionLabel = new Label("Description: " + (description != null ? description : "No description"));
         descriptionLabel.setStyle("-fx-font-size: 14px;");
 
-        Label ratingLabel = new Label("Đánh giá: " + rating + "/5");
+        Label ratingLabel = new Label("Evaluate: " + rating + "/5");
         ratingLabel.setStyle("-fx-font-size: 14px;");
 
         // Thêm các thông tin vào VBox

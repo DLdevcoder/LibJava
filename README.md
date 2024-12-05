@@ -1,5 +1,10 @@
 # LibJava
 
+![database.png](..%2F..%2FPictures%2FScreenshots%2Fdatabase.png)
+
+Tài khoản admin: admin@example.com
+Mật khẩu admin: 123
+
 Đặng Tuấn Long(trưởng nhóm):
 
 A.Console
