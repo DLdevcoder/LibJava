@@ -20,8 +20,9 @@
 
     public class GoogleBooksAPI {
 
-        private static final String API_KEY = "AIzaSyBStXWe0XlatZoNMyqVSY2xgZOWPDH4Ieo"; // Thay YOUR_API_KEY bằng API Key của bạn
+        private static final String API_KEY = "&key=AIzaSyBhMm6LPXdhV-GHY4zzBmd9ZbCCoxQRbsc";
         private static final String API_URL = "https://www.googleapis.com/books/v1/volumes?q=";
+        private static final String API_URLISBN ="https://www.googleapis.com/books/v1/volumes?q=isbn:";
 
         private GoogleBooksAPI() {}
 
@@ -32,7 +33,7 @@
          * @return A JSONObject containing the book details, or null if not found.
          */
         public static JSONObject fetchBookInfoByISBN(String isbn) {
-            String urlWithISBN = API_URL + isbn;
+            String urlWithISBN = API_URLISBN + isbn + API_KEY;
             try {
                 //Thiết lập kết nối với http
                 URL url = new URL(urlWithISBN);

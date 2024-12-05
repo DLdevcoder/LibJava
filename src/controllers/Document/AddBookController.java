@@ -57,12 +57,10 @@ public class AddBookController extends HeaderController {
         int quantity = Integer.parseInt(EnterBookQuantity_TextField.getText().trim());
 
         if (!isbn.isEmpty()) {
-            // Gọi Google Books API để tìm kiếm thông tin sách dựa trên ISBN
             Book book = GoogleBooksAPI.getBookByISBN(isbn, imageLink, quantity);
 
             // Kiểm tra nếu sách được tìm thấy
             if (book != null) {
-                // Hiển thị thông báo thành công
                 showAlert("Successfully", "Book added successfully");
 
                 // Lấy thể hiện duy nhất của lớp `Admin` (Singleton pattern)
@@ -71,7 +69,6 @@ public class AddBookController extends HeaderController {
                 // Lưu thông tin sách vào cơ sở dữ liệu thông qua `Admin`
                 admin.saveBookToDatabase(book);
             } else {
-                // Hiển thị thông báo lỗi nếu không tìm thấy sách
                 showAlert("Error", "Book not found");
             }
         } else {
@@ -94,16 +91,12 @@ public class AddBookController extends HeaderController {
         if (!title.isEmpty() && !author.isEmpty()) {
             Theses theses = new Theses(title, author, quantity);
 
-            // Lấy thể hiện duy nhất của lớp `Admin` (Singleton pattern)
             Admin admin = Admin.getInstance();
 
-            // Lưu luận văn vào cơ sở dữ liệu thông qua `Admin`
             admin.saveThesesToDataBase(theses);
 
-            // Hiển thị thông báo thành công
             showAlert("Successfully", "Theses added successfully");
         } else {
-            // Hiển thị thông báo lỗi nếu thông tin đầu vào không hợp lệ
             showAlert("Error", "Please Enter Title and Author");
         }
     }
@@ -125,13 +118,10 @@ public class AddBookController extends HeaderController {
             // Lấy thể hiện duy nhất của lớp `Admin` (Singleton pattern)
             Admin admin = Admin.getInstance();
 
-            // Lưu tài liệu chính phủ vào cơ sở dữ liệu thông qua `Admin`
             admin.saveGDToDatabase(governmentDocuments);
 
-            // Hiển thị thông báo thành công
             showAlert("Successfully", "GD added successfully");
         } else {
-            // Hiển thị thông báo lỗi nếu thông tin đầu vào không hợp lệ
             showAlert("Error", "Please Enter Title and Author");
         }
     }
