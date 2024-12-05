@@ -46,7 +46,7 @@ public class Borrows {
         // Đặt trục Y từ 0 đến 10
         yAxis.setAutoRanging(false);
         yAxis.setLowerBound(0);
-        yAxis.setUpperBound(10);
+        yAxis.setUpperBound(25);
         yAxis.setTickUnit(1);
 
         // Khởi tạo mảng tháng, tất cả đều bắt đầu là 0

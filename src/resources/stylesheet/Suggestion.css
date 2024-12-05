@@ -1,3 +1,4 @@
+/* Style cho AnchorPane */
 .anchorPane {
     -fx-background-color: #e8f5e9;
     -fx-border-color: #81c784;
@@ -6,16 +7,59 @@
     -fx-background-radius: 30;
 }
 
+/* Style cho tiêu đề */
 .title-label {
     -fx-font-family: 'Comic Sans MS';
     -fx-text-fill: #388e3c;
     -fx-font-weight: bold;
 }
 
-.labelField {
-    -fx-font-family: 'Arial Rounded MT Bold';
+/* Style cho thẻ sách */
+.book-card {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #81c784;
+    -fx-border-width: 2;
+    -fx-border-radius: 15;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, #000000, 5, 0.5, 0, 0);
+    -fx-transition: all 0.2s ease-in-out;
 }
 
+/* Hiệu ứng hover khi di chuột qua thẻ sách */
+.book-card:hover {
+    -fx-background-color: #f1f1f1;
+    -fx-border-color: #388e3c;
+    -fx-effect: dropshadow(gaussian, #388e3c, 10, 0.3, 0, 0);
+    -fx-cursor: hand;
+}
+
+/* Hiệu ứng khi thẻ sách được nhấn */
+.book-card:pressed {
+    -fx-background-color: #e8f5e9;
+    -fx-border-color: #388e3c;
+    -fx-effect: dropshadow(gaussian, #388e3c, 15, 0.5, 0, 0);
+}
+
+/* Style cho phần bình luận */
+.comment-box {
+    -fx-background-color: #f9f9f9;
+    -fx-border-color: #81c784;
+    -fx-border-radius: 10px;
+    -fx-padding: 10px;
+    -fx-spacing: 5px;
+}
+
+/* Style cho label bình luận */
+.comment-box .label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #555;
+}
+
+.comment-box .label:hover {
+    -fx-text-fill: #388e3c;
+}
+
+/* Style cho ô nhập bình luận */
 .text-field {
     -fx-padding: 10 20 10 20;
     -fx-background-color: #ffffff;
@@ -25,55 +69,52 @@
     -fx-background-radius: 20;
 }
 
-.text-field:focused {
-    -fx-border-color: #73ec8b;
-    -fx-border-width: 1;
-    -fx-effect: dropshadow(gaussian, #d2ff72 , 8, 0.2, 0, 0); /* Hiệu ứng bóng mờ khi được chọn */
+/* Style cho nút gửi bình luận */
+.submit-button {
+    -fx-background-color: #388e3c;
+    -fx-text-fill: white;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 20px;
+    -fx-font-weight: bold;
 }
 
-
+/* Hiệu ứng khi di chuột qua nút gửi bình luận */
 .submit-button:hover {
-    -fx-font-size: 18px;
-    -fx-background-color: #d2ff72;
-    -fx-text-fill: black;
-    -fx-border-color: transparent; /* Giữ border nhất quán */
-    -fx-border-width: 0;           /* Giữ độ dày viền nhất quán */
-    -fx-padding: 10px 20px;        /* Đảm bảo padding không thay đổi */
-}
-
-.submit-button:pressed {
-    -fx-font-size: 18px;
     -fx-background-color: #73ec8b;
-    -fx-padding: 10px 20px;        /* Giữ padding nhất quán */
-    -fx-border-color: transparent; /* Giữ border nhất quán */
-    -fx-border-width: 0;           /* Giữ độ dày viền nhất quán */
 }
 
-.errol-label {
-    -fx-text-fill: red;
-    -fx-font-family: 'SansSerif';
+/* Hiệu ứng khi nút gửi bình luận được nhấn */
+.submit-button:pressed {
+    -fx-background-color: #388e3c;
 }
-.book-card {
-    -fx-background-color: #ffffff; /* Màu nền thẻ sách */
-    -fx-border-color: #81c784;     /* Màu viền thẻ sách */
+/* Style cho TableView */
+.table-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #81c784;
     -fx-border-width: 2;
-    -fx-border-radius: 15;         /* Làm tròn viền */
-    -fx-padding: 10px;             /* Khoảng cách bên trong thẻ */
-    -fx-effect: dropshadow(gaussian, #000000, 5, 0.5, 0, 0); /* Hiệu ứng bóng mờ nhẹ */
-    -fx-transition: all 0.2s ease-in-out; /* Hiệu ứng chuyển tiếp mượt mà */
+    -fx-border-radius: 10;
 }
 
-/* Khi di chuột vào thẻ sách */
-.book-card:hover {
-    -fx-background-color: #f1f1f1; /* Màu nền thay đổi khi hover */
-    -fx-border-color: #388e3c;      /* Màu viền thay đổi khi hover */
-    -fx-effect: dropshadow(gaussian, #388e3c, 10, 0.3, 0, 0); /* Hiệu ứng bóng mờ rõ rệt khi hover */
-    -fx-cursor: hand;               /* Đổi con trỏ thành ngón tay */
+/* Style cho các cột trong bảng */
+.table-column {
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
 }
 
-/* Khi thẻ sách được nhấn */
-.book-card:pressed {
-    -fx-background-color: #e8f5e9;  /* Màu nền thay đổi khi nhấn */
-    -fx-border-color: #388e3c;      /* Màu viền thay đổi khi nhấn */
-    -fx-effect: dropshadow(gaussian, #388e3c, 15, 0.5, 0, 0); /* Hiệu ứng bóng mờ mạnh hơn khi nhấn */
+.table-column-header {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-color: #388e3c;
+    -fx-text-fill: white;
+}
+
+.table-row-cell {
+    -fx-border-color: #81c784;
+    -fx-border-width: 1;
+    -fx-padding: 5px;
+}
+
+/* Style cho khi di chuột vào hàng trong bảng */
+.table-row-cell:hover {
+    -fx-background-color: #f1f1f1;
 }
