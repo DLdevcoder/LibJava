@@ -1,6 +1,7 @@
 # LibJava
 
-![database.png](..%2F..%2FPictures%2FScreenshots%2Fdatabase.png)
+![Uploading database.png…]()
+
 
 Tài khoản admin: admin@example.com
 Mật khẩu admin: 123
