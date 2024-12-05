@@ -1,5 +1,6 @@
 package models;
 
+import javafx.scene.control.Alert;
 import utils.DatabaseConnection;
 
 import java.sql.*;
@@ -336,9 +337,9 @@ public class Admin extends Person {
             preparedStatement.setString(1, id);
             int affectRows = preparedStatement.executeUpdate();
             if (affectRows > 0) {
-                System.out.println("Book deleted successfully");
+                showAlert("Success", "Book deleted successfully!");
             } else {
-                System.out.println("Book could not be deleted");
+                showAlert("Error", "Book could not be deleted. Please check the ID.");
             }
 
 
@@ -378,6 +379,12 @@ public class Admin extends Person {
             e.printStackTrace();
         }
     }
-
+    private static void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION); // Use ERROR or WARNING type for other scenarios
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
 }
