@@ -30,15 +30,15 @@ B.UI
 
 - Tạo mẫu Junit test, TableView cho các thành viên khác
 
-- Xử lí phần hiển thị thông tin các bản ghi mượn trả tài liệu.
+- Xử lí, thiết kế phần hiển thị thông tin các bản ghi mượn trả tài liệu.
 
-- Tìm kiếm các bản ghi mượn trả tài liệu
+- Xứ lí phần tìm kiếm các bản ghi mượn trả tài liệu
 
 - Sửa các lỗi của thành viên khác
 
-- Xử lí phần mượn trả tài liệu.
+- Xử lí, thiết kế hiển thị phần mượn trả tài liệu.
 
-- Thống kê các dữ liệu cho người dùng bao gồm:
+- Xử lí, thiết kế phần thống kê các dữ liệu cho người dùng bao gồm:
 
 + Số người đang mượn sách và tỉ lệ sách được mượn bởi người đó
 
@@ -46,7 +46,7 @@ B.UI
 
 - Tạo các lớp Document, Book, Thesis, BorrowRecord trong model
 
-- kết nối API với javafx
+- Kết nối API với javafx
 
 - Thiết kế UML cùng các thành viên nhóm
 
