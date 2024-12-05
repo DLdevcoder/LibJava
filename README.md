@@ -21,6 +21,8 @@ B.UI
 
 - Tạo khung các stage, thiết kế giao diện chung cho các thành viên khác (bao gồm header và sidebar)
 
+- Tham gia thiết kế phần login
+
 - Tạo mẫu Junit test, TableView cho các thành viên khác
 
 - Xử lí phần hiển thị thông tin các bản ghi mượn trả tài liệu.
