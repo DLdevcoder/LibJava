@@ -6,9 +6,6 @@
 package models;
 import javafx.scene.image.ImageView;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
 
 public class Book extends Document  {
     protected String publisher;
@@ -91,6 +88,8 @@ public class Book extends Document  {
         this.quantity = quantity;
 
     }
+
+
 
 
     public String getPublisher() {

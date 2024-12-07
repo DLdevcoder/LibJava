@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="700.0" prefWidth="1544.0" stylesheets="@../../resources/stylesheet/CommonDoc.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.ThesesController">
+<BorderPane prefHeight="700.0" prefWidth="1544.0" stylesheets="@../../resources/stylesheet/CommonDoc.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.Theses.ThesesController">
 
     <top>
         <fx:include source="../frame/Header.fxml" />
@@ -47,7 +47,7 @@
                         </ImageView>
                     </children>
                 </AnchorPane>
-                <TableView fx:id="ThesesTable" prefHeight="512.0" prefWidth="1290.0">
+                <TableView id="Document_Table" fx:id="ThesesTable" prefHeight="1000.0" prefWidth="1290.0">
                     <columns>
                         <TableColumn fx:id="Theses_ID" prefWidth="108.8000625371933" text="Theses ID" />
                         <TableColumn fx:id="Theses_Title" minWidth="176.79996490478516" prefWidth="75.0" text="Title" />

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="700.0" prefWidth="1544.0" stylesheets="@../../resources/stylesheet/CommonDoc.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.BookController">
+<BorderPane prefHeight="700.0" prefWidth="1544.0" stylesheets="@../../resources/stylesheet/CommonDoc.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.Book.BookController">
 
     <top>
         <fx:include source="../frame/Header.fxml" />
@@ -55,7 +55,7 @@
                   <TableColumn fx:id="Book_Year" prefWidth="155.99996948242188" text="Publication Year" />
                   <TableColumn fx:id="Book_Publisher" prefWidth="193.599853515625" text="Publisher" />
                   <TableColumn fx:id="Book_Language" prefWidth="167.2000732421875" text="Language" />
-                  <TableColumn fx:id="Book_Cover" prefWidth="247.2000732421875" text="Book Cover" />
+                  <TableColumn fx:id="Book_Cover" prefWidth="275.1999755859374" text="Book Cover" />
               </columns>
             </TableView>
          </children>

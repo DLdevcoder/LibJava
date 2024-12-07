@@ -1,17 +1,16 @@
-package controllers.Document;
+package controllers.Document.Book;
 
+import controllers.Document.DocumentSideBarController;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import utils.DatabaseConnection;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 
-public class UpdateBookController extends DocumentSideBarController{
+public class UpdateBookController extends DocumentSideBarController {
 
     @FXML
     private ChoiceBox<String> choiceBox;

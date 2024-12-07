@@ -1,5 +1,7 @@
-package controllers.Document;
+package controllers.Document.GD;
 
+import controllers.Document.Search.SearchByAuthorStrategy;
+import controllers.Document.Search.SearchDocumentController;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;

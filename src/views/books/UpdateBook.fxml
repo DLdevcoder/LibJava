@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="572.0" prefWidth="1063.0" stylesheets="@../../resources/stylesheet/UpdateBook.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.UpdateBookController">
+<BorderPane prefHeight="572.0" prefWidth="1063.0" stylesheets="@../../resources/stylesheet/UpdateBook.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.Book.UpdateBookController">
 
 
     <top>

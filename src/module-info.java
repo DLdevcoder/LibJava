@@ -23,5 +23,9 @@ module main {
     opens controllers.Document to javafx.fxml;
     opens controllers.admin to javafx.fxml;
     opens controllers.Home to javafx.fxml;
+    opens controllers.Document.Book to javafx.fxml;
+    opens controllers.Document.Theses to javafx.fxml;
+    opens controllers.Document.GD to javafx.fxml;
+    opens controllers.Document.Search to javafx.fxml;
 
 }

@@ -180,6 +180,8 @@
                 String publicationYear = volumeInfo.optString("publishedDate", "No Publication Year");
                 String publisher = volumeInfo.optString("publisher", "No Publisher");
                 String language = volumeInfo.optString("language", "No Language");
+                String category = "No Category";
+
 
 
                 if (publicationYear.length() > 4) {

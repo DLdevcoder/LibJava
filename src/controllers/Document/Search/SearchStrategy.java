@@ -1,4 +1,4 @@
-package controllers.Document;
+package controllers.Document.Search;
 
 import java.util.List;
 
