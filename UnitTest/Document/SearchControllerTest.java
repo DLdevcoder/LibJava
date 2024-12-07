@@ -13,7 +13,7 @@ import org.testfx.framework.junit5.ApplicationTest;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class    SearchControllerTest extends ApplicationTest {
+public class   SearchControllerTest extends ApplicationTest {
 
     private SearchController searchController;
     private TextField searchField;

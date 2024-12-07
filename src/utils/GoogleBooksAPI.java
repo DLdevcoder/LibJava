@@ -148,13 +148,21 @@
          * @return A JSONObject containing the book's details (e.g., title, author).
          */
         private static JSONObject getBookDetails(JSONObject response) {
-            if(response.getJSONArray("items") == null || response.getJSONArray("items").isEmpty()) {
-                throw new JSONException("No books found for the given ISBN.");
+            try {
+                // Kiểm tra nếu không có trường "items" hoặc mảng "items" rỗng
+                if (!response.has("items") || response.getJSONArray("items").isEmpty()) {
+                    throw new JSONException("No books found for the given ISBN.");
+                }
+
+                // Trả về thông tin sách đầu tiên trong danh sách
+                return response.getJSONArray("items").getJSONObject(0).getJSONObject("volumeInfo");
+            } catch (JSONException e) {
+                // In thông báo lỗi và ném ngoại lệ để xử lý ở nơi gọi phương thức
+                System.err.println("Error retrieving book details: " + e.getMessage());
+                throw e;
             }
-            return response.getJSONArray("items").getJSONObject(0).getJSONObject("volumeInfo");
-
-
         }
+
 
         /**
          * Retrieves book details by ISBN, including title, author, and cover image.

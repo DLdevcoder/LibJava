@@ -23,7 +23,7 @@ public class DocumentSideBarController extends HeaderController {
     public void ScenceBookList(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/BookList.fxml")));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -158,6 +158,32 @@ public class DocumentSideBarController extends HeaderController {
     public void ScenceAddGovermentDoc(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/AddGovermentDoc.fxml")));
+            Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ScenceThesesList(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/ThesesList.fxml")));
+            Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ScenceGDList(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/views/books/GDList.fxml")));
             Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
             scene = new Scene(root);
             stage.setScene(scene);

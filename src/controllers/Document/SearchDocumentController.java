@@ -1,50 +1,72 @@
 package controllers.Document;
 
-
-import models.Book;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SearchDocumentController {
+/**
+ * Generic search controller for searching items based on different criteria.
+ */
+public class SearchDocumentController<T> {
 
-    private SearchStrategy searchStrategy;
+    private SearchStrategy<T> searchStrategy;
 
     /**
-     * Sets the search strategy to be used for searching books.
+     * Sets the search strategy to be used for searching items.
      *
      * @param searchStrategy the SearchStrategy to be used
      */
-    public void setSearchStrategy(SearchStrategy searchStrategy) {
+    public void setSearchStrategy(SearchStrategy<T> searchStrategy) {
         this.searchStrategy = searchStrategy;
     }
 
     /**
      * Executes the search using the current search strategy.
      *
-     * @param books the list of books to search through
+     * @param items the list of items (e.g., books, theses, government documents) to search through
      * @param keyword the keyword to search for
-     * @return the list of books that match the search criteria
+     * @return the list of items that match the search criteria
      * @throws IllegalStateException if the search strategy is not set
      */
-    public List<Book> executeSearch(List<Book> books, String keyword) {
+    public List<T> executeSearch(List<T> items, String keyword) {
         if (searchStrategy == null) {
             throw new IllegalStateException("Search strategy is not set.");
         }
-        return searchStrategy.search(books, keyword);
+        return searchStrategy.search(items, keyword);
     }
 }
 
-/**
- * SearchStrategy implementation that searches books by title.
- * Filters the books based on whether the title contains the given keyword.
- */
-class SearchByTitleStrategy implements SearchStrategy {
+class SearchByAuthorStrategy<T> implements SearchStrategy<T> {
     @Override
-    public List<Book> search(List<Book> books, String keyword) {
-        return books.stream()
-                .filter(book -> book.getTitle().toLowerCase().contains(keyword.toLowerCase()))
+    public List<T> search(List<T> items, String keyword) {
+        return items.stream()
+                .filter(item -> {
+                    try {
+                        // Sử dụng phản chiếu để gọi phương thức getAuthor() trên các đối tượng
+                        String author = (String) item.getClass().getMethod("getAuthor").invoke(item);
+                        return author != null && author.toLowerCase().contains(keyword.toLowerCase());
+                    } catch (Exception e) {
+                        return false; // Nếu không có phương thức getAuthor, bỏ qua
+                    }
+                })
                 .collect(Collectors.toList());
     }
 }
+
+class SearchByTitleStrategy<T> implements SearchStrategy<T> {
+    @Override
+    public List<T> search(List<T> items, String keyword) {
+        return items.stream()
+                .filter(item -> {
+                    try {
+                        // Sử dụng phản chiếu để gọi phương thức getTitle() trên các đối tượng
+                        String title = (String) item.getClass().getMethod("getTitle").invoke(item);
+                        return title != null && title.toLowerCase().contains(keyword.toLowerCase());
+                    } catch (Exception e) {
+                        return false; // Nếu không có phương thức getTitle, bỏ qua
+                    }
+                })
+                .collect(Collectors.toList());
+    }
+}
+
 

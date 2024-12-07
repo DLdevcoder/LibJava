@@ -15,6 +15,27 @@ public class Theses extends Document{
         this.quantity = quantity;
     }
 
+    public Theses(String title, String author, int quantity, String degree, String institution, String year) {
+        this.title = title;
+        this.author = author;
+        this.quantity = quantity;
+        this.degree = degree;
+        this.institution = institution;
+        this.publicationYear = year;
+
+    }
+
+    public Theses(int id, String title, String author, String year, String degree, String institution, String language) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.publicationYear = year;
+        this.degree = degree;
+        this.institution = institution;
+        this.language = language;
+
+    }
+
     public String getDegree() {
         return degree;
     }

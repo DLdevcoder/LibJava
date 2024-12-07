@@ -11,9 +11,8 @@ import models.Theses;
 import utils.GoogleBooksAPI;
 
 import java.sql.SQLException;
-import java.util.function.BiConsumer;
 
-public class AddBookController extends HeaderController {
+public class AddDocumentController extends DocumentSideBarController {
 
     @FXML
     private TextField AddBook_TextField;
@@ -41,6 +40,25 @@ public class AddBookController extends HeaderController {
 
     @FXML
     private TextField EnterGDQuantity_TextField;
+
+    @FXML
+    private TextField EnterDegree_TextField;
+
+    @FXML
+    private TextField EnterInstitution_TextField;
+
+    @FXML
+    private TextField EnterYear_TextField;
+
+    @FXML
+    private TextField EnterGDType_TextField;
+
+    @FXML
+    private TextField EnterGDYear_TextField;
+
+    @FXML
+    private TextField EnterGDDescription_TextField;
+
 
 
     /**
@@ -86,10 +104,14 @@ public class AddBookController extends HeaderController {
     public void HandleAddThesesButton(ActionEvent event) {
         String title = EnterTheses_TextField.getText().trim();
         String author = EnterAuthor_TextField.getText().trim();
+        String degree = EnterDegree_TextField.getText().trim();
+        String year = EnterYear_TextField.getText().trim();
+        String istitution = EnterInstitution_TextField.getText().trim();
+
         int quantity = Integer.parseInt(EnterThesesQuantity_TextField.getText().trim());
 
         if (!title.isEmpty() && !author.isEmpty()) {
-            Theses theses = new Theses(title, author, quantity);
+            Theses theses = new Theses(title, author, quantity, degree, istitution, year);
 
             Admin admin = Admin.getInstance();
 
@@ -110,10 +132,15 @@ public class AddBookController extends HeaderController {
     public void HandleAddGDButton(ActionEvent event) {
         String title = EnterGovermentDoc_TextField.getText().trim();
         String author = EnterGDAuthor_TextField.getText().trim();
+        String type = EnterGDType_TextField.getText().trim();
+        String year = EnterGDYear_TextField.getText().trim();
+        String description = EnterGDDescription_TextField.getText().trim();
+
+
         int quantity = Integer.parseInt(EnterGDQuantity_TextField.getText().trim());
 
         if (!title.isEmpty() && !author.isEmpty()) {
-            GovernmentDocuments governmentDocuments = new GovernmentDocuments(title, author, quantity);
+            GovernmentDocuments governmentDocuments = new GovernmentDocuments(title, author, quantity,type, year, description);
 
             // Lấy thể hiện duy nhất của lớp `Admin` (Singleton pattern)
             Admin admin = Admin.getInstance();
