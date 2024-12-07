@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="572.0" prefWidth="1063.0" stylesheets="@../../resources/stylesheet/CommonDoc.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.AddBookController">
+<BorderPane prefHeight="572.0" prefWidth="1063.0" stylesheets="@../../resources/stylesheet/CommonDoc.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.AddDocumentController">
 
 
     <top>
@@ -32,6 +32,21 @@
                                 <Insets top="20.0" />
                             </VBox.margin>
                         </TextField>
+                  <TextField fx:id="EnterGDType_TextField" promptText="PLEASE ENTER DOCUMENT TYPE" styleClass="AddBook_TextField">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="EnterGDYear_TextField" promptText=" PLEASE ENTER PUBLICATION YEAR" styleClass="AddBook_TextField">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="EnterGDDescription_TextField" promptText="PLEASE ENTER THE DESCRIPTION" styleClass="AddBook_TextField">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </TextField>
                   <TextField fx:id="EnterGDQuantity_TextField" promptText="ENTER QUANTITY" styleClass="AddBook_TextField">
                      <VBox.margin>
                         <Insets top="25.0" />

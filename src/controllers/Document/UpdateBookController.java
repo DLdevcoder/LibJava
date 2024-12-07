@@ -11,7 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 
-public class UpdateBookController {
+public class UpdateBookController extends DocumentSideBarController{
 
     @FXML
     private ChoiceBox<String> choiceBox;
@@ -124,18 +124,8 @@ public class UpdateBookController {
         }
     }
 
-    /**
-     * Displays an alert message with the given title and content.
-     *
-     * @param title The title of the alert
-     * @param message The content of the alert
-     */
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null); // Không cần header
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
+
+
+
 }
 

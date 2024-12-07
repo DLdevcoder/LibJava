@@ -20,7 +20,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookController extends HeaderController {
+public class BookController extends DocumentSideBarController {
 
      @FXML
      private TextField searchField;

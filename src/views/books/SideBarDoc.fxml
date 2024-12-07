@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -15,14 +14,20 @@
 
     <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="414.0" prefWidth="205.0" spacing="8" styleClass="sidebar">
         <Label styleClass="sidebar-title" text="Document Management" />
-        <Button alignment="TOP_LEFT" maxWidth="Infinity" onAction="#ScenceBookList" prefHeight="43.0" prefWidth="175.0" styleClass="sidebar-button" text="BookList">
+      <MenuButton alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="37.0" prefWidth="181.0" styleClass="sidebar-menubutton" text="Document List">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#ScenceBookList" text="Book List" />
+          <MenuItem mnemonicParsing="false" onAction="#ScenceThesesList" text="Theses List" />
+            <MenuItem mnemonicParsing="false" onAction="#ScenceGDList" text="Goverment Doc List" />
+        </items>
          <graphic>
             <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../resources/image/booklist.png" />
                </image>
             </ImageView>
-         </graphic></Button>
+         </graphic>
+      </MenuButton>
         <Separator prefWidth="200.0" />
       <MenuButton fx:id="AddDoc_MenuButton" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="38.0" prefWidth="181.0" styleClass="sidebar-menubutton" text="Add Document">
         <items>

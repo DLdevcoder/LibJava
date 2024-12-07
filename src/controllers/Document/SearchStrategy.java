@@ -1,11 +1,7 @@
 package controllers.Document;
 
-import models.Book;
-
 import java.util.List;
 
-public interface SearchStrategy {
-    List<Book> search(List<Book> books, String keyword);
-
-
+public interface SearchStrategy<T> {
+    List<T> search(List<T> items, String keyword);
 }

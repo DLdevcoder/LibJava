@@ -13,7 +13,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class AddReviewsController extends HeaderController {
+public class AddReviewsController extends DocumentSideBarController {
 
     @FXML
     private TextField AddBookId_TextField;

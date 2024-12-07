@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="572.0" prefWidth="1063.0" stylesheets="@../../resources/stylesheet/CommonDoc.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.AddBookController">
+<BorderPane prefHeight="572.0" prefWidth="1063.0" stylesheets="@../../resources/stylesheet/CommonDoc.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.AddDocumentController">
 
 
     <top>
@@ -32,6 +32,21 @@
                                 <Insets top="20.0" />
                             </VBox.margin>
                         </TextField>
+                  <TextField fx:id="EnterDegree_TextField" promptText="PLEASE ENTER THESES DEGREE" styleClass="AddBook_TextField">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="EnterInstitution_TextField" promptText=" PLEASE ENTER THESES INSTITUTION " styleClass="AddBook_TextField">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="EnterYear_TextField" promptText="PLEASE ENTER THESES PUBLICATION YEAR" styleClass="AddBook_TextField">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </TextField>
                   <TextField fx:id="EnterThesesQuantity_TextField" promptText="ENTER QUANTITY" styleClass="AddBook_TextField">
                      <VBox.margin>
                         <Insets top="25.0" />

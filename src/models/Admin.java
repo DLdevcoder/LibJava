@@ -351,11 +351,16 @@ public class Admin extends Person {
     }
     //theses
     public void saveThesesToDataBase(Theses theses) {
-        String sql = "INSERT INTO theses (title, author,quantity) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO theses (title, author,quantity, degree, publication_year, institution) VALUES (?, ?, ?, ?, ?, ?)";
         try( Connection connection = DatabaseConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql) ){
             preparedStatement.setString(1, theses.getTitle());
             preparedStatement.setString(2, theses.getAuthor());
             preparedStatement.setInt(3, theses.getQuantity());
+            preparedStatement.setString(4, theses.getDegree());
+            preparedStatement.setString(5, theses.getPublicationYear());
+            preparedStatement.setString(6, theses.getInstitution());
+
+
            preparedStatement.executeUpdate();
 
 
@@ -365,11 +370,14 @@ public class Admin extends Person {
     }
 
     public void saveGDToDatabase(GovernmentDocuments governmentDocuments) {
-        String sql = "INSERT INTO governmentdocuments (title, author, quantity) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO governmentdocuments (title, author, quantity, document_type, publication_year,description) VALUES (?, ?, ?, ?, ?, ?)";
         try( Connection connection = DatabaseConnection.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql) ){
             preparedStatement.setString(1, governmentDocuments.getTitle());
             preparedStatement.setString(2, governmentDocuments.getAuthor());
             preparedStatement.setInt(3, governmentDocuments.getQuantity());
+            preparedStatement.setString(4, governmentDocuments.getDocumentType());
+            preparedStatement.setString(5, governmentDocuments.getPublicationYear());
+            preparedStatement.setString(6, governmentDocuments.getDescriptions());
             preparedStatement.executeUpdate();
 
 
