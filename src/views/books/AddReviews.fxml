@@ -27,11 +27,13 @@
                                 <Insets bottom="30.0" />
                             </VBox.margin></Label>
                         <TextField fx:id="AddBookId_TextField" prefHeight="37.6" prefWidth="1068.0" promptText="PLEASE ENTER BOOK ID" styleClass="AddReview_TextField" />
+                  <Label fx:id="BookTitleLabel" alignment="CENTER" prefHeight="15.0" prefWidth="463.0" />
                   <TextField fx:id="AddMemberId_TextField" promptText="PLEASE ENTER YOUR MEMBER ID" styleClass="AddReview_TextField">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
                   </TextField>
+                  <Label fx:id="MemberNameLabel" alignment="CENTER" prefHeight="15.0" prefWidth="466.0" />
                         <TextField fx:id="AddComment_TextField" promptText="PLEASE ENTER YOUR COMMENTS" styleClass="AddReview_TextField">
                             <VBox.margin>
                                 <Insets top="20.0" />

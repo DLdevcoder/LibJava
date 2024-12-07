@@ -88,10 +88,12 @@ public class AddDocumentController extends DocumentSideBarController {
                 admin.saveBookToDatabase(book);
             } else {
                 showAlert("Error", "Book not found");
+                clearBookFields();
             }
         } else {
             // Hiển thị thông báo lỗi nếu ISBN bị bỏ trống
             showAlert("Error", "Please Enter Book Title");
+            clearBookFields();
         }
     }
 
@@ -118,8 +120,10 @@ public class AddDocumentController extends DocumentSideBarController {
             admin.saveThesesToDataBase(theses);
 
             showAlert("Successfully", "Theses added successfully");
+            clearThesesFields();
         } else {
             showAlert("Error", "Please Enter Title and Author");
+            clearThesesFields();
         }
     }
 
@@ -148,10 +152,37 @@ public class AddDocumentController extends DocumentSideBarController {
             admin.saveGDToDatabase(governmentDocuments);
 
             showAlert("Successfully", "GD added successfully");
+            clearGDFields();
         } else {
             showAlert("Error", "Please Enter Title and Author");
+            clearGDFields();
         }
     }
+    private void clearBookFields() {
+        AddBook_TextField.clear();
+        ImageLink_TextField.clear();
+        EnterBookQuantity_TextField.clear();
+    }
+
+    private void clearThesesFields() {
+        EnterTheses_TextField.clear();
+        EnterAuthor_TextField.clear();
+        EnterDegree_TextField.clear();
+        EnterYear_TextField.clear();
+        EnterInstitution_TextField.clear();
+        EnterThesesQuantity_TextField.clear();
+    }
+
+    private void clearGDFields() {
+        EnterGovermentDoc_TextField.clear();
+        EnterGDAuthor_TextField.clear();
+        EnterGDType_TextField.clear();
+        EnterGDYear_TextField.clear();
+        EnterGDDescription_TextField.clear();
+        EnterGDQuantity_TextField.clear();
+    }
+
+
 
 }
 

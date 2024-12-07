@@ -28,6 +28,7 @@
                                 <Insets bottom="30.0" />
                             </VBox.margin></Label>
                   <TextField fx:id="bookIdField" promptText="Enter book ID" />
+                  <Label fx:id="bookTitleLabel" alignment="CENTER" prefHeight="18.0" prefWidth="627.0" />
                   <ChoiceBox fx:id="choiceBox" prefHeight="38.0" prefWidth="135.0">
                      <VBox.margin>
                         <Insets top="20.0" />
