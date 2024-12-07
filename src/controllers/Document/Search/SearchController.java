@@ -1,5 +1,6 @@
-package controllers;
+package controllers.Document.Search;
 
+import controllers.HeaderController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,7 +16,7 @@ import utils.GoogleBooksAPI;
 
 import java.util.List;
 
-public class SearchController extends HeaderController{
+public class SearchController extends HeaderController {
     @FXML
     private TableView<Book> DocumentsTable;
 
@@ -100,6 +101,7 @@ public class SearchController extends HeaderController{
     public void performSearch(String query) {
         if (query == null || query.isEmpty()) {
             showAlert("Error", "Please enter a valid search term");
+
             return;
         }
 

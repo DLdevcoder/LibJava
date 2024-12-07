@@ -1,5 +1,6 @@
 package controllers;
 
+import controllers.Document.Search.SearchController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -88,6 +89,7 @@ public class HeaderController {
                     if (keyEvent.getCode().toString().equals("ENTER")) {
                         String query = SearchDoc_TextField.getText();
                         openTableViewWindow(query);
+                        SearchDoc_TextField.clear();
 
 
                     }
