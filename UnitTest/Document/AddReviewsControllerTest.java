@@ -1,6 +1,6 @@
 package Document;
 
-import controllers.Document.AddReviewsController;
+import controllers.Document.Book.AddReviewsController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,7 +12,6 @@ import org.testfx.framework.junit5.ApplicationTest;
 
 import java.sql.SQLException;
 
-import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AddReviewsControllerTest extends ApplicationTest {

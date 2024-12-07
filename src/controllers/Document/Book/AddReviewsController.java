@@ -1,6 +1,6 @@
-package controllers.Document;
+package controllers.Document.Book;
 
-import controllers.HeaderController;
+import controllers.Document.DocumentSideBarController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import models.Book;
@@ -8,9 +8,7 @@ import models.Member;
 import models.Review;
 import utils.DatabaseConnection;
 
-import java.io.IOException;
 import java.sql.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class AddReviewsController extends DocumentSideBarController {

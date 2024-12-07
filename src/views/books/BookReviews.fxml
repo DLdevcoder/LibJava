@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="750.0" prefWidth="1350.0" stylesheets="@../../resources/stylesheet/CommonDoc.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.BookReviewController">
+<BorderPane prefHeight="750.0" prefWidth="1350.0" stylesheets="@../../resources/stylesheet/CommonDoc.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.Book.BookReviewController">
     <top>
         <fx:include source="../frame/Header.fxml" />
     </top>

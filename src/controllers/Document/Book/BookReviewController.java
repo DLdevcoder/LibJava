@@ -1,6 +1,6 @@
-package controllers.Document;
+package controllers.Document.Book;
 
-import controllers.HeaderController;
+import controllers.Document.DocumentSideBarController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

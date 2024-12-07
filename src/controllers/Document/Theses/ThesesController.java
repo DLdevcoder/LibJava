@@ -1,8 +1,9 @@
-package controllers.Document;
+package controllers.Document.Theses;
 
+import controllers.Document.Search.SearchByAuthorStrategy;
+import controllers.Document.Search.SearchDocumentController;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

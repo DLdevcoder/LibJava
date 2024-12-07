@@ -1,6 +1,8 @@
-package controllers.Document;
+package controllers.Document.Book;
 
-import controllers.HeaderController;
+import controllers.Document.DocumentSideBarController;
+import controllers.Document.Search.SearchByTitleStrategy;
+import controllers.Document.Search.SearchDocumentController;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -17,7 +19,6 @@ import models.Book;
 import utils.DatabaseConnection;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class BookController extends DocumentSideBarController {
@@ -91,11 +92,11 @@ public class BookController extends DocumentSideBarController {
       */
      private void loadBooks() {
           new Thread(() -> {
-               try (Connection connection = DatabaseConnection.getConnection(); Statement statement = connection.createStatement()) {
+               try (Connection connection = DatabaseConnection.getConnection();
+                    Statement statement = connection.createStatement()) {
                     String sql = "SELECT id, title, author, publication_year, publisher, language, preview_link FROM books";
                     ResultSet resultSet = statement.executeQuery(sql);
 
-                    List<Book> books = new ArrayList<>();
                     while (resultSet.next()) {
                          int id = resultSet.getInt("id");
                          String title = resultSet.getString("title");
@@ -110,19 +111,23 @@ public class BookController extends DocumentSideBarController {
                          coverImageView.setFitWidth(100);
                          coverImageView.setFitHeight(150);
 
-                         books.add(new Book(id, title, author, publicationYear, publisher, language, coverImageView));
+                         Book book = new Book(id, title, author, publicationYear, publisher, language, coverImageView);
 
+                         // Cập nhật giao diện cho từng sách
+                         Platform.runLater(() -> {
+                              bookList.add(book); // Thêm sách vào ObservableList
+                              Document_Table.setItems(bookList); // Đảm bảo TableView được đồng bộ
+                         });
+
+                         // Giả lập thời gian tải dữ liệu (nếu cần)
+                         Thread.sleep(100); // 100ms mỗi lần tải
                     }
-                    Platform.runLater(() -> {
-                         bookList.setAll(books);
-                         Document_Table.setItems(bookList);
-                    });
-
-               } catch (SQLException e) {
+               } catch (SQLException | InterruptedException e) {
                     e.printStackTrace();
                }
           }).start();
      }
+
 
      /**
       * Executes a search for books based on the keyword entered in the search field

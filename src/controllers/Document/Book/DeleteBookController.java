@@ -1,18 +1,13 @@
-package controllers.Document;
+package controllers.Document.Book;
 
-import controllers.HeaderController;
+import controllers.Document.DocumentSideBarController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import models.Admin;
-import utils.DatabaseConnection;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Optional;
 
 public class DeleteBookController extends DocumentSideBarController {
