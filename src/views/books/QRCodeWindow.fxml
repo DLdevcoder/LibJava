@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.Document.QRCodeWindowController"
+      alignment="CENTER" spacing="10">
+    <ImageView fx:id="qrCodeImageView" fitWidth="300" fitHeight="300" />
+</VBox>

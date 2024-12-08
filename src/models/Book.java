@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 public class Book extends Document  {
     protected String publisher;
     protected String isbn;
+    String thumbnail;
 
     public Book(String title, String author, String year, String publisher, String language, ImageView ImageLink) {
         this.title = title;
@@ -89,7 +90,17 @@ public class Book extends Document  {
 
     }
 
+    public Book(int id, String title, String author, String publicationYear, String publisher, String language, ImageView coverImageView, String thumbnail) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.publicationYear = publicationYear;
+        this.publisher = publisher;
+        this.language = language;
+        this.ImageLink = coverImageView;
+        this.thumbnail = thumbnail;
 
+    }
 
 
     public String getPublisher() {
@@ -106,6 +117,13 @@ public class Book extends Document  {
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
+    }
+
+    public String getThumbnail() {
+        return this.thumbnail;
+    }
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
 
