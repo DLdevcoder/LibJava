@@ -8,7 +8,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.Objects;
 
 public class TestKhanh extends Application {
 

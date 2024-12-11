@@ -46,7 +46,7 @@ public class BookController extends DocumentSideBarController {
 
 
      @FXML
-     private TableView<Book> Document_Table;
+     public TableView<Book> Document_Table;
 
      @FXML
      private TableColumn<Book, String> Book_Title;
@@ -135,11 +135,11 @@ public class BookController extends DocumentSideBarController {
 
                          Platform.runLater(() -> {
                               bookList.add(book);
-                              Document_Table.setItems(bookList);
                          });
 
 
                     }
+                    Platform.runLater(() -> Document_Table.setItems(bookList));
                }catch (SQLException e) {
                     e.printStackTrace();
                }

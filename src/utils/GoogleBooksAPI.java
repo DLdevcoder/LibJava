@@ -104,40 +104,36 @@
          * @return A List of Book objects that match the search query.
          */
         public static List<Book> getBooksByQuery(String query) {
-            String urlWithQuery = API_URL + query + "&key="  + API_KEY; // URL với query tìm kiếm
+            String urlWithQuery = API_URL + query + "&key=" + API_KEY; // URL với query tìm kiếm
             List<Book> bookList = new ArrayList<>();
+
             try {
-                while (true) {
-                    // Xây dựng URL với startIndex
-                    String paginatedUrl = urlWithQuery;
+                // Gọi API để lấy dữ liệu sách
+                JSONArray booksArray = fetchBooksByQuery(urlWithQuery);
 
-                    // Gọi API để lấy dữ liệu sách
-                    JSONArray booksArray = fetchBooksByQuery(paginatedUrl);
+                if (booksArray == null || booksArray.length() == 0) {
+                    System.out.println("No books found for the query: " + query);
+                    return bookList; // Trả về danh sách rỗng nếu không có kết quả
+                }
 
-                    if (booksArray == null || booksArray.length() == 0) {
-                        break; // Không còn sách để lấy
-                    }
+                // Duyệt qua kết quả và thêm vào danh sách
+                for (int i = 0; i < booksArray.length(); i++) {
+                    JSONObject volumeInfo = booksArray.getJSONObject(i).getJSONObject("volumeInfo");
 
-                    // Duyệt qua kết quả và thêm vào danh sách
-                    for (int i = 0; i < booksArray.length(); i++) {
-                        JSONObject volumeInfo = booksArray.getJSONObject(i).getJSONObject("volumeInfo");
+                    String isbn = getIsbn(volumeInfo);
+                    String title = volumeInfo.getString("title");
+                    String author = volumeInfo.optString("authors", "No author detected");
+                    String publicationYear = volumeInfo.optString("publishedDate", "No Publication Year");
 
-                        String isbn = getIsbn(volumeInfo);
-                        String title = volumeInfo.getString("title");
-                        String author = volumeInfo.optString("authors", "No author detected");
-                        String publicationYear = volumeInfo.optString("publishedDate", "No Publication Year");
-
-                        Book book = new Book(isbn, title, author, publicationYear);
-                        bookList.add(book);
-                    }
-
-
+                    Book book = new Book(isbn, title, author, publicationYear);
+                    bookList.add(book);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return bookList;  // Trả về danh sách tất cả các cuốn sách
+            return bookList; // Trả về danh sách các cuốn sách
         }
+
 
         /**
          * Extracts book details (title, author, etc.) from the given response.
