@@ -36,6 +36,9 @@ public class BookReviewController extends DocumentSideBarController {
     @FXML
     private TableColumn<Review, String> BookReviewer;
 
+    @FXML
+    private TableColumn<Review, String> BookRating;
+
     private ObservableList<Review> ReviewData;
 
     public BookReviewController() {
@@ -59,6 +62,7 @@ public class BookReviewController extends DocumentSideBarController {
                 new SimpleStringProperty(cellData.getValue().getReviewDate().toString())); // Hiển thị Date dưới dạng String
         BookReviewer.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getReviewerName()));
+        BookRating.setCellValueFactory(cellData ->new SimpleStringProperty(String.valueOf(cellData.getValue().getRating())));
 
         // Gọi hàm load dữ liệu
         loadReview();
@@ -72,7 +76,7 @@ public class BookReviewController extends DocumentSideBarController {
             try (Connection connection = DatabaseConnection.getConnection();
                  Statement statement = connection.createStatement()) {
 
-                String sql = "select     b.id, b.title, r.comment, r.review_date, m.name " +
+                String sql = "select     b.id, b.title, r.comment, r.review_date, m.name, r.rating " +
                         "from reviews r " +
                         "inner join books b on r.book_id = b.id " +
                         "inner join members m on r.member_id = m.member_id ";
@@ -88,6 +92,7 @@ public class BookReviewController extends DocumentSideBarController {
                     String comment = resultSet.getString("comment");
                     String reviewDateStr = resultSet.getString("review_date");
                     String reviewer = resultSet.getString("name");
+                    String rating = resultSet.getString("rating");
 
                     // Chuyển đổi ngày sang java.sql.Date
                     Date reviewDate = convertStringToSqlDate(reviewDateStr);
@@ -96,7 +101,7 @@ public class BookReviewController extends DocumentSideBarController {
                     Member member = new Member(reviewer);
 
                     // Thêm dữ liệu vào danh sách
-                    data.add(new Review(book, comment, reviewDate, member));
+                    data.add(new Review(book, comment, reviewDate, member, rating));
                 }
 
                 // Cập nhật TableView trên luồng giao diện

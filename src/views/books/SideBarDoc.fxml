@@ -14,9 +14,9 @@
 
     <VBox fx:id="sidebar" layoutX="7.0" layoutY="7.0" prefHeight="414.0" prefWidth="205.0" spacing="8" styleClass="sidebar">
         <Label styleClass="sidebar-title" text="Document Management" />
-      <MenuButton alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="37.0" prefWidth="181.0" styleClass="sidebar-menubutton" text="Document List">
+      <MenuButton fx:id="Document_List" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="37.0" prefWidth="181.0" styleClass="sidebar-menubutton" text="Document List">
         <items>
-          <MenuItem mnemonicParsing="false" onAction="#ScenceBookList" text="Book List" />
+          <MenuItem fx:id="Book_List" mnemonicParsing="false" onAction="#ScenceBookList" text="Book List" />
           <MenuItem mnemonicParsing="false" onAction="#ScenceThesesList" text="Theses List" />
             <MenuItem mnemonicParsing="false" onAction="#ScenceGDList" text="Goverment Doc List" />
         </items>

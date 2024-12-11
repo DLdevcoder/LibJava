@@ -137,11 +137,10 @@ public class BookController extends DocumentSideBarController {
                               bookList.add(book);
                               Document_Table.setItems(bookList);
                          });
-                         Thread.sleep(100); // 100ms mỗi lần tải
 
 
                     }
-               }catch (SQLException | InterruptedException e) {
+               }catch (SQLException e) {
                     e.printStackTrace();
                }
           }).start();
@@ -151,7 +150,7 @@ public class BookController extends DocumentSideBarController {
       * Displays a QR code in a separate modal window.
       * The QR code represents the link to the selected book.
       *
-      * @param qrImage the QR code image to be displayed
+      * @param url the QR code image to be displayed
       */
      private void showQRCodeWindow(String url) {
           try {

@@ -87,8 +87,9 @@ public class AddDocumentController extends DocumentSideBarController {
                 // Lưu thông tin sách vào cơ sở dữ liệu thông qua `Admin`
                 admin.saveBookToDatabase(book);
             } else {
-                showAlert("Error", "Book not found");
                 clearBookFields();
+                showAlert("Error", "Book not found");
+
             }
         } else {
             // Hiển thị thông báo lỗi nếu ISBN bị bỏ trống

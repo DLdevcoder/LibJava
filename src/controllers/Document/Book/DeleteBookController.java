@@ -82,9 +82,6 @@ public class DeleteBookController extends DocumentSideBarController {
             // Xóa text field và làm trống label
             RemoveBook_TextField.clear();
             BookNameLabel.setText("");
-            showAlert("Successfully", "Book deleted successfully.");
-        } else {
-            showAlert("Cancelled", "Deletion cancelled.");
         }
     }
 
