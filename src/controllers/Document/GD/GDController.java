@@ -38,10 +38,14 @@ public class GDController {
     @FXML
     private TableColumn<GovernmentDocuments, String> GD_Descriptions;
 
+    @FXML
+    private TableColumn<GovernmentDocuments, String> GD_Language;
+
 
 
     @FXML
     private TableColumn<GovernmentDocuments, String> GD_Type;
+
 
 
     @FXML
@@ -77,6 +81,7 @@ public class GDController {
         GD_Year.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getPublicationYear())));
         GD_Type.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDocumentType()));
         GD_Descriptions.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescriptions()));
+        GD_Language.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getLanguage()));
 
 
         loadGD();
@@ -93,7 +98,7 @@ public class GDController {
     private void loadGD() {
         new Thread(() -> {
             try (Connection connection = DatabaseConnection.getConnection(); Statement statement = connection.createStatement()) {
-                String sql = "SELECT id, title, author, publication_year,document_type, description FROM governmentdocuments";
+                String sql = "SELECT id, title, author, publication_year,document_type, description, language FROM governmentdocuments";
                 ResultSet resultSet = statement.executeQuery(sql);
 
                 List<GovernmentDocuments> gd = new ArrayList<>();
@@ -104,9 +109,10 @@ public class GDController {
                     String year = resultSet.getString("publication_year");
                     String type = resultSet.getString("document_type");
                     String descriptions = resultSet.getString("description");
+                    String language = resultSet.getString("language");
 
 
-                    gd.add(new GovernmentDocuments(id, title, author, year, type, descriptions));
+                    gd.add(new GovernmentDocuments(id, title, author, year, type, descriptions, language));
                 }
 
                 Platform.runLater(() -> {

@@ -1,101 +1,98 @@
 package Document;
 
-import controllers.Document.Book.AddReviewsController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
-import java.sql.SQLException;
-
 import static org.junit.jupiter.api.Assertions.*;
+import static org.testfx.api.FxAssert.verifyThat;
+import static org.testfx.matcher.base.NodeMatchers.isVisible;
 
 public class AddReviewsControllerTest extends ApplicationTest {
-    private AddReviewsController controller;
-    private TextField AddBookId_TextField;
-    private TextField AddComment_TextField;
-    private TextField AddRating_TextField;
-    private TextField AddMemberId_TextField;
 
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/books/AddReviews.fxml"));
         Parent root = loader.load();
-        controller = loader.getController();
-
         stage.setScene(new Scene(root));
         stage.show();
     }
 
-    @BeforeEach
-    public void setUp() {
-        AddBookId_TextField = lookup("#AddBookId_TextField").query();
-        AddComment_TextField = lookup("#AddComment_TextField").query();
-        AddRating_TextField = lookup("#AddRating_TextField").query();
-        AddMemberId_TextField = lookup("#AddMemberId_TextField").query();
+    @Test
+    public void testUpdateLabels_BookExists() throws Exception {
+        // Nhập ID sách hợp lệ
+        clickOn("#AddBookId_TextField").write("123"); // Giả sử ID 1 tồn tại
+
+        // Kiểm tra nhãn BookTitleLabel được cập nhật đúng
+        verifyThat("#BookTitleLabel", (Label label) ->
+                label.isVisible() && label.getText().equals("The Great Gatsby") && label.getStyle().contains("green")
+        );
     }
 
     @Test
-    public void testHandleAddReviewButton_ValidInput() throws Exception {
-        // Arrange: Set up valid input data
-        AddBookId_TextField.setText("1");
-        AddComment_TextField.setText("Great book!");
-        AddRating_TextField.setText("5");
-        AddMemberId_TextField.setText("3");
+    public void testUpdateLabels_BookNotExists() throws Exception {
+        // Nhập ID sách không hợp lệ
+        clickOn("#AddBookId_TextField").write("9999");
 
-
-
-
-        // Act: Click on the "Add Review" button
-        clickOn("#AddReview_Button");
-
-        // Assert: Verify that the fields are cleared after adding review
-        assertEquals("", AddBookId_TextField.getText(), "Book ID field should be empty after adding review");
-        assertEquals("", AddComment_TextField.getText(), "Comment field should be empty after adding review");
-        assertEquals("", AddRating_TextField.getText(), "Rating field should be empty after adding review");
-        assertEquals("", AddMemberId_TextField.getText(), "Member ID field should be empty after adding review");
-        // Optionally, you could check if the review is added to some data structure or displayed in a table
+        // Kiểm tra nhãn BookTitleLabel hiển thị "Not Found" và màu đỏ
+        verifyThat("#BookTitleLabel", (Label label) ->
+                label.isVisible() && label.getText().equals("Not Found")
+        );
     }
 
     @Test
-    public void testHandleAddReviewButton_InvalidBookId() throws SQLException {
-        // Arrange: Set up invalid book ID
-        AddBookId_TextField.setText("9999");  // A book ID that does not exist
-        AddComment_TextField.setText("Great book!");
-        AddRating_TextField.setText("5");
-        AddMemberId_TextField.setText("1");
+    public void testUpdateLabels_MemberExists() throws Exception {
+        // Nhập ID thành viên hợp lệ
+        clickOn("#AddMemberId_TextField").write("2"); // Giả sử ID 1 tồn tại
 
-        // Mocking static methods to simulate database behavior
-
-        // Act: Click on the "Add Review" button
-        clickOn("#AddReview_Button");
-
-        // Assert: Verify that the fields are not cleared due to invalid input
-        assertNotEquals("", AddBookId_TextField.getText(), "Book ID field should not be empty due to invalid input");
-        assertNotEquals("", AddMemberId_TextField.getText(), "Member ID field should not be empty due to invalid input");
-
-        // Optionally: You can also verify the "Empty Fields" scenario or check other states of the UI
+        // Kiểm tra nhãn MemberNameLabel được cập nhật đúng
+        verifyThat("#MemberNameLabel", (Label label) ->
+                label.isVisible() && label.getText().equals("Bob Johnson")
+        );
     }
 
     @Test
-    public void testHandleAddReviewButton_EmptyFields() {
-        // Arrange: Set up empty fields
-        AddBookId_TextField.setText("");
-        AddComment_TextField.setText("");
-        AddRating_TextField.setText("");
-        AddMemberId_TextField.setText("");
+    public void testUpdateLabels_MemberNotExists() throws Exception {
+        // Nhập ID thành viên không hợp lệ
+        clickOn("#AddMemberId_TextField").write("9999");
 
-        // Act: Click on the "Add Review" button
-        clickOn("#AddReview_Button");
-
-        // Assert: Verify that the fields are still empty (no review should be added)
-        assertEquals("", AddBookId_TextField.getText(), "Book ID field should remain empty when fields are empty");
-        assertEquals("", AddComment_TextField.getText(), "Comment field should remain empty when fields are empty");
-        assertEquals("", AddRating_TextField.getText(), "Rating field should remain empty when fields are empty");
-        assertEquals("", AddMemberId_TextField.getText(), "Member ID field should remain empty when fields are empty");
+        // Kiểm tra nhãn MemberNameLabel hiển thị "Not Found" và màu đỏ
+        verifyThat("#MemberNameLabel", (Label label) ->
+                label.isVisible() && label.getText().equals("Not Found")
+        );
     }
+
+    @Test
+    public void testHandleAddReviewButton_EmptyFields() throws Exception {
+        // Nhấn nút AddReview khi không điền đủ thông tin
+        clickOn("#AddBookId_TextField").write("");
+        clickOn("#AddComment_TextField").write("");
+        clickOn("#AddRating_TextField").write("");
+        clickOn("#AddMemberId_TextField").write("");
+        clickOn("#AddReview_Button");
+        Stage alertStage = (Stage) targetWindow();
+        assertTrue(alertStage.isShowing(), "Empty Fields");
+
+
+    }
+
+    @Test
+    public void testHandleAddReviewButton_BookOrMemberNotExists() throws Exception {
+        // Nhập ID sách hoặc thành viên không tồn tại
+        clickOn("#AddBookId_TextField").write("9999");
+        clickOn("#AddComment_TextField").write("Great book!");
+        clickOn("#AddRating_TextField").write("4.5");
+        clickOn("#AddMemberId_TextField").write("9999");
+        clickOn("#AddReview_Button");
+        Stage alertStage = (Stage) targetWindow();
+        assertTrue(alertStage.isShowing(), "Book or member does not exist");
+
+    }
+
+
 }

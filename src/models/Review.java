@@ -26,6 +26,15 @@ public class Review  {
         this.member = member;
     }
 
+    public Review(Book book, String comment, java.sql.Date reviewDate, Member member, String rating) {
+        this.book = book;
+        this.ReviewText = comment;
+        this.ReviewDate = reviewDate;
+        this.member = member;
+        this.rating = Double.parseDouble(rating);
+
+    }
+
 
     public String getReviewText() {
         return ReviewText;

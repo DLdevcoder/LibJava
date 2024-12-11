@@ -104,13 +104,12 @@
          * @return A List of Book objects that match the search query.
          */
         public static List<Book> getBooksByQuery(String query) {
-            String urlWithQuery = API_URL + query + "&maxResults=40&key="  + API_KEY; // URL với query tìm kiếm
+            String urlWithQuery = API_URL + query + "&key="  + API_KEY; // URL với query tìm kiếm
             List<Book> bookList = new ArrayList<>();
-            int startIndex = 0;// Danh sách sách sẽ được trả về
             try {
                 while (true) {
                     // Xây dựng URL với startIndex
-                    String paginatedUrl = urlWithQuery + "&startIndex=" + startIndex;
+                    String paginatedUrl = urlWithQuery;
 
                     // Gọi API để lấy dữ liệu sách
                     JSONArray booksArray = fetchBooksByQuery(paginatedUrl);
@@ -132,8 +131,7 @@
                         bookList.add(book);
                     }
 
-                    // Tăng startIndex để lấy trang tiếp theo
-                    startIndex += 40;
+
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -151,7 +149,7 @@
             try {
                 // Kiểm tra nếu không có trường "items" hoặc mảng "items" rỗng
                 if (!response.has("items") || response.getJSONArray("items").isEmpty()) {
-                    throw new JSONException("No books found for the given ISBN.");
+                    return null;
                 }
 
                 // Trả về thông tin sách đầu tiên trong danh sách

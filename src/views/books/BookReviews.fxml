@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="750.0" prefWidth="1350.0" stylesheets="@../../resources/stylesheet/BookList.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.Book.BookReviewController">
+<BorderPane prefHeight="750.0" prefWidth="1850.0" stylesheets="@../../resources/stylesheet/BookList.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Document.Book.BookReviewController">
     <top>
         <fx:include source="../frame/Header.fxml" />
     </top>
@@ -12,13 +12,15 @@
         <fx:include source="SideBarDoc.fxml" />
     </left>
    <center>
-      <TableView id="Document_Table" fx:id="ReviewTable" minWidth="-Infinity" prefHeight="510.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+      <TableView id="Document_Table" fx:id="ReviewTable" prefHeight="608.0" prefWidth="1613.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="BookId" prefWidth="70.39996182918549" resizable="false" text="Book ID" />
-            <TableColumn fx:id="BookTitle" prefWidth="311.2000198364258" resizable="false" text="Title" />
-          <TableColumn fx:id="BookReviews" prefWidth="468.8000183105469" resizable="false" text="Reviews" />
-            <TableColumn fx:id="ReviewDate" prefWidth="196.0" resizable="false" text="Date" />
-            <TableColumn fx:id="BookReviewer" prefWidth="256.7999267578125" resizable="false" text="Reviewer" />
+            <TableColumn fx:id="BookTitle" prefWidth="214.4000244140625" resizable="false" text="Title" />
+          <TableColumn fx:id="BookReviews" prefWidth="445.60003662109375" resizable="false" text="Reviews" />
+            <TableColumn fx:id="ReviewDate" prefWidth="233.60003662109375" resizable="false" text="Date" />
+            <TableColumn fx:id="BookReviewer" prefWidth="340.800048828125" resizable="false" text="Reviewer" />
+            <TableColumn fx:id="BookRating" prefWidth="100.9998779296875" resizable="false" text="Rating" />
+
         </columns>
       </TableView>
    </center>

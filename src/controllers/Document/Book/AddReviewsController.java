@@ -92,6 +92,7 @@ public class AddReviewsController extends DocumentSideBarController {
                 if (resultSet.next()) {
                     return resultSet.getString("title");
                 } else {
+
                     return "Not Found";
                 }
             }
