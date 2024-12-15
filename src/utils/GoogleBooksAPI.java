@@ -52,8 +52,6 @@
                     //Chuyển chuỗi phản hồi sang đối tượng Json
                     JSONObject json = new JSONObject(response.toString());
                     return getBookDetails(json);
-                } else{
-                    System.out.println("Error: ");
                 }
 
 

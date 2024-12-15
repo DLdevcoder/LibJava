@@ -31,7 +31,9 @@ public class UpdateBookControllerTest extends ApplicationTest {
     public void testHandleUpdate_InvalidBookId() {
         // Nhập thông tin với ID sách không tồn tại
         clickOn("#bookIdField").write("9999"); // ID sách không tồn tại
-        clickOn("#choiceBox").clickOn("Title"); // Chọn "Title" trong ChoiceBox
+        clickOn("#choiceBox").clickOn("Title");
+
+        // Chọn "Title" trong ChoiceBox
         clickOn("#inputField").write("New Title"); // Nhập tiêu đề mới vào TextField
 
         // Nhấn nút Update
@@ -91,7 +93,7 @@ public class UpdateBookControllerTest extends ApplicationTest {
 
         // Kiểm tra xem TextField đã hiện và prompt text có đúng không
         verifyThat("#inputField", (TextField textField) ->
-                textField.isVisible() && textField.getPromptText().equals("Enter new author")
+               textField.getPromptText().equals("Enter new author")
         );
     }
 

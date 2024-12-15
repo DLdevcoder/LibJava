@@ -8,7 +8,6 @@ import java.util.List;
 public class SearchDocumentController<T> {
 
     private SearchStrategy<T> searchStrategy;
-
     /**
      * Sets the search strategy to be used for searching items.
      *

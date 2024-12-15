@@ -3,7 +3,7 @@ package controllers.Document.Search;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SearchByAuthorStrategy<T> implements SearchStrategy<T> {
+    public class SearchByAuthorStrategy<T> implements SearchStrategy<T> {
     @Override
     public List<T> search(List<T> items, String keyword) {
         return items.stream()
