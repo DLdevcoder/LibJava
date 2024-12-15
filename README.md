@@ -38,6 +38,8 @@ B.UI
 
 - Xử lí, thiết kế hiển thị phần mượn trả tài liệu.
 
+- Tạo JUnit Test cho các phần liên quan đến borrow management.
+
 - Xử lí, thiết kế phần thống kê các dữ liệu cho người dùng bao gồm:
 
 + Số người đang mượn sách và tỉ lệ sách được mượn bởi người đó
