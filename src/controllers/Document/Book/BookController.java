@@ -135,11 +135,11 @@ public class BookController extends DocumentSideBarController {
 
                          Platform.runLater(() -> {
                               bookList.add(book);
+                              Document_Table.setItems(bookList);
                          });
 
 
                     }
-                    Platform.runLater(() -> Document_Table.setItems(bookList));
                }catch (SQLException e) {
                     e.printStackTrace();
                }
